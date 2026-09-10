@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:51:45.073618+00:00",
+  "episode": "03",
+  "title": "Python: Fixtures That Own Their Data",
+  "input": {
+    "file": "renders/03-python-pytest-fixtures.mp4",
+    "sha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+    "sizeBytes": 33313507,
+    "modifiedAtUtc": "2026-09-09T21:50:18.272039+00:00"
+  },
+  "timeline": {
+    "file": "audio/03/timeline.json",
+    "sha256": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 443.291667,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "03-01",
+      "title": "Translate the lifecycle",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 38.234,
+      "sampleSeconds": 19.117,
+      "timestamp": "00:19.117",
+      "file": "03-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "051b751e75ed7ad76e0f0d6b4db7aa4e252b16c56d94cafc1852b3d7410babd5"
+    },
+    {
+      "sceneId": "03-02",
+      "title": "Confirm one Python environment",
+      "sceneStartSeconds": 38.234,
+      "sceneDurationSeconds": 34.25,
+      "sampleSeconds": 55.359,
+      "timestamp": "00:55.359",
+      "file": "03-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "2cd79763e07f930cc3088c76c84f5f0575c3516c647d46390b52bcc733037ef5"
+    },
+    {
+      "sceneId": "03-03",
+      "title": "Separate two HTTP responsibilities",
+      "sceneStartSeconds": 72.48400000000001,
+      "sceneDurationSeconds": 37.994,
+      "sampleSeconds": 91.481,
+      "timestamp": "01:31.481",
+      "file": "03-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "82a592a60a5f221f17d93d2a35e66355a29ef9b60fb12f80b4d872baede4c0ea"
+    },
+    {
+      "sceneId": "03-04",
+      "title": "Use a yielding fixture",
+      "sceneStartSeconds": 110.47800000000001,
+      "sceneDurationSeconds": 36.482,
+      "sampleSeconds": 128.719,
+      "timestamp": "02:08.719",
+      "file": "03-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "1bb3c26daf6a1a0f52e2f4efaf2285ad52ef3f9689981d45f2ec7bf3e745a62c"
+    },
+    {
+      "sceneId": "03-05",
+      "title": "Authenticate the provided context",
+      "sceneStartSeconds": 146.96,
+      "sceneDurationSeconds": 35.93,
+      "sampleSeconds": 164.925,
+      "timestamp": "02:44.925",
+      "file": "03-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "17d1718a747bbcd985fdfe006412ded6b843c1d639c3c62efef131aaaab2d5f9"
+    },
+    {
+      "sceneId": "03-06",
+      "title": "Write the visible behavior",
+      "sceneStartSeconds": 182.89000000000001,
+      "sceneDurationSeconds": 40.418,
+      "sampleSeconds": 203.099,
+      "timestamp": "03:23.099",
+      "file": "03-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0f5bb06121bf60dbfeedd0a4775f7b7ee4152bb87a82e5610bc553be3ee0a10c"
+    },
+    {
+      "sceneId": "03-07",
+      "title": "Check response semantics",
+      "sceneStartSeconds": 223.30800000000002,
+      "sceneDurationSeconds": 35.882,
+      "sampleSeconds": 241.249,
+      "timestamp": "04:01.249",
+      "file": "03-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "da75c768d1fc13f3d2fa6b610a3fe9b70417f7abe831753a07112472feadbf5b"
+    },
+    {
+      "sceneId": "03-08",
+      "title": "Capture the rejection response",
+      "sceneStartSeconds": 259.19,
+      "sceneDurationSeconds": 37.994,
+      "sampleSeconds": 278.187,
+      "timestamp": "04:38.187",
+      "file": "03-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3240d1fb64736bfbf606e1e04602449290d5ec15cbe6ad04b1f1b6978edec3d3"
+    },
+    {
+      "sceneId": "03-09",
+      "title": "Keep idempotency outside variation",
+      "sceneStartSeconds": 297.18399999999997,
+      "sceneDurationSeconds": 36.074,
+      "sampleSeconds": 315.221,
+      "timestamp": "05:15.221",
+      "file": "03-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "850ee243a7671888c9d6ebb140b14426c4cc242f9e0adf3a371bee249f4d9011"
+    },
+    {
+      "sceneId": "03-10",
+      "title": "Retain a useful trace",
+      "sceneStartSeconds": 333.258,
+      "sceneDurationSeconds": 35.018,
+      "sampleSeconds": 350.767,
+      "timestamp": "05:50.767",
+      "file": "03-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "af13b43888f3e93ee080fdb3e95ddfbc48fddf90c67f8037a99dea761b9994f3"
+    },
+    {
+      "sceneId": "03-11",
+      "title": "Preserve the original failure",
+      "sceneStartSeconds": 368.27599999999995,
+      "sceneDurationSeconds": 38.354,
+      "sampleSeconds": 387.453,
+      "timestamp": "06:27.453",
+      "file": "03-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "277cfc0992237298d8e944f99a8f2aff695fe71d55b5deb5e139e9829e446428"
+    },
+    {
+      "sceneId": "03-12",
+      "title": "Explain your fixture graph",
+      "sceneStartSeconds": 406.62999999999994,
+      "sceneDurationSeconds": 36.65,
+      "sampleSeconds": 424.955,
+      "timestamp": "07:04.955",
+      "file": "03-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "acae2d79c772d9da897a4b959977c34db187a771115f4f94b7b2039a3ea556d8"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "03-01",
+        "03-02",
+        "03-03",
+        "03-04",
+        "03-05",
+        "03-06"
+      ],
+      "sha256": "555537f5917a6b7728ff47f84425282f29d0722cb8e77a3ed9149116849d65fa"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "03-07",
+        "03-08",
+        "03-09",
+        "03-10",
+        "03-11",
+        "03-12"
+      ],
+      "sha256": "e8cec6ae75d271ddec40d3ab3db0e78e3ec10f2f393730ebbbc112acf72bd0d3"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+    "reviewedAtUtc": "2026-09-10T03:52:49.661386+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:51:41.809839+00:00",
+    "stage": "rendered",
+    "timelineSha256": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+    "artifactSha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/03/timeline.json": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/03/narration.wav": "3cba5a90889a982ebae7352d0086a941d6a7b9475290330be1895845df4c1b73",
+      "audio/03/subtitles.srt": "a8a9ddb53beccec20632fbd31e362ab09311df26838f43e8243b5abf59e50173",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

@@ -1,0 +1,46 @@
+{
+  "episode": "06",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+  "reviewedAtUtc": "2026-09-10T03:53:59.120727+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4, plus the listed native-resolution code sample. All production inputFiles and artifact hashes were verified against current files before extraction and again before recording this review.",
+  "reviewedSceneIds": [
+    "06-01",
+    "06-02",
+    "06-03",
+    "06-04",
+    "06-05",
+    "06-06",
+    "06-07",
+    "06-08",
+    "06-09",
+    "06-10",
+    "06-11",
+    "06-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "06-07"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/06/timeline.json": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/06/narration.wav": "827bba787e13056fc19f3b7ec6b2e33a27e0dc0cccdc06bdc981a0a9cbcddd26",
+    "audio/06/subtitles.srt": "3ea24bf0d70baa1f5e5caa226eec2146caea9db0cca22db16217c90c60a017b0",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  "sampledFrameFindings": [
+    "The distributed-process diagram uses separate blue-gray cards for browser, gateway, Accounts, outbox and ledger; arrows and labels remain distinct.",
+    "The eight-line polling example was inspected at native 1920x1080: route, exact identifier comparison and timeout are readable and fully contained.",
+    "All sampled title, checklist, code and subtitle panels use blue, cool gray, white and navy; no green, teal, visible clipping or overlap was observed."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

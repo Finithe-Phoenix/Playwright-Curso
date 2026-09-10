@@ -1,0 +1,1461 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Playwright avanzado con IA · Curso y laboratorios</title>
+<style>
+:root{--ink:#14213D;--accent:#2457E6;--paper:#F4F7FC;--muted:#56647A;--line:#D7DFED;--soft:#EAF0FF;--white:#FFFFFF;--code:#111C34;--code-text:#EEF3FF}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Segoe UI",Arial,sans-serif}button,input{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:var(--accent);text-underline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}[hidden]{display:none!important}
+.app{display:grid;grid-template-columns:282px minmax(0,1fr);min-height:100vh}aside{position:sticky;top:0;height:100vh;padding:34px 22px;display:flex;flex-direction:column;border-right:1px solid var(--line);background:var(--white);border-top:5px solid var(--accent)}.brand{font-weight:800;font-size:22px;letter-spacing:-.7px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:750}.brand .dot{display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--accent);margin-right:9px}.sidebar-caption{font-size:14px;color:var(--muted);margin:11px 0 28px;line-height:1.65}nav{display:grid;gap:9px}.nav-item{border:1px solid var(--line);background:var(--white);text-align:left;border-radius:10px;color:var(--ink);padding:13px 11px;font-size:14px;display:flex;align-items:center;gap:11px;line-height:1.5}.nav-item span{font-size:11px;font-weight:750;color:var(--muted)}.nav-item:hover{background:var(--soft);border-color:var(--accent)}.nav-item.active{background:var(--accent);color:var(--white);border-color:var(--accent);font-weight:650}.nav-item.active span{color:var(--white)}.sidebar-bottom{margin-top:auto;padding-top:30px;font-size:12px;color:var(--muted);line-height:1.85}.sidebar-bottom strong{display:block;color:var(--ink);font-size:13px}.main{min-width:0}.topbar{border-bottom:1px solid var(--line);padding:18px 44px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:11px;letter-spacing:.8px;color:var(--muted);background:var(--white)}.print{border:1px solid var(--line);border-radius:7px;background:var(--white);padding:7px 13px;color:var(--ink);font-size:12px;font-weight:600}.print:hover{background:var(--soft);border-color:var(--accent)}
+.hero{padding:44px 44px 32px;border-bottom:1px solid var(--line);background:var(--white)}.hero h1{font-size:clamp(34px,4vw,54px);line-height:1.1;letter-spacing:-2px;margin:16px 0 20px;max-width:800px;font-weight:750}.hero p{font-size:16px;max-width:760px;color:var(--muted);margin:0;line-height:1.8}.delivery-note{margin-top:28px;padding:21px 24px;border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--soft);border-radius:12px}.delivery-note strong{display:block;color:var(--ink);font-size:15px}.delivery-note p{display:flex;gap:11px 22px;flex-wrap:wrap;margin:12px 0;font-size:13px}.delivery-note a{font-weight:650}.delivery-note small{display:block;font-size:12px;color:var(--muted);line-height:1.75}.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.pill{font-size:12px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--muted);font-weight:600}.overview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px 44px}.metric{padding:20px 22px;border:1px solid var(--line);background:var(--white);border-radius:12px;box-shadow:0 5px 18px rgba(20,33,61,.025)}.metric b{display:block;font-size:28px;line-height:1.25;letter-spacing:-.7px;color:var(--accent)}.metric span{display:block;font-size:12px;color:var(--muted);margin-top:7px}.content{padding:4px 44px 55px;max-width:1360px}.document-header{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:12px 0 16px}.document-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:750;color:var(--muted)}.local-note{font-size:12px;color:var(--muted)}.toc{margin:0 0 22px;padding:16px 20px;border:1px solid var(--line);border-radius:10px;font-size:13px;background:var(--white)}.toc summary{cursor:pointer;font-weight:650}.toc-links{display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:14px}.toc-links a{font-size:12px}
+article{max-width:1120px;background:var(--white);padding:30px 32px;border:1px solid var(--line);border-radius:14px;box-shadow:0 7px 24px rgba(20,33,61,.025)}article>h1{font-size:31px;line-height:1.25;letter-spacing:-.8px;margin:0 0 24px;font-weight:750}h2{font-size:23px;letter-spacing:-.4px;margin:38px 0 16px;line-height:1.35;scroll-margin-top:22px;padding-top:8px}h3{font-size:18px;margin:28px 0 12px;line-height:1.45}p{margin:14px 0}article>p,article>ul,article>ol{max-width:82ch}li{padding-left:3px;margin:7px 0}ul,ol{padding-left:24px}code{font:13px/1.6 Consolas,monospace;background:var(--soft);color:var(--ink);padding:3px 5px;border-radius:4px;overflow-wrap:anywhere}pre{margin:0;padding:52px 22px 22px;overflow:auto;max-height:560px;background:var(--code);color:var(--code-text);border-radius:10px;tab-size:2;white-space:pre-wrap;overflow-wrap:anywhere}pre code{background:none;color:inherit;padding:0;font:13px/1.8 Consolas,monospace}.code-wrap{position:relative;margin:19px 0 26px}.copy{position:absolute;right:12px;top:11px;background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 12px;font-weight:700;font-size:12px}.copy:hover{background:var(--white);color:var(--accent)}.code-label{position:absolute;left:22px;top:17px;color:var(--code-text);font-size:10px;letter-spacing:1.2px;text-transform:uppercase}.table-wrap{overflow:auto;margin:22px 0;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;min-width:560px;width:100%;font-size:13px;line-height:1.65}th{background:var(--soft);text-align:left;padding:15px;color:var(--ink);font-weight:700}td{padding:15px;vertical-align:top;border-top:1px solid var(--line)}tr:nth-child(even) td{background:var(--paper)}blockquote{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:7px 20px;margin:23px 0;background:var(--soft)}hr{border:0;border-top:1px solid var(--line);margin:30px 0}.footer{font-size:12px;line-height:1.9;color:var(--muted);margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}#copy-status{position:fixed;bottom:22px;right:22px;background:var(--ink);color:var(--white);border:1px solid var(--line);border-radius:9px;padding:12px 18px;font-size:13px;box-shadow:0 5px 20px rgba(20,33,61,.15)}noscript{display:block;padding:20px}.no-js article[hidden]{display:block!important}
+@media(max-width:1100px){.app{grid-template-columns:235px minmax(0,1fr)}aside{padding:27px 17px}.hero,.content{padding-left:27px;padding-right:27px}.overview{padding:22px 27px}.topbar{padding:16px 27px}article{padding:25px}.metric{padding:17px}}@media(max-width:760px){.app{display:block}aside{position:static;height:auto;padding:20px;border-right:0;border-bottom:1px solid var(--line)}.sidebar-caption{margin:7px 0 17px}.sidebar-bottom{display:none}nav{display:flex;overflow:auto;gap:8px;padding-bottom:4px}.nav-item{flex-shrink:0;font-size:12px;padding:10px}.hero{padding:32px 22px}.hero h1{letter-spacing:-1.4px}.topbar{padding:14px 22px;letter-spacing:0}.content{padding:3px 18px 38px}.overview{padding:20px 18px;gap:9px}.metric{padding:15px 12px}.metric b{font-size:23px}.local-note{display:none}.metric span{font-size:11px}article{padding:22px 18px}article>h1{font-size:27px}.delivery-note{padding:18px}.hero p{font-size:15px}}@media(max-width:420px){.metric b{font-size:21px}.metric span{line-height:1.55}.overview{gap:7px}.topbar>span{max-width:180px}.copy{right:8px}pre{padding-left:16px;padding-right:16px}.code-label{left:16px}h2{font-size:21px}}
+@media print{aside,.topbar,.hero,.overview,.toc,.copy,.document-header,#copy-status{display:none!important}.app{display:block}.content{padding:0}body{background:var(--white);color:var(--ink);font-size:10pt}article{max-width:none;padding:0;border:0;box-shadow:none}article[hidden]{display:none!important}pre{white-space:pre-wrap;max-height:none;background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:12px}.code-label{display:none}.code-wrap{break-inside:avoid}.table-wrap{overflow:visible}table{min-width:0;font-size:9pt}h2,h3{break-after:avoid}a{color:inherit}.footer{font-size:8pt}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body class="no-js"><div class="app"><aside><div class="brand"><span class="dot"></span>Playwright + IA</div><p class="sidebar-caption">Guía del taller y laboratorios locales.</p><nav aria-label="Documentos del curso"><button class="nav-item active" data-target="plan" aria-current="page"><span>01</span>Plan del curso</button>
+<button class="nav-item " data-target="prompts" ><span>02</span>Prompts para copiar</button>
+<button class="nav-item " data-target="laboratorio" ><span>03</span>Laboratorio y lenguajes</button>
+<button class="nav-item " data-target="comandos" ><span>04</span>Comandos y CI</button>
+<button class="nav-item " data-target="preparacion" ><span>05</span>Preparación y evaluación</button></nav><div class="sidebar-bottom"><strong>Un caso. Tres lenguajes.</strong>Cada participante trabaja en su ruta.<br><br>22 casos verificados localmente<br>9 de septiembre de 2026</div></aside><main class="main"><div class="topbar"><span>TALLER DE 120 MINUTOS / LABORATORIOS EJECUTABLES</span><button class="print" id="print">Imprimir sección</button></div><header class="hero"><div class="eyebrow">Taller avanzado · 120 minutos</div><h1>De riesgos a regresiones<br>con ayuda de la IA.</h1><p>Aprende a diseñar, generar y revisar regresiones con proyectos locales, prompts copiables, evidencia de ejecución y criterios de evaluación.</p><div class="pills"><span class="pill">TypeScript · Playwright Test</span><span class="pill">Java · JUnit 5</span><span class="pill">Python · pytest</span></div><div class="delivery-note"><strong>Material práctico entregado · 22 casos aprobados localmente</strong><p><a href="videos/index.html">Biblioteca de 12 lecciones y estado de producción</a><a href="videos/LEEME-VIDEOS.md">Instalar y ejecutar el laboratorio</a><a href="videos/AI-PROMPTS-REGRESSION.md">Prompts distribuidos y TNZ</a></p><small>La biblioteca indica el estado de cada video. El ensayo con participantes y una ejecución alojada de CI siguen pendientes de comprobar.</small></div></header><div class="overview"><div class="metric"><b>120 min</b><span>Incluye pausa de 5 minutos</span></div><div class="metric"><b>22 casos</b><span>Aprobados en laboratorios locales</span></div><div class="metric"><b>3 rutas</b><span>Un lenguaje por participante</span></div></div><div class="content"><div class="document-header"><span class="document-title" id="document-title">Plan del curso</span><span class="local-note">Consulta local · prompts con botón de copia</span></div><details class="toc"><summary>En esta sección</summary><div class="toc-links" id="toc-links"></div></details><article id="plan" data-title="Plan del curso" ><h1>Playwright avanzado con IA: de riesgos a regresiones confiables</h1>
+<p>Plan para crear e impartir un taller de <strong>120 minutos</strong>, en español, con rutas de <strong>TypeScript, Java y Python</strong>. Preparado el 9 de septiembre de 2026.</p>
+<p><strong>Material práctico entregado:</strong> <a href="videos/index.html">biblioteca de 12 videos terminados</a>, <a href="videos/LEEME-VIDEOS.md">instalación y uso</a> y <a href="videos/AI-PROMPTS-REGRESSION.md">prompts de regresión distribuida y TNZ</a>. Los proyectos reales están en <code>videos/lab/distributed</code> y <code>videos/lab/mainframe</code>; registran <strong>22 casos aprobados localmente</strong> en sus <a href="videos/lab/distributed/evidence/VERIFICATION.md">evidencias distribuidas</a> y <a href="videos/lab/mainframe/evidence/VERIFICATION.md">evidencias de protocolo e híbridos</a>. Los 12 MP4 están exportados en Full HD con voz de IA y subtítulos en inglés; duran 7:03–7:32 y suman 87:20. El ensayo con participantes y una ejecución alojada de CI tienen estados independientes.</p>
+<h2>Propuesta</h2>
+<p>Los participantes usarán IA para analizar un flujo, generar pruebas, ejecutarlas y revisar sus resultados. Trabajarán sobre <strong>TransferLab</strong>, un laboratorio local implementado con transferencias y datos sintéticos. No describe sistemas ni reglas reales de HSBC.</p>
+<p>El resultado esperado por participante es una pequeña suite de regresión con tres escenarios relevantes, datos aislados, comprobaciones del resultado de negocio y evidencias de ejecución. Se añade una prueba de interfaz con un fallo simulado y un diagnóstico de una prueba fallida. Estos son objetivos del taller, no resultados ya obtenidos.</p>
+<p><strong>Decisión para hacerlo viable:</strong> cada persona elige un lenguaje antes de la sesión. El instructor explica una solución común y muestra TypeScript como referencia; Java y Python tienen material equivalente preparado. Los conceptos se comparten, las implementaciones se resuelven por ruta. Una demostración completa de los tres proyectos desde cero necesitaría sesiones adicionales.</p>
+<h2>A quién va dirigido</h2>
+<p>QA automation, SDET y desarrolladores que ya escriben pruebas básicas. Deben conocer selectores, aserciones, HTTP/JSON, Git y el lenguaje elegido. La ruta TypeScript requiere manejar <code>async/await</code>; la ruta Java, JUnit; la ruta Python, pytest y sus fixtures. Un ejercicio de diagnóstico previo comprueba esas bases.</p>
+<p>El taller se concentra en decisiones avanzadas: qué riesgo cubrir, cómo aislar estado del servidor, cómo verificar una operación y cómo distinguir un error del producto de un error de la prueba. No reserva tiempo de clase para instalar herramientas ni enseñar sintaxis inicial.</p>
+<h2>Objetivos observables</h2>
+<p>Al terminar, el participante podrá:</p>
+<ol>
+<li>Convertir reglas de negocio en una matriz de riesgos con prioridades y resultados esperados verificables.</li>
+<li>Proporcionar a la IA un contrato, evidencia de la aplicación y restricciones suficientes para generar pruebas revisables.</li>
+<li>Preparar y limpiar datos propios de cada prueba sin depender del orden de ejecución.</li>
+<li>Verificar una transferencia en la interfaz y en el estado autoritativo del laboratorio; comprobar idempotencia por API. El estado de esta implementación vive en memoria.</li>
+<li>Reproducir un fallo, analizar su traza y conservar el resultado esperado durante la corrección.</li>
+<li>Proponer una ejecución en CI y reportar con precisión pruebas aprobadas, fallidas, omitidas y no ejecutadas.</li>
+</ol>
+<h2>Agenda de 120 minutos</h2>
+<table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th align="right">Duración</th>
+<th>Actividad</th>
+<th>Acción del participante</th>
+<th>Evidencia de aprendizaje</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00–10</td>
+<td align="right">10 min</td>
+<td>Riesgo, regresión e IA</td>
+<td>Comparar una prueba superficial con otra que comprueba el débito y el registro</td>
+<td>Explicar qué defecto detecta cada una</td>
+</tr>
+<tr>
+<td>10–25</td>
+<td align="right">15 min</td>
+<td>Contexto y diseño de cobertura</td>
+<td>Completar el contexto de P00 y usar P01 para priorizar escenarios</td>
+<td>Matriz con tres casos y sus resultados esperados</td>
+</tr>
+<tr>
+<td>25–45</td>
+<td align="right">20 min</td>
+<td>Arquitectura, autenticación y datos</td>
+<td>Revisar el proyecto inicial preparado; aplicar P02/P03 para completar una fixture</td>
+<td>Datos exclusivos, autenticación y limpieza delimitada</td>
+</tr>
+<tr>
+<td>45–65</td>
+<td align="right">20 min</td>
+<td>Generación de regresiones</td>
+<td>Usar P04, revisar y ejecutar TR-01, TR-02 y TR-03</td>
+<td>Tres casos con aserciones de negocio y resultado real de la ejecución</td>
+</tr>
+<tr>
+<td>65–70</td>
+<td align="right">5 min</td>
+<td>Pausa</td>
+<td>Descanso y recuperación del punto común</td>
+<td>Grupo listo para continuar</td>
+</tr>
+<tr>
+<td>70–85</td>
+<td align="right">15 min</td>
+<td>Fallo controlado de red</td>
+<td>Usar P05 para simular un 503 y comprobar la respuesta de la interfaz</td>
+<td>Caso etiquetado como prueba de interfaz con mock</td>
+</tr>
+<tr>
+<td>85–100</td>
+<td align="right">15 min</td>
+<td>Diagnóstico con trazas</td>
+<td>Usar P06 sobre el fallo preparado; proponer una corrección basada en evidencia</td>
+<td>Causa sustentada y nueva ejecución, o defecto del producto documentado</td>
+</tr>
+<tr>
+<td>100–112</td>
+<td align="right">12 min</td>
+<td>CI, selección y evidencia</td>
+<td>Revisar la plantilla de su ruta con P07</td>
+<td>Comando, selección de pruebas y artefactos que se conservarán</td>
+</tr>
+<tr>
+<td>112–120</td>
+<td align="right">8 min</td>
+<td>Revisión y cierre</td>
+<td>Aplicar P08/P09 a lo realizado y responder la evaluación</td>
+<td>Resultado con rúbrica y pendientes explícitos</td>
+</tr>
+</tbody></table>
+<p><strong>Total: 120 minutos, incluida una pausa de cinco minutos.</strong> El proyecto inicial, las dependencias y las trazas de ejemplo deben estar disponibles desde el inicio. En el bloque de generación se completan puntos concretos del proyecto preparado; construir toda la infraestructura ahí haría inviable el horario.</p>
+<h2>Caso práctico y alcance</h2>
+<p>Cada escenario comienza con una cuenta nueva de <strong>MXN 1,000.00</strong>. Los importes en API se representan en centavos enteros.</p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Riesgo</th>
+<th>Operación</th>
+<th>Resultado esperado</th>
+<th>Capa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TR-01</td>
+<td>Débito o registro incorrecto</td>
+<td>Transferir MXN 100.00</td>
+<td>Saldo MXN 900.00, un registro, confirmación visible</td>
+<td>UI + API real del laboratorio</td>
+</tr>
+<tr>
+<td>TR-02</td>
+<td>Transferencia sin fondos</td>
+<td>Intentar MXN 1,100.00</td>
+<td>Rechazo, saldo MXN 1,000.00, cero registros</td>
+<td>UI + API real del laboratorio</td>
+</tr>
+<tr>
+<td>TR-03</td>
+<td>Débito duplicado al reintentar</td>
+<td>Enviar dos veces MXN 100.00 con la misma clave de idempotencia</td>
+<td>Mismo identificador de transferencia, un débito, un registro</td>
+<td>API real + consulta posterior de UI</td>
+</tr>
+<tr>
+<td>Extensión de clase</td>
+<td>Mala respuesta visual a un servicio caído</td>
+<td>Simular una respuesta 503</td>
+<td>Mensaje de error y posibilidad de recuperación según contrato</td>
+<td>UI con respuesta simulada</td>
+</tr>
+</tbody></table>
+<p>TR-03 no equivale a pulsar dos veces un botón: comprueba el contrato de idempotencia del servicio. El aislamiento del navegador tampoco demuestra aislamiento de saldos; cada prueba necesita datos propios del servidor. Playwright documenta el aislamiento mediante contextos de navegador y estrategias distintas de autenticación para pruebas que modifican estado compartido. <a href="https://playwright.dev/docs/browser-contexts">Aislamiento</a>, <a href="https://playwright.dev/docs/auth">autenticación</a>.</p>
+<p>El contrato didáctico completo, la ubicación de las implementaciones y las equivalencias de código están en <a href="03-LABORATORIO-Y-LENGUAJES.md">03-LABORATORIO-Y-LENGUAJES.md</a>. Las pruebas locales ya ejecutadas sirven como referencia; cada participante debe preparar y comprobar su propia estación antes de la sesión.</p>
+<p>La <a href="videos/index.html">biblioteca de 12 lecciones</a> amplía el material con proyección de Ledger y terminal TNZ local. La serie completa se utiliza fuera del taller, como preparación o repaso; en clase se seleccionan fragmentos breves. No se suma su duración a la agenda de 120 minutos ni se intenta ejecutar todas las extensiones dentro de ella.</p>
+<h2>Cómo encajan los tres lenguajes</h2>
+<table>
+<thead>
+<tr>
+<th>Ruta</th>
+<th>Base del proyecto</th>
+<th>Qué comparte con las otras rutas</th>
+<th>Qué requiere adaptación</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TypeScript</td>
+<td>Playwright Test</td>
+<td>Riesgos, casos, contrato, datos, resultados esperados</td>
+<td>Configuración, fixtures, proyectos y reportes del runner</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>Playwright Java + JUnit 5 + Maven</td>
+<td>Los mismos escenarios y criterios</td>
+<td>Ciclo de vida JUnit, dependencias Maven y captura de evidencia</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Playwright Python + pytest-playwright, API síncrona</td>
+<td>Los mismos escenarios y criterios</td>
+<td>Fixtures pytest, markers y configuración de plugins</td>
+</tr>
+</tbody></table>
+<p>Playwright Test es el runner de la ruta Node.js. Java y Python se integran con sus respectivos runners; sus opciones de ejecución no son intercambiables. <a href="https://playwright.dev/docs/languages">Lenguajes soportados</a>, <a href="https://playwright.dev/java/docs/test-runners">JUnit</a>, <a href="https://playwright.dev/python/docs/test-runners">pytest</a>.</p>
+<p>Si hay un solo instructor, conviene trabajar en parejas del mismo lenguaje y resolver incidencias de instalación antes del taller. Se recomienda un apoyo técnico para atender las tres rutas en un grupo grande; es una decisión de facilitación, no un requisito de Playwright.</p>
+<h2>Uso de IA durante el taller</h2>
+<p>El ciclo de trabajo será <strong>contexto → riesgos → código → ejecución → evidencia → revisión</strong>. El catálogo de prompts incluye un prompt maestro reutilizable y prompts por etapa. Para aprender, usar las etapas; para transferir el método a otro proyecto después del curso, usar el maestro con información real del proyecto.</p>
+<p>El participante proporciona contratos y evidencia sanitizada; la IA propone casos y cambios; el participante revisa el resultado de negocio y comprueba la ejecución. Una respuesta de la IA que dice “todo pasó” no sustituye un reporte del runner.</p>
+<p>Los prompts pueden usarse con un asistente de texto o con un agente que tenga acceso al proyecto. En modo texto, la persona copia los archivos y ejecuta los comandos. En modo agente, este puede hacerlo si dispone de esas herramientas. El material exige distinguir ambos modos.</p>
+<p>Como ampliación, Playwright ofrece agentes planner, generator y healer. Se puede mostrar su flujo si el entorno del instructor ya está configurado. Esta integración específica queda como demostración opcional de TypeScript; no es una dependencia del curso ni una capacidad idéntica de JUnit y pytest. Toda reparación debe preservar el criterio de aceptación. <a href="https://playwright.dev/docs/test-agents">Playwright Test Agents</a>.</p>
+<h2>Qué preparar para impartir esta entrega</h2>
+<ol>
+<li><strong>Revisar el contrato entregado:</strong> utilizar TransferLab o adaptar los casos a otra aplicación autorizada, verificando sus reglas.</li>
+<li><strong>Preparar la estación del grupo:</strong> instalar dependencias y arrancar los proyectos entregados; los resultados de esta estación no sustituyen una instalación comprobada en cada equipo.</li>
+<li><strong>Elegir los puntos a completar:</strong> conservar la solución funcional y preparar una copia de trabajo por participante. Una variante inicial deliberadamente incompleta queda como preparación docente.</li>
+<li><strong>Revisar la evidencia existente:</strong> comprobar los tres casos por lenguaje, la limpieza y el fallo intencional; repetir solo lo necesario para validar la configuración de la cohorte.</li>
+<li><strong>Preparar la facilitación:</strong> seleccionar los <a href="videos/FRAGMENTOS-PARA-LA-CLASE.md">fragmentos con tiempos exactos</a> de las 12 lecciones; la propuesta de 14 diapositivas del documento 05 es material de planificación, no una presentación independiente ya terminada.</li>
+<li><strong>Hacer un ensayo de 120 minutos:</strong> sigue pendiente un ensayo con participantes ajenos a la construcción. Ajustar la práctica al tiempo medido y cerrar la configuración antes de impartir.</li>
+</ol>
+<p>La lista de producción, el trabajo previo y la evaluación están en <a href="05-PREPARACION-Y-EVALUACION.md">05-PREPARACION-Y-EVALUACION.md</a>. Los comandos y requisitos de CI están en <a href="04-COMANDOS-Y-CI.md">04-COMANDOS-Y-CI.md</a>.</p>
+<h2>Criterio de éxito y límites</h2>
+<p>Objetivo de evaluación: <strong>8/10 puntos</strong> en la rúbrica, además de sus criterios obligatorios. Si hay un defecto intencional del producto, documentarlo correctamente cuenta como evidencia de diagnóstico; no se transforma en prueba aprobada eliminando una aserción.</p>
+<p>La sesión introduce cómo trasladar la suite a CI mediante una plantilla preparada. Ejecutar una matriz completa de tres lenguajes por tres navegadores, crear infraestructura CI corporativa, enseñar pruebas de carga y cubrir regresión visual quedan como ampliaciones. Los 120 minutos se dedican a completar y evaluar el mismo flujo de regresión.</p>
+<p><strong>Estado de esta entrega:</strong> plan y prompts disponibles, laboratorios ejecutables y 22 casos aprobados localmente. El <a href="videos/index.html">estado audiovisual de cada lección</a> se verifica durante su producción; esta guía no afirma que los 12 MP4 estén listos. El ensayo real de 120 minutos, la presentación independiente de 14 diapositivas y una ejecución alojada de CI siguen pendientes de preparación o comprobación.</p>
+</article>
+<article id="prompts" data-title="Prompts para copiar" hidden><h1>Playwright avanzado con IA — Prompts para copiar y pegar</h1>
+<p>Material para un curso de <strong>120 minutos</strong>. Cada participante elige <strong>un lenguaje</strong>: TypeScript, Java o Python. El curso trabaja la misma estrategia de regresión; no intenta enseñar los tres lenguajes simultáneamente.</p>
+<p><strong>Estado de este material:</strong> son instrucciones para generar y revisar trabajo. No constituyen una suite implementada ni resultados de pruebas. <strong>TransferLab</strong> es una aplicación ficticia para formación; no representa sistemas ni contratos de HSBC. El instructor debe preparar y validar el laboratorio antes de impartirlo mediante P10.</p>
+<h2>Cómo utilizar los prompts</h2>
+<ol>
+<li>Completa el bloque CONTEXTO con información comprobable. Escribe <code>DESCONOCIDO</code> donde falte algo; nunca inventes una URL, selector o endpoint para poder continuar.</li>
+<li>En un chat nuevo, pega CONTEXTO y después el prompt elegido. Usa P00 para un flujo completo fuera de la sesión; durante el curso utiliza P01–P09 por etapas.</li>
+<li>Mantén el mismo contexto en la conversación. Si cambia una condición, pega la corrección antes del siguiente prompt.</li>
+<li>Revisa la evidencia que entrega la IA. Que el código se vea correcto no demuestra que se haya ejecutado ni que detecte una regresión.</li>
+</ol>
+<p>La ruta TypeScript utiliza el runner <code>@playwright/test</code> y sus fixtures (<a href="https://playwright.dev/docs/test-fixtures">documentación</a>). La ruta Java utiliza Playwright con JUnit 5 y Maven (<a href="https://playwright.dev/java/docs/test-runners">integración con runners</a>); las instancias de Playwright y sus objetos requieren respetar las restricciones de hilos (<a href="https://playwright.dev/java/docs/multithreading">multithreading</a>). La ruta Python utiliza la API síncrona y <code>pytest-playwright</code> (<a href="https://playwright.dev/python/docs/test-runners">plugin de pytest</a>). Los prompts obligan a comprobar las versiones del proyecto antes de generar sintaxis, opciones o comandos. Referencias consultadas el 9 de septiembre de 2026.</p>
+<h2>CONTEXTO — Copiar, completar y conservar</h2>
+<p>Los importes siguientes son requisitos propuestos para el laboratorio ficticio, en centavos de MXN y sin comisiones: 100000 equivale a MXN 1000.00. El contrato completo, incluidas rutas y UI propuestas, está en <a href="03-LABORATORIO-Y-LENGUAJES.md">03-LABORATORIO-Y-LENGUAJES.md</a>. El instructor debe construir y verificar la demo contra ese contrato <strong>antes</strong> de generar las pruebas. Una ruta propuesta no es evidencia de una API existente.</p>
+<pre><code class="language-text">CONTEXTO DEL PROYECTO
+
+LENGUAJE: [TYPESCRIPT | JAVA | PYTHON; elige exactamente uno]
+CAPACIDAD_DEL_ASISTENTE: [CON_ACCESO_AL_REPO_Y_EJECUCION | SOLO_TEXTO]
+REPOSITORIO_O_CARPETA: [ruta accesible para el asistente, o DESCONOCIDO]
+RAMA_Y_ESTADO_INICIAL: [rama, cambios existentes o DESCONOCIDO]
+ALCANCE_AUTORIZADO: [rutas donde puede crear/editar pruebas y ejecutar]
+APLICACION: [TransferLab ficticia u otra aplicación de pruebas autorizada]
+BASE_URL: [URL verificada del entorno de pruebas, o DESCONOCIDO]
+ENTORNO: [local/QA; sistema operativo y shell]
+ARRANQUE_Y_HEALTHCHECK: [comando y comprobación observados, o DESCONOCIDO]
+
+TOOLCHAIN_Y_RUNNER:
+- TypeScript: Node, gestor de paquetes, versión de @playwright/test,
+  archivo de dependencias, lockfile y configuración observados.
+- Java: JDK, Maven/wrapper, versión de Playwright, JUnit 5 y Surefire
+  observadas en el pom.xml. No utilizar la configuración del runner Node.
+- Python: intérprete/venv, gestor, versiones de playwright, pytest,
+  pytest-playwright y configuración observadas. Usar API síncrona.
+[Rellenar SOLO el lenguaje elegido; desconocidos deben quedar explícitos.]
+
+CONTRATO_FUNCIONAL:
+[Adjuntar criterios de aceptación aprobados. Para TransferLab proponemos:]
+- Importes en unidades menores enteras; sin comisiones en estos casos.
+- TR-01: cuenta aislada con saldo inicial 100000; transferencia de 10000.
+  Resultado: aceptada, saldo final 90000 y exactamente un nuevo registro
+  de transferencia asociado a la operación. UI y API deben coincidir.
+- TR-02: cuenta aislada con saldo inicial 100000; intento de transferir 110000.
+  Resultado: rechazada por fondos insuficientes, saldo final 100000 y cero
+  nuevos registros de transferencia. El rechazo se muestra en la UI.
+- TR-03: cuenta aislada con saldo inicial 100000; enviar dos solicitudes
+  equivalentes de transferencia de 10000 con la MISMA clave de idempotencia.
+  Resultado: un solo débito de 10000, saldo final 90000 y exactamente un
+  nuevo registro de transferencia para esa operación. UI y API coinciden.
+  El contrato debe precisar la identidad de la operación y las respuestas
+  al reenvío. No dar por hecho que el segundo envío devuelve un HTTP concreto.
+- “Registro” significa registro de transferencia de negocio; no cuenta
+  intentos ni logs de auditoría. Leer la fuente acordada en el contrato.
+
+API_OBSERVADA:
+[Método, ruta, autenticación, esquema de petición/respuesta, estados HTTP,
+ rutas de consulta de saldo/operaciones y mecanismo real de idempotencia.
+ Incluir extracto OpenAPI, código o respuestas sanitizadas y su procedencia.
+ En TransferLab contrastar la implementación con el contrato propuesto en
+ 03-LABORATORIO-Y-LENGUAJES.md; no copiar sus rutas como si ya se observaron.]
+DOM_OBSERVADO:
+[Roles, nombres accesibles, labels y test IDs realmente presentes; incluir
+ snapshot/HTML relevante o acceso autorizado para inspeccionarlo.]
+AUTENTICACION:
+[Flujo de pruebas, roles y nombres de variables de entorno; nunca valores
+ secretos. Indicar expiración y si existen usuarios aislados por caso/worker.]
+DATOS_Y_LIMPIEZA:
+[Mecanismo autorizado de crear, consultar y eliminar datos propios; IDs,
+ namespaces por ejecución y límites. Si no existe, escribir DESCONOCIDO.]
+CONSISTENCIA_Y_TIEMPOS:
+[Confirmación síncrona o eventual y límite documentado; o DESCONOCIDO.]
+
+CI:
+[Proveedor, archivo existente, SO, secretos por nombre y política actual;
+ o SIN_CI_DEFINIDO. No publicar ni activar servicios externos.]
+EVIDENCIA_DISPONIBLE:
+[Rutas o adjuntos: logs, trace, reportes, capturas y ejecución que los generó.
+ Indicar fecha/commit; sanitizar tokens, credenciales y datos personales.]
+COMANDOS_Y_RESULTADOS_PREVIOS:
+[Comandos reales, directorio, códigos de salida y resumen; o NO_EJECUTADO.]
+RESTRICCIONES:
+[Navegadores, recursos, tiempo, proxy, política de datos o restricciones reales.]
+</code></pre>
+<h2>P00 — Generar una regresión completa con evidencia</h2>
+<p><strong>Uso:</strong> flujo reutilizable después del curso. Ejecuta por etapas; no sustituye la revisión humana.</p>
+<pre><code class="language-text">Actúa como ingeniero senior de calidad especializado en Playwright.
+Utiliza exclusivamente el CONTEXTO adjunto y el lenguaje elegido.
+Tu objetivo es construir una regresión mantenible y demostrar qué se
+implementó, qué se ejecutó y qué sigue pendiente.
+
+Primero confirma tu capacidad real. Si tienes acceso al repositorio y
+herramientas, inspecciona instrucciones locales, estructura, dependencias,
+configuración, contratos, pruebas y cambios existentes. Si solo tienes texto,
+analiza los adjuntos y entrega archivos propuestos claramente identificados;
+no afirmes haber leído archivos, abierto la aplicación ni ejecutado comandos.
+
+Clasifica los datos de entrada como VERIFICADO, REQUISITO_PROPORCIONADO,
+SUPUESTO o FALTANTE. Un requisito proporcionado define lo esperado; una
+respuesta observada del producto no sustituye ese requisito. No inventes
+selectores, endpoints, mecanismos de autenticación ni versiones.
+Cuando falte información indispensable, señala el dato concreto y continúa
+con trabajo independiente que sí tenga fundamento. No produzcas una suite
+supuestamente ejecutable mientras dependa de contratos inventados.
+
+Trabaja en este orden:
+1. Matriz de riesgos y trazabilidad. Prioriza TR-01, TR-02 y TR-03 del contrato.
+2. Arquitectura mínima usando el runner real del proyecto. No añadas capas
+   que solo renombren métodos ni conviertas código entre lenguajes por sintaxis.
+3. Preparación de datos, autenticación y aislamiento de navegador Y backend.
+4. Generación de los tres casos con oráculos de negocio independientes.
+5. Un caso de fallo de dependencia mediante mock, separado y etiquetado
+   como prueba de UI aislada; no contarlo como E2E de la transferencia real.
+6. Ejecución y diagnóstico si tienes capacidad. Conserva evidencias.
+7. Configuración de CI compatible con el proyecto, sin activarla externamente.
+8. Revisión final y reporte de resultados reales.
+
+Reglas obligatorias:
+- TypeScript: @playwright/test; Java: Playwright + JUnit 5/Maven;
+  Python: API síncrona con pytest-playwright. Verifica APIs y opciones contra
+  la versión instalada y documentación oficial cuando sea necesario.
+- Locators basados en roles, labels o test IDs observados. Evita índices y
+  selectores estructurales frágiles; cualquier excepción necesita fundamento.
+- Sin sleeps arbitrarios. Usa assertions con reintento y esperas acotadas a
+  un evento/estado verificable. Las esperas de red se registran antes de actuar.
+- Cada caso crea datos propios; incorpora ejecución, worker y caso en su
+  namespace. Un BrowserContext nuevo no aísla cuentas ni saldos del servidor.
+- Conserva IDs creados y limpia solo esos IDs, también si falla la preparación
+  parcialmente. Usa try/finally, finalizadores o teardown equivalente.
+- En Java no compartas Playwright, Browser, BrowserContext ni Page entre
+  hilos concurrentes; define propiedad y cierre en el mismo hilo.
+- TR-03 debe demostrar dos envíos con la misma clave y el efecto persistido;
+  un botón deshabilitado o un mensaje de éxito no demuestra idempotencia.
+- No añadas skip, xfail, force, capturas aprobadas automáticamente, assertions
+  débiles o reintentos para hacer desaparecer un fallo. Si el producto incumple
+  el contrato, conserva la prueba que lo demuestra y redacta el defecto.
+- No uses datos bancarios reales. No incluyas credenciales ni estado de sesión
+  en Git, en prompts ni en artefactos compartidos sin sanitizar.
+
+Entrega por etapa: decisión breve, evidencia de entrada, archivos creados o
+diff propuesto, comando correspondiente al entorno y resultado observado.
+No ejecutes cambios externos fuera del alcance autorizado. En modo SOLO_TEXTO
+marca comandos como PROPUESTOS y todos los resultados como NO_EJECUTADO.
+Finaliza con una tabla por caso: requisito, archivo, nivel UI/API/E2E, backend
+real o simulado, estado de ejecución y evidencia. Cuenta casos únicos aparte
+de intentos/retries. Enumera los huecos que impiden declarar la regresión lista.
+</code></pre>
+<h2>P01 — Convertir requisitos en una matriz de regresión</h2>
+<p><strong>Momento:</strong> minutos 10–25. <strong>Salida:</strong> matriz con prioridad y oráculo medible.</p>
+<pre><code class="language-text">Con el CONTEXTO adjunto, crea una matriz de regresión basada en riesgo.
+Todavía no generes código. Distingue requisitos proporcionados de interfaces
+observadas y escribe FALTANTE cuando no exista evidencia.
+
+Produce una tabla con: ID, riesgo de negocio, requisito, precondición,
+datos propios, acción, resultado observable, fuente del oráculo, nivel
+recomendado (API, UI aislada o E2E), prioridad y evidencia necesaria.
+Incluye obligatoriamente TR-01, TR-02 y TR-03 sin alterar sus invariantes.
+Puedes proponer hasta cinco casos adicionales, marcados FUERA_DEL_NUCLEO.
+
+Prioriza impacto y probabilidad en escalas 1–3, indicando que son estimaciones
+del ejercicio. Explica en una frase por qué cada caso esencial merece estar.
+No uses porcentaje de cobertura sin definir el universo que estás midiendo.
+
+Para cada caso núcleo precisa qué demostraría una regresión: saldo incorrecto,
+registro ausente/extra, rechazo indebido o doble débito. Un toast por sí solo
+no demuestra persistencia. Un HTTP 200 por sí solo no demuestra el resultado.
+Para TR-03 diferencia reenvío secuencial con la misma clave de concurrencia;
+la concurrencia es extensión salvo que el requisito la exija explícitamente.
+
+Termina con los tres huecos de contexto de mayor impacto y el artefacto
+concreto que resolvería cada uno: contrato, DOM, respuesta API o mecanismo
+de datos. No rellenes esos huecos por imaginación.
+</code></pre>
+<h2>P02 — Diseñar la estructura del proyecto</h2>
+<p><strong>Momento:</strong> transición hacia minutos 25–45. <strong>Salida:</strong> estructura pequeña y decisiones del lenguaje elegido.</p>
+<pre><code class="language-text">Diseña la estructura mínima de regresión para el CONTEXTO y la matriz P01.
+Inspecciona el repositorio si puedes; en modo SOLO_TEXTO usa únicamente los
+archivos adjuntos. Reutiliza las convenciones y dependencias existentes.
+
+Selecciona una sola ruta:
+- TYPESCRIPT: @playwright/test, fixtures tipadas, configuración del runner.
+- JAVA: Playwright, JUnit 5 y Maven; lifecycle de recursos explícito.
+- PYTHON: pytest-playwright, API síncrona y fixtures en conftest.py.
+No propongas playwright.config.ts para Java/Python ni opciones de Node para
+Maven/pytest. No añadas plugins, versiones o flags cuya existencia no verificaste.
+
+Entrega árbol propuesto y responsabilidad de cada archivo: configuración,
+preparación de datos, UI reutilizable si aporta valor, tests y evidencias.
+Las abstracciones UI representan tareas del usuario; las assertions de negocio
+deben permanecer visibles en los casos o helpers claramente identificados.
+
+Explica el alcance de cada recurso: proceso, worker, test y backend. Define
+quién crea/cierra browser/context/page/API client y cómo se evitan colisiones.
+En Java explica la propiedad por hilo antes de habilitar paralelismo.
+
+Proporciona solo los cambios indispensables para integrar esa estructura.
+Si falta una versión, verifica el archivo de dependencias o solicita ese dato;
+no selecciones silenciosamente “latest”. Diferencia arquitectura propuesta de
+archivos efectivamente creados. No declares que compila sin salida de compilación.
+</code></pre>
+<h2>P03 — Crear fixtures, autenticación y datos aislados</h2>
+<p><strong>Momento:</strong> minutos 25–45. <strong>Salida:</strong> preparación y limpieza que no dependen del orden de los tests.</p>
+<pre><code class="language-text">Implementa la preparación de TR-01, TR-02 y TR-03 usando CONTEXTO y P02.
+Si no puedes editar archivos, entrega el contenido completo propuesto con
+rutas sugeridas, imports y dependencias identificadas, sin afirmar ejecución.
+
+Antes de generar código, confirma el mecanismo real de crear cuentas/datos,
+obtener sesión, leer saldo/transferencias y limpiar. Si falta uno, delimita
+la interfaz pendiente y explica qué bloquea; no inventes endpoints auxiliares.
+
+Cada test debe empezar con estado conocido e independiente. Crea un namespace
+por ejecución y datos propios por caso; incorpora worker/attempt cuando aplique.
+Guarda los IDs realmente creados. Limpia exclusivamente esos IDs incluso si
+falla parte del setup. El fallo de limpieza se reporta sin ocultar el fallo
+principal. No borres tablas, cuentas compartidas ni datos ajenos.
+
+Usa contextos de navegador nuevos por caso. Si reutilizas estado de autenticación,
+explica su alcance, expiración y archivo por identidad. Nunca compartas una
+cuenta mutable entre pruebas paralelas sin aislamiento demostrado en backend.
+No guardes contraseñas, tokens ni storage state en archivos versionados.
+
+Adapta el lifecycle al runner: fixtures test/worker para TypeScript; hooks o
+extensión JUnit 5 con try/finally para Java; fixtures pytest con finalizadores
+que cubran también setup parcialmente fallido para Python. No mezcles async
+y sync en Python. En Java, objetos Playwright confinados al hilo propietario.
+
+Entrega: código, mapa de propiedad de recursos y comprobación acotada de que
+dos casos usan cuentas distintas y terminan limpiando sus propios IDs. Si puedes
+ejecutar, muestra resultados de esa comprobación; si no, da instrucciones y
+marca NO_EJECUTADO. No confundas cookies separadas con saldos separados.
+</code></pre>
+<h2>P04 — Generar los tres casos núcleo</h2>
+<p><strong>Momento:</strong> minutos 45–65. <strong>Salida:</strong> tres casos trazables con efecto de negocio verificable.</p>
+<pre><code class="language-text">Genera TR-01, TR-02 y TR-03 a partir del CONTEXTO, matriz y fixtures acordadas.
+Usa exclusivamente el lenguaje elegido y APIs/selectores comprobados.
+No escribas una plantilla con TODO y la presentes como lista para ejecutar.
+
+TR-01: iniciar con saldo 100000 y transferir 10000; comprobar aceptación,
+saldo persistido 90000 y exactamente un nuevo registro de esa operación.
+TR-02: iniciar con saldo 100000 e intentar transferir 110000; comprobar rechazo
+por fondos insuficientes, saldo persistido 100000 y cero nuevos registros.
+TR-03: iniciar con saldo 100000 y enviar dos solicitudes equivalentes de 10000
+usando la MISMA clave; comprobar un solo débito, saldo 90000 y exactamente
+un nuevo registro de transferencia. No contar entradas de auditoría como
+transferencias ni exigir un código HTTP de reenvío que el contrato no define.
+En TransferLab, el contrato 03 sí define primera respuesta 201 y repetición
+200 con el mismo id: comprueba los tres valores. Al adaptar a otra aplicación,
+usa su contrato explícito. El ejercicio núcleo es secuencial, no concurrente.
+
+Para TR-01/TR-02 conduce el flujo UI y verifica la persistencia por la API
+documentada. Para TR-03 elige una de estas rutas según evidencia:
+A. Reenvío desde UI si el mecanismo real permite conservar la misma clave.
+B. Dos envíos API con la misma clave y posterior comprobación de la UI.
+Etiqueta honestamente la ruta B como API + verificación UI; no afirmes que
+prueba doble clic en UI. Si no hay mecanismo observado de clave/idempotencia,
+TR-03 está BLOQUEADO_POR_CONTRATO; no lo sustituyas por dos clics genéricos.
+
+Compara la API con UI actualizada mediante el flujo real de consulta/recarga.
+Si hay consistencia eventual documentada, usa polling acotado y registra el
+último estado observado al fallar. No uses sleeps ni networkidle como prueba
+de finalización del negocio. Registra esperas de respuesta antes de la acción.
+
+Filtra los registros por cuenta y correlación propias y compara con la línea
+base. Comprueba tanto el saldo como la cardinalidad: uno no sustituye al otro.
+Usa importes exactos; no derives el esperado de la misma respuesta que validas.
+La lista consultada debe cubrir todos los registros relevantes, incluyendo
+paginación cuando exista; no concluyas “exactamente uno” desde una vista parcial.
+
+Entrega archivos completos y trazabilidad ID -&gt; assertions -&gt; evidencia.
+Ejecuta los casos si tienes herramientas y entorno; separa problemas de
+compilación, descubrimiento, setup, test y limpieza. Si no puedes ejecutar,
+entrega comandos fundamentados y marca NO_EJECUTADO.
+</code></pre>
+<h2>P05 — Simular una dependencia sin falsear cobertura E2E</h2>
+<p><strong>Momento:</strong> minutos 70–85. <strong>Salida:</strong> una prueba de UI aislada y su límite explícito.</p>
+<pre><code class="language-text">A partir del CONTEXTO, añade un caso de UI aislada para un fallo de dependencia.
+Selecciona una dependencia/ruta observada y un comportamiento esperado
+documentado. Si falta el contrato del error o el manejo UI esperado, indica
+ese hueco antes de generar assertions o una respuesta ficticia.
+
+Intercepta únicamente la petición concreta por URL y método. Registra la ruta
+antes de disparar la acción. Devuelve una respuesta coherente con el contrato
+o simula el fallo de transporte acordado. Verifica que el mock fue utilizado
+y que el caso no pasó por una ruta alternativa no observada.
+
+Valida el error visible y el estado de la UI que define el requisito; no
+inventes un comportamiento de reintento. Si el escenario permite reintentar,
+explica qué respuesta corresponde a cada intento y verifica la secuencia.
+Elimina el override al terminar. No interceptes globalmente todas las APIs.
+Si hay Service Workers y la petición no es interceptable, diagnostica esa
+condición y documenta el ajuste del contexto de pruebas cuando esté justificado.
+
+Etiqueta este test UI_AISLADA_MOCK y sepáralo de TR-01/TR-02/TR-03 con backend
+real. Explica: este caso demuestra el manejo UI del error simulado; no demuestra
+persistencia real, atomicidad ni idempotencia del backend.
+
+Entrega el caso, origen del contrato utilizado, evidencia de interceptación
+y resultado real si se ejecutó. Mantén intactos los oráculos de los casos reales.
+</code></pre>
+<h2>P06 — Diagnosticar una falla usando evidencia</h2>
+<p><strong>Momento:</strong> minutos 85–100. <strong>Salida:</strong> causa sustentada o hipótesis comprobable y corrección mínima.</p>
+<pre><code class="language-text">Analiza el fallo adjunto usando CONTEXTO, código del caso, comando, resultado,
+trace/log/captura disponible y contrato esperado. Primero indica qué evidencia
+puedes inspeccionar realmente. Si solo tienes un nombre de archivo o no puedes
+leer un trace, no afirmes haberlo abierto: pide el extracto relevante o explica
+qué debe exportarse, sanitizado.
+
+Reconstruye una línea de tiempo breve: preparación, acción, petición/respuesta,
+estado UI, assertion y limpieza. Distingue hechos observados de hipótesis.
+Clasifica la causa como PRODUCTO, TEST, DATOS, ENTORNO o INDETERMINADA y explica
+la evidencia. Un timeout no prueba automáticamente que exista flakiness.
+
+Identifica la primera divergencia del contrato. Propón como máximo tres
+hipótesis ordenadas, cada una con una comprobación que pueda refutarla.
+Prioriza el cambio mínimo que resuelva una causa demostrada.
+
+Si es un defecto del test, corrige la causa conservando el oráculo de negocio.
+Si es un defecto de producto, conserva la prueba fallida y redacta un reporte
+con reproducción, esperado, observado e impacto; no arregles el producto fuera
+del alcance autorizado. Si faltan datos, declara INDETERMINADA.
+
+No aumentes sleeps/timeouts/retries ni añadas skip/xfail/catch genérico/force
+para obtener verde. Un timeout distinto requiere evidencia del comportamiento
+esperado y un límite defendible. No debilites assertions ni actualices snapshots
+solo porque fallaron.
+
+Si puedes ejecutar, repite el caso afectado después de la corrección y los casos
+que comparten el recurso modificado. Informa cada intento, incluidos fallidos.
+Termina con causa, cambio, evidencia posterior y limitación pendiente.
+</code></pre>
+<h2>P07 — Preparar CI con resultados verificables</h2>
+<p><strong>Momento:</strong> minutos 100–112. <strong>Salida:</strong> cambio de configuración revisable para el proveedor existente.</p>
+<pre><code class="language-text">Prepara la integración CI de esta regresión usando CONTEXTO y las pruebas
+generadas. Inspecciona el proveedor, runner, SO y comandos reales existentes.
+Si no hay proveedor definido, entrega un diseño neutral con esa decisión
+pendiente; no inventes una pipeline corporativa ni actives servicios externos.
+
+Genera la configuración mínima del proveedor confirmado con:
+- Instalación reproducible del lenguaje, dependencias y navegadores acordados.
+- Arranque o comprobación de salud de la aplicación de pruebas.
+- Variables por nombre; secretos provistos por el almacén existente.
+- Selección separada de casos núcleo con backend real y UI aislada con mocks.
+- Paralelismo acotado al aislamiento disponible y recursos del runner.
+- Fallo explícito si no se descubren/ejecutan los casos obligatorios.
+- Conservación de reporte y evidencia de fallos aunque la ejecución falle,
+  con rutas verificadas, retención indicada y contenido revisado/sanitizado.
+
+Adapta la solución al lenguaje. TypeScript puede usar capacidades nativas del
+runner; Java debe configurar JUnit/Maven y captura de traces en el lifecycle;
+Python debe usar opciones realmente disponibles en pytest-playwright. No
+copies reporters, projects, sharding o flags de Node a otros lenguajes.
+Si propones sharding/xdist/plugins, verifica primero que están instalados y
+que el aislamiento de datos funciona; no son requisitos de la primera entrega.
+
+La puerta mínima exige TR-01/TR-02/TR-03 ejecutados y aprobados con backend real,
+sin casos omitidos ni sustituidos por mocks. Distingue intento limpio de un
+resultado recuperado mediante retry. No ocultes inestabilidad tras el total.
+La prueba UI_AISLADA_MOCK aporta su resultado separado.
+
+Entrega archivo/diff, comandos y rutas de artefactos. Distingue configuración
+validada localmente, pipeline preparada y pipeline efectivamente ejecutada.
+Sin una ejecución remota observada, escribe CI_NO_EJECUTADA.
+</code></pre>
+<h2>P08 — Revisar lo que generó la IA</h2>
+<p><strong>Momento:</strong> minutos 112–120. <strong>Salida:</strong> decisión de revisión sustentada.</p>
+<pre><code class="language-text">Revisa esta regresión como un reviewer independiente usando CONTEXTO,
+requisitos, diff y evidencia disponible. No asumas que el autor de los tests
+tenía razón. No cambies código durante esta revisión.
+
+Busca defectos que puedan permitir un falso positivo, provocar inestabilidad
+o afectar datos ajenos: contratos/selectores inventados, oráculos circulares,
+assertions insuficientes, consultas parciales, mocks presentados como E2E,
+cuentas compartidas, cleanup incompleto, recursos/hilos compartidos en Java,
+esperas sin causa, retries que ocultan fallos y credenciales en artefactos.
+
+Comprueba especialmente TR-03: dos solicitudes con la misma clave y payload
+equivalente, una sola transferencia persistida, un solo débito y UI coherente.
+Explica si la prueba cubre API + UI, reenvío UI o concurrencia; no confundirlos.
+
+Entrega como máximo cinco hallazgos accionables y priorizados. Cada uno debe
+incluir archivo/línea cuando exista, escenario que falla, impacto, evidencia
+y corrección propuesta. No inventes ubicaciones en archivos no disponibles.
+Añade una breve lista de decisiones correctas que conviene conservar.
+
+Emite una decisión: LISTA_PARA_REVISION_FINAL, REQUIERE_CAMBIOS o
+EVIDENCIA_INSUFICIENTE. Código sin ejecución puede recibir revisión estática,
+pero no puede declararse regresión validada. Indica exactamente qué falta.
+</code></pre>
+<h2>P09 — Reportar únicamente la ejecución observada</h2>
+<p><strong>Uso:</strong> cierre del ejercicio o siguiente ejecución. <strong>Salida:</strong> reporte que otra persona puede verificar.</p>
+<pre><code class="language-text">Produce un reporte de regresión con CONTEXTO y resultados adjuntos.
+Si tienes permiso y herramientas para ejecutar, usa los comandos comprobados
+del proyecto y conserva sus salidas. Si no, reporta únicamente evidencia
+proporcionada e identifica su origen; no simules resultados.
+
+Incluye entorno, fecha, commit o estado local conocido, lenguaje, runner,
+versiones verificadas, navegador, comando, directorio y código de salida.
+Si alguno falta, escribe DESCONOCIDO; no completes números por estimación.
+
+Tabla por caso único: ID, requisito, nivel, backend real/mock, archivo,
+estado (APROBADO/FALLIDO/BLOQUEADO/OMITIDO/NO_EJECUTADO), número de intentos,
+resultado inicial/final y enlace/ruta de evidencia accesible.
+Reporta preparación y limpieza separadamente cuando afecten el resultado.
+Una ejecución con cero tests no es aprobada. Un retry aprobado no borra el
+intento fallido. No cuentes un mismo caso repetido como cobertura adicional.
+
+Separa tres totales: casos núcleo con backend real, casos con mocks y casos
+adicionales. Para cobertura funcional usa solo el universo definido en P01.
+No confundas “3 de 3 casos implementados” con “3 de 3 casos aprobados”.
+
+Termina con defectos observados, bloqueos, datos no limpiados si los hubiera
+y la siguiente acción concreta para cada pendiente. No declares que el
+producto está libre de defectos ni que hay cobertura completa por pasar tres
+casos. Si no hubo ejecución, el título debe decir REPORTE SIN EJECUCION.
+</code></pre>
+<h2>P10 — Preparar TransferLab antes de impartir el curso</h2>
+<p><strong>Uso exclusivo del instructor, fuera de los 120 minutos.</strong> Este prompt permite encargar la construcción del laboratorio; pegarlo no significa que el laboratorio exista.</p>
+<pre><code class="language-text">Prepara un laboratorio ficticio llamado TransferLab para enseñar Playwright
+avanzado con IA durante dos horas. Trabaja en la carpeta de laboratorio que
+indique el instructor. Antes de crear archivos inspecciona su estado y conserva
+el trabajo existente. Si solo puedes producir texto, entrega una propuesta
+claramente marcada SIN_IMPLEMENTAR/SIN_EJECUTAR.
+
+El laboratorio debe estar funcionando y comprobado antes de la clase. No uses
+marcas, cuentas, credenciales ni datos reales de ninguna entidad financiera.
+Construye una aplicación local mínima con UI accesible, backend y persistencia
+real durante la ejecución, autenticación ficticia para pruebas y mecanismos
+locales de preparación/consulta/limpieza de datos propios. Documenta límites
+del demo; no lo presentes como una arquitectura bancaria de producción.
+
+Implementa el contrato propuesto en 03-LABORATORIO-Y-LENGUAJES.md, que incluye
+rutas, respuestas y nombres accesibles. Contrasta después cada punto con la
+aplicación funcionando. Sus requisitos núcleo son:
+- Importes enteros en centavos de MXN y sin comisiones.
+- TR-01: saldo 100000, transferencia 10000, saldo final 90000, exactamente una
+  nueva transferencia persistida y UI/API coherentes.
+- TR-02: saldo 100000, intento 110000, rechazo por insuficiencia, saldo sin cambio
+  y ninguna transferencia nueva; el rechazo aparece en UI.
+- TR-03: dos solicitudes equivalentes de 10000 con la misma clave idempotente;
+  un débito, una transferencia y saldo final 90000 desde 100000. Define scope,
+  formato, respuesta de reenvío y comportamiento ante clave reutilizada con
+  payload distinto. El núcleo demuestra reenvío secuencial; concurrencia es
+  ampliación explícita, salvo que decidas implementarla y verificarla también.
+- Consulta verificable de saldo y registros de transferencia, con correlación
+  por operación. Distingue transferencias de logs de intento/auditoría.
+- Errores con contrato consistente, incluidos los usados por el ejercicio mock.
+
+Implementa UI y API respetando ese contrato. Proporciona roles/labels y test IDs
+estables donde sean necesarios. Incorpora namespace por ejecución y limpieza
+limitada a IDs propios. No añadas una operación de borrado global accesible
+desde fuera del entorno de laboratorio.
+
+Prepara tres carpetas de inicio para participantes: TypeScript/@playwright/test,
+Java/Playwright + JUnit 5/Maven y Python síncrono/pytest-playwright. Cada ruta
+debe permitir ejecutar el mismo contrato eligiendo solo un lenguaje. Incluye
+dependencias verificadas, versiones fijadas, instrucciones para el SO del
+instructor y una comprobación de conexión; deja el núcleo de los ejercicios
+para que los alumnos lo construyan. Mantén soluciones del instructor aparte.
+
+Prepara también una falla controlada, reversible y aislada del demo para el
+ejercicio de diagnóstico, junto con trace/log sanitizado, causa documentada
+y pasos para volver a la versión sana. Marca claramente cualquier evidencia
+de una falla inducida. No modifiques una aplicación real para generar el fallo.
+
+Valida el arranque real y el contrato de los tres casos. Comprueba por separado
+el inicio de cada ruta de lenguaje; una ruta que no fue ejecutada queda
+NO_VALIDADA. Conserva resultados, comandos, códigos de salida y evidencias.
+Entrega una lista de preparación para el instructor: archivos, arranque/parada,
+healthcheck, datos, limpieza, starters, soluciones, evidencia para diagnóstico,
+comprobaciones realizadas y pendientes. No declares el laboratorio listo
+si falta una aplicación funcionando o alguna ruta prometida está sin validar.
+</code></pre>
+<h2>Criterio rápido para aceptar una respuesta de la IA</h2>
+<p>Antes de incorporar una respuesta al proyecto, comprueba cinco puntos:</p>
+<ul>
+<li><strong>Fundamento:</strong> selectors, endpoints, versiones y esperados tienen origen identificable.</li>
+<li><strong>Oráculo:</strong> valida el efecto de negocio y detectaría el error que motiva el caso.</li>
+<li><strong>Aislamiento:</strong> cuenta, sesión, IDs y limpieza pertenecen a esa ejecución.</li>
+<li><strong>Evidencia:</strong> diferencia contenido generado, comprobación estática y ejecución real.</li>
+<li><strong>Cobertura:</strong> declara el nivel UI/API/E2E y si utiliza backend real o mocks.</li>
+</ul>
+<p>Si falla uno, vuelve al prompt de la etapa correspondiente y aporta el dato faltante. No intentes resolver una falta de contrato pidiendo a la IA que genere más código.</p>
+</article>
+<article id="laboratorio" data-title="Laboratorio y lenguajes" hidden><h1>Laboratorio entregado: TransferLab y equivalencias entre lenguajes</h1>
+<p><strong>Estado: laboratorio local implementado y verificado.</strong> Accede a la <a href="videos/index.html">biblioteca de 12 lecciones y estado de producción</a> y a <a href="videos/LEEME-VIDEOS.md">las instrucciones de instalación</a>. Los proyectos entregados están en <code>videos/lab/distributed</code> y <code>videos/lab/mainframe</code>, con <strong>22 casos aprobados localmente</strong>: <a href="videos/lab/distributed/evidence/VERIFICATION.md">10 distribuidos</a> y <a href="videos/lab/mainframe/evidence/VERIFICATION.md">12 de protocolo y regresión híbrida</a>. La producción de MP4 se comprueba por separado. TransferLab es una aplicación educativa ficticia; no representa una aplicación, API, política ni sistema de HSBC.</p>
+<p>El taller utiliza el motor Chromium; las ejecuciones medidas usaron <strong>Microsoft Edge en contextos de pruebas nuevos</strong>, sin reutilizar perfiles personales. La alternativa con Chromium descargado está documentada y no fue el navegador utilizado en esos resultados. Cada participante elige <strong>Java, TypeScript o Python</strong> para resolver los mismos tres casos. El instructor muestra una implementación y compara las decisiones con las otras dos; construir tres frameworks en vivo no cabe en dos horas.</p>
+<h2>1. Qué incluye el material y qué prepara el instructor</h2>
+<p>El <a href="videos/lab/distributed/README.md">proyecto distribuido</a> incluye gateway, Accounts, Ledger y pruebas TypeScript. El <a href="videos/lab/mainframe/README.md">proyecto TNZ</a> incluye simulador TN3270, adaptador Python y regresiones de los tres lenguajes. Python y Java ya contienen los tres casos centrales; su caso exitoso incorpora también la comparación con el terminal. La variante defectuosa se activa únicamente mediante el mecanismo explícito documentado, en puertos separados.</p>
+<p>El instructor conserva estas soluciones y prepara una copia con puntos concretos a completar durante la clase. Esa selección pedagógica y un ensayo con participantes siguen pendientes; no requieren construir nuevamente la aplicación desde cero.</p>
+<p>La preparación de cada estación ocurre <strong>fuera de los 120 minutos</strong>. Incluye instalación real, versiones compatibles, descargas y ejecución del lenguaje elegido. La verificación de esta entrega no equivale a una instalación limpia de Windows ni al ensayo de clase. Los comandos para las rutas existentes aparecen en <a href="04-COMANDOS-Y-CI.md">04-COMANDOS-Y-CI.md</a>.</p>
+<h2>2. Contrato de dominio, versión 1</h2>
+<p>Base URL: <code>http://127.0.0.1:3000</code>. Usar esta dirección de forma consistente; no mezclarla con <code>localhost</code> en cookies y navegación.</p>
+<p>Los importes del servidor son <strong>enteros en centavos</strong>, moneda <code>MXN</code>: <code>100000</code> representa MXN 1000.00. La interfaz recibe un decimal con punto y hasta dos decimales. La cuenta origen pertenece al usuario de la fixture; el beneficiario es sintético. Accounts confirma el débito, el registro canónico y el evento del outbox en una sección síncrona del mismo proceso. <strong>Todos estos datos viven en memoria y desaparecen al reiniciar</strong>; no se demuestra durabilidad ni una transacción entre bases de datos.</p>
+<p>Las consultas de cuenta y <code>/api/transfers</code> reflejan inmediatamente la operación. La ruta distinta <code>/api/ledger/transfers</code> consulta una proyección en otro proceso que puede demorarse y requiere sondeo de lectura acotado por el identificador exacto. El terminal simulado consulta <code>/__test/lookup</code>, que lee los mismos datos autoritativos de Accounts; no demuestra que la proyección de Ledger esté lista ni una conciliación independiente en un mainframe.</p>
+<p>Una transferencia completada tiene este esquema JSON:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;&lt;id generado por el servidor&gt;&quot;,
+  &quot;status&quot;: &quot;COMPLETED&quot;,
+  &quot;sourceAccountId&quot;: &quot;&lt;id de cuenta origen&gt;&quot;,
+  &quot;beneficiaryId&quot;: &quot;&lt;id de beneficiario&gt;&quot;,
+  &quot;currency&quot;: &quot;MXN&quot;,
+  &quot;amountMinor&quot;: 10000
+}
+</code></pre>
+<p>Los identificadores son cadenas opacas seguras para una URL, formadas con UUID; no son números bancarios reales. Los textos entre <code>&lt;...&gt;</code> describen valores que generará la aplicación: no se copian como datos fijos de pruebas.</p>
+<h3>API del laboratorio</h3>
+<table>
+<thead>
+<tr>
+<th>Método y ruta</th>
+<th>Entrada</th>
+<th>Respuesta y reglas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>GET /health</code></td>
+<td>Sin autenticación</td>
+<td><code>200</code>, <code>{&quot;status&quot;:&quot;ok&quot;,&quot;environment&quot;:&quot;test&quot;,&quot;contractVersion&quot;:&quot;1&quot;}</code>. Confirma proceso listo y contrato esperado.</td>
+</tr>
+<tr>
+<td><code>POST /__test/fixtures</code></td>
+<td>Cabecera <code>X-Test-Hook-Key</code>; JSON <code>{&quot;runId&quot;:&quot;&lt;ejecución&gt;&quot;,&quot;caseId&quot;:&quot;TR-01&quot;,&quot;currency&quot;:&quot;MXN&quot;,&quot;balanceMinor&quot;:100000}</code></td>
+<td><code>201</code>, <code>{fixtureId,username,password,sourceAccountId,beneficiaryId}</code>. Crea usuario, cuenta, beneficiario, saldo inicial y cero transferencias. La respuesta contiene datos sintéticos de esa fixture.</td>
+</tr>
+<tr>
+<td><code>POST /api/session</code></td>
+<td>JSON <code>{username,password}</code></td>
+<td><code>200</code>, <code>{userId}</code> y cookie <code>transferlab_session</code>; credenciales incorrectas: <code>401</code>. Usa el mecanismo normal de autenticación del laboratorio.</td>
+</tr>
+<tr>
+<td><code>GET /api/accounts/{sourceAccountId}</code></td>
+<td>Cookie de sesión</td>
+<td><code>200</code>, <code>{id,currency:&quot;MXN&quot;,balanceMinor}</code>.</td>
+</tr>
+<tr>
+<td><code>POST /api/transfers</code></td>
+<td>Cookie; cabecera <code>Idempotency-Key</code>; JSON <code>{sourceAccountId,beneficiaryId,currency:&quot;MXN&quot;,amountMinor}</code></td>
+<td>Primera operación válida: <code>201</code> y objeto transferencia. Misma clave y mismo cuerpo: <code>200</code> y <strong>el mismo objeto e id</strong>, sin segundo débito ni registro. Misma clave con otro cuerpo: <code>409</code>, <code>{code:&quot;IDEMPOTENCY_CONFLICT&quot;,message:&quot;Clave de idempotencia reutilizada&quot;}</code>.</td>
+</tr>
+<tr>
+<td><code>GET /api/transfers?sourceAccountId={sourceAccountId}</code></td>
+<td>Cookie de sesión</td>
+<td><code>200</code>, <code>{items:[&lt;transferencias&gt;],total:&lt;entero&gt;}</code>. Lista completa de esa cuenta, sin paginación para el laboratorio.</td>
+</tr>
+<tr>
+<td><code>GET /api/ledger/transfers?sourceAccountId={sourceAccountId}</code></td>
+<td>Cookie de sesión</td>
+<td>Proyección independiente <code>{items,total,projectionCursor}</code>. Consultar hasta observar el mismo transferId, con plazo máximo de 5 segundos en el caso distribuido.</td>
+</tr>
+<tr>
+<td><code>GET /__test/lookup?reference={transferId}</code></td>
+<td>Puente local de lectura para el simulador</td>
+<td><code>{reference,status,amountMinor,currency,sourceAccountId,balanceMinor}</code> o <code>404</code>; consulta Accounts en memoria.</td>
+</tr>
+<tr>
+<td><code>DELETE /__test/fixtures/{fixtureId}</code></td>
+<td>Cabecera <code>X-Test-Hook-Key</code></td>
+<td><code>204</code>, sin cuerpo. Elimina exclusivamente la fixture indicada y sus datos y sesiones. Repetir la limpieza devuelve <code>204</code>.</td>
+</tr>
+</tbody></table>
+<p>Las API de negocio devuelven <code>401</code> sin sesión válida y <code>403</code> si la cuenta o el beneficiario pertenecen a otra fixture. Los hooks devuelven <code>403</code> con clave incorrecta y no se registran fuera del modo local de pruebas. No se les da una ruta para borrar todos los datos.</p>
+<p>Reglas de transferencia: <code>amountMinor</code> entero positivo, <code>currency</code> igual a <code>MXN</code>, saldo suficiente e identificadores de la fixture autenticada. Importe inválido: <code>422</code>, <code>{&quot;code&quot;:&quot;INVALID_AMOUNT&quot;,&quot;message&quot;:&quot;Importe inválido&quot;}</code>. Saldo insuficiente: <code>422</code>, <code>{&quot;code&quot;:&quot;INSUFFICIENT_FUNDS&quot;,&quot;message&quot;:&quot;Saldo insuficiente&quot;}</code>. Rechazar una operación deja saldo y lista sin cambios. Los casos centrales consultan el servidor real del laboratorio, sin sustituir sus respuestas.</p>
+<p>La clave de idempotencia queda asociada al usuario y al cuerpo de la operación durante toda la vida de su fixture. La aplicación genera una clave por intención de transferencia y la conserva al reintentar esa intención; una nueva operación deliberada recibe otra clave. Dos clics independientes con claves distintas no verifican idempotencia. La repetición secuencial de TR-03 tampoco demuestra protección frente a solicitudes concurrentes: eso sería una extensión específica.</p>
+<h3>Interfaz del laboratorio</h3>
+<p>En <code>/transfers</code>, después de autenticar la sesión:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Contrato localizable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Selector HTML <code>select</code> de origen</td>
+<td>Etiqueta accesible exacta <code>Cuenta origen</code>; valor de opción <code>sourceAccountId</code>.</td>
+</tr>
+<tr>
+<td>Selector HTML <code>select</code> de beneficiario</td>
+<td>Etiqueta accesible exacta <code>Beneficiario</code>; valor de opción <code>beneficiaryId</code>.</td>
+</tr>
+<tr>
+<td>Entrada de importe</td>
+<td>Etiqueta accesible exacta <code>Importe (MXN)</code>; acepta <code>100.00</code>.</td>
+</tr>
+<tr>
+<td>Botón de envío</td>
+<td>Rol <code>button</code>, nombre accesible exacto <code>Transferir</code>.</td>
+</tr>
+<tr>
+<td>Saldo visible</td>
+<td><code>data-testid=&quot;account-balance&quot;</code>; formato fijo <code>MXN 1000.00</code> o <code>MXN 900.00</code>.</td>
+</tr>
+<tr>
+<td>Confirmación</td>
+<td>Un solo elemento <code>role=&quot;status&quot;</code>, texto exacto <code>Transferencia realizada</code>.</td>
+</tr>
+<tr>
+<td>Rechazo</td>
+<td>Un solo elemento <code>role=&quot;alert&quot;</code>, texto exacto <code>Saldo insuficiente</code> o <code>Importe inválido</code>.</td>
+</tr>
+</tbody></table>
+<p>El botón se deshabilita mientras hay una solicitud pendiente y la interfaz actualiza el saldo después de completar la operación. Los locators por rol y etiqueta expresan la intención del usuario; el test id del saldo es un contrato explícito. No hacen falta CSS estructurales ni XPath posicionales. <a href="https://playwright.dev/docs/locators">Locators de Playwright</a>.</p>
+<h2>3. Datos y autenticación aislados</h2>
+<p>Cada prueba <strong>y cada intento</strong> ejecuta este ciclo:</p>
+<ol>
+<li>Verificar disponibilidad de gateway, Accounts y Ledger; el coordinador de arranque consulta cada proceso. <code>/health</code> del gateway por sí solo acredita su proceso. Un fallo de preparación debe reportarse como tal; no convertirlo en éxito ni en una prueba omitida. El híbrido requiere además una pantalla lista del simulador mediante <code>adapter.py health</code>.</li>
+<li>Crear una fixture con <code>runId</code> único por ejecución y <code>caseId</code>. El servidor agrega un UUID a sus identificadores. Dos workers o dos participantes nunca comparten cuentas mutables.</li>
+<li>Crear un <code>BrowserContext</code> nuevo. Iniciar sesión mediante <code>POST /api/session</code> usando las credenciales sintéticas recibidas y el cliente HTTP asociado a ese contexto. Comprobar <code>200</code> antes de navegar.</li>
+<li>Ejecutar la prueba. Las consultas del saldo y las transferencias usan la misma identidad autenticada.</li>
+<li>En la finalización, incluso después de un fallo, guardar evidencia, cerrar el contexto y borrar únicamente <code>fixtureId</code>. Si falla la limpieza, reportarlo y conservar su identificador para recuperación; no ocultar el fallo original. Una interrupción abrupta requiere limpieza posterior por las fixtures registradas de esa ejecución.</li>
+</ol>
+<p>Las peticiones de preparación usan <code>TEST_HOOK_KEY</code> desde el entorno. TypeScript emplea un cliente de preparación separado; los ejemplos híbridos también pueden aplicar la cabecera únicamente en la petición de setup o limpieza. <strong>La cabecera de hooks nunca se instala como cabecera global del navegador.</strong> El servidor almacena las sesiones en memoria; borrar la fixture las revoca. La cookie es <code>HttpOnly</code>, <code>SameSite=Lax</code>, <code>Path=/</code>, con vigencia de 30 minutos. El HTTP sin <code>Secure</code> es una decisión exclusiva del servidor ficticio ligado a loopback; cualquier adaptación a un ambiente corporativo requiere su contrato de autenticación autorizado.</p>
+<p>En Playwright, el cliente HTTP asociado al contexto comparte sus cookies. Una instancia HTTP independiente mantiene otro almacén: no asumir que iniciar sesión allí autentica automáticamente una página. Para este taller conviene iniciar sesión en el contexto de cada prueba, evitando archivos de sesión compartidos. Referencias: <a href="https://playwright.dev/docs/api-testing">API testing en TypeScript</a>, <a href="https://playwright.dev/java/docs/api/class-apirequestcontext">APIRequestContext en Java</a>, <a href="https://playwright.dev/python/docs/api-testing">API testing en Python</a>.</p>
+<h2>4. Tres casos centrales y extensiones</h2>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Ejecución</th>
+<th>Resultado verificable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TR-01: transferencia correcta</strong></td>
+<td>Fixture de MXN 1000.00; enviar MXN 100.00 desde UI.</td>
+<td>Confirmación visible, saldo UI MXN 900.00; API saldo <code>90000</code>; <code>total=1</code>, un elemento, importe <code>10000</code>, cuenta y beneficiario correctos, estado <code>COMPLETED</code>.</td>
+</tr>
+<tr>
+<td><strong>TR-02: saldo insuficiente</strong></td>
+<td>Otra fixture de MXN 1000.00; intentar MXN 1100.00 desde UI.</td>
+<td>Alerta exacta; respuesta de envío <code>422</code> con <code>INSUFFICIENT_FUNDS</code>; API saldo <code>100000</code>, <code>total=0</code>, lista vacía.</td>
+</tr>
+<tr>
+<td><strong>TR-03: reenvío idempotente</strong></td>
+<td>Otra fixture; dos POST autenticados secuenciales de <code>10000</code> con la <strong>misma clave y cuerpo</strong>.</td>
+<td>Primer estado <code>201</code>, segundo <code>200</code>, mismo id; API saldo <code>90000</code>, <code>total=1</code>, lista de un elemento con ese id. Recargar UI y comprobar saldo.</td>
+</tr>
+<tr>
+<td>TR-04: límites, extensión</td>
+<td>Importe <code>0</code>, negativo o fracción de centavo; fixtures independientes.</td>
+<td>Rechazo por contrato y cero efectos. Distinguir validación UI de validación directa del servidor.</td>
+</tr>
+<tr>
+<td>TR-05: error de servicio, extensión</td>
+<td>Interceptar solamente el POST de transferencia del navegador y responder <code>503</code>, <code>{code:&quot;SERVICE_UNAVAILABLE&quot;,message:&quot;Servicio temporalmente no disponible&quot;}</code>.</td>
+<td>La UI muestra ese mensaje en <code>role=&quot;alert&quot;</code>, rehabilita el botón y el servidor mantiene <code>100000</code> y cero registros porque no recibió el POST. Esto verifica reacción de UI, no disponibilidad real del backend.</td>
+</tr>
+<tr>
+<td>TR-06: proyección distribuida</td>
+<td>Capturar el transferId y consultar <code>/api/ledger/transfers</code> por la cuenta propia.</td>
+<td>Mismo id y campos de negocio; sondeo solo de lectura, con límite de 5 segundos y fallo explícito al agotarlo.</td>
+</tr>
+<tr>
+<td>Híbrido web → TNZ</td>
+<td>Transferir desde UI e introducir la misma referencia mediante el adaptador real IBM tnz.</td>
+<td>Referencia, estado, cuenta, importe, moneda y saldo coinciden en la pantalla simulada; se conserva <code>simulated: true</code>. No es una segunda autoridad de datos.</td>
+</tr>
+</tbody></table>
+<p>Para observar una respuesta de UI, registrar la espera por método y ruta <strong>antes</strong> de disparar el clic. No usar pausas fijas. Para TR-05, instalar la ruta antes de la acción y liberar la interceptación al terminar; otros métodos continúan hacia el servidor.</p>
+<p>La entrega incluye una variante defectuosa activada con <code>LAB_DEFECT_DUPLICATE=1</code> en puertos separados. La ejecución registrada de TR-03 falló como se esperaba, con evidencia de saldo <code>80000</code> y dos transferencias. Los alumnos entregan diagnóstico y evidencia; no cambian <code>90000</code> por <code>80000</code>, no agregan <code>skip</code> y no aumentan reintentos para disimular el defecto. La versión correcta se conserva para validar el resto del taller. Los comandos y directorios de evidencia separados están en el README distribuido.</p>
+<h2>5. Equivalencias que sí cambian la arquitectura</h2>
+<table>
+<thead>
+<tr>
+<th>Responsabilidad</th>
+<th>TypeScript</th>
+<th>Java</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ejecutor</td>
+<td><code>@playwright/test</code>.</td>
+<td>JUnit 5, ejecutado con Maven Surefire.</td>
+<td><code>pytest</code> con <code>pytest-playwright</code>, API síncrona.</td>
+</tr>
+<tr>
+<td>Datos por prueba</td>
+<td>Fixture con <code>test.extend</code>; preparar/finalizar alrededor de <code>use</code>.</td>
+<td><code>@BeforeEach</code>/<code>@AfterEach</code> o extensión JUnit propia.</td>
+<td>Fixture de alcance función con <code>yield</code>; depender de <code>context</code>/<code>page</code> del plugin.</td>
+</tr>
+<tr>
+<td>Aserción de UI con espera</td>
+<td><code>await expect(locator).toHaveText(...)</code>.</td>
+<td><code>assertThat(locator).hasText(...)</code>.</td>
+<td><code>expect(locator).to_have_text(...)</code>.</td>
+</tr>
+<tr>
+<td>Sesión HTTP del navegador</td>
+<td><code>page.request</code>.</td>
+<td><code>context.request()</code>.</td>
+<td><code>page.request</code>.</td>
+</tr>
+<tr>
+<td>Trace</td>
+<td>Configuración del runner, por ejemplo <code>trace: &#39;retain-on-failure&#39;</code>.</td>
+<td><code>context.tracing().start(...)</code> y <code>stop(...)</code>; la fixture administra archivo y conservación.</td>
+<td>Plugin <code>--tracing=retain-on-failure</code>.</td>
+</tr>
+<tr>
+<td>Reporte</td>
+<td>Reporter HTML y, si se configura, JUnit XML.</td>
+<td><code>target/surefire-reports</code>: resultados XML/texto; trace es un artefacto aparte.</td>
+<td><code>--junitxml</code>; HTML necesita un plugin adicional como <code>pytest-html</code>.</td>
+</tr>
+<tr>
+<td>Paralelismo</td>
+<td>Workers del runner y datos propios por prueba.</td>
+<td>Configuración JUnit/Surefire y una instancia Playwright por hilo, usada en ese hilo.</td>
+<td>Procesos de <code>pytest-xdist</code>, dependencia adicional; datos propios por prueba.</td>
+</tr>
+<tr>
+<td>Reintentos</td>
+<td><code>retries</code> / <code>--retries</code>; cero al diagnosticar.</td>
+<td>Dependen del runner/plugin elegido; no existe un <code>--retries</code> común de Playwright Java.</td>
+<td>Un plugin de reintentos es adicional; <code>pytest-playwright</code> no aporta el de TypeScript.</td>
+</tr>
+</tbody></table>
+<p>Playwright Java no es seguro para compartir entre hilos sin sincronización. Para clase, ejecutar secuencialmente; como extensión, crear/cerrar Playwright y navegador dentro del mismo hilo y mantener un contexto por prueba. Evitar una <code>Page</code> estática compartida. <a href="https://playwright.dev/java/docs/test-runners">JUnit y ciclo de vida</a>, <a href="https://playwright.dev/java/docs/multithreading">multithreading Java</a>.</p>
+<p>Las opciones de trace/navegador del plugin Python se aplican a sus fixtures; un <code>browser.new_context()</code> manual no hereda automáticamente esa administración. Extender las fixtures del plugin y verificar la conservación de traces en un fallo real. <a href="https://playwright.dev/python/docs/test-runners">Referencia del plugin pytest</a>. El trace de la librería Java no sustituye el resultado JUnit ni registra sus aserciones como el runner TypeScript; conservar ambos. <a href="https://playwright.dev/java/docs/api/class-tracing">Tracing Java</a>, <a href="https://maven.apache.org/surefire/maven-surefire-plugin/">Surefire</a>.</p>
+<h2>6. Un mismo TR-01 en tres estilos</h2>
+<p><strong>Fragmentos ilustrativos; no sustituyen los archivos completos ejecutados.</strong> Presuponen que las fixtures crearon los datos, autenticaron <code>page</code>/<code>context</code>, fijaron <code>baseURL</code> y registraron finalización. <code>lab</code> en TypeScript, <code>sourceAccountId</code>/<code>beneficiaryId</code> en Java y <code>fixture_data</code> en Python representan datos del laboratorio, no APIs de Playwright. El fragmento Java de esta sección conserva Jackson como ejemplo alternativo y requiere esa dependencia si se copia; <strong>el proyecto Java entregado usa Gson</strong>, por lo que para ejecutarlo sin adaptaciones hay que abrir <code>videos/lab/mainframe/java/src/test/java/training/HybridTransferTest.java</code>.</p>
+<h3>TypeScript: cuerpo de una prueba con fixture <code>lab</code></h3>
+<pre><code class="language-typescript">// Dentro de test(&#39;TR-01&#39;, async ({ page, lab }) =&gt; { ... });
+// expect se importa de &#39;@playwright/test&#39;.
+await page.goto(&#39;/transfers&#39;);
+await page.getByLabel(&#39;Cuenta origen&#39;, { exact: true }).selectOption(lab.sourceAccountId);
+await page.getByLabel(&#39;Beneficiario&#39;, { exact: true }).selectOption(lab.beneficiaryId);
+await page.getByLabel(&#39;Importe (MXN)&#39;, { exact: true }).fill(&#39;100.00&#39;);
+await page.getByRole(&#39;button&#39;, { name: &#39;Transferir&#39;, exact: true }).click();
+await expect(page.getByRole(&#39;status&#39;)).toHaveText(&#39;Transferencia realizada&#39;);
+await expect(page.getByTestId(&#39;account-balance&#39;)).toHaveText(&#39;MXN 900.00&#39;);
+
+const accountResponse = await page.request.get(`/api/accounts/${lab.sourceAccountId}`);
+expect(accountResponse.status()).toBe(200);
+expect((await accountResponse.json()).balanceMinor).toBe(90000);
+const listResponse = await page.request.get(&#39;/api/transfers&#39;, {
+  params: { sourceAccountId: lab.sourceAccountId },
+});
+expect(listResponse.status()).toBe(200);
+const ledger = await listResponse.json();
+expect(ledger.total).toBe(1);
+expect(ledger.items).toHaveLength(1);
+expect(ledger.items[0]).toMatchObject({
+  sourceAccountId: lab.sourceAccountId, beneficiaryId: lab.beneficiaryId,
+  currency: &#39;MXN&#39;, amountMinor: 10000, status: &#39;COMPLETED&#39;,
+});
+</code></pre>
+<h3>Java: cuerpo de un método JUnit <code>@Test</code></h3>
+<pre><code class="language-java">// Imports: com.microsoft.playwright.*, com.microsoft.playwright.options.*,
+// com.fasterxml.jackson.databind.*, static Assertions.assertThat de Playwright,
+// static org.junit.jupiter.api.Assertions.assertEquals.
+// El método declara throws Exception para la lectura JSON del ejemplo.
+page.navigate(&quot;/transfers&quot;);
+page.getByLabel(&quot;Cuenta origen&quot;, new Page.GetByLabelOptions().setExact(true))
+    .selectOption(sourceAccountId);
+page.getByLabel(&quot;Beneficiario&quot;, new Page.GetByLabelOptions().setExact(true))
+    .selectOption(beneficiaryId);
+page.getByLabel(&quot;Importe (MXN)&quot;, new Page.GetByLabelOptions().setExact(true)).fill(&quot;100.00&quot;);
+page.getByRole(AriaRole.BUTTON,
+    new Page.GetByRoleOptions().setName(&quot;Transferir&quot;).setExact(true)).click();
+assertThat(page.getByRole(AriaRole.STATUS)).hasText(&quot;Transferencia realizada&quot;);
+assertThat(page.getByTestId(&quot;account-balance&quot;)).hasText(&quot;MXN 900.00&quot;);
+
+ObjectMapper mapper = new ObjectMapper();
+APIResponse accountResponse = context.request().get(&quot;/api/accounts/&quot; + sourceAccountId);
+assertEquals(200, accountResponse.status());
+assertEquals(90000, mapper.readTree(accountResponse.text()).get(&quot;balanceMinor&quot;).asInt());
+APIResponse listResponse = context.request().get(&quot;/api/transfers&quot;,
+    RequestOptions.create().setQueryParam(&quot;sourceAccountId&quot;, sourceAccountId));
+assertEquals(200, listResponse.status());
+JsonNode ledger = mapper.readTree(listResponse.text());
+assertEquals(1, ledger.get(&quot;total&quot;).asInt());
+assertEquals(1, ledger.get(&quot;items&quot;).size());
+JsonNode transfer = ledger.get(&quot;items&quot;).get(0);
+assertEquals(sourceAccountId, transfer.get(&quot;sourceAccountId&quot;).asText());
+assertEquals(beneficiaryId, transfer.get(&quot;beneficiaryId&quot;).asText());
+assertEquals(&quot;MXN&quot;, transfer.get(&quot;currency&quot;).asText());
+assertEquals(10000, transfer.get(&quot;amountMinor&quot;).asInt());
+assertEquals(&quot;COMPLETED&quot;, transfer.get(&quot;status&quot;).asText());
+</code></pre>
+<h3>Python: cuerpo de <code>test_tr01(page, fixture_data)</code></h3>
+<pre><code class="language-python"># expect se importa de playwright.sync_api; este es el cuerpo de la función.
+page.goto(&quot;/transfers&quot;)
+page.get_by_label(&quot;Cuenta origen&quot;, exact=True).select_option(fixture_data[&quot;sourceAccountId&quot;])
+page.get_by_label(&quot;Beneficiario&quot;, exact=True).select_option(fixture_data[&quot;beneficiaryId&quot;])
+page.get_by_label(&quot;Importe (MXN)&quot;, exact=True).fill(&quot;100.00&quot;)
+page.get_by_role(&quot;button&quot;, name=&quot;Transferir&quot;, exact=True).click()
+expect(page.get_by_role(&quot;status&quot;)).to_have_text(&quot;Transferencia realizada&quot;)
+expect(page.get_by_test_id(&quot;account-balance&quot;)).to_have_text(&quot;MXN 900.00&quot;)
+
+account_response = page.request.get(f&quot;/api/accounts/{fixture_data[&#39;sourceAccountId&#39;]}&quot;)
+assert account_response.status == 200
+assert account_response.json()[&quot;balanceMinor&quot;] == 90000
+list_response = page.request.get(&quot;/api/transfers&quot;, params={
+    &quot;sourceAccountId&quot;: fixture_data[&quot;sourceAccountId&quot;],
+})
+assert list_response.status == 200
+ledger = list_response.json()
+assert ledger[&quot;total&quot;] == 1
+assert len(ledger[&quot;items&quot;]) == 1
+transfer = ledger[&quot;items&quot;][0]
+assert transfer[&quot;sourceAccountId&quot;] == fixture_data[&quot;sourceAccountId&quot;]
+assert transfer[&quot;beneficiaryId&quot;] == fixture_data[&quot;beneficiaryId&quot;]
+assert transfer[&quot;currency&quot;] == &quot;MXN&quot;
+assert transfer[&quot;amountMinor&quot;] == 10000
+assert transfer[&quot;status&quot;] == &quot;COMPLETED&quot;
+</code></pre>
+<p>La equivalencia importante es la misma regla y el mismo estado observado. Un mensaje verde en UI, por sí solo, no demuestra que hubo exactamente un débito. Al adaptar con IA, revisar también imports, tipos, preparación, liberación de respuestas/contextos y compatibilidad con las versiones fijadas. Las llamadas se apoyan en las APIs oficiales; estos fragmentos requieren integrarse y ejecutarse antes de entregarlos como código listo.</p>
+</article>
+<article id="comandos" data-title="Comandos y CI" hidden><h1>Comandos del laboratorio entregado y adaptación a CI</h1>
+<p><strong>Usa las carpetas existentes, no un directorio futuro de starter.</strong> La <a href="videos/index.html">biblioteca de 12 lecciones y su estado de producción</a> y <a href="videos/LEEME-VIDEOS.md">LEEME-VIDEOS.md</a> son las entradas al material práctico. Este documento resume los comandos de los proyectos entregados; el estado de los MP4 se verifica por separado.</p>
+<p>Se registraron <strong>22 casos aprobados localmente</strong>: <a href="videos/lab/distributed/evidence/VERIFICATION.md">10 distribuidos</a> y <a href="videos/lab/mainframe/evidence/VERIFICATION.md">12 de protocolo y regresión híbrida</a>. La receta de CI de la última sección es una adaptación didáctica: no hay una ejecución alojada de ese pipeline acreditada por estos resultados.</p>
+<h2>1. Preparación antes de clase y rutas reales</h2>
+<p>La instalación se realiza fuera de los 120 minutos. El entorno verificado utilizó Node 24.16.0, Python 3.12.10, JDK 11.0.17, Maven 3.9.11 y Edge 152.0.4191.66. No se hizo una instalación en un Windows vacío. Los requisitos y alternativas actuales están en los README de cada proyecto.</p>
+<pre><code class="language-text">videos/lab/
+  distributed/
+    package.json, package-lock.json, playwright.config.ts
+    start-lab.mjs, tests/, evidence/
+  mainframe/
+    setup.ps1, start.ps1, adapter.py, simulator.py
+    requirements.txt, requirements-browser.txt, pytest.ini
+    test_terminal.py, test_hybrid_browser.py, test_core_regression.py
+    typescript/hybrid.spec.ts, typescript/playwright.config.ts
+    java/pom.xml, java/src/test/java/training/, evidence/
+</code></pre>
+<p>TypeScript tiene lockfile npm. Python fija sus dependencias directas en requirements; eso no equivale a un lock completo de transitivas. Java fija las dependencias y plugins del POM y utiliza Maven instalado: <strong>no se incluye un Maven wrapper</strong>. Si la cohorte exige un lock transitivo o validar una máquina limpia, esa preparación sigue pendiente.</p>
+<p>La configuración TypeScript predeterminada usa Edge y graba los casos; por eso necesita el <strong>FFmpeg de Playwright</strong>, aunque Edge ya esté instalado. El FFmpeg del sistema utilizado para producir los tutoriales es distinto. Los navegadores descargados corresponden a cada versión de Playwright; no compartir un ejecutable por suponer equivalencia entre versiones. <a href="https://playwright.dev/docs/browsers">Navegadores</a>.</p>
+<p>Las variables <code>TEST_HOOK_KEY</code>, <code>BASE_URL</code>, <code>ARTIFACT_DIR</code> y los canales de navegador son opciones de estos proyectos, no una interfaz universal de todos los runners. La clave <code>classroom-demo-only</code> es pública y sintética, exclusiva de este laboratorio local.</p>
+<h2>2. Arrancar la aplicación distribuida</h2>
+<p>En una terminal del laboratorio:</p>
+<pre><code class="language-powershell">Set-Location -LiteralPath &#39;C:\Users\daedg\OneDrive\Documentos\HSBC\Playwright\work\videos\lab\distributed&#39;
+npm ci
+npx playwright install ffmpeg
+$env:TEST_HOOK_KEY = &#39;classroom-demo-only&#39;
+npm run start:lab
+</code></pre>
+<p>El coordinador inicia gateway <code>3000</code>, Accounts <code>3001</code> y Ledger <code>3002</code>, ligados a <code>127.0.0.1</code>. Verifica la salud de cada proceso y falla si hay conflictos de puertos. Mantén esa terminal abierta. En otra terminal puedes observar la salud del gateway:</p>
+<pre><code class="language-powershell">$labHealth = Invoke-RestMethod -Uri &#39;http://127.0.0.1:3000/health&#39;
+if ($labHealth.status -ne &#39;ok&#39; -or $labHealth.environment -ne &#39;test&#39;) {
+    throw &#39;El gateway del laboratorio no está listo.&#39;
+}
+</code></pre>
+<p>Esa consulta por sí sola confirma el gateway; no sustituye las comprobaciones del coordinador sobre las otras dependencias. La <a href="http://127.0.0.1:3000/transfers">interfaz de TransferLab</a> requiere las credenciales de una fixture vigente; las pruebas crean y autentican las suyas.</p>
+<p>Todos los datos de negocio y el outbox están en memoria. La colección <code>/api/transfers</code> es canónica e inmediata; <code>/api/ledger/transfers</code> es una proyección independiente con posible demora. Reiniciar los procesos elimina su estado.</p>
+<h2>3. TypeScript: ejecución y reportes existentes</h2>
+<p>Con la aplicación iniciada, en otra terminal:</p>
+<pre><code class="language-powershell">Set-Location -LiteralPath &#39;C:\Users\daedg\OneDrive\Documentos\HSBC\Playwright\work\videos\lab\distributed&#39;
+$env:TEST_HOOK_KEY = &#39;classroom-demo-only&#39;
+npm test
+npm run report
+</code></pre>
+<p>El resultado medido fue <strong>10 aprobadas</strong>. La configuración usa un worker y cero reintentos; conserva traces, capturas y videos de todos los casos para los tutoriales. El reporte HTML está en <code>evidence/html-report</code>; por eso se usa <code>npm run report</code> y no se presupone el directorio predeterminado de otro proyecto.</p>
+<p>Para ejecutar los tres casos principales o mostrar el caso exitoso:</p>
+<pre><code class="language-powershell">npm test -- --grep &#39;TR-0[123]&#39;
+npm test -- --grep TR-01 --headed
+</code></pre>
+<p>Para usar Chromium descargado en vez de Edge:</p>
+<pre><code class="language-powershell">npx playwright install chromium
+$env:PW_CHANNEL = &#39;chromium&#39;
+npm test
+</code></pre>
+<p>Esta alternativa está documentada; las ejecuciones registradas usaron Edge. La CLI admite selección, workers y reintentos, pero cada cambio debe respetar aislamiento y nombres reales. <a href="https://playwright.dev/docs/test-cli">CLI de Playwright Test</a>.</p>
+<h3>Defecto controlado y conservación de evidencia</h3>
+<p>La variante de doble débito se inicia por separado con los puertos <code>3100/3101/3102</code> y <code>LAB_DEFECT_DUPLICATE=1</code>. Usa los comandos completos del <a href="videos/lab/distributed/README.md">README distribuido</a>. Su TR-03 debe fallar; el resultado registrado incluye saldo <code>80000</code> y dos registros, conservando el oráculo correcto de <code>90000</code> y un registro.</p>
+<p>Al volver al servidor sano, cambia también el directorio de evidencia:</p>
+<pre><code class="language-powershell">$env:BASE_URL = &#39;http://127.0.0.1:3000&#39;
+$env:ARTIFACT_DIR = &#39;evidence/healthy-recheck&#39;
+npm test -- --grep TR-03
+</code></pre>
+<p>Esto evita sobrescribir <code>evidence/defect</code>. No cambies aserciones, skips o reintentos para convertir el defecto en éxito.</p>
+<h2>4. TN3270 local y Python</h2>
+<p>La ruta Python está en el proyecto <code>mainframe</code> e incluye los casos centrales y el híbrido con TNZ. Prepara el entorno antes de clase:</p>
+<pre><code class="language-powershell">Set-Location -LiteralPath &#39;C:\Users\daedg\OneDrive\Documentos\HSBC\Playwright\work\videos\lab\mainframe&#39;
+.\setup.ps1 -Browser
+.\start.ps1
+</code></pre>
+<p><code>start.ps1</code> mantiene el simulador en <code>127.0.0.1:2323</code>. En otra terminal de la misma carpeta, con la aplicación distribuida también iniciada:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe adapter.py health --timeout 5
+$env:TEST_HOOK_KEY = &#39;classroom-demo-only&#39;
+.\.venv\Scripts\python.exe -m pytest test_hybrid_browser.py test_core_regression.py --browser-channel msedge --tracing=retain-on-failure --junitxml=evidence\python-core-plugin-tests.xml
+</code></pre>
+<p>El resultado verificado de esa selección fue <strong>3 aprobadas</strong>: éxito híbrido, rechazo de 1100.00 contra saldo 1000.00 e idempotencia secuencial. <code>pytest.ini</code> fija <code>base_url=http://127.0.0.1:3000</code>. Si adaptas el host, revisa también esa opción al copiar fragmentos con URL relativa; no presupongas que todas las fixtures leen <code>BASE_URL</code> automáticamente.</p>
+<p>El híbrido respeta la propiedad de la traza del plugin y solo usa captura manual cuando esa opción está desactivada. <code>--tracing</code> es de pytest-playwright; plugins como pytest-xdist o pytest-html son dependencias adicionales, no capacidades implícitas. <a href="https://playwright.dev/python/docs/test-runners">Referencia del plugin</a>.</p>
+<p>La suite de protocolo usa un servidor temporal y datos deterministas; no requiere ejecutar el navegador:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m pytest test_terminal.py -q --junitxml=evidence\terminal-tests.xml
+</code></pre>
+<p>Sus <strong>5 casos aprobados</strong> cubren éxito, referencia desconocida, validación, timeout de pantalla y backend no disponible, mediante TNZ real y sockets locales. Para mostrar la ruta híbrida en navegador visible:</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m pytest test_hybrid_browser.py --browser-channel msedge --headed
+</code></pre>
+<p>El adaptador introduce la referencia exacta en el campo del simulador y recibe los mismos datos autoritativos de Accounts. No consulta un mainframe real ni una segunda fuente independiente.</p>
+<h2>5. Java: JUnit y Maven existentes</h2>
+<p>La instalación inicial y la alternativa Chromium están en el <a href="videos/lab/mainframe/README.md">README TNZ</a>. El POM utiliza Gson y excluye el paquete opcional de Node; por eso el comando necesita señalar el Node ya instalado. Con las dependencias de navegador preparadas, Edge instalado y ambos laboratorios iniciados:</p>
+<pre><code class="language-powershell">Set-Location -LiteralPath &#39;C:\Users\daedg\OneDrive\Documentos\HSBC\Playwright\work\videos\lab\mainframe\java&#39;
+$env:TEST_HOOK_KEY = &#39;classroom-demo-only&#39;
+$env:PLAYWRIGHT_NODEJS_PATH = (Get-Command node).Source
+$env:PW_BROWSER_CHANNEL = &#39;msedge&#39;
+mvn test
+</code></pre>
+<p>La ejecución verificada contiene <strong>3 casos aprobados</strong> en <code>HybridTransferTest</code> y <code>CoreRegressionTest</code>. Surefire produce XML y texto en <code>target/surefire-reports</code>; el proyecto conserva evidencia adicional en <code>../evidence</code>. No genera automáticamente el reporte HTML de Playwright Test. <a href="https://maven.apache.org/surefire/maven-surefire-plugin/">Surefire</a>.</p>
+<p>La captura de trace pertenece al código Java. Los bloques de finalización intentan borrar la fixture incluso si falla el cierre de la traza. No agregues <code>--headed</code> o <code>--tracing</code> al comando Maven: una demostración con ventana requiere configurar <code>LaunchOptions.setHeadless(false)</code> en la copia de código elegida. <a href="https://playwright.dev/java/docs/intro">Java</a>, <a href="https://playwright.dev/java/docs/api/class-tracing">tracing</a>.</p>
+<h2>6. Híbrido TypeScript y parada de servicios</h2>
+<p>Con las dependencias distribuidas instaladas y los dos laboratorios iniciados, ejecuta desde <code>mainframe</code>:</p>
+<pre><code class="language-powershell">Set-Location -LiteralPath &#39;C:\Users\daedg\OneDrive\Documentos\HSBC\Playwright\work\videos\lab\mainframe&#39;
+$env:TEST_HOOK_KEY = &#39;classroom-demo-only&#39;
+node ..\distributed\node_modules\@playwright\test\cli.js test --config typescript\playwright.config.ts
+</code></pre>
+<p>Esta selección registró <strong>1 caso híbrido aprobado</strong>, adicional a los 10 distribuidos. Para terminar, pulsa Ctrl+C en la terminal propia del simulador y después en la del coordinador distribuido. Detén también cualquier servidor de reportes que hayas abierto. No finalices procesos ajenos por coincidir con un nombre genérico.</p>
+<h2>7. Receta de CI: adaptación ilustrativa, no ejecución acreditada</h2>
+<p>El taller dedica 12 minutos a revisar cómo llevar estas ejecuciones a CI. La secuencia propuesta es: obtener fuentes; instalar versiones fijadas y el navegador del runner; iniciar los servicios locales; comprobar cada dependencia con plazo; ejecutar la selección; conservar código de salida y artefactos incluso al fallar; limpiar fixtures y cerrar los procesos propios.</p>
+<p>La adaptación a Linux requiere sus rutas de entorno virtual, un navegador disponible y dependencias del sistema. Opciones como <code>install --with-deps chromium</code> pertenecen al CLI correspondiente y pueden necesitar permisos del entorno CI. Maven se ejecuta con <code>mvn</code> salvo que se agregue y verifique un wrapper. No copiar variables de canal o flags entre Java, Python y TypeScript. <a href="https://playwright.dev/docs/ci">CI de Playwright</a>, <a href="https://playwright.dev/python/docs/ci">CI Python</a>.</p>
+<p>Sharding, matrices de lenguajes y navegadores, y despliegue corporativo son extensiones de diseño. No forman parte de los 22 resultados locales ni son requisito del taller de dos horas. El reporte debe distinguir <strong>CI propuesto</strong>, <strong>CI configurado</strong> y <strong>CI ejecutado</strong>; solo este último se acredita con un run real y sus artefactos.</p>
+<p>Para evaluar el ejercicio, exigir los tres casos de negocio de la ruta elegida, aislamiento, una traza de fallo legible, limpieza documentada y resultados honestos. La instalación limpia de una cohorte, el ensayo completo de 120 minutos y un pipeline alojado siguen pendientes de comprobar.</p>
+</article>
+<article id="preparacion" data-title="Preparación y evaluación" hidden><h1>Preparación, facilitación y evaluación del curso</h1>
+<p><strong>Duración de la sesión:</strong> 120 minutos, incluida una pausa de 5 minutos.<br><strong>Nivel:</strong> avanzado. <strong>Lenguajes:</strong> TypeScript, Java y Python.<br><strong>Organización:</strong> cada participante trabaja en <strong>un lenguaje</strong> durante la sesión; los tres grupos resuelven el mismo caso ficticio, TransferLab.</p>
+<p><strong>Material práctico disponible:</strong> <a href="videos/index.html">biblioteca de 12 lecciones y estado de producción</a>, <a href="videos/LEEME-VIDEOS.md">instalación y uso de los laboratorios</a> y <a href="videos/AI-PROMPTS-REGRESSION.md">prompts distribuidos y TNZ copiables</a>. Los proyectos de <code>videos/lab/distributed</code> y <code>videos/lab/mainframe</code> están implementados y registran <strong>22 casos aprobados localmente</strong>: <a href="videos/lab/distributed/evidence/VERIFICATION.md">10 distribuidos</a> y <a href="videos/lab/mainframe/evidence/VERIFICATION.md">12 de protocolo e híbridos</a>.</p>
+<p>Este documento prepara la facilitación de esa entrega. Siguen pendientes el ensayo real de 120 minutos con participantes, la comprobación de instalación en sus estaciones y una ejecución alojada de CI. La biblioteca contiene los 12 MP4 terminados, de 7:03–7:32, con voz de IA y subtítulos en inglés. Los 14 títulos de diapositivas de la sección 5 siguen siendo una propuesta y no una presentación independiente ya creada.</p>
+<h2>1. Resultado que debe poder demostrar cada participante</h2>
+<p>Al terminar, el participante debe convertir requisitos y evidencia de una aplicación en tres pruebas de regresión; revisar el código propuesto por IA; ejecutar las pruebas en su lenguaje; explicar un fallo con evidencia; y proponer su ejecución en integración continua. La evaluación distingue siempre entre <strong>código generado</strong>, <strong>código revisado</strong>, <strong>prueba ejecutada</strong> y <strong>resultado aprobado</strong>.</p>
+<p>El curso requiere experiencia previa con pruebas web, selectores, asincronía en el lenguaje elegido, Git y conceptos básicos de HTTP. No incluye una introducción a programación ni una instalación guiada durante los 120 minutos. La IA sirve para acelerar el análisis y la implementación; las decisiones sobre cobertura y los resultados observados siguen siendo responsabilidad del participante.</p>
+<h3>Contrato común del ejercicio</h3>
+<p>Cada caso comienza con una cuenta ficticia con saldo <strong>1000</strong>, sin comisiones, y un historial vacío para esa cuenta. Se transfiere a un destinatario ficticio definido en los datos iniciales. Los datos se aíslan entre casos y participantes.</p>
+<table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>Acción</th>
+<th>Resultado que debe comprobarse</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TR-01: transferencia válida</td>
+<td>Transferir 100</td>
+<td>Saldo final 900 y exactamente un registro de transferencia para el caso.</td>
+</tr>
+<tr>
+<td>TR-02: fondos insuficientes</td>
+<td>Intentar transferir 1100</td>
+<td>Operación rechazada, saldo 1000 y cero registros de transferencia para el caso.</td>
+</tr>
+<tr>
+<td>TR-03: idempotencia</td>
+<td>Repetir una solicitud de 100 con la misma clave de idempotencia</td>
+<td>Un único débito, saldo final 900 y exactamente un registro de transferencia para el caso.</td>
+</tr>
+</tbody></table>
+<p>La repetición de TR-03 ocurre después de recibir respuesta de la primera solicitud. Las solicitudes simultáneas son una extensión; no se debe afirmar que la prueba secuencial demuestra seguridad frente a concurrencia. El contrato implementado fija primera respuesta <code>201</code>, segunda <code>200</code> y el mismo identificador de transferencia; los reportes locales de los tres lenguajes documentan ese caso. El instructor debe comprobar su propia configuración antes de impartirlo.</p>
+<p>Los nombres reales de controles, direcciones de API, estados y mensajes deben salir del contrato y de la demo preparada. No se deben inventar para completar una prueba. Una observación de la interfaz por sí sola tampoco demuestra que hubo un solo débito en el almacenamiento: la demo necesita una forma autorizada de consultar saldo e historial reales del caso.</p>
+<h2>2. Material disponible y preparación para impartir</h2>
+<p><strong>Referencia de esfuerzo del diseño inicial: 18–30 horas para producir un material similar desde cero</strong>, suponiendo experiencia con Playwright, una demo pequeña y sin trámites de infraestructura. No representa tiempo medido en esta entrega ni una estimación pendiente completa: los proyectos, prompts y evidencias ya están disponibles. La preparación restante depende de la instalación de la cohorte, la selección de ejercicios y el ensayo; no incluye accesos corporativos ni una aplicación bancaria real.</p>
+<p>La ejecución local ya permite estudiar y practicar con el laboratorio. Antes de anunciar la sesión como ensayada, hay que cerrar la preparación de participantes y medir el recorrido de 120 minutos. Un resultado técnico local no acredita por sí solo la duración pedagógica ni el funcionamiento de cada estación.</p>
+<table>
+<thead>
+<tr>
+<th>Orden</th>
+<th>Prioridad y entregable</th>
+<th>Evidencia de terminación</th>
+<th>Esfuerzo supuesto</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>P0. Contrato y matriz de riesgos</strong></td>
+<td>Disponibles: reglas y datos; revisar la selección de riesgos con la cohorte.</td>
+<td>2–3 h</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>P0. Demo reproducible</strong></td>
+<td>Implementada: arranque, estado autoritativo en memoria y hooks de datos; validar las nuevas estaciones.</td>
+<td>4–7 h</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>P0. Rutas de los tres lenguajes</strong></td>
+<td>Implementadas y ejecutadas localmente; completar las instalaciones de participantes.</td>
+<td>4–6 h</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>P0. Materiales del taller</strong></td>
+<td>Prompts, guías y 12 videos disponibles; elegir los ejercicios y fragmentos para la cohorte. Las diapositivas independientes siguen como propuesta.</td>
+<td>3–5 h</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>P0. Fallo preparado y revisión de CI</strong></td>
+<td>Fallo intencional y evidencia disponibles; receta de CI ilustrativa, sin ejecución alojada acreditada.</td>
+<td>2–4 h</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>P0. Ensayo y ajuste</strong></td>
+<td>Pendiente: ensayo de 120 minutos con participantes y tiempos medidos.</td>
+<td>3–5 h</td>
+</tr>
+</tbody></table>
+<p><strong>Extensiones posteriores:</strong> ejecución en varios navegadores, solicitudes concurrentes para idempotencia, distribución de pruebas, regresión visual, accesibilidad y generación sistemática de datos. Se mantienen fuera del recorrido obligatorio para proteger el tiempo dedicado a revisar y comprobar los tres casos.</p>
+<h3>Lista P0 de producción</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Entregar demo local, datos ficticios, contrato y reinicio de su estado en memoria.</li>
+<li><input checked="" disabled="" type="checkbox"> Implementar fixtures propias por caso y limpieza delimitada; los reportes registran ausencia de fixtures al finalizar.</li>
+<li><input checked="" disabled="" type="checkbox"> Entregar y ejecutar los tres casos centrales en las rutas de TypeScript, Python y Java.</li>
+<li><input checked="" disabled="" type="checkbox"> Fijar dependencias directas y documentar versiones y navegador de las ejecuciones medidas.</li>
+<li><input checked="" disabled="" type="checkbox"> Proporcionar comandos de inicio y comprobaciones de disponibilidad.</li>
+<li><input disabled="" type="checkbox"> Comprobar la instalación de cada estación y, si la cohorte lo exige, un lock transitivo completo de Python y una instalación limpia de Windows.</li>
+<li><input disabled="" type="checkbox"> Preparar una versión inicial incompleta y una solución docente por lenguaje.</li>
+<li><input checked="" disabled="" type="checkbox"> Ejecutar la variante defectuosa y conservar la evidencia de doble débito y doble registro.</li>
+<li><input checked="" disabled="" type="checkbox"> Guardar capturas, reportes y trazas locales de las ejecuciones.</li>
+<li><input disabled="" type="checkbox"> Ensayar la regresión en la configuración definitiva del aula y revisar los puntos de recuperación.</li>
+<li><input disabled="" type="checkbox"> Si se decide mostrar un pipeline alojado, implementarlo y ejecutarlo; la receta actual solo acredita el diseño propuesto.</li>
+<li><input disabled="" type="checkbox"> Hacer un ensayo con alguien que no haya creado los materiales.</li>
+</ul>
+<h2>3. Preparación del participante, fuera de los 120 minutos</h2>
+<p>Enviar las instrucciones al menos dos días antes. Reservar <strong>45–90 minutos orientativos</strong> para esta preparación; los permisos o descargas corporativas pueden ampliar ese tiempo. El alumno elige TypeScript, Java o Python y conserva esa elección durante el taller.</p>
+<p>Las guías por lenguaje están en <a href="04-COMANDOS-Y-CI.md">04-COMANDOS-Y-CI.md</a> y los README de los laboratorios reales. Documentan runtime, runner, dependencias, navegador, arranque y resultados. La ejecución de la estación de construcción está registrada; una instalación limpia y la preparación de cada alumno siguen por comprobar. No se presupone que los tres lenguajes compartan las mismas opciones de configuración.</p>
+<p>La serie de 12 lecciones se utiliza fuera de la sesión como preparación o repaso; durante los 120 minutos solo se seleccionan fragmentos breves según <a href="videos/COURSE-VIDEO-MAP.md">el mapa de videos</a>. Verifica el estado audiovisual individual en la biblioteca antes de asignar una lección.</p>
+<p>El participante llega con:</p>
+<ul>
+<li><input disabled="" type="checkbox"> El proyecto de su lenguaje abierto y la instalación autorizada terminada.</li>
+<li><input disabled="" type="checkbox"> La demo ficticia accesible y la prueba mínima ejecutada.</li>
+<li><input disabled="" type="checkbox"> Su identificador o conjunto de datos asignado.</li>
+<li><input disabled="" type="checkbox"> La herramienta de IA aprobada disponible, o las respuestas de respaldo descargadas.</li>
+<li><input disabled="" type="checkbox"> Acceso local al contrato, prompts, proyecto inicial y traza de ejemplo.</li>
+<li><input disabled="" type="checkbox"> Una captura o registro del resultado de preparación, sin credenciales ni datos reales.</li>
+</ul>
+<p>El facilitador recoge previamente los fallos de preparación y los resuelve antes de la sesión. Si un alumno no puede instalar herramientas, se le asigna una estación aprobada o una pareja con el mismo lenguaje. Observar una ejecución del docente puede permitir trabajar el razonamiento, pero debe registrarse como observación: no equivale a haber ejecutado la regresión personalmente.</p>
+<p><strong>Comprobación del respaldo sin conexión:</strong> confirmar que la estación tiene las dependencias y navegadores necesarios disponibles y que la demo funciona sin servicios externos. Un archivo comprimido con código no garantiza por sí solo una ejecución sin red.</p>
+<h2>4. Guion del facilitador y puntos de control</h2>
+<table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th>Intervención del facilitador</th>
+<th>Trabajo y evidencia del participante</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0–10</td>
+<td>Presentar el contrato, una prueba que parece correcta pero omite comprobar el saldo y los límites del trabajo con IA.</td>
+<td>Identificar qué afirmación de negocio falta y elegir su lenguaje.</td>
+</tr>
+<tr>
+<td>10–25</td>
+<td>Modelar la relación requisito → riesgo → evidencia → aserción. Mostrar cómo un prompt debe pedir evidencia faltante.</td>
+<td>Completar la matriz de TR-01/02/03; cada resultado tiene una fuente observable.</td>
+</tr>
+<tr>
+<td>25–45</td>
+<td>Mostrar la preparación y el aislamiento de datos, la autenticación y la limpieza. Usar un lenguaje en pantalla y señalar los archivos equivalentes de los otros dos.</td>
+<td>Preparar su caso con datos propios; explicar dónde se inicia el estado y cómo se evita compartirlo.</td>
+</tr>
+<tr>
+<td>45–65</td>
+<td>Dar el prompt de generación y revisar una propuesta de IA en voz alta. Detenerse ante selectores, respuestas o métodos inventados.</td>
+<td>Generar, revisar y ejecutar los tres casos. Registrar estado por caso y evidencia del resultado.</td>
+</tr>
+<tr>
+<td>65–70</td>
+<td>Pausa de cinco minutos.</td>
+<td>Pausa.</td>
+</tr>
+<tr>
+<td>70–85</td>
+<td>Preparar una respuesta 503 simulada y preguntar qué parte del sistema demuestra el ejercicio.</td>
+<td>Probar el comportamiento visible de la interfaz ante ese 503; etiquetar la evidencia como prueba de UI con respuesta simulada.</td>
+</tr>
+<tr>
+<td>85–100</td>
+<td>Abrir el fallo controlado y conducir el diagnóstico: observación, hipótesis, comprobación, corrección y nueva ejecución.</td>
+<td>Explicar una causa apoyada en la traza; proponer o aplicar una corrección que conserve las aserciones de negocio.</td>
+</tr>
+<tr>
+<td>100–112</td>
+<td>Presentar la receta de CI y los artefactos de ejecución local existentes. Señalar qué falta para ejecutarla en un proveedor alojado.</td>
+<td>Identificar arranque, comando y artefactos; marcar lo ejecutado localmente frente al diseño o configuración de CI.</td>
+</tr>
+<tr>
+<td>112–120</td>
+<td>Usar ocho minutos para revisión entre pares y valoración. Recoger los entregables.</td>
+<td>Puntuar la evidencia de una pareja, responder una pregunta de límites y entregar su registro final.</td>
+</tr>
+</tbody></table>
+<p><strong>Control al minuto 25:</strong> ninguna fila crítica carece de resultado esperado o fuente de evidencia. <strong>Al minuto 45:</strong> los datos de cada caso se pueden preparar sin depender de una prueba anterior. <strong>Al minuto 65:</strong> se dispone del estado explícito de los tres casos, incluso si alguno sigue fallando. <strong>Al minuto 100:</strong> el diagnóstico señala observaciones concretas. <strong>Al minuto 120:</strong> el participante entrega su código y evidencia, con sus limitaciones.</p>
+<p>La demostración no debe convertirse en tres explicaciones consecutivas del mismo concepto. El docente enseña el concepto una vez y mantiene visibles las equivalencias del material. Con grupos grandes, conviene contar con apoyo por lenguaje o trabajar en parejas; esa dotación debe resolverse en la preparación.</p>
+<h2>5. Propuesta de 14 diapositivas</h2>
+<table>
+<thead>
+<tr>
+<th>N.º</th>
+<th>Título propuesto</th>
+<th>Momento</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Qué podremos demostrar en dos horas</td>
+<td>0–10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Una prueba verde también puede omitir el riesgo</td>
+<td>0–10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TransferLab: contrato de los tres casos</td>
+<td>10–25</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Del requisito a la evidencia y la aserción</td>
+<td>10–25</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Datos aislados y estado inicial reproducible</td>
+<td>25–45</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Autenticación y preparación en los tres lenguajes</td>
+<td>25–45</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Anatomía del prompt de generación</td>
+<td>45–65</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Revisar y ejecutar: tres casos, tres resultados</td>
+<td>45–65</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pausa y estado del laboratorio</td>
+<td>65–70</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Respuesta 503 simulada: alcance de la evidencia</td>
+<td>70–85</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Leer la traza antes de modificar la prueba</td>
+<td>85–100</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Corregir la causa y conservar el resultado esperado</td>
+<td>85–100</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Regresión en CI y evidencias de un fallo</td>
+<td>100–112</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Revisión entre pares y próximo incremento</td>
+<td>112–120</td>
+</tr>
+</tbody></table>
+<p>Las diapositivas sostienen la explicación; los pasos extensos y los prompts completos pertenecen a la guía copiable. Preparar notas docentes con el archivo o evidencia que debe abrirse en cada momento.</p>
+<h2>6. Rúbrica de evaluación</h2>
+<p>Puntuar cinco criterios de 0 a 2. <strong>Referencia de logro: al menos 8/10 y cumplimiento de todas las condiciones obligatorias.</strong> Una limitación ambiental se documenta y da lugar a completar la evidencia después; no debe convertirse en un aprobado ficticio.</p>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>0 puntos</th>
+<th>1 punto</th>
+<th>2 puntos</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cobertura y resultados esperados</td>
+<td>Omite casos o inventa requisitos.</td>
+<td>Incluye los tres casos, con alguna comprobación incompleta.</td>
+<td>Los tres casos verifican rechazo o aceptación, saldo y número de registros según el contrato.</td>
+</tr>
+<tr>
+<td>Aislamiento y reproducibilidad</td>
+<td>Depende del orden o comparte estado sin control.</td>
+<td>Explica el aislamiento, pero su evidencia es parcial.</td>
+<td>Prepara datos propios y demuestra ejecuciones independientes.</td>
+</tr>
+<tr>
+<td>Revisión de la propuesta de IA</td>
+<td>Acepta código sin comprobarlo.</td>
+<td>Revisa algunas suposiciones y deja otras identificadas.</td>
+<td>Resuelve las suposiciones con evidencia y puede explicar las aserciones y decisiones adoptadas.</td>
+</tr>
+<tr>
+<td>Ejecución y diagnóstico</td>
+<td>No entrega resultados o elimina comprobaciones para aprobar.</td>
+<td>Entrega resultados parciales y una hipótesis razonable.</td>
+<td>Entrega ejecución de los tres casos y diagnóstico del fallo controlado apoyado en evidencia.</td>
+</tr>
+<tr>
+<td>CI y comunicación de límites</td>
+<td>Afirma ejecución o cobertura sin evidencia.</td>
+<td>Diseña el flujo y declara qué falta ejecutar.</td>
+<td>Revisa evidencia real de CI y distingue configuración, ejecución, simulación y cobertura de negocio.</td>
+</tr>
+</tbody></table>
+<p>Condiciones obligatorias:</p>
+<ol>
+<li>No presentar una prueba como aprobada sin evidencia de ejecución.</li>
+<li>No incluir secretos, credenciales ni datos reales en prompts, entregas o artefactos compartidos.</li>
+<li>No debilitar las aserciones de negocio para conseguir un resultado verde; no ocultar fallos mediante omisiones o reintentos sin diagnóstico.</li>
+<li>Entregar evidencia de los tres casos principales para acreditar la parte práctica. Si falta, registrar <strong>pendiente de completar</strong>, aunque el análisis obtenga una buena puntuación.</li>
+</ol>
+<h2>7. Hoja del participante y respuestas del docente</h2>
+<p><strong>Registro de entrega:</strong> nombre o identificador, lenguaje elegido, versión del proyecto inicial, estado de TR-01/02/03, referencia a evidencia por caso, diagnóstico del fallo preparado y estado de CI. Estados permitidos: no iniciado, generado, revisado, ejecutado con fallo, ejecutado y aprobado, bloqueado con causa. Anotar la razón de cada bloqueo.</p>
+<p>Preguntas reutilizables para revisión entre pares o evaluación posterior. Durante el cierre de ocho minutos, seleccionar dos; no intentar resolverlas todas:</p>
+<ol>
+<li>La interfaz muestra «Transferencia realizada». ¿Qué falta para dar TR-01 por aprobado?</li>
+<li>La IA propone comprobar únicamente el mensaje de fondos insuficientes. ¿Qué cambios necesita TR-02?</li>
+<li>Dos solicitudes consecutivas con la misma clave producen saldo 900 y un registro. ¿Qué demuestra y qué queda fuera de TR-03?</li>
+<li>Una respuesta 503 interceptada produce un aviso correcto. ¿Demuestra que el backend maneja una caída real?</li>
+<li>Una prueba falla y la IA propone quitar la comprobación del saldo. ¿Cómo conduces el diagnóstico?</li>
+<li>Existe un archivo de CI, pero nunca se ejecutó. ¿Qué estado debe constar en la entrega?</li>
+</ol>
+<p><strong>Clave docente:</strong></p>
+<ol>
+<li>Comprobar el saldo 900 y exactamente un registro mediante las fuentes acordadas; confirmar que el caso empezó en 1000 y sin registros.</li>
+<li>Comprobar también saldo 1000 y cero registros. El rechazo visual no demuestra ausencia de débito.</li>
+<li>Demuestra idempotencia para esa repetición secuencial y esas condiciones. No demuestra comportamiento concurrente ni persistencia ante cualquier reinicio.</li>
+<li>Demuestra el comportamiento de UI frente a la respuesta simulada. No valida el backend, su recuperación ni la ausencia real de efectos financieros.</li>
+<li>Mantener el resultado esperado, leer la evidencia, contrastar datos iniciales y comportamiento observado, corregir la causa y volver a ejecutar.</li>
+<li>Configurado o pendiente de ejecución; para declarar aprobación se necesita un resultado real y accesible.</li>
+</ol>
+<h2>8. Contingencias y revisión antes de impartir</h2>
+<p><strong>IA lenta o sin acceso:</strong> proporcionar salidas previamente preparadas, identificadas como material de respaldo. El alumno las revisa con el mismo contrato; no se atribuyen a una ejecución en vivo.</p>
+<p><strong>Fallo de red:</strong> usar la demo aprobada, proyectos y artefactos locales previamente comprobados. Si únicamente están disponibles capturas o una traza, continuar el análisis y registrar pendiente la ejecución práctica.</p>
+<p><strong>Restricciones de instalación:</strong> usar una estación o entorno ya autorizado y preparado. No consumir el taller intentando eludir controles del equipo ni cambiar a un sitio bancario externo.</p>
+<p><strong>Grupo atrasado:</strong> usar los puntos de recuperación de los proyectos iniciales y recortar discusión de extensiones. Mantener la pausa, el diagnóstico y los ocho minutos finales. Documentar qué parte completó cada alumno por sí mismo.</p>
+<p>La revisión final del facilitador debe confirmar la configuración de la cohorte, el acceso a evidencias locales, material de respaldo legible y un ensayo dentro de 120 minutos. Una ejecución alojada de CI solo se presenta como realizada si existe su run verificable. El estado actual es <strong>laboratorios implementados y verificados localmente; preparación de la cohorte y ensayo pendientes</strong>. Las 12 lecciones audiovisuales están exportadas; la biblioteca permite reproducirlas, consultar sus guiones y saltar entre capítulos.</p>
+</article><p class="footer">Laboratorios locales ejecutables con 22 casos aprobados y evidencia enlazada. TransferLab utiliza datos sintéticos en memoria; el terminal TN3270 muestra la misma fuente autoritativa. Consulta la biblioteca para el estado audiovisual y completa el ensayo de la cohorte antes de impartir.</p></div></main></div><div id="copy-status" role="status" hidden></div><noscript>Para navegar y copiar con los botones, habilita JavaScript. También puedes consultar los archivos Markdown editables.</noscript>
+<script>
+document.body.classList.remove('no-js');
+const fileMap={"01-PLAN-DEL-CURSO.md":"plan","02-PROMPTS-COPIAR-PEGAR.md":"prompts","03-LABORATORIO-Y-LENGUAJES.md":"laboratorio","04-COMANDOS-Y-CI.md":"comandos","05-PREPARACION-Y-EVALUACION.md":"preparacion"};
+const statusBox=document.getElementById('copy-status');
+let statusTimer;
+function showStatus(message){statusBox.textContent=message;statusBox.hidden=false;clearTimeout(statusTimer);statusTimer=setTimeout(()=>statusBox.hidden=true,2500)}
+document.querySelectorAll('article h2, article h3').forEach((h,i)=>{h.id=h.closest('article').id+'-section-'+i});
+function showSection(id,scroll=true){const article=document.getElementById(id);if(!article||article.tagName!=='ARTICLE')return;document.querySelectorAll('article').forEach(a=>a.hidden=a!==article);document.querySelectorAll('.nav-item').forEach(b=>{const active=b.dataset.target===id;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});document.getElementById('document-title').textContent=article.dataset.title;document.title=article.dataset.title+' · Playwright avanzado con IA';const toc=document.getElementById('toc-links');toc.replaceChildren();article.querySelectorAll('h2').forEach(h=>{const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;toc.append(a)});if(scroll)document.querySelector('.document-header').scrollIntoView({behavior:'instant',block:'start'})}
+document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>{location.hash=b.dataset.target}));
+function applyHash(scroll){const id=decodeURIComponent(location.hash.slice(1));const target=document.getElementById(id);if(target){const article=target.tagName==='ARTICLE'?target:target.closest('article');if(article){showSection(article.id,scroll);if(target!==article&&scroll)target.scrollIntoView({block:'start'})}}else showSection('plan',false)}
+window.addEventListener('hashchange',()=>applyHash(true));
+document.querySelectorAll('article a').forEach(a=>{const href=a.getAttribute('href');const filename=href.split('#')[0];if(fileMap[filename])a.href='#'+fileMap[filename];if(href.startsWith('https://')){a.target='_blank';a.rel='noopener noreferrer'}});
+document.querySelectorAll('article table').forEach(table=>{const wrap=document.createElement('div');wrap.className='table-wrap';table.before(wrap);wrap.append(table)});
+document.querySelectorAll('article pre').forEach(pre=>{const wrap=document.createElement('div');wrap.className='code-wrap';pre.before(wrap);wrap.append(pre);const label=document.createElement('span');label.className='code-label';const language=pre.querySelector('code')?.className.replace('language-','')||'texto';label.textContent=language;const button=document.createElement('button');button.className='copy';button.textContent='Copiar';button.setAttribute('aria-label','Copiar bloque de '+language);button.addEventListener('click',async()=>{const text=pre.querySelector('code')?.textContent||pre.textContent;let copied=false;try{if(navigator.clipboard){await navigator.clipboard.writeText(text);copied=true}}catch{}if(!copied){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.append(area);area.select();copied=document.execCommand('copy');area.remove();button.focus()}if(copied){button.textContent='Copiado';showStatus('Texto copiado al portapapeles');setTimeout(()=>button.textContent='Copiar',2000)}else{const range=document.createRange();range.selectNodeContents(pre);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);showStatus('Texto seleccionado. Usa Ctrl+C para copiar.')}});wrap.append(label,button)});
+document.getElementById('print').addEventListener('click',()=>window.print());applyHash(false);
+</script></body></html>

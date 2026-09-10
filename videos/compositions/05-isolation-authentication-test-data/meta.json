@@ -1,0 +1,7 @@
+{
+  "name": "Isolation, Authentication and Test Data",
+  "description": "Design fixture ownership that survives retries, failures and parallel execution.",
+  "duration": 439.60800000000006,
+  "width": 1920,
+  "height": 1080
+}

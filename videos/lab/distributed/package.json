@@ -1,0 +1,15 @@
+{
+  "name": "transferlab-distributed-classroom",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic, loopback-only classroom distributed testing simulator",
+  "scripts": {
+    "start:lab": "node start-lab.mjs",
+    "test": "playwright test",
+    "test:ts": "playwright test",
+    "report": "playwright show-report evidence/html-report"
+  },
+  "devDependencies": { "@playwright/test": "1.63.0" },
+  "engines": { "node": ">=22" }
+}

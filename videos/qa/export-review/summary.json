@@ -1,0 +1,169 @@
+{
+  "checkedAtUtc": "2026-09-10T03:59:50.012200+00:00",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "finalExportsReviewed": 12,
+  "sampledFramesReviewed": 144,
+  "contactSheets": 24,
+  "allCurrentProductionInputHashesMatch": true,
+  "allCurrentProductionHashesMatch": true,
+  "allSampleArtifactHashesMatch": true,
+  "visualReviewPerformedByAgent": true,
+  "openIssues": 0,
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "reviewAssignments": {
+    "facilitacion": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "09",
+      "10",
+      "11"
+    ],
+    "distributed_demo": [
+      "05",
+      "06",
+      "07",
+      "08"
+    ],
+    "root": [
+      "12"
+    ]
+  },
+  "scope": "Aggregates documented agent visual review of 12 actual midpoint frames per current blue/gray/white MP4. No claim of complete playback, full listening, animation continuity or perceptual subtitle synchronization.",
+  "episodes": [
+    {
+      "episode": "01",
+      "mp4Sha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+      "timelineSha256": "964ca22f2fb173c8fe6283513d59de49cff3c48c161d9bf8dccf569334229774",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 423.0,
+      "observations": "qa/export-review/01/observations.json"
+    },
+    {
+      "episode": "02",
+      "mp4Sha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+      "timelineSha256": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 8,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 430.416667,
+      "observations": "qa/export-review/02/observations.json"
+    },
+    {
+      "episode": "03",
+      "mp4Sha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+      "timelineSha256": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 443.291667,
+      "observations": "qa/export-review/03/observations.json"
+    },
+    {
+      "episode": "04",
+      "mp4Sha256": "03ad64f600f3d50608c9b91592f9034426981179241c8779af820cfc0a20afe4",
+      "timelineSha256": "dd5b95ed92df2cd5e658301b99e0d1164ff61678658c37a3c7e81434045dac33",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 438.583333,
+      "observations": "qa/export-review/04/observations.json"
+    },
+    {
+      "episode": "05",
+      "mp4Sha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+      "timelineSha256": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 439.625,
+      "observations": "qa/export-review/05/observations.json"
+    },
+    {
+      "episode": "06",
+      "mp4Sha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+      "timelineSha256": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 434.5,
+      "observations": "qa/export-review/06/observations.json"
+    },
+    {
+      "episode": "07",
+      "mp4Sha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+      "timelineSha256": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 424.5,
+      "observations": "qa/export-review/07/observations.json"
+    },
+    {
+      "episode": "08",
+      "mp4Sha256": "56e9ee0bbba84fd552006eacabb1050529da6d901ed2e77d6bcdc12be8b52eeb",
+      "timelineSha256": "92d594a07113805b29495e890f6936a8a84fd45b6045307d3d9d08b219fa9106",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 434.916667,
+      "observations": "qa/export-review/08/observations.json"
+    },
+    {
+      "episode": "09",
+      "mp4Sha256": "2b9c5e5502b9d5cf80cc851067bf3030dbaa00ede91fcacb7a7ea1f80192dc23",
+      "timelineSha256": "4478803828c97bbdbd5ce2d95235550a32fe7752b22bdc64753d7ec74b073113",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 439.791667,
+      "observations": "qa/export-review/09/observations.json"
+    },
+    {
+      "episode": "10",
+      "mp4Sha256": "0099481a904323926a7936ab2eeff66d5ed1282635a67d72180e51ab1b5816f3",
+      "timelineSha256": "d9c9eb58d1845b75c2785bcfa96c5d6896b8138a7b4c7abd59a1aea5a8478423",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 434.416667,
+      "observations": "qa/export-review/10/observations.json"
+    },
+    {
+      "episode": "11",
+      "mp4Sha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+      "timelineSha256": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 9,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 444.625,
+      "observations": "qa/export-review/11/observations.json"
+    },
+    {
+      "episode": "12",
+      "mp4Sha256": "16f817c3b0cb836bf9d86156cf2bb50350e29404a3a62ebbf3c495b7c2fe8d35",
+      "timelineSha256": "237bba85ee91d157eee41545b1a00477c5046fd7f9159778f221d17a9bbd478b",
+      "builderSha256": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "inputFilesVerified": 7,
+      "reviewedSceneCount": 12,
+      "issues": 0,
+      "durationSeconds": 452.0,
+      "observations": "qa/export-review/12/observations.json"
+    }
+  ]
+}

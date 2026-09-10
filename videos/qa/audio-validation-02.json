@@ -1,0 +1,23 @@
+{
+  "requestedEpisodes": 1,
+  "validatedEpisodes": 1,
+  "episodes": [
+    {
+      "episode": "02",
+      "seconds": 430.392,
+      "scenes": 12,
+      "captions": 84,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.939971923828125,
+      "rms": 0.08217039395900377,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    }
+  ],
+  "errors": [],
+  "totalSeconds": 430.392,
+  "scope": "Technical validation; no automatic speech-recognition or human listening claim"
+}

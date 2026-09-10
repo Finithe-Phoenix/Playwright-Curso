@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-09",
+  "url": "http://127.0.0.1:8766/videos/index.html",
+  "browser": "Codex in-app browser",
+  "observed": [
+    {
+      "scenario": "Episode01 chapter2 button",
+      "durationSeconds": 423,
+      "currentTimeAfterClick": 32.57,
+      "seekableStart": 0,
+      "seekableEnd": 423,
+      "paused": false
+    },
+    {
+      "scenario": "Episode01 chapter12 button",
+      "durationSeconds": 423,
+      "currentTimeAfterClick": 390.19,
+      "paused": false,
+      "mediaError": null
+    },
+    {
+      "scenario": "Episode11 chapter10 button on current exported file",
+      "durationSeconds": 444.625,
+      "currentTimeAfterClick": 335.268459,
+      "seekableStart": 0,
+      "seekableEnd": 444.625,
+      "paused": false,
+      "mediaError": null
+    }
+  ],
+  "server": "Node built-in HTTP with Range support",
+  "scope": "Observed chapter controls and media playback on episodes01 and11; not full playback or listening review."
+}

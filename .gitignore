@@ -1,0 +1,15 @@
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.runtime/
+**/target/
+**/.env
+**/.env.*
+!**/.env.example
+**/models/
+**/.tools/
+**/logs/
+videos/delivery/
+*.tmp
+*.building

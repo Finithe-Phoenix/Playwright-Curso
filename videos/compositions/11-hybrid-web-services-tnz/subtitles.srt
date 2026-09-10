@@ -1,0 +1,351 @@
+1
+00:00:00,700 --> 00:00:05,988
+Build the hybrid regression around one transfer reference. The browser submits a real
+
+2
+00:00:06,000 --> 00:00:11,562
+request to the local services, the test obtains its canonical identifier, and the TNZ
+
+3
+00:00:11,575 --> 00:00:16,812
+adapter enters that identifier into the simulated terminal. The final assertions
+
+4
+00:00:16,825 --> 00:00:21,988
+compare the business values across those observations. This is orchestration across
+
+5
+00:00:22,000 --> 00:00:28,575
+browser, HTTP, subprocess, and terminal protocol boundaries. The terminal still reads
+
+6
+00:00:28,588 --> 00:00:33,575
+the same in-memory account data. Keep that limitation visible while demonstrating the
+
+7
+00:00:33,588 --> 00:00:38,088
+additional field interaction and correlation behavior that the hybrid test actually
+
+8
+00:00:38,100 --> 00:00:39,100
+exercises.
+
+9
+00:00:41,334 --> 00:00:45,096
+Create a new synthetic fixture for the hybrid case and preserve its cleanup
+
+10
+00:00:45,109 --> 00:00:50,696
+identifier. Send the hook header only on the preparation request, then authenticate
+
+11
+00:00:50,709 --> 00:00:55,734
+through the browser context's request client using the returned credentials. Check
+
+12
+00:00:55,746 --> 00:01:00,934
+both response statuses before navigating. The test owns the fixture until terminal
+
+13
+00:01:00,946 --> 00:01:06,009
+assertions and evidence capture finish. If you delete the data immediately after the
+
+14
+00:01:06,022 --> 00:01:11,684
+browser action, the later terminal lookup will correctly return not found. Lifecycle
+
+15
+00:01:11,696 --> 00:01:14,446
+ordering is part of the hybrid scenario's correctness.
+
+16
+00:01:16,664 --> 00:01:21,426
+Select the fixture's source account and beneficiary, enter one hundred pesos, and
+
+17
+00:01:21,439 --> 00:01:26,539
+click the transfer button. Assert the visible confirmation and the resulting balance.
+
+18
+00:01:27,402 --> 00:01:31,939
+This step must use the running local application, with no route substitution for the
+
+19
+00:01:31,952 --> 00:01:38,476
+central hybrid case. The excerpt starts after selecting account and beneficiary. A
+
+20
+00:01:38,489 --> 00:01:42,939
+screenshot can illustrate the page, but the test result comes from the assertions and
+
+21
+00:01:42,952 --> 00:01:47,602
+subsequent service observations. Preserve both the browser evidence and the
+
+22
+00:01:47,614 --> 00:01:50,689
+identifiers needed to continue into the terminal boundary.
+
+23
+00:01:52,906 --> 00:01:56,743
+Read the canonical transfer collection filtered by the fixture's source account.
+
+24
+00:01:57,606 --> 00:02:02,481
+Confirm the response is successful and that exactly one record exists before selecting
+
+25
+00:02:02,493 --> 00:02:08,643
+its identifier. This makes the lookup unambiguous within the isolated case. The
+
+26
+00:02:08,656 --> 00:02:13,331
+working example obtains the identifier from this canonical collection; capturing it
+
+27
+00:02:13,344 --> 00:02:17,506
+directly from the submission response is another valid approach when that response is
+
+28
+00:02:17,518 --> 00:02:22,931
+already observed. Never use a hardcoded example reference or a global latest-record
+
+29
+00:02:22,944 --> 00:02:28,044
+query. The terminal must inspect the operation created by this exact browser
+
+30
+00:02:28,056 --> 00:02:28,906
+execution.
+
+31
+00:02:31,140 --> 00:02:36,390
+Invoke the adapter in a dedicated Python subprocess with an argument list. The
+
+32
+00:02:36,402 --> 00:02:40,765
+terminal deadline is eight seconds, and the outer process call has a twelve-second
+
+33
+00:02:40,778 --> 00:02:46,165
+timeout. Keeping TNZ in its own process gives its event loop clear ownership and
+
+34
+00:02:46,178 --> 00:02:51,728
+avoids mixing it with the browser runner. Capture output, inspect the exit status,
+
+35
+00:02:51,902 --> 00:02:56,740
+then parse the JSON. The executable should come from the prepared terminal
+
+36
+00:02:56,752 --> 00:03:01,952
+environment. Do not assemble a shell command from the reference; exact arguments
+
+37
+00:03:01,965 --> 00:03:05,302
+preserve its value and keep execution behavior predictable.
+
+38
+00:03:07,526 --> 00:03:12,463
+The TypeScript version uses Node's executable-file operation, wrapped as a promise, to
+
+39
+00:03:12,476 --> 00:03:18,438
+call the same Python adapter. Pass the script path, action, reference, and timeout as
+
+40
+00:03:18,451 --> 00:03:23,701
+separate arguments. The process timeout is measured in milliseconds in this API,
+
+41
+00:03:23,926 --> 00:03:28,964
+unlike Python's seconds. Keep that unit difference visible when reviewing generated
+
+42
+00:03:28,976 --> 00:03:35,314
+code. The working Windows example also hides the helper window. A rejected process
+
+43
+00:03:35,326 --> 00:03:40,651
+call or invalid JSON fails the hybrid step; it must not be converted into an empty
+
+44
+00:03:40,664 --> 00:03:42,814
+object followed by skipped assertions.
+
+45
+00:03:45,040 --> 00:03:49,465
+The Java version passes the executable and arguments through ProcessBuilder, then
+
+46
+00:03:49,478 --> 00:03:54,752
+waits with a bounded timeout. If the child process exceeds that limit, terminate it
+
+47
+00:03:54,765 --> 00:04:00,352
+and fail the test with a clear cause. After completion, inspect its exit value and
+
+48
+00:04:00,365 --> 00:04:06,252
+parse the structured output using the project's JSON library. Keep process lifecycle
+
+49
+00:04:06,265 --> 00:04:11,453
+separate from browser lifecycle so cleanup can address either failure. The excerpt
+
+50
+00:04:11,465 --> 00:04:16,040
+shows invocation and its deadline; the complete source also reads output and asserts
+
+51
+00:04:16,052 --> 00:04:19,240
+the returned business values before finalizing the fixture.
+
+52
+00:04:21,474 --> 00:04:25,836
+Compare the terminal result with the exact reference, completed status, source
+
+53
+00:04:25,849 --> 00:04:32,149
+account, currency, amount, and expected balance. Also require the simulated flag so
+
+54
+00:04:32,162 --> 00:04:37,236
+the report retains the environment's identity. A matching amount alone could describe
+
+55
+00:04:37,249 --> 00:04:41,699
+another transfer, while a matching reference alone would not reveal incorrect numeric
+
+56
+00:04:41,712 --> 00:04:46,936
+parsing or stale balance presentation. These checks combine identity and business
+
+57
+00:04:46,949 --> 00:04:51,549
+content. They demonstrate agreement with shared local account data under this
+
+58
+00:04:51,562 --> 00:04:56,199
+scenario, not an independent reconciliation against a real mainframe database or
+
+59
+00:04:56,212 --> 00:04:57,862
+durable ledger storage system.
+
+60
+00:05:00,092 --> 00:05:04,180
+If the capstone includes the asynchronous ledger projection, query its separate
+
+61
+00:05:04,192 --> 00:05:09,430
+endpoint using the same source account and transfer identifier. Apply the bounded
+
+62
+00:05:09,442 --> 00:05:14,467
+read-only polling rule from the distributed episode. Do not assume the terminal lookup
+
+63
+00:05:14,480 --> 00:05:18,792
+proves projection completion, because the simulator reads authoritative accounts data
+
+64
+00:05:18,804 --> 00:05:23,917
+directly. Your evidence matrix should contain a separate row for canonical state,
+
+65
+00:05:24,080 --> 00:05:29,404
+projected ledger state, and terminal presentation. That distinction lets a failure
+
+66
+00:05:29,417 --> 00:05:33,604
+identify which observation was missing instead of merging unrelated checks.
+
+67
+00:05:35,830 --> 00:05:40,618
+Save the browser screenshot, trace, terminal snapshot, and structured comparison
+
+68
+00:05:40,630 --> 00:05:45,568
+result while the fixture still exists. Keep their names associated with the current
+
+69
+00:05:45,580 --> 00:05:51,018
+case and attempt. Then close the terminal process or session, finish trace capture,
+
+70
+00:05:51,268 --> 00:05:56,105
+and delete only the owned fixture. Inspect cleanup results without erasing the
+
+71
+00:05:56,118 --> 00:06:01,655
+original failure. The supplied examples demonstrate the sequence; before scaling to
+
+72
+00:06:01,668 --> 00:06:07,380
+many concurrent attempts, give artifacts unique names too. Independent account data
+
+73
+00:06:07,392 --> 00:06:11,318
+does not prevent two tests from overwriting a shared evidence filename in the same
+
+74
+00:06:11,330 --> 00:06:11,992
+directory.
+
+75
+00:06:14,208 --> 00:06:18,595
+Add a separate lookup case for an unknown reference, or query a reference after its
+
+76
+00:06:18,608 --> 00:06:23,983
+fixture has been deleted. The expected result is not found, rather than completed with
+
+77
+00:06:23,996 --> 00:06:30,170
+empty fields. Keep this test separate so its data lifecycle is obvious. Also
+
+78
+00:06:30,183 --> 00:06:34,908
+distinguish a terminal timeout from a business not-found response. Review the
+
+79
+00:06:34,920 --> 00:06:40,296
+adapter's exit-code contract and structured status together. This negative coverage
+
+80
+00:06:40,308 --> 00:06:44,296
+demonstrates that your orchestration rejects missing business evidence instead of
+
+81
+00:06:44,308 --> 00:06:46,833
+accepting any screen that happens to arrive.
+
+82
+00:06:49,058 --> 00:06:53,746
+Your checkpoint is one executed hybrid case in the language you selected, plus linked
+
+83
+00:06:53,758 --> 00:06:58,808
+evidence for the browser action and terminal comparison. Explain how the reference
+
+84
+00:06:58,820 --> 00:07:03,570
+moved between tools, how both timeout layers are bounded, and why the terminal view is
+
+85
+00:07:03,583 --> 00:07:08,670
+not an independent data authority. If you also ran the projection check, show its
+
+86
+00:07:08,683 --> 00:07:14,158
+separate result. Keep Java, Python, and TypeScript outcomes distinct rather than
+
+87
+00:07:14,170 --> 00:07:20,108
+assuming translation guarantees execution. Next, assemble reusable AI prompts, a
+
+88
+00:07:20,120 --> 00:07:23,070
+capstone regression plan, and a defensible report.

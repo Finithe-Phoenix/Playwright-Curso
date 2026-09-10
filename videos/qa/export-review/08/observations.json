@@ -1,0 +1,46 @@
+{
+  "episode": "08",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "56e9ee0bbba84fd552006eacabb1050529da6d901ed2e77d6bcdc12be8b52eeb",
+  "reviewedAtUtc": "2026-09-10T03:53:59.365154+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4, plus the listed native-resolution code sample. All production inputFiles and artifact hashes were verified against current files before extraction and again before recording this review.",
+  "reviewedSceneIds": [
+    "08-01",
+    "08-02",
+    "08-03",
+    "08-04",
+    "08-05",
+    "08-06",
+    "08-07",
+    "08-08",
+    "08-09",
+    "08-10",
+    "08-11",
+    "08-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "08-11"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/08/timeline.json": "92d594a07113805b29495e890f6936a8a84fd45b6045307d3d9d08b219fa9106",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/08/narration.wav": "5319821d563c6031fba2575846fe2bdd0257fa1f7c9cce5636a1dcb419b3bafe",
+    "audio/08/subtitles.srt": "f6d65056006037325cc7b70ae5bd45970437b8bf9ebcdb6c04619a28301253cc",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  "sampledFrameFindings": [
+    "The defect setup and corrected-path panels show their PowerShell commands on navy backgrounds with pale code text and blue highlights.",
+    "The execution-status report template was inspected at native 1920x1080; its six lines and angle-bracket placeholders are fully visible and readable.",
+    "All twelve sampled frames use blue, cool gray, white and navy. Titles, checklist rows, code and displayed subtitles have no visible clipping, overlap, green or teal."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

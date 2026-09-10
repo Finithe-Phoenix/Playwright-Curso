@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:52:08.515648+00:00",
+  "episode": "05",
+  "title": "Isolation, Authentication and Test Data",
+  "input": {
+    "file": "renders/05-isolation-authentication-test-data.mp4",
+    "sha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+    "sizeBytes": 29843517,
+    "modifiedAtUtc": "2026-09-09T22:04:08.528546+00:00"
+  },
+  "timeline": {
+    "file": "audio/05/timeline.json",
+    "sha256": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 439.625,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "05-01",
+      "title": "Treat each test as an experiment",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 35.762,
+      "sampleSeconds": 17.881,
+      "timestamp": "00:17.881",
+      "file": "05-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ed02ec767b375b6a928264f6846a9d56ef920499145a3e4678be7314c19460d5"
+    },
+    {
+      "sceneId": "05-02",
+      "title": "Create only the data you own",
+      "sceneStartSeconds": 35.762,
+      "sceneDurationSeconds": 37.394,
+      "sampleSeconds": 54.459,
+      "timestamp": "00:54.459",
+      "file": "05-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8ef8ed62284cbc7b38518de338df1025adffb40c42da3cff7d6b0b384da575d3"
+    },
+    {
+      "sceneId": "05-03",
+      "title": "Keep the hook client separate",
+      "sceneStartSeconds": 73.156,
+      "sceneDurationSeconds": 34.898,
+      "sampleSeconds": 90.605,
+      "timestamp": "01:30.605",
+      "file": "05-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b8730a184d8dc40854200ff0c210a52388fa8891d5473512204cc64d9a429079"
+    },
+    {
+      "sceneId": "05-04",
+      "title": "Authenticate where the page lives",
+      "sceneStartSeconds": 108.054,
+      "sceneDurationSeconds": 38.426,
+      "sampleSeconds": 127.267,
+      "timestamp": "02:07.267",
+      "file": "05-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c8c5bcca768a7e1e119382878d52dfdd93f570ee7d2ea47aaa45074e1e0d5b95"
+    },
+    {
+      "sceneId": "05-05",
+      "title": "Understand storage state reuse",
+      "sceneStartSeconds": 146.48000000000002,
+      "sceneDurationSeconds": 34.802,
+      "sampleSeconds": 163.881,
+      "timestamp": "02:43.881",
+      "file": "05-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "85d1e6e7aa787aa4066cbe3cb9a16a745fb8f09062f153188e72ef9816256a85"
+    },
+    {
+      "sceneId": "05-06",
+      "title": "Give retries new data",
+      "sceneStartSeconds": 181.282,
+      "sceneDurationSeconds": 37.226,
+      "sampleSeconds": 199.895,
+      "timestamp": "03:19.895",
+      "file": "05-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "76ca5b4895be3ee5bcea1c30fcd3433c7c4873de04d86e05918a9f2477393ee2"
+    },
+    {
+      "sceneId": "05-07",
+      "title": "Verify ownership boundaries",
+      "sceneStartSeconds": 218.508,
+      "sceneDurationSeconds": 36.65,
+      "sampleSeconds": 236.833,
+      "timestamp": "03:56.833",
+      "file": "05-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9586ffaa0c0e6eccddef4178755a7394f3d3df5f909140b18853ccfc9cfcd19d"
+    },
+    {
+      "sceneId": "05-08",
+      "title": "Place cleanup after evidence",
+      "sceneStartSeconds": 255.15800000000002,
+      "sceneDurationSeconds": 36.986,
+      "sampleSeconds": 273.651,
+      "timestamp": "04:33.651",
+      "file": "05-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c226bdb11ac203886fbcb021cb34542db4019de7ab99f46896572ea1db47ec99"
+    },
+    {
+      "sceneId": "05-09",
+      "title": "Handle partial setup failures",
+      "sceneStartSeconds": 292.144,
+      "sceneDurationSeconds": 39.242,
+      "sampleSeconds": 311.765,
+      "timestamp": "05:11.765",
+      "file": "05-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "bdc26a685e96ba89fc3511f65b3522ab8d3758087f23e0e04c507058ec3e076f"
+    },
+    {
+      "sceneId": "05-10",
+      "title": "Add concurrency only after isolation",
+      "sceneStartSeconds": 331.386,
+      "sceneDurationSeconds": 39.53,
+      "sampleSeconds": 351.151,
+      "timestamp": "05:51.151",
+      "file": "05-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f2a0bad26acf411f781fbfc59c39066bf7fac853129a1f9f6d28f50c8d0faf6a"
+    },
+    {
+      "sceneId": "05-11",
+      "title": "Ask AI to audit lifecycle edges",
+      "sceneStartSeconds": 370.91600000000005,
+      "sceneDurationSeconds": 35.954,
+      "sampleSeconds": 388.893,
+      "timestamp": "06:28.893",
+      "file": "05-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "85bc6a86b4a313e82e674792ab5d277d36b51d5fd1536056ad6fa87043a9249d"
+    },
+    {
+      "sceneId": "05-12",
+      "title": "Produce an isolation checklist",
+      "sceneStartSeconds": 406.87000000000006,
+      "sceneDurationSeconds": 32.738,
+      "sampleSeconds": 423.239,
+      "timestamp": "07:03.239",
+      "file": "05-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "2a220d0ef6ccb18aeab6fff16cb647833128ff776e9adce158504af4094b9242"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "05-01",
+        "05-02",
+        "05-03",
+        "05-04",
+        "05-05",
+        "05-06"
+      ],
+      "sha256": "491e5508e6b60fe93468899190f3d6426bd5b1fcc7a6870d364c8f7a34889949"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "05-07",
+        "05-08",
+        "05-09",
+        "05-10",
+        "05-11",
+        "05-12"
+      ],
+      "sha256": "2f636a3eb65e26e35a854f8984db7eb0639166affefe9e8799a07cfc7c0f68fe"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+    "reviewedAtUtc": "2026-09-10T03:53:58.987022+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:58.987022+00:00",
+    "stage": "rendered",
+    "timelineSha256": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+    "artifactSha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/05/timeline.json": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/05/narration.wav": "15cae55d387f1a659afc130a6aba530667039a9e43390c4738366e9605539e5d",
+      "audio/05/subtitles.srt": "6f363ef8bb232213172d074e9e6f06dd44dd54f0b9d02c5ac30fa85050ef05e5",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

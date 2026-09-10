@@ -1,0 +1,711 @@
+{
+  "id": "11",
+  "slug": "hybrid-web-services-tnz",
+  "title": "Hybrid Regression: One Correlation Across Interfaces",
+  "summary": "Orchestrate Playwright and the TNZ adapter from Python, TypeScript or Java.",
+  "language": "en",
+  "objectives": [
+    "Carry one actual transfer reference into the terminal",
+    "Bound subprocess and terminal lifetimes",
+    "Compare complete business values and preserve evidence"
+  ],
+  "sources": [
+    "https://docs.python.org/3/library/subprocess.html",
+    "https://nodejs.org/api/child_process.html",
+    "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ProcessBuilder.html",
+    "https://playwright.dev/python/docs/api-testing",
+    "https://ibm.github.io/tnz/tnz/"
+  ],
+  "scenes": [
+    {
+      "id": "11-01",
+      "title": "Follow one transfer across interfaces",
+      "kicker": "EPISODE 11 · STEP 1",
+      "type": "title",
+      "narration": "Build the hybrid regression around one transfer reference. The browser submits a real request to the local services, the test obtains its canonical identifier, and the TNZ adapter enters that identifier into the simulated terminal. The final assertions compare the business values across those observations. This is orchestration across browser, HTTP, subprocess, and terminal protocol boundaries. The terminal still reads the same in-memory account data. Keep that limitation visible while demonstrating the additional field interaction and correlation behavior that the hybrid test actually exercises.",
+      "bullets": [
+        "One created transfer",
+        "One exact reference",
+        "Several interfaces, one data source"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 0.0,
+      "duration": 40.634,
+      "audio": "audio/11/11-01.wav"
+    },
+    {
+      "id": "11-02",
+      "title": "Prepare an isolated hybrid fixture",
+      "kicker": "EPISODE 11 · STEP 2",
+      "type": "steps",
+      "narration": "Create a new synthetic fixture for the hybrid case and preserve its cleanup identifier. Send the hook header only on the preparation request, then authenticate through the browser context's request client using the returned credentials. Check both response statuses before navigating. The test owns the fixture until terminal assertions and evidence capture finish. If you delete the data immediately after the browser action, the later terminal lookup will correctly return not found. Lifecycle ordering is part of the hybrid scenario's correctness.",
+      "bullets": [
+        "Fresh synthetic account",
+        "Authenticate the browser context",
+        "Keep data until all observations finish"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 40.634,
+      "duration": 35.33,
+      "audio": "audio/11/11-02.wav"
+    },
+    {
+      "id": "11-03",
+      "title": "Perform the actual browser transfer",
+      "kicker": "EPISODE 11 · STEP 3",
+      "type": "code",
+      "narration": "Select the fixture's source account and beneficiary, enter one hundred pesos, and click the transfer button. Assert the visible confirmation and the resulting balance. This step must use the running local application, with no route substitution for the central hybrid case. The excerpt starts after selecting account and beneficiary. A screenshot can illustrate the page, but the test result comes from the assertions and subsequent service observations. Preserve both the browser evidence and the identifiers needed to continue into the terminal boundary.",
+      "bullets": [
+        "Real local browser action",
+        "Confirmation and balance assertions",
+        "No mock in the hybrid happy path"
+      ],
+      "code": "page.get_by_label('Importe (MXN)', exact=True).fill('100.00')\npage.get_by_role('button', name='Transferir', exact=True).click()\nexpect(page.get_by_role('status')).to_have_text(\n    'Transferencia realizada'\n)\nexpect(page.get_by_test_id('account-balance')).to_have_text(\n    'MXN 900.00'\n)",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 75.964,
+      "duration": 36.242,
+      "audio": "audio/11/11-03.wav"
+    },
+    {
+      "id": "11-04",
+      "title": "Extract the canonical correlation",
+      "kicker": "EPISODE 11 · STEP 4",
+      "type": "code",
+      "narration": "Read the canonical transfer collection filtered by the fixture's source account. Confirm the response is successful and that exactly one record exists before selecting its identifier. This makes the lookup unambiguous within the isolated case. The working example obtains the identifier from this canonical collection; capturing it directly from the submission response is another valid approach when that response is already observed. Never use a hardcoded example reference or a global latest-record query. The terminal must inspect the operation created by this exact browser execution.",
+      "bullets": [
+        "Filter by the owned source",
+        "Assert one canonical record",
+        "Extract its actual identifier"
+      ],
+      "code": "assert transfers.status == 200\nrecords = transfers.json()\nassert records['total'] == 1\nreference = records['items'][0]['id']",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 112.20599999999999,
+      "duration": 38.234,
+      "audio": "audio/11/11-04.wav"
+    },
+    {
+      "id": "11-05",
+      "title": "Call the adapter from Python",
+      "kicker": "EPISODE 11 · STEP 5",
+      "type": "code",
+      "narration": "Invoke the adapter in a dedicated Python subprocess with an argument list. The terminal deadline is eight seconds, and the outer process call has a twelve-second timeout. Keeping TNZ in its own process gives its event loop clear ownership and avoids mixing it with the browser runner. Capture output, inspect the exit status, then parse the JSON. The executable should come from the prepared terminal environment. Do not assemble a shell command from the reference; exact arguments preserve its value and keep execution behavior predictable.",
+      "bullets": [
+        "Exact argument list",
+        "Eight-second terminal deadline",
+        "Twelve-second process timeout"
+      ],
+      "code": "process = subprocess.run([\n    sys.executable, str(ROOT / 'adapter.py'),\n    'lookup', reference, '--timeout', '8',\n], text=True, capture_output=True, timeout=12, check=False)\nassert process.returncode == 0, process.stdout + process.stderr\nresult = json.loads(process.stdout)",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 150.44,
+      "duration": 36.386,
+      "audio": "audio/11/11-05.wav"
+    },
+    {
+      "id": "11-06",
+      "title": "Call the same boundary from TypeScript",
+      "kicker": "EPISODE 11 · STEP 6",
+      "type": "code",
+      "narration": "The TypeScript version uses Node's executable-file operation, wrapped as a promise, to call the same Python adapter. Pass the script path, action, reference, and timeout as separate arguments. The process timeout is measured in milliseconds in this API, unlike Python's seconds. Keep that unit difference visible when reviewing generated code. The working Windows example also hides the helper window. A rejected process call or invalid JSON fails the hybrid step; it must not be converted into an empty object followed by skipped assertions.",
+      "bullets": [
+        "Reuse the adapter CLI",
+        "Pass separate arguments",
+        "Check timeout units"
+      ],
+      "code": "const runFile = promisify(execFile);\nconst { stdout } = await runFile(python, [\n  adapterPath, 'lookup', reference, '--timeout', '8',\n], { timeout: 12000, windowsHide: true });\nconst terminal = JSON.parse(stdout);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 186.826,
+      "duration": 37.514,
+      "audio": "audio/11/11-06.wav"
+    },
+    {
+      "id": "11-07",
+      "title": "Call the same boundary from Java",
+      "kicker": "EPISODE 11 · STEP 7",
+      "type": "code",
+      "narration": "The Java version passes the executable and arguments through ProcessBuilder, then waits with a bounded timeout. If the child process exceeds that limit, terminate it and fail the test with a clear cause. After completion, inspect its exit value and parse the structured output using the project's JSON library. Keep process lifecycle separate from browser lifecycle so cleanup can address either failure. The excerpt shows invocation and its deadline; the complete source also reads output and asserts the returned business values before finalizing the fixture.",
+      "bullets": [
+        "ProcessBuilder arguments",
+        "Bounded wait and termination",
+        "Inspect exit and structured output"
+      ],
+      "code": "Process process = new ProcessBuilder(\n    python, adapterPath, \"lookup\", reference,\n    \"--timeout\", \"8\").redirectErrorStream(true).start();\nif (!process.waitFor(12, TimeUnit.SECONDS)) {\n  process.destroyForcibly();\n  fail(\"Terminal adapter exceeded process timeout\");\n}",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 224.34,
+      "duration": 36.434,
+      "audio": "audio/11/11-07.wav"
+    },
+    {
+      "id": "11-08",
+      "title": "Assert every business value",
+      "kicker": "EPISODE 11 · STEP 8",
+      "type": "code",
+      "narration": "Compare the terminal result with the exact reference, completed status, source account, currency, amount, and expected balance. Also require the simulated flag so the report retains the environment's identity. A matching amount alone could describe another transfer, while a matching reference alone would not reveal incorrect numeric parsing or stale balance presentation. These checks combine identity and business content. They demonstrate agreement with shared local account data under this scenario, not an independent reconciliation against a real mainframe database or durable ledger storage system.",
+      "bullets": [
+        "Reference and completed status",
+        "Source, currency, amount and balance",
+        "Simulation identity retained"
+      ],
+      "code": "assert result['reference'] == reference\nassert result['status'] == 'COMPLETED'\nassert result['sourceAccountId'] == fixture['sourceAccountId']\nassert result['currency'] == 'MXN'\nassert result['amountMinor'] == 10000\nassert result['balanceMinor'] == 90000\nassert result['simulated'] is True",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Source-backed hybrid excerpt · Imports and fixture omitted",
+      "start": 260.774,
+      "duration": 38.618,
+      "audio": "audio/11/11-08.wav"
+    },
+    {
+      "id": "11-09",
+      "title": "Keep ledger projection as another check",
+      "kicker": "EPISODE 11 · STEP 9",
+      "type": "steps",
+      "narration": "If the capstone includes the asynchronous ledger projection, query its separate endpoint using the same source account and transfer identifier. Apply the bounded read-only polling rule from the distributed episode. Do not assume the terminal lookup proves projection completion, because the simulator reads authoritative accounts data directly. Your evidence matrix should contain a separate row for canonical state, projected ledger state, and terminal presentation. That distinction lets a failure identify which observation was missing instead of merging unrelated checks.",
+      "bullets": [
+        "Canonical state",
+        "Separate eventual projection",
+        "Terminal presentation of Accounts data"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 299.392,
+      "duration": 35.738,
+      "audio": "audio/11/11-09.wav"
+    },
+    {
+      "id": "11-10",
+      "title": "Capture evidence before cleanup",
+      "kicker": "EPISODE 11 · STEP 10",
+      "type": "steps",
+      "narration": "Save the browser screenshot, trace, terminal snapshot, and structured comparison result while the fixture still exists. Keep their names associated with the current case and attempt. Then close the terminal process or session, finish trace capture, and delete only the owned fixture. Inspect cleanup results without erasing the original failure. The supplied examples demonstrate the sequence; before scaling to many concurrent attempts, give artifacts unique names too. Independent account data does not prevent two tests from overwriting a shared evidence filename in the same directory.",
+      "bullets": [
+        "Capture browser and terminal evidence",
+        "Preserve the original failure",
+        "Use unique artifact names when scaling"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 335.13,
+      "duration": 38.378,
+      "audio": "audio/11/11-10.wav"
+    },
+    {
+      "id": "11-11",
+      "title": "Add a meaningful negative case",
+      "kicker": "EPISODE 11 · STEP 11",
+      "type": "steps",
+      "narration": "Add a separate lookup case for an unknown reference, or query a reference after its fixture has been deleted. The expected result is not found, rather than completed with empty fields. Keep this test separate so its data lifecycle is obvious. Also distinguish a terminal timeout from a business not-found response. Review the adapter's exit-code contract and structured status together. This negative coverage demonstrates that your orchestration rejects missing business evidence instead of accepting any screen that happens to arrive.",
+      "bullets": [
+        "Unknown or removed reference",
+        "Expect a business not-found result",
+        "Do not accept arbitrary screen arrival"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 373.508,
+      "duration": 34.85,
+      "audio": "audio/11/11-11.wav"
+    },
+    {
+      "id": "11-12",
+      "title": "Review the hybrid checkpoint",
+      "kicker": "EPISODE 11 · STEP 12",
+      "type": "recap",
+      "narration": "Your checkpoint is one executed hybrid case in the language you selected, plus linked evidence for the browser action and terminal comparison. Explain how the reference moved between tools, how both timeout layers are bounded, and why the terminal view is not an independent data authority. If you also ran the projection check, show its separate result. Keep Java, Python, and TypeScript outcomes distinct rather than assuming translation guarantees execution. Next, assemble reusable AI prompts, a capstone regression plan, and a defensible report.",
+      "bullets": [
+        "One reference across tools",
+        "Actual result per language",
+        "Coverage boundaries remain explicit"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Hybrid local simulation · Same authoritative in-memory data",
+      "start": 408.358,
+      "duration": 36.242,
+      "audio": "audio/11/11-12.wav"
+    }
+  ],
+  "duration": 444.6,
+  "captions": [
+    {
+      "text": "Build the hybrid regression around one transfer reference. The browser submits a real",
+      "start": 0.7,
+      "end": 5.9875
+    },
+    {
+      "text": "request to the local services, the test obtains its canonical identifier, and the TNZ",
+      "start": 6.0,
+      "end": 11.5625
+    },
+    {
+      "text": "adapter enters that identifier into the simulated terminal. The final assertions",
+      "start": 11.575,
+      "end": 16.8125
+    },
+    {
+      "text": "compare the business values across those observations. This is orchestration across",
+      "start": 16.825000000000003,
+      "end": 21.9875
+    },
+    {
+      "text": "browser, HTTP, subprocess, and terminal protocol boundaries. The terminal still reads",
+      "start": 22.0,
+      "end": 28.575000000000003
+    },
+    {
+      "text": "the same in-memory account data. Keep that limitation visible while demonstrating the",
+      "start": 28.587500000000002,
+      "end": 33.575
+    },
+    {
+      "text": "additional field interaction and correlation behavior that the hybrid test actually",
+      "start": 33.5875,
+      "end": 38.0875
+    },
+    {
+      "text": "exercises.",
+      "start": 38.1,
+      "end": 39.1
+    },
+    {
+      "text": "Create a new synthetic fixture for the hybrid case and preserve its cleanup",
+      "start": 41.334,
+      "end": 45.0965
+    },
+    {
+      "text": "identifier. Send the hook header only on the preparation request, then authenticate",
+      "start": 45.109,
+      "end": 50.6965
+    },
+    {
+      "text": "through the browser context's request client using the returned credentials. Check",
+      "start": 50.709,
+      "end": 55.734
+    },
+    {
+      "text": "both response statuses before navigating. The test owns the fixture until terminal",
+      "start": 55.7465,
+      "end": 60.934
+    },
+    {
+      "text": "assertions and evidence capture finish. If you delete the data immediately after the",
+      "start": 60.9465,
+      "end": 66.009
+    },
+    {
+      "text": "browser action, the later terminal lookup will correctly return not found. Lifecycle",
+      "start": 66.0215,
+      "end": 71.684
+    },
+    {
+      "text": "ordering is part of the hybrid scenario's correctness.",
+      "start": 71.6965,
+      "end": 74.4465
+    },
+    {
+      "text": "Select the fixture's source account and beneficiary, enter one hundred pesos, and",
+      "start": 76.664,
+      "end": 81.4265
+    },
+    {
+      "text": "click the transfer button. Assert the visible confirmation and the resulting balance.",
+      "start": 81.439,
+      "end": 86.539
+    },
+    {
+      "text": "This step must use the running local application, with no route substitution for the",
+      "start": 87.4015,
+      "end": 91.939
+    },
+    {
+      "text": "central hybrid case. The excerpt starts after selecting account and beneficiary. A",
+      "start": 91.9515,
+      "end": 98.4765
+    },
+    {
+      "text": "screenshot can illustrate the page, but the test result comes from the assertions and",
+      "start": 98.489,
+      "end": 102.939
+    },
+    {
+      "text": "subsequent service observations. Preserve both the browser evidence and the",
+      "start": 102.9515,
+      "end": 107.6015
+    },
+    {
+      "text": "identifiers needed to continue into the terminal boundary.",
+      "start": 107.614,
+      "end": 110.689
+    },
+    {
+      "text": "Read the canonical transfer collection filtered by the fixture's source account.",
+      "start": 112.90599999999999,
+      "end": 116.74349999999998
+    },
+    {
+      "text": "Confirm the response is successful and that exactly one record exists before selecting",
+      "start": 117.606,
+      "end": 122.481
+    },
+    {
+      "text": "its identifier. This makes the lookup unambiguous within the isolated case. The",
+      "start": 122.49349999999998,
+      "end": 128.6435
+    },
+    {
+      "text": "working example obtains the identifier from this canonical collection; capturing it",
+      "start": 128.65599999999998,
+      "end": 133.331
+    },
+    {
+      "text": "directly from the submission response is another valid approach when that response is",
+      "start": 133.3435,
+      "end": 137.506
+    },
+    {
+      "text": "already observed. Never use a hardcoded example reference or a global latest-record",
+      "start": 137.5185,
+      "end": 142.93099999999998
+    },
+    {
+      "text": "query. The terminal must inspect the operation created by this exact browser",
+      "start": 142.9435,
+      "end": 148.0435
+    },
+    {
+      "text": "execution.",
+      "start": 148.05599999999998,
+      "end": 148.906
+    },
+    {
+      "text": "Invoke the adapter in a dedicated Python subprocess with an argument list. The",
+      "start": 151.14,
+      "end": 156.39
+    },
+    {
+      "text": "terminal deadline is eight seconds, and the outer process call has a twelve-second",
+      "start": 156.4025,
+      "end": 160.765
+    },
+    {
+      "text": "timeout. Keeping TNZ in its own process gives its event loop clear ownership and",
+      "start": 160.7775,
+      "end": 166.165
+    },
+    {
+      "text": "avoids mixing it with the browser runner. Capture output, inspect the exit status,",
+      "start": 166.1775,
+      "end": 171.7275
+    },
+    {
+      "text": "then parse the JSON. The executable should come from the prepared terminal",
+      "start": 171.9025,
+      "end": 176.74
+    },
+    {
+      "text": "environment. Do not assemble a shell command from the reference; exact arguments",
+      "start": 176.7525,
+      "end": 181.9525
+    },
+    {
+      "text": "preserve its value and keep execution behavior predictable.",
+      "start": 181.965,
+      "end": 185.3025
+    },
+    {
+      "text": "The TypeScript version uses Node's executable-file operation, wrapped as a promise, to",
+      "start": 187.52599999999998,
+      "end": 192.46349999999998
+    },
+    {
+      "text": "call the same Python adapter. Pass the script path, action, reference, and timeout as",
+      "start": 192.476,
+      "end": 198.4385
+    },
+    {
+      "text": "separate arguments. The process timeout is measured in milliseconds in this API,",
+      "start": 198.451,
+      "end": 203.701
+    },
+    {
+      "text": "unlike Python's seconds. Keep that unit difference visible when reviewing generated",
+      "start": 203.926,
+      "end": 208.9635
+    },
+    {
+      "text": "code. The working Windows example also hides the helper window. A rejected process",
+      "start": 208.976,
+      "end": 215.3135
+    },
+    {
+      "text": "call or invalid JSON fails the hybrid step; it must not be converted into an empty",
+      "start": 215.326,
+      "end": 220.651
+    },
+    {
+      "text": "object followed by skipped assertions.",
+      "start": 220.6635,
+      "end": 222.8135
+    },
+    {
+      "text": "The Java version passes the executable and arguments through ProcessBuilder, then",
+      "start": 225.04,
+      "end": 229.465
+    },
+    {
+      "text": "waits with a bounded timeout. If the child process exceeds that limit, terminate it",
+      "start": 229.4775,
+      "end": 234.7525
+    },
+    {
+      "text": "and fail the test with a clear cause. After completion, inspect its exit value and",
+      "start": 234.76500000000001,
+      "end": 240.3525
+    },
+    {
+      "text": "parse the structured output using the project's JSON library. Keep process lifecycle",
+      "start": 240.365,
+      "end": 246.2525
+    },
+    {
+      "text": "separate from browser lifecycle so cleanup can address either failure. The excerpt",
+      "start": 246.26500000000001,
+      "end": 251.45250000000001
+    },
+    {
+      "text": "shows invocation and its deadline; the complete source also reads output and asserts",
+      "start": 251.465,
+      "end": 256.04
+    },
+    {
+      "text": "the returned business values before finalizing the fixture.",
+      "start": 256.0525,
+      "end": 259.24
+    },
+    {
+      "text": "Compare the terminal result with the exact reference, completed status, source",
+      "start": 261.474,
+      "end": 265.8365
+    },
+    {
+      "text": "account, currency, amount, and expected balance. Also require the simulated flag so",
+      "start": 265.849,
+      "end": 272.149
+    },
+    {
+      "text": "the report retains the environment's identity. A matching amount alone could describe",
+      "start": 272.1615,
+      "end": 277.2365
+    },
+    {
+      "text": "another transfer, while a matching reference alone would not reveal incorrect numeric",
+      "start": 277.249,
+      "end": 281.699
+    },
+    {
+      "text": "parsing or stale balance presentation. These checks combine identity and business",
+      "start": 281.7115,
+      "end": 286.9365
+    },
+    {
+      "text": "content. They demonstrate agreement with shared local account data under this",
+      "start": 286.949,
+      "end": 291.549
+    },
+    {
+      "text": "scenario, not an independent reconciliation against a real mainframe database or",
+      "start": 291.5615,
+      "end": 296.199
+    },
+    {
+      "text": "durable ledger storage system.",
+      "start": 296.2115,
+      "end": 297.8615
+    },
+    {
+      "text": "If the capstone includes the asynchronous ledger projection, query its separate",
+      "start": 300.092,
+      "end": 304.1795
+    },
+    {
+      "text": "endpoint using the same source account and transfer identifier. Apply the bounded",
+      "start": 304.192,
+      "end": 309.4295
+    },
+    {
+      "text": "read-only polling rule from the distributed episode. Do not assume the terminal lookup",
+      "start": 309.442,
+      "end": 314.467
+    },
+    {
+      "text": "proves projection completion, because the simulator reads authoritative accounts data",
+      "start": 314.4795,
+      "end": 318.792
+    },
+    {
+      "text": "directly. Your evidence matrix should contain a separate row for canonical state,",
+      "start": 318.8045,
+      "end": 323.917
+    },
+    {
+      "text": "projected ledger state, and terminal presentation. That distinction lets a failure",
+      "start": 324.0795,
+      "end": 329.4045
+    },
+    {
+      "text": "identify which observation was missing instead of merging unrelated checks.",
+      "start": 329.417,
+      "end": 333.6045
+    },
+    {
+      "text": "Save the browser screenshot, trace, terminal snapshot, and structured comparison",
+      "start": 335.83,
+      "end": 340.6175
+    },
+    {
+      "text": "result while the fixture still exists. Keep their names associated with the current",
+      "start": 340.63,
+      "end": 345.5675
+    },
+    {
+      "text": "case and attempt. Then close the terminal process or session, finish trace capture,",
+      "start": 345.58,
+      "end": 351.0175
+    },
+    {
+      "text": "and delete only the owned fixture. Inspect cleanup results without erasing the",
+      "start": 351.2675,
+      "end": 356.105
+    },
+    {
+      "text": "original failure. The supplied examples demonstrate the sequence; before scaling to",
+      "start": 356.1175,
+      "end": 361.655
+    },
+    {
+      "text": "many concurrent attempts, give artifacts unique names too. Independent account data",
+      "start": 361.6675,
+      "end": 367.38
+    },
+    {
+      "text": "does not prevent two tests from overwriting a shared evidence filename in the same",
+      "start": 367.3925,
+      "end": 371.3175
+    },
+    {
+      "text": "directory.",
+      "start": 371.33,
+      "end": 371.9925
+    },
+    {
+      "text": "Add a separate lookup case for an unknown reference, or query a reference after its",
+      "start": 374.20799999999997,
+      "end": 378.59549999999996
+    },
+    {
+      "text": "fixture has been deleted. The expected result is not found, rather than completed with",
+      "start": 378.608,
+      "end": 383.983
+    },
+    {
+      "text": "empty fields. Keep this test separate so its data lifecycle is obvious. Also",
+      "start": 383.9955,
+      "end": 390.1705
+    },
+    {
+      "text": "distinguish a terminal timeout from a business not-found response. Review the",
+      "start": 390.183,
+      "end": 394.90799999999996
+    },
+    {
+      "text": "adapter's exit-code contract and structured status together. This negative coverage",
+      "start": 394.9205,
+      "end": 400.2955
+    },
+    {
+      "text": "demonstrates that your orchestration rejects missing business evidence instead of",
+      "start": 400.308,
+      "end": 404.2955
+    },
+    {
+      "text": "accepting any screen that happens to arrive.",
+      "start": 404.308,
+      "end": 406.83299999999997
+    },
+    {
+      "text": "Your checkpoint is one executed hybrid case in the language you selected, plus linked",
+      "start": 409.058,
+      "end": 413.7455
+    },
+    {
+      "text": "evidence for the browser action and terminal comparison. Explain how the reference",
+      "start": 413.758,
+      "end": 418.808
+    },
+    {
+      "text": "moved between tools, how both timeout layers are bounded, and why the terminal view is",
+      "start": 418.8205,
+      "end": 423.5705
+    },
+    {
+      "text": "not an independent data authority. If you also ran the projection check, show its",
+      "start": 423.583,
+      "end": 428.6705
+    },
+    {
+      "text": "separate result. Keep Java, Python, and TypeScript outcomes distinct rather than",
+      "start": 428.683,
+      "end": 434.158
+    },
+    {
+      "text": "assuming translation guarantees execution. Next, assemble reusable AI prompts, a",
+      "start": 434.1705,
+      "end": 440.108
+    },
+    {
+      "text": "capstone regression plan, and a defensible report.",
+      "start": 440.1205,
+      "end": 443.0705
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 130.48399999999856,
+  "caption_mapping_revision": 2
+}

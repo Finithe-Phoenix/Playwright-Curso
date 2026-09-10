@@ -1,0 +1,11 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.468046">
+<testsuite name="hybrid.spec.ts" timestamp="2026-09-09T19:20:54.621Z" hostname="" tests="1" failures="0" skipped="0" time="2.046" errors="0">
+<testcase name="browser transfer matches the simulated 3270 terminal" classname="hybrid.spec.ts" time="2.046">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|ts-test-results\hybrid-browser-transfer-matches-the-simulated-3270-terminal\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

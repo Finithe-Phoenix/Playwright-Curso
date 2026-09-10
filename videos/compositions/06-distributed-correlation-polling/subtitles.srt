@@ -1,0 +1,339 @@
+1
+00:00:00,700 --> 00:00:04,525
+A browser assertion cannot tell you when another service has processed a business
+
+2
+00:00:04,538 --> 00:00:09,625
+event. Follow one transfer from the gateway to authoritative account state and then
+
+3
+00:00:09,638 --> 00:00:14,662
+into a separate ledger projection. We will use the returned transfer identifier to
+
+4
+00:00:14,675 --> 00:00:18,900
+connect those observations and apply a bounded wait only where the contract permits
+
+5
+00:00:18,912 --> 00:00:25,525
+delay. The exercise runs across local processes. Its value is learning to distinguish
+
+6
+00:00:25,538 --> 00:00:30,250
+business commitment, asynchronous visibility, and diagnostic evidence without assuming
+
+7
+00:00:30,263 --> 00:00:33,125
+that a quiet browser network means everything finished.
+
+8
+00:00:35,358 --> 00:00:40,520
+Start the distributed laboratory and inspect its architecture. The gateway serves the
+
+9
+00:00:40,533 --> 00:00:46,296
+browser on port three thousand. Accounts holds balances, canonical transfers, and an
+
+10
+00:00:46,308 --> 00:00:51,496
+event log on port three thousand one. Ledger runs separately on port three thousand
+
+11
+00:00:51,508 --> 00:00:56,496
+two and polls that log to update its own projection. The startup coordinator checks
+
+12
+00:00:56,508 --> 00:01:02,220
+all three services. A gateway health response alone describes the gateway process, so
+
+13
+00:01:02,233 --> 00:01:07,458
+keep dependency readiness evidence separate. These boundaries let us reproduce timing
+
+14
+00:01:07,470 --> 00:01:11,046
+differences without connecting to any external banking infrastructure.
+
+15
+00:01:13,256 --> 00:01:18,344
+In this simulator, the debit, canonical transfer, and outgoing event are updated in
+
+16
+00:01:18,356 --> 00:01:23,831
+one synchronous section of the accounts process. This illustrates an outbox: business
+
+17
+00:01:23,844 --> 00:01:28,794
+state and the event describing it should not drift apart. However, the state is in
+
+18
+00:01:28,806 --> 00:01:34,119
+memory. Restarting the process loses it, and there is no durable database or message
+
+19
+00:01:34,131 --> 00:01:40,519
+broker. Describe the demonstrated guarantee precisely. A successful classroom run does
+
+20
+00:01:40,531 --> 00:01:45,294
+not establish crash recovery, durable delivery, or transaction behavior across
+
+21
+00:01:45,306 --> 00:01:46,781
+multiple production nodes.
+
+22
+00:01:48,994 --> 00:01:52,956
+Submit the transfer once and capture the returned identifier from its successful
+
+23
+00:01:52,969 --> 00:01:58,432
+response. Keep this identifier in the test's evidence object, together with the source
+
+24
+00:01:58,444 --> 00:02:03,307
+account and expected amount. Do not search for the latest transfer across the whole
+
+25
+00:02:03,319 --> 00:02:08,544
+system. Another test could create a newer record between your action and query.
+
+26
+00:02:09,407 --> 00:02:14,232
+Correlation should follow the value produced by this exact operation. The same
+
+27
+00:02:14,244 --> 00:02:19,657
+identifier will later travel into the terminal adapter, allowing the web, API, and
+
+28
+00:02:19,669 --> 00:02:22,907
+terminal observations to refer to one synthetic transfer.
+
+29
+00:02:25,140 --> 00:02:29,052
+First query the authoritative account and canonical transfer collection through the
+
+30
+00:02:29,065 --> 00:02:34,128
+gateway. These endpoints preserve the original laboratory contract: after the
+
+31
+00:02:34,140 --> 00:02:38,915
+successful response, the balance is ninety thousand centavos and the transfer exists
+
+32
+00:02:38,928 --> 00:02:45,228
+once. An incorrect authoritative balance is not an expected ledger delay. Fail that
+
+33
+00:02:45,240 --> 00:02:50,428
+assertion and investigate it directly. This ordering keeps the test honest about which
+
+34
+00:02:50,440 --> 00:02:55,665
+component owns each guarantee. It also prevents an overly generous polling loop from
+
+35
+00:02:55,678 --> 00:02:59,390
+hiding a defect in a state transition that should already have completed.
+
+36
+00:03:01,622 --> 00:03:06,884
+Now query the separate ledger endpoint, filtered by the source account. Its response
+
+37
+00:03:06,897 --> 00:03:10,710
+contains the projected records and may also expose a projection cursor for
+
+38
+00:03:10,722 --> 00:03:16,760
+diagnostics. Inspect the HTTP status before treating its body as business data.
+
+39
+00:03:17,622 --> 00:03:21,422
+The endpoint is intentionally different from the canonical transfer collection,
+
+40
+00:03:21,660 --> 00:03:28,097
+despite similar records. Write both paths explicitly in the evidence matrix. If you
+
+41
+00:03:28,110 --> 00:03:32,797
+accidentally query the canonical endpoint twice, the test may look distributed while
+
+42
+00:03:32,810 --> 00:03:36,147
+never observing whether the ledger process consumed the event at all.
+
+43
+00:03:38,368 --> 00:03:42,956
+Use a bounded polling assertion to repeat the read until the exact transfer identifier
+
+44
+00:03:42,968 --> 00:03:49,143
+appears. The polling body must not submit another transfer. It observes progress
+
+45
+00:03:49,156 --> 00:03:53,856
+without creating new business effects. The excerpt checks membership within a
+
+46
+00:03:53,868 --> 00:03:58,380
+five-second classroom deadline; afterward, inspect the matching record's amount,
+
+47
+00:03:58,543 --> 00:04:04,906
+currency, source, and count. This deadline is a laboratory expectation, not a claim
+
+48
+00:04:04,918 --> 00:04:10,318
+about production performance. On timeout, preserve the last response and correlation
+
+49
+00:04:10,330 --> 00:04:14,630
+identifier so the failure explains what was observed instead of reporting only that
+
+50
+00:04:14,643 --> 00:04:15,531
+time elapsed.
+
+51
+00:04:17,754 --> 00:04:23,329
+Compare polling with a fixed sleep. A fixed pause always waits the full duration, yet
+
+52
+00:04:23,342 --> 00:04:28,479
+still fails if publication takes slightly longer. Polling can finish as soon as its
+
+53
+00:04:28,492 --> 00:04:32,754
+business condition holds and produces a defined failure when the deadline expires.
+
+54
+00:04:33,617 --> 00:04:38,104
+Browser locator waiting solves a different problem: it observes browser state, not the
+
+55
+00:04:38,117 --> 00:04:43,417
+ledger process. Choose the wait according to the state you are observing. If
+
+56
+00:04:43,429 --> 00:04:48,642
+publication is consistently slow, inspect service behavior and the expectation before
+
+57
+00:04:48,654 --> 00:04:50,816
+increasing the timeout to hide failures.
+
+58
+00:04:53,036 --> 00:04:57,274
+Once the projected transfer appears, inspect the filtered collection rather than
+
+59
+00:04:57,286 --> 00:05:03,036
+stopping at membership. Verify its amount, currency, source account, and completed
+
+60
+00:05:03,048 --> 00:05:08,011
+status, and ensure the expected single record count holds for this isolated fixture.
+
+61
+00:05:08,874 --> 00:05:13,661
+In the replay case, correlate both responses to the same canonical identifier and
+
+62
+00:05:13,674 --> 00:05:18,574
+inspect the projection for one business record. This demonstrates the simulator's
+
+63
+00:05:18,586 --> 00:05:23,636
+observed behavior for that scenario. It does not prove every message-delivery failure
+
+64
+00:05:23,648 --> 00:05:27,111
+mode, because the local event mechanism is deliberately limited.
+
+65
+00:05:29,326 --> 00:05:33,489
+When the projection deadline expires, build a short timeline from the available
+
+66
+00:05:33,501 --> 00:05:39,014
+evidence. Record the transfer response, authoritative balance, canonical record,
+
+67
+00:05:39,189 --> 00:05:44,588
+ledger response, and process health observations with the same reference. Then form a
+
+68
+00:05:44,601 --> 00:05:49,326
+hypothesis: the transfer may have committed while publication or consumption failed.
+
+69
+00:05:50,189 --> 00:05:54,326
+Do not label that hypothesis as a confirmed root cause until logs or another
+
+70
+00:05:54,338 --> 00:05:59,951
+observation support it. Use evidence to locate the broken boundary before asking AI to
+
+71
+00:05:59,964 --> 00:06:01,638
+explain a distributed timeout.
+
+72
+00:06:03,864 --> 00:06:09,539
+Attach a compact correlation summary to the test result. Include the case, fixture,
+
+73
+00:06:09,702 --> 00:06:14,252
+transfer reference, expected amount, and paths used for authoritative and projected
+
+74
+00:06:14,264 --> 00:06:20,514
+observations. Exclude credentials and unrelated account data. A reviewer should be
+
+75
+00:06:20,527 --> 00:06:24,402
+able to move from a failed assertion to the matching service evidence without guessing
+
+76
+00:06:24,414 --> 00:06:29,789
+which request mattered. The displayed structure is an example report shape, not proof
+
+77
+00:06:29,802 --> 00:06:35,514
+of an executed result. Populate it with values captured during the actual attempt, and
+
+78
+00:06:35,527 --> 00:06:38,626
+link the corresponding artifacts after the run completes.
+
+79
+00:06:40,850 --> 00:06:45,500
+Your distributed checkpoint should answer four questions. Did the account change
+
+80
+00:06:45,513 --> 00:06:51,888
+correctly? Did the canonical transfer exist exactly once? Did that same identifier
+
+81
+00:06:51,900 --> 00:06:56,425
+reach the separate projection within the classroom deadline? What evidence supports
+
+82
+00:06:56,438 --> 00:07:02,350
+each answer? Keep any timeout or missing observation visible in the report. You now
+
+83
+00:07:02,362 --> 00:07:06,238
+have a regression that crosses process boundaries while distinguishing commitment from
+
+84
+00:07:06,250 --> 00:07:11,838
+delayed visibility. Next, a browser mock will help compare focused UI evidence with an
+
+85
+00:07:11,850 --> 00:07:12,975
+integrated workflow.

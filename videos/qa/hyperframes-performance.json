@@ -1,0 +1,16 @@
+{
+  "hyperframesVersion": "0.8.33",
+  "originalSha256": "af57f08331c602ce6b5903945bc2b55a565d6b1ab839a26a0fcefbfa620d033f",
+  "patchedSha256": "498d89e63be732b0919fca4ff4c11c7feb9289c93a75ac12cfe5ce6b9336ac50",
+  "cli": "node_modules/hyperframes/dist/cli.js",
+  "backup": ".tools/hyperframes-backups/cli-0.8.33-af57f08331c602ce6b5903945bc2b55a565d6b1ab839a26a0fcefbfa620d033f.js",
+  "modifiedAssignmentCount": 1,
+  "upstreamDefaultMs": 15000,
+  "courseBudgetMs": 90000,
+  "environmentVariable": "HF_COURSE_STATIC_VERIFY_MAX_MS",
+  "frameComparisonsEnabled": true,
+  "change": "Allow a longer verification budget before falling back to frame capture; keep pixel comparisons unchanged",
+  "alreadyPatched": true,
+  "dryRun": false,
+  "checkedAt": "2026-09-10T03:51:03.225167+00:00"
+}

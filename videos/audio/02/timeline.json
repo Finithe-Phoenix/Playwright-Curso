@@ -1,0 +1,688 @@
+{
+  "id": "02",
+  "slug": "typescript-ui-api-regression",
+  "title": "TypeScript: Reliable UI and API Regression",
+  "summary": "Implement three business cases with accessible locators and server-side evidence.",
+  "language": "en",
+  "objectives": [
+    "Use stable locators and web-first assertions",
+    "Verify UI outcomes against authenticated APIs",
+    "Implement sequential idempotency without duplicate debits"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/locators",
+    "https://playwright.dev/docs/test-assertions",
+    "https://playwright.dev/docs/api-testing"
+  ],
+  "scenes": [
+    {
+      "id": "02-01",
+      "title": "Design the test around risk",
+      "kicker": "EPISODE 02 · STEP 1",
+      "type": "title",
+      "narration": "Build the TypeScript version of our three regression cases. Begin with the prepared fixture, not a shared account you clicked through earlier. The fixture supplies an authenticated page, source account, and beneficiary. Read the test name as a business promise: a transfer of one hundred pesos reduces the correct account by one hundred pesos exactly once. Your UI steps exercise the customer path, while authenticated API queries verify the resulting state. Neither observation should silently replace the other.",
+      "bullets": [
+        "Start with an isolated fixture",
+        "Exercise the customer path",
+        "Inspect business state"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 0.0,
+      "duration": 34.682,
+      "audio": "audio/02/02-01.wav"
+    },
+    {
+      "id": "02-02",
+      "title": "Use the accessible contract",
+      "kicker": "EPISODE 02 · STEP 2",
+      "type": "code",
+      "narration": "Navigate to the transfer page and select the fixture's source account and beneficiary by their exact accessible labels. Fill the amount using the documented decimal format. These locators communicate what a user is choosing rather than where a control happens to sit in the page structure. If a label no longer matches, inspect whether the application changed deliberately. Avoid replacing the locator with a positional selector simply to obtain a green run; that could operate on the wrong account without an obvious failure.",
+      "bullets": [
+        "Select the fixture account",
+        "Select the fixture beneficiary",
+        "Enter a decimal amount"
+      ],
+      "code": "await page.goto('/transfers');\nawait page.getByLabel('Cuenta origen', { exact: true })\n  .selectOption(lab.sourceAccountId);\nawait page.getByLabel('Beneficiario', { exact: true })\n  .selectOption(lab.beneficiaryId);\nawait page.getByLabel('Importe (MXN)', { exact: true })\n  .fill('100.00');",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 34.682,
+      "duration": 33.482,
+      "audio": "audio/02/02-02.wav"
+    },
+    {
+      "id": "02-03",
+      "title": "Observe the right request",
+      "kicker": "EPISODE 02 · STEP 3",
+      "type": "code",
+      "narration": "When the response itself is part of your evidence, register the response waiter before clicking. Match both the HTTP method and the pathname, so an unrelated request cannot satisfy the waiter. Keep the response promise and await it after the click. This order avoids missing a fast response from a local server. The displayed predicate is deliberately narrow. If your gateway adds another relevant request, inspect the network evidence and update the predicate from that observation rather than introducing a general wait for all traffic.",
+      "bullets": [
+        "Register before the action",
+        "Match method and path",
+        "Inspect the captured response"
+      ],
+      "code": "const sent = page.waitForResponse(r =>\n  r.request().method() === 'POST' &&\n  new URL(r.url()).pathname === '/api/transfers'\n);\nawait page.getByRole('button',\n  { name: 'Transferir', exact: true }).click();\nconst response = await sent;\nexpect(response.status()).toBe(201);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 68.164,
+      "duration": 34.802,
+      "audio": "audio/02/02-03.wav"
+    },
+    {
+      "id": "02-04",
+      "title": "Wait on the UI meaning",
+      "kicker": "EPISODE 02 · STEP 4",
+      "type": "code",
+      "narration": "After submission, assert the exact confirmation and the visible balance using Playwright's locator assertions. These assertions wait for the relevant UI condition instead of taking a single immediate text snapshot. They do not remove the need to understand your application's consistency guarantees. The balance is an immediate account observation in this lab, so nine hundred pesos is the expected result. A confirmation message alone is weaker: it could appear even if the amount, account, or number of debits were wrong underneath the interface.",
+      "bullets": [
+        "Assert confirmation",
+        "Assert displayed balance",
+        "Keep the business expectation"
+      ],
+      "code": "await expect(page.getByRole('status'))\n  .toHaveText('Transferencia realizada');\nawait expect(page.getByTestId('account-balance'))\n  .toHaveText('MXN 900.00');",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 102.96600000000001,
+      "duration": 34.586,
+      "audio": "audio/02/02-04.wav"
+    },
+    {
+      "id": "02-05",
+      "title": "Verify the authoritative account",
+      "kicker": "EPISODE 02 · STEP 5",
+      "type": "code",
+      "narration": "Query the source account through the page's associated request context. It shares the browser session, so the query represents the same authenticated identity that submitted the transfer. Assert the HTTP status before interpreting the JSON body. Then compare the integer balance with ninety thousand centavos. If the request fails with an authorization response, diagnose authentication or ownership instead of reporting a wrong balance. Also retain the account identifier with your evidence so a reviewer can see which account the assertion actually examined during this run.",
+      "bullets": [
+        "Use the same identity",
+        "Check status before data",
+        "Assert integer money"
+      ],
+      "code": "const account = await page.request.get(\n  '/api/accounts/' + lab.sourceAccountId\n);\nexpect(account.status()).toBe(200);\nexpect((await account.json()).balanceMinor).toBe(90000);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 137.55200000000002,
+      "duration": 37.418,
+      "audio": "audio/02/02-05.wav"
+    },
+    {
+      "id": "02-06",
+      "title": "Verify the transfer record",
+      "kicker": "EPISODE 02 · STEP 6",
+      "type": "steps",
+      "narration": "Read the canonical transfer collection filtered by the source account. This observation is immediate; the separate ledger read model uses bounded polling introduced later. Assert one item and a total of one, then compare its source account, beneficiary, currency, amount, and completed status. Capture the returned transfer identifier for correlation. Counting a record without inspecting its values can approve the wrong transfer. Conversely, finding a matching record without checking the total can miss an accidental second debit and duplicated business record.",
+      "bullets": [
+        "Filter by the owned account",
+        "Check count and record fields",
+        "Preserve the returned transfer ID"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 174.97000000000003,
+      "duration": 36.674,
+      "audio": "audio/02/02-06.wav"
+    },
+    {
+      "id": "02-07",
+      "title": "Build insufficient funds separately",
+      "kicker": "EPISODE 02 · STEP 7",
+      "type": "steps",
+      "narration": "Create a fresh fixture for the insufficient funds case and fill eleven hundred pesos. Register the same targeted response waiter, click once, and verify the rejection status and business error code. Assert the exact alert in the browser. Then query the account and transfer collection: the balance must remain one hundred thousand centavos, and the collection must remain empty. This is a test of absence of side effects, so a correct error message is only the beginning of the evidence you need to collect.",
+      "bullets": [
+        "Fresh opening balance",
+        "Expected rejection and alert",
+        "No debit and no record"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 211.64400000000003,
+      "duration": 32.882,
+      "audio": "audio/02/02-07.wav"
+    },
+    {
+      "id": "02-08",
+      "title": "Keep an idempotent intention",
+      "kicker": "EPISODE 02 · STEP 8",
+      "type": "code",
+      "narration": "For the idempotency case, prepare one request body and one key before sending either request. Reuse both values for the second submission. The fixture must belong to this case alone, and the two requests are sequential. In the correct local contract, the first response creates the transfer and the second returns the existing transfer. Two independent browser clicks with newly generated keys represent different intentions, so they would not test this rule. Inspect the request construction carefully when reviewing an AI-generated implementation.",
+      "bullets": [
+        "One body",
+        "One key",
+        "Two sequential submissions"
+      ],
+      "code": "const options = {\n  headers: { 'Idempotency-Key': key },\n  data: transferBody,\n};\nconst first = await page.request.post('/api/transfers', options);\nconst second = await page.request.post('/api/transfers', options);\nexpect(first.status()).toBe(201);\nexpect(second.status()).toBe(200);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 244.52600000000004,
+      "duration": 36.794,
+      "audio": "audio/02/02-08.wav"
+    },
+    {
+      "id": "02-09",
+      "title": "Compare identity and effects",
+      "kicker": "EPISODE 02 · STEP 9",
+      "type": "code",
+      "narration": "Parse both responses and compare their transfer identifiers. Then perform the state checks: the source balance is ninety thousand centavos and there is exactly one transfer record with that identifier. Reload the page and verify the visible balance as a UI observation. Matching identifiers alone would not exclude an implementation that accidentally debits twice while returning the same identifier. State and identity therefore answer different questions. Keep both assertions, if AI suggests simplifying the case to make it shorter or faster.",
+      "bullets": [
+        "Same transfer identifier",
+        "One debit and one record",
+        "Reload and inspect UI"
+      ],
+      "code": "const created = await first.json();\nconst replayed = await second.json();\nexpect(replayed.id).toBe(created.id);\nawait page.goto('/transfers');\nawait page.reload();\nawait expect(page.getByTestId('account-balance'))\n  .toHaveText('MXN 900.00');",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture and imports required",
+      "start": 281.32000000000005,
+      "duration": 35.978,
+      "audio": "audio/02/02-09.wav"
+    },
+    {
+      "id": "02-10",
+      "title": "Run with an honest outcome",
+      "kicker": "EPISODE 02 · STEP 10",
+      "type": "terminal",
+      "narration": "Run the three cases in the supplied TypeScript project and inspect the actual report. During diagnosis, begin without retries so the first failure remains visible. A failed case is useful evidence when its assertion reflects the business contract. Read the test name, the expected and actual values, and the associated request or trace before editing code. If startup failed, report a preparation failure separately. Do not label generated tests as passed because they compile, or because a previous execution used another application build and dataset.",
+      "bullets": [
+        "Run the chosen project",
+        "Inspect actual results",
+        "Separate preparation from regression"
+      ],
+      "code": "npx playwright test --grep 'TR-0[123]' --retries=0\nnpm run report",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 317.29800000000006,
+      "duration": 37.226,
+      "audio": "audio/02/02-10.wav"
+    },
+    {
+      "id": "02-11",
+      "title": "Review an AI patch",
+      "kicker": "EPISODE 02 · STEP 11",
+      "type": "steps",
+      "narration": "Give AI a focused review task: inspect these three tests for missing business assertions, shared mutable data, invented APIs, and waits that could hide a defect. Include the contract and a sanitized failure excerpt. Ask it to explain every suggested change and identify the evidence supporting that change. Review the patch before applying it. A useful suggestion may improve a locator or cleanup block; an unacceptable suggestion changes ninety thousand to eighty thousand merely because a defective implementation produced that value during an actual run.",
+      "bullets": [
+        "Provide the contract and failure",
+        "Require reasons for each edit",
+        "Protect balance and count assertions"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 354.52400000000006,
+      "duration": 36.602,
+      "audio": "audio/02/02-11.wav"
+    },
+    {
+      "id": "02-12",
+      "title": "Name what you proved",
+      "kicker": "EPISODE 02 · STEP 12",
+      "type": "recap",
+      "narration": "Your TypeScript checkpoint consists of three isolated cases, not simply three browser recordings. The successful case combines UI behavior with authoritative state. The insufficient funds case proves rejection without side effects. The repeated request case checks one intention, one identifier, one debit, and one record. Record the actual outcome for each case and link its evidence. If a case remains blocked or failing, say so explicitly. In the next episodes, we preserve these business promises while changing the language and lifecycle management around the tests.",
+      "bullets": [
+        "TR-01: correct effect",
+        "TR-02: no effect",
+        "TR-03: one effect"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 391.12600000000003,
+      "duration": 39.266,
+      "audio": "audio/02/02-12.wav"
+    }
+  ],
+  "duration": 430.39200000000005,
+  "captions": [
+    {
+      "text": "Build the TypeScript version of our three regression cases. Begin with the prepared",
+      "start": 0.7,
+      "end": 5.574999999999999
+    },
+    {
+      "text": "fixture, not a shared account you clicked through earlier. The fixture supplies an",
+      "start": 5.5874999999999995,
+      "end": 10.549999999999999
+    },
+    {
+      "text": "authenticated page, source account, and beneficiary. Read the test name as a business",
+      "start": 10.5625,
+      "end": 16.2875
+    },
+    {
+      "text": "promise: a transfer of one hundred pesos reduces the correct account by one hundred",
+      "start": 16.3,
+      "end": 20.9125
+    },
+    {
+      "text": "pesos exactly once. Your UI steps exercise the customer path, while authenticated API",
+      "start": 20.925,
+      "end": 27.525000000000002
+    },
+    {
+      "text": "queries verify the resulting state. Neither observation should silently replace the",
+      "start": 27.5375,
+      "end": 32.75
+    },
+    {
+      "text": "other.",
+      "start": 32.7625,
+      "end": 33.1625
+    },
+    {
+      "text": "Navigate to the transfer page and select the fixture's source account and beneficiary",
+      "start": 35.382000000000005,
+      "end": 39.844500000000004
+    },
+    {
+      "text": "by their exact accessible labels. Fill the amount using the documented decimal format.",
+      "start": 39.857,
+      "end": 45.457
+    },
+    {
+      "text": "These locators communicate what a user is choosing rather than where a control happens",
+      "start": 46.319500000000005,
+      "end": 50.657000000000004
+    },
+    {
+      "text": "to sit in the page structure. If a label no longer matches, inspect whether the",
+      "start": 50.6695,
+      "end": 55.732
+    },
+    {
+      "text": "application changed deliberately. Avoid replacing the locator with a positional",
+      "start": 55.7445,
+      "end": 60.8695
+    },
+    {
+      "text": "selector simply to obtain a green run; that could operate on the wrong account without",
+      "start": 60.882000000000005,
+      "end": 65.45700000000001
+    },
+    {
+      "text": "an obvious failure.",
+      "start": 65.46950000000001,
+      "end": 66.632
+    },
+    {
+      "text": "When the response itself is part of your evidence, register the response waiter before",
+      "start": 68.864,
+      "end": 73.039
+    },
+    {
+      "text": "clicking. Match both the HTTP method and the pathname, so an unrelated request cannot",
+      "start": 73.0515,
+      "end": 79.139
+    },
+    {
+      "text": "satisfy the waiter. Keep the response promise and await it after the click. This order",
+      "start": 79.1515,
+      "end": 85.289
+    },
+    {
+      "text": "avoids missing a fast response from a local server. The displayed predicate is",
+      "start": 85.3015,
+      "end": 90.1765
+    },
+    {
+      "text": "deliberately narrow. If your gateway adds another relevant request, inspect the",
+      "start": 90.18900000000001,
+      "end": 95.32650000000001
+    },
+    {
+      "text": "network evidence and update the predicate from that observation rather than",
+      "start": 95.339,
+      "end": 99.0515
+    },
+    {
+      "text": "introducing a general wait for all traffic.",
+      "start": 99.06400000000001,
+      "end": 101.45150000000001
+    },
+    {
+      "text": "After submission, assert the exact confirmation and the visible balance using",
+      "start": 103.66600000000001,
+      "end": 107.816
+    },
+    {
+      "text": "Playwright's locator assertions. These assertions wait for the relevant UI condition",
+      "start": 107.8285,
+      "end": 113.09100000000001
+    },
+    {
+      "text": "instead of taking a single immediate text snapshot. They do not remove the need to",
+      "start": 113.10350000000001,
+      "end": 118.04100000000001
+    },
+    {
+      "text": "understand your application's consistency guarantees. The balance is an immediate",
+      "start": 118.05350000000001,
+      "end": 123.02850000000001
+    },
+    {
+      "text": "account observation in this lab, so nine hundred pesos is the expected result. A",
+      "start": 123.04100000000001,
+      "end": 128.51600000000002
+    },
+    {
+      "text": "confirmation message alone is weaker: it could appear even if the amount, account, or",
+      "start": 128.5285,
+      "end": 133.3535
+    },
+    {
+      "text": "number of debits were wrong underneath the interface.",
+      "start": 133.366,
+      "end": 136.0285
+    },
+    {
+      "text": "Query the source account through the page's associated request context. It shares the",
+      "start": 138.252,
+      "end": 143.38950000000003
+    },
+    {
+      "text": "browser session, so the query represents the same authenticated identity that",
+      "start": 143.40200000000002,
+      "end": 147.51450000000003
+    },
+    {
+      "text": "submitted the transfer. Assert the HTTP status before interpreting the JSON body.",
+      "start": 147.52700000000002,
+      "end": 153.57700000000003
+    },
+    {
+      "text": "Then compare the integer balance with ninety thousand centavos. If the request fails",
+      "start": 154.4395,
+      "end": 159.6895
+    },
+    {
+      "text": "with an authorization response, diagnose authentication or ownership instead of",
+      "start": 159.70200000000003,
+      "end": 164.22700000000003
+    },
+    {
+      "text": "reporting a wrong balance. Also retain the account identifier with your evidence so a",
+      "start": 164.23950000000002,
+      "end": 169.4395
+    },
+    {
+      "text": "reviewer can see which account the assertion actually examined during this run.",
+      "start": 169.45200000000003,
+      "end": 173.4395
+    },
+    {
+      "text": "Read the canonical transfer collection filtered by the source account. This",
+      "start": 175.67000000000002,
+      "end": 180.14500000000004
+    },
+    {
+      "text": "observation is immediate; the separate ledger read model uses bounded polling",
+      "start": 180.15750000000003,
+      "end": 184.29500000000002
+    },
+    {
+      "text": "introduced later. Assert one item and a total of one, then compare its source account,",
+      "start": 184.30750000000003,
+      "end": 189.84500000000003
+    },
+    {
+      "text": "beneficiary, currency, amount, and completed status. Capture the returned transfer",
+      "start": 189.99500000000003,
+      "end": 195.90750000000003
+    },
+    {
+      "text": "identifier for correlation. Counting a record without inspecting its values can",
+      "start": 195.92000000000002,
+      "end": 201.07000000000002
+    },
+    {
+      "text": "approve the wrong transfer. Conversely, finding a matching record without checking the",
+      "start": 201.08250000000004,
+      "end": 206.17000000000002
+    },
+    {
+      "text": "total can miss an accidental second debit and duplicated business record.",
+      "start": 206.18250000000003,
+      "end": 210.13250000000002
+    },
+    {
+      "text": "Create a fresh fixture for the insufficient funds case and fill eleven hundred pesos.",
+      "start": 212.34400000000002,
+      "end": 216.94400000000005
+    },
+    {
+      "text": "Register the same targeted response waiter, click once, and verify the rejection",
+      "start": 217.80650000000003,
+      "end": 222.44400000000005
+    },
+    {
+      "text": "status and business error code. Assert the exact alert in the browser. Then query the",
+      "start": 222.45650000000003,
+      "end": 228.71900000000005
+    },
+    {
+      "text": "account and transfer collection: the balance must remain one hundred thousand",
+      "start": 228.73150000000004,
+      "end": 232.79400000000004
+    },
+    {
+      "text": "centavos, and the collection must remain empty. This is a test of absence of side",
+      "start": 232.80650000000003,
+      "end": 238.26900000000003
+    },
+    {
+      "text": "effects, so a correct error message is only the beginning of the evidence you need to",
+      "start": 238.28150000000005,
+      "end": 242.39400000000003
+    },
+    {
+      "text": "collect.",
+      "start": 242.40650000000005,
+      "end": 243.00650000000005
+    },
+    {
+      "text": "For the idempotency case, prepare one request body and one key before sending either",
+      "start": 245.22600000000003,
+      "end": 250.20100000000005
+    },
+    {
+      "text": "request. Reuse both values for the second submission. The fixture must belong to this",
+      "start": 250.21350000000004,
+      "end": 256.576
+    },
+    {
+      "text": "case alone, and the two requests are sequential. In the correct local contract, the",
+      "start": 256.58850000000007,
+      "end": 262.2635
+    },
+    {
+      "text": "first response creates the transfer and the second returns the existing transfer. Two",
+      "start": 262.27600000000007,
+      "end": 267.7635
+    },
+    {
+      "text": "independent browser clicks with newly generated keys represent different intentions,",
+      "start": 267.77600000000007,
+      "end": 272.2635
+    },
+    {
+      "text": "so they would not test this rule. Inspect the request construction carefully when",
+      "start": 272.5135,
+      "end": 277.3885
+    },
+    {
+      "text": "reviewing an AI-generated implementation.",
+      "start": 277.40100000000007,
+      "end": 279.78850000000006
+    },
+    {
+      "text": "Parse both responses and compare their transfer identifiers. Then perform the state",
+      "start": 282.02000000000004,
+      "end": 287.33250000000004
+    },
+    {
+      "text": "checks: the source balance is ninety thousand centavos and there is exactly one",
+      "start": 287.345,
+      "end": 291.77000000000004
+    },
+    {
+      "text": "transfer record with that identifier. Reload the page and verify the visible balance",
+      "start": 291.7825,
+      "end": 297.095
+    },
+    {
+      "text": "as a UI observation. Matching identifiers alone would not exclude an implementation",
+      "start": 297.1075000000001,
+      "end": 302.58250000000004
+    },
+    {
+      "text": "that accidentally debits twice while returning the same identifier. State and identity",
+      "start": 302.595,
+      "end": 308.12000000000006
+    },
+    {
+      "text": "therefore answer different questions. Keep both assertions, if AI suggests simplifying",
+      "start": 308.13250000000005,
+      "end": 313.62000000000006
+    },
+    {
+      "text": "the case to make it shorter or faster.",
+      "start": 313.63250000000005,
+      "end": 315.7825
+    },
+    {
+      "text": "Run the three cases in the supplied TypeScript project and inspect the actual report.",
+      "start": 317.99800000000005,
+      "end": 322.53550000000007
+    },
+    {
+      "text": "During diagnosis, begin without retries so the first failure remains visible. A failed",
+      "start": 323.3980000000001,
+      "end": 329.26050000000004
+    },
+    {
+      "text": "case is useful evidence when its assertion reflects the business contract. Read the",
+      "start": 329.2730000000001,
+      "end": 334.34800000000007
+    },
+    {
+      "text": "test name, the expected and actual values, and the associated request or trace before",
+      "start": 334.36050000000006,
+      "end": 339.51050000000004
+    },
+    {
+      "text": "editing code. If startup failed, report a preparation failure separately. Do not label",
+      "start": 339.5230000000001,
+      "end": 345.9605000000001
+    },
+    {
+      "text": "generated tests as passed because they compile, or because a previous execution used",
+      "start": 345.97300000000007,
+      "end": 350.92300000000006
+    },
+    {
+      "text": "another application build and dataset.",
+      "start": 350.93550000000005,
+      "end": 353.01050000000004
+    },
+    {
+      "text": "Give AI a focused review task: inspect these three tests for missing business",
+      "start": 355.22400000000005,
+      "end": 359.64900000000006
+    },
+    {
+      "text": "assertions, shared mutable data, invented APIs, and waits that could hide a defect.",
+      "start": 359.66150000000005,
+      "end": 364.94900000000007
+    },
+    {
+      "text": "Include the contract and a sanitized failure excerpt. Ask it to explain every",
+      "start": 365.8115000000001,
+      "end": 371.0615000000001
+    },
+    {
+      "text": "suggested change and identify the evidence supporting that change. Review the patch",
+      "start": 371.07400000000007,
+      "end": 376.3115000000001
+    },
+    {
+      "text": "before applying it. A useful suggestion may improve a locator or cleanup block; an",
+      "start": 376.32400000000007,
+      "end": 381.86150000000004
+    },
+    {
+      "text": "unacceptable suggestion changes ninety thousand to eighty thousand merely because a",
+      "start": 381.8740000000001,
+      "end": 386.04900000000004
+    },
+    {
+      "text": "defective implementation produced that value during an actual run.",
+      "start": 386.0615000000001,
+      "end": 389.59900000000005
+    },
+    {
+      "text": "Your TypeScript checkpoint consists of three isolated cases, not simply three browser",
+      "start": 391.826,
+      "end": 396.67600000000004
+    },
+    {
+      "text": "recordings. The successful case combines UI behavior with authoritative state. The",
+      "start": 396.68850000000003,
+      "end": 402.91350000000006
+    },
+    {
+      "text": "insufficient funds case proves rejection without side effects. The repeated request",
+      "start": 402.92600000000004,
+      "end": 408.2635
+    },
+    {
+      "text": "case checks one intention, one identifier, one debit, and one record. Record the",
+      "start": 408.276,
+      "end": 414.22600000000006
+    },
+    {
+      "text": "actual outcome for each case and link its evidence. If a case remains blocked or",
+      "start": 414.23850000000004,
+      "end": 419.4635
+    },
+    {
+      "text": "failing, say so explicitly. In the next episodes, we preserve these business promises",
+      "start": 419.47600000000006,
+      "end": 425.36350000000004
+    },
+    {
+      "text": "while changing the language and lifecycle management around the tests.",
+      "start": 425.37600000000003,
+      "end": 428.87600000000003
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 46.6880000000001
+}

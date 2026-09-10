@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:52:38.322133+00:00",
+  "episode": "07",
+  "title": "Mocks and Real End-to-End Evidence",
+  "input": {
+    "file": "renders/07-mocks-and-real-e2e.mp4",
+    "sha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+    "sizeBytes": 30537250,
+    "modifiedAtUtc": "2026-09-09T22:13:55.606635+00:00"
+  },
+  "timeline": {
+    "file": "audio/07/timeline.json",
+    "sha256": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 424.5,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "07-01",
+      "title": "Choose the boundary deliberately",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 33.026,
+      "sampleSeconds": 16.513,
+      "timestamp": "00:16.513",
+      "file": "07-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "10fa80c2cdf2a0120101f00c53008d8adf4998902a8fdcb69803099144baf91d"
+    },
+    {
+      "sceneId": "07-02",
+      "title": "Read the error contract",
+      "sceneStartSeconds": 33.026,
+      "sceneDurationSeconds": 34.106,
+      "sampleSeconds": 50.079,
+      "timestamp": "00:50.079",
+      "file": "07-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "01004c459d60531f433803a8aec7a810e04df06a64e315a58973b5d6899a3fb2"
+    },
+    {
+      "sceneId": "07-03",
+      "title": "Prepare the state before mocking",
+      "sceneStartSeconds": 67.132,
+      "sceneDurationSeconds": 35.282,
+      "sampleSeconds": 84.773,
+      "timestamp": "01:24.773",
+      "file": "07-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b91cd00b7140bfb0599860d690a6bf60c14a9b8c4742051e68bb71bc492d70e7"
+    },
+    {
+      "sceneId": "07-04",
+      "title": "Install a narrow route handler",
+      "sceneStartSeconds": 102.414,
+      "sceneDurationSeconds": 38.09,
+      "sampleSeconds": 121.459,
+      "timestamp": "02:01.459",
+      "file": "07-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b9ae3897d63d99d7564802b60774f063e3862ffd7df088dd253f8c867c60d6cd"
+    },
+    {
+      "sceneId": "07-05",
+      "title": "Exercise the user action once",
+      "sceneStartSeconds": 140.50400000000002,
+      "sceneDurationSeconds": 33.698,
+      "sampleSeconds": 157.353,
+      "timestamp": "02:37.353",
+      "file": "07-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "33754a8c9bbf7430a11f2b37f2e5463f5266ab5d3b713d4f622719c940d1ee13"
+    },
+    {
+      "sceneId": "07-06",
+      "title": "Inspect real state after the mock",
+      "sceneStartSeconds": 174.20200000000003,
+      "sceneDurationSeconds": 36.482,
+      "sampleSeconds": 192.443,
+      "timestamp": "03:12.443",
+      "file": "07-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5aa9ba54bd75b8b7cfa7195a94dc61bafe267ca3d21abfaf3319d3ef3aae2526"
+    },
+    {
+      "sceneId": "07-07",
+      "title": "Remove the controlled boundary",
+      "sceneStartSeconds": 210.68400000000003,
+      "sceneDurationSeconds": 32.378,
+      "sampleSeconds": 226.873,
+      "timestamp": "03:46.873",
+      "file": "07-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "489cf80224c45fb383d0408e4ca3a6c9bcb54f66ae5f941307059e6eb9ffd2c9"
+    },
+    {
+      "sceneId": "07-08",
+      "title": "Compare two kinds of evidence",
+      "sceneStartSeconds": 243.062,
+      "sceneDurationSeconds": 36.554,
+      "sampleSeconds": 261.339,
+      "timestamp": "04:21.339",
+      "file": "07-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dc03de4f6e3feeb5b38f8358f923c45ce06b63588706d0e540fe7430e77ea908"
+    },
+    {
+      "sceneId": "07-09",
+      "title": "Keep backend resilience separate",
+      "sceneStartSeconds": 279.616,
+      "sceneDurationSeconds": 34.802,
+      "sampleSeconds": 297.017,
+      "timestamp": "04:57.017",
+      "file": "07-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "1a00edf297b1e135004ff3079355aae201617b65d59ad0f1f7830d1e2e314b70"
+    },
+    {
+      "sceneId": "07-10",
+      "title": "Review generated mocks carefully",
+      "sceneStartSeconds": 314.418,
+      "sceneDurationSeconds": 36.266,
+      "sampleSeconds": 332.551,
+      "timestamp": "05:32.551",
+      "file": "07-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5968dc2d9ff5bf0c198da46793ab55a7fa391cbe378fe77f5c3cbfa7796e920d"
+    },
+    {
+      "sceneId": "07-11",
+      "title": "Label the report precisely",
+      "sceneStartSeconds": 350.684,
+      "sceneDurationSeconds": 38.354,
+      "sampleSeconds": 369.861,
+      "timestamp": "06:09.861",
+      "file": "07-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "06f11db58c137d0cc1ba6ca8eec79e2d9c8231cd4cc0619e200654b001182fe8"
+    },
+    {
+      "sceneId": "07-12",
+      "title": "Choose the next useful test",
+      "sceneStartSeconds": 389.038,
+      "sceneDurationSeconds": 35.426,
+      "sampleSeconds": 406.751,
+      "timestamp": "06:46.751",
+      "file": "07-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6435df773a9cacdaadec3ce2308430a55d4056dd6da4d6ce0b0892f5383f916c"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "07-01",
+        "07-02",
+        "07-03",
+        "07-04",
+        "07-05",
+        "07-06"
+      ],
+      "sha256": "b9e4dc0c70b9e0ec318e6c99ee52aa39527127911a894ba928b83791584e4245"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "07-07",
+        "07-08",
+        "07-09",
+        "07-10",
+        "07-11",
+        "07-12"
+      ],
+      "sha256": "ddb8c20572a35dafde86fba27ea662fe73c825f3a3b3da47098c7256f9883800"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+    "reviewedAtUtc": "2026-09-10T03:53:59.242399+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:59.242399+00:00",
+    "stage": "rendered",
+    "timelineSha256": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+    "artifactSha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/07/timeline.json": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/07/narration.wav": "02c479279ec5c1c83d0a2e88b76af9de1b93a7cebb6712d418b24e976c3a56cb",
+      "audio/07/subtitles.srt": "7bcf32f91966354cf39529f2319d7fa1efa7357be8495331fd7edf343cb0f6da",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

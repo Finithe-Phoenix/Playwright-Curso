@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:53:13.867958+00:00",
+  "episode": "10",
+  "title": "TNZ Sessions: Fields, Waits and Cleanup",
+  "input": {
+    "file": "renders/10-tnz-fields-waits-cleanup.mp4",
+    "sha256": "0099481a904323926a7936ab2eeff66d5ed1282635a67d72180e51ab1b5816f3",
+    "sizeBytes": 31203553,
+    "modifiedAtUtc": "2026-09-09T22:27:52.362636+00:00"
+  },
+  "timeline": {
+    "file": "audio/10/timeline.json",
+    "sha256": "d9c9eb58d1845b75c2785bcfa96c5d6896b8138a7b4c7abd59a1aea5a8478423",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 434.416667,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "10-01",
+      "title": "Build a predictable terminal session",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 34.73,
+      "sampleSeconds": 17.365,
+      "timestamp": "00:17.365",
+      "file": "10-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f8fc5aed5dffa163bb5695ecae158d161a7990a27dd320609c22f8870f94bc65"
+    },
+    {
+      "sceneId": "10-02",
+      "title": "Create the actual TNZ client",
+      "sceneStartSeconds": 34.73,
+      "sceneDurationSeconds": 37.946,
+      "sampleSeconds": 53.703,
+      "timestamp": "00:53.703",
+      "file": "10-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "bee399a4b34a54eb17f72fd2b84d64be3dfa661f56e1fb955aeb35f1b171557d"
+    },
+    {
+      "sceneId": "10-03",
+      "title": "Connect within the local boundary",
+      "sceneStartSeconds": 72.67599999999999,
+      "sceneDurationSeconds": 37.658,
+      "sampleSeconds": 91.505,
+      "timestamp": "01:31.505",
+      "file": "10-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "342c58061a8993394cceac8f72a4680c6c6f3378fdde6991efbe916511740401"
+    },
+    {
+      "sceneId": "10-04",
+      "title": "Use a monotonic deadline",
+      "sceneStartSeconds": 110.33399999999999,
+      "sceneDurationSeconds": 36.29,
+      "sampleSeconds": 128.479,
+      "timestamp": "02:08.479",
+      "file": "10-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "f3ad4624c1c6af7a6ef1e5eb665b22d71296d9a595ee471ae848dcc0fb7c27f6"
+    },
+    {
+      "sceneId": "10-05",
+      "title": "Require a ready keyboard too",
+      "sceneStartSeconds": 146.624,
+      "sceneDurationSeconds": 34.25,
+      "sampleSeconds": 163.749,
+      "timestamp": "02:43.749",
+      "file": "10-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b4ef52e5abf439bc1d052619751fb04fa6bb7bd8ed7536c64d9fb6e637e1fb14"
+    },
+    {
+      "sceneId": "10-06",
+      "title": "Validate and enter the reference",
+      "sceneStartSeconds": 180.874,
+      "sceneDurationSeconds": 34.226,
+      "sampleSeconds": 197.987,
+      "timestamp": "03:17.987",
+      "file": "10-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d8c3318a8622de0b6c799ca0cdc10bd617736f64cb984343d9d1a903a58331bc"
+    },
+    {
+      "sceneId": "10-07",
+      "title": "Wait for the submitted reference",
+      "sceneStartSeconds": 215.1,
+      "sceneDurationSeconds": 33.602,
+      "sampleSeconds": 231.901,
+      "timestamp": "03:51.901",
+      "file": "10-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "e7c5b5c9dcee599fc8f0cb3477859955c2bb29989b8ec87c8a1c5beebb69f5b3"
+    },
+    {
+      "sceneId": "10-08",
+      "title": "Parse the labeled business values",
+      "sceneStartSeconds": 248.702,
+      "sceneDurationSeconds": 36.146,
+      "sampleSeconds": 266.775,
+      "timestamp": "04:26.775",
+      "file": "10-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dbd47427b547ca7b7d763164d5fd7e88363736032a845be52a1aa7278d2fa0f2"
+    },
+    {
+      "sceneId": "10-09",
+      "title": "Preserve screen evidence",
+      "sceneStartSeconds": 284.848,
+      "sceneDurationSeconds": 34.826,
+      "sampleSeconds": 302.261,
+      "timestamp": "05:02.261",
+      "file": "10-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b2aaa5d67afa4585ce985e84fc9155d8d36a7fa25145559974a70b1b5323f2ca"
+    },
+    {
+      "sceneId": "10-10",
+      "title": "Always release the connection",
+      "sceneStartSeconds": 319.67400000000004,
+      "sceneDurationSeconds": 37.562,
+      "sampleSeconds": 338.455,
+      "timestamp": "05:38.455",
+      "file": "10-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "552e03d909a261c2a6c5b3595d4b14fa965f52483df2291cce6674e7fb025901"
+    },
+    {
+      "sceneId": "10-11",
+      "title": "Test negative terminal outcomes",
+      "sceneStartSeconds": 357.23600000000005,
+      "sceneDurationSeconds": 38.258,
+      "sampleSeconds": 376.365,
+      "timestamp": "06:16.365",
+      "file": "10-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c05441ced65dc00f0a592a8eec8368a65565b349db4ba085423d670728ec8b5a"
+    },
+    {
+      "sceneId": "10-12",
+      "title": "Explain the adapter contract",
+      "sceneStartSeconds": 395.494,
+      "sceneDurationSeconds": 38.906,
+      "sampleSeconds": 414.947,
+      "timestamp": "06:54.947",
+      "file": "10-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "31505cfca192477c2199f23554c4bc997da39fc876b6248f13df2094ed4661f0"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "10-01",
+        "10-02",
+        "10-03",
+        "10-04",
+        "10-05",
+        "10-06"
+      ],
+      "sha256": "6df0a8729ae1828918d84fd8917a9bbba42d849e2728256e8f4f5519ceaa820c"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "10-07",
+        "10-08",
+        "10-09",
+        "10-10",
+        "10-11",
+        "10-12"
+      ],
+      "sha256": "cedb4f9f9808a1c045cb698e80ecf9e07d6770c701a5ed83f7142f0442d38343"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "0099481a904323926a7936ab2eeff66d5ed1282635a67d72180e51ab1b5816f3",
+    "reviewedAtUtc": "2026-09-10T03:54:16.342118+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:11.388433+00:00",
+    "stage": "rendered",
+    "timelineSha256": "d9c9eb58d1845b75c2785bcfa96c5d6896b8138a7b4c7abd59a1aea5a8478423",
+    "artifactSha256": "0099481a904323926a7936ab2eeff66d5ed1282635a67d72180e51ab1b5816f3",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/10/timeline.json": "d9c9eb58d1845b75c2785bcfa96c5d6896b8138a7b4c7abd59a1aea5a8478423",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/10/narration.wav": "fa33a28dbc2b60f8d8eb925f58d7e103fa16d52e7d5468a3bedacf4ad0c5bf64",
+      "audio/10/subtitles.srt": "1cb410c0ee153f4d5df5f8b403e106e7695156352c210b98892f63ed7bcd2c37",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

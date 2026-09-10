@@ -1,0 +1,700 @@
+{
+  "id": "12",
+  "slug": "ai-regression-capstone",
+  "title": "AI-Assisted Regression Capstone",
+  "summary": "Generate, review, execute and report a complete regression without unsupported claims.",
+  "language": "en",
+  "objectives": [
+    "Use evidence-based generation and diagnostic prompts",
+    "Execute core and extension coverage with explicit boundaries",
+    "Deliver a measured regression report and rubric assessment"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/test-fixtures",
+    "https://playwright.dev/docs/test-assertions",
+    "https://ibm.github.io/tnz/tnz/"
+  ],
+  "scenes": [
+    {
+      "id": "12-01",
+      "title": "Turn the workflow into a capstone",
+      "kicker": "EPISODE 12 · STEP 1",
+      "type": "title",
+      "narration": "The capstone combines a defensible regression plan with AI-assisted implementation and actual execution evidence. Choose your primary language and keep the same local contract. Your required business cases are successful transfer, insufficient funds, and sequential idempotent replay. Add the delayed ledger observation, a focused UI error mock, and the hybrid terminal comparison as separately labeled coverage. Produce tests whose assumptions, business assertions, ownership, and observed outcomes you can explain and reproduce.",
+      "bullets": [
+        "One primary language",
+        "Three core business cases",
+        "Explicitly labeled extensions"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 0.0,
+      "duration": 35.114,
+      "audio": "audio/12/12-01.wav"
+    },
+    {
+      "id": "12-02",
+      "title": "Give AI an evidence package",
+      "kicker": "EPISODE 12 · STEP 2",
+      "type": "code",
+      "narration": "Start by supplying the contract, relevant source files, exact accessible labels, runner configuration, and a sanitized example response. Ask AI to list unresolved facts before proposing implementation. This exposes unsupported endpoints and helper methods. The prompt excerpt on screen is reusable, but attach the actual evidence it requests. A model cannot inspect an omitted file merely because the prompt mentions its name. Keep any missing input marked as unresolved until you or the model can inspect a reliable source.",
+      "bullets": [
+        "Attach actual source and contract",
+        "Ask for missing facts first",
+        "Do not invent unseen interfaces"
+      ],
+      "code": "Review the attached TransferLab contract and source files.\nList supported endpoints, UI labels, runner and fixture lifecycle.\nIdentify missing facts before proposing tests.\nDo not invent selectors, helper methods or execution results.\nReturn an evidence table and specific unresolved questions.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 35.114,
+      "duration": 36.578,
+      "audio": "audio/12/12-02.wav"
+    },
+    {
+      "id": "12-03",
+      "title": "Request a risk and evidence matrix",
+      "kicker": "EPISODE 12 · STEP 3",
+      "type": "code",
+      "narration": "Ask for a matrix connecting each business risk with setup, action, authoritative observation, and expected result. Require the three core cases and give their exact values. For the distributed extension, distinguish canonical transfers from the delayed ledger endpoint. For the terminal extension, state that the screen presents the same in-memory account data. Review the matrix yourself before generating code. This is the point where a missing no-debit assertion or a false independent-mainframe claim is easiest to correct, while the design remains visible.",
+      "bullets": [
+        "Risk to setup and action",
+        "Observation to expected value",
+        "Separate data authorities"
+      ],
+      "code": "Create a regression matrix for TR-01, TR-02 and TR-03.\nTR-01: 100000 minus 10000 = 90000; one transfer.\nTR-02: request 110000; keep 100000; zero transfers.\nTR-03: same key and body twice; one debit and one ID.\nSeparate canonical, ledger-projection and terminal observations.\nThe terminal uses the SAME local in-memory Accounts data.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 71.69200000000001,
+      "duration": 36.458,
+      "audio": "audio/12/12-03.wav"
+    },
+    {
+      "id": "12-04",
+      "title": "Generate one complete case first",
+      "kicker": "EPISODE 12 · STEP 4",
+      "type": "code",
+      "narration": "Generate the successful case before asking for every extension. Specify the chosen runner and require setup, authentication, accessible UI actions, server assertions, evidence capture, and targeted cleanup. Ask for project changes with imports and commands, not just a fragment that assumes invisible helpers. Review and run this first case. Reuse its fixture for the other cases. If the generated code fails to compile, fix that implementation issue while preserving the business contract; do not record the application as regressed because an invented method was rejected.",
+      "bullets": [
+        "Generate one runnable case",
+        "Reuse the fixture factory; create fresh data",
+        "Review and execute before expansion"
+      ],
+      "code": "Implement TR-01 in the selected language and existing project.\nUse isolated synthetic data and context-associated login.\nAssert UI confirmation, balance 90000 and one matching record.\nInclude imports, bounded waits, evidence and targeted cleanup.\nReuse only helpers present in the attached source.\nProvide exact commands; mark results as pending execution.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 108.15,
+      "duration": 39.218,
+      "audio": "audio/12/12-04.wav"
+    },
+    {
+      "id": "12-05",
+      "title": "Adapt architecture across languages",
+      "kicker": "EPISODE 12 · STEP 5",
+      "type": "steps",
+      "narration": "When translating the case, ask AI to preserve the evidence matrix while adapting lifecycle and reporting to the target runner. TypeScript uses Playwright Test fixtures, Python uses pytest fixtures, and Java uses its explicit JUnit resource ownership. Do not copy configuration flags across languages without checking that the target runner supports them. Require explanations and check official documentation for uncertain APIs. Then execute each language separately. A successful TypeScript run does not establish that a generated Java or Python translation was discovered or executed correctly.",
+      "bullets": [
+        "Preserve business meaning",
+        "Adapt lifecycle and reporting",
+        "Verify each language independently"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 147.368,
+      "duration": 40.226,
+      "audio": "audio/12/12-05.wav"
+    },
+    {
+      "id": "12-06",
+      "title": "Generate the hybrid extension",
+      "kicker": "EPISODE 12 · STEP 6",
+      "type": "code",
+      "narration": "For the hybrid case, provide the existing adapter rather than asking AI to invent a mainframe connection. Specify the exact reference flow, terminal deadline, process timeout, structured output fields, and cleanup sequence. Require argument arrays when invoking the adapter from another language. Keep the terminal's simulation flag and shared data source explicit in the assertions and report. This prompt should produce orchestration around a known boundary. It should not create hostnames, credentials, panel identifiers, or claims about systems that are absent from the local laboratory.",
+      "bullets": [
+        "Reuse the existing adapter",
+        "Carry the exact reference",
+        "State simulation limits"
+      ],
+      "code": "Extend the browser transfer with the existing adapter.py CLI.\nPass its actual reference using exact subprocess arguments.\nUse an 8-second terminal deadline and 12-second process limit.\nAssert reference, status, source, amount, currency and balance.\nCapture evidence before targeted fixture cleanup.\nLabel the terminal local and simulated; invent no real host.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 187.594,
+      "duration": 39.146,
+      "audio": "audio/12/12-06.wav"
+    },
+    {
+      "id": "12-07",
+      "title": "Audit the generated assertions",
+      "kicker": "EPISODE 12 · STEP 7",
+      "type": "steps",
+      "narration": "Review the generated suite against a fixed checklist. Does each attempt own its data and session? Does success verify the correct account, amount, currency, and count? Does rejection prove no business effect? Does replay preserve one key and body while checking one debit and record? Does delayed polling only read state? Does the terminal assertion match the same reference? Ask AI to identify concrete omissions with source locations, then verify. A polished explanation cannot compensate for a missing assertion in the actual test code.",
+      "bullets": [
+        "Data and identity ownership",
+        "Complete business assertions",
+        "Read-only waits and exact correlation"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 226.74,
+      "duration": 37.586,
+      "audio": "audio/12/12-07.wav"
+    },
+    {
+      "id": "12-08",
+      "title": "Use a failure-specific prompt",
+      "kicker": "EPISODE 12 · STEP 8",
+      "type": "code",
+      "narration": "When a test fails, provide the contract, actual error, relevant trace observations, and state snapshot. Ask AI to separate facts from hypotheses and propose the smallest check that distinguishes likely causes. Explicitly protect the monetary and count assertions. Do not ask for a green run at any cost. A useful response may reveal an incorrect fixture, an outdated locator, or a genuine implementation defect. Apply only a justified change, then rerun the affected case and preserve the evidence that shows whether the diagnosis held.",
+      "bullets": [
+        "Supply actual failure evidence",
+        "Separate facts and hypotheses",
+        "Keep the business oracle fixed"
+      ],
+      "code": "Diagnose the attached failure against the unchanged contract.\nSeparate observed facts, hypotheses and discriminating checks.\nDo not weaken balance, identity, currency or count assertions.\nDo not add skips or retries to conceal the failure.\nPropose the smallest justified patch and its verification step.\nReport what remains unknown.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 264.326,
+      "duration": 38.138,
+      "audio": "audio/12/12-08.wav"
+    },
+    {
+      "id": "12-09",
+      "title": "Execute the capstone deliberately",
+      "kicker": "EPISODE 12 · STEP 9",
+      "type": "steps",
+      "narration": "Run the three core cases first in the healthy local environment and inspect actual test discovery and outcomes. Then run the delayed projection, mock, and hybrid cases under their declared boundaries. Execute the controlled defect case separately and retain its expected failure evidence. Record the application variant, language, browser, test selection, and artifact locations for every run. Keep installation and service-startup failures distinct from business regressions. This order keeps the evidence package's environments and intended outcomes understandable.",
+      "bullets": [
+        "Healthy core cases first",
+        "Extensions separately labeled",
+        "Controlled defect run kept distinct"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 302.464,
+      "duration": 37.49,
+      "audio": "audio/12/12-09.wav"
+    },
+    {
+      "id": "12-10",
+      "title": "Write a defensible regression report",
+      "kicker": "EPISODE 12 · STEP 10",
+      "type": "code",
+      "narration": "Ask AI to summarize the actual results you supply, with links to artifacts and explicit limitations. Require it to separate generated, reviewed, executed, passed, failed, and blocked work. The final report should name the tested environment and avoid claiming hosted CI execution unless a real pipeline result exists. Include the terminal's shared local data source and the sequential scope of idempotency. These limits help another engineer identify missing coverage without overestimating what the tests exercised.",
+      "bullets": [
+        "Use measured results only",
+        "Link inspectable artifacts",
+        "Preserve coverage limitations"
+      ],
+      "code": "Summarize only the attached execution outputs and artifacts.\nSeparate passed, failed, blocked and not-executed work.\nIdentify language, browser, variant and selected cases.\nState sequential idempotency and local simulator limitations.\nDo not claim hosted CI without a real run link.\nList the next missing coverage with its evidence requirement.",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Copyable prompt · Attach the actual contract and evidence",
+      "start": 339.954,
+      "duration": 34.778,
+      "audio": "audio/12/12-10.wav"
+    },
+    {
+      "id": "12-11",
+      "title": "Apply the capstone rubric",
+      "kicker": "EPISODE 12 · STEP 11",
+      "type": "steps",
+      "narration": "Score five areas from zero to two: business coverage, isolation, review of AI assumptions, execution and diagnosis, and reporting of integration boundaries. Eight out of ten is the target, with mandatory gates: no fabricated results, no leaked sensitive data, and no weakened business assertions. Missing execution evidence remains incomplete even when the design is strong. Review a partner's submission and ask them to explain one failing case. The explanation should connect a concrete observation to the original requirement, beyond repeating an error message.",
+      "bullets": [
+        "Five criteria, ten points",
+        "Target eight with mandatory gates",
+        "Missing execution remains incomplete"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 374.732,
+      "duration": 38.498,
+      "audio": "audio/12/12-11.wav"
+    },
+    {
+      "id": "12-12",
+      "title": "Choose the next justified increment",
+      "kicker": "EPISODE 12 · STEP 12",
+      "type": "recap",
+      "narration": "Finish by selecting one next increment based on an uncovered risk: concurrent replay, a real authorized recovery scenario, broader browser coverage, or another business rule. Define its expected behavior and evidence before generating more code. Preserve the core suite and its reproducible fixture design as the baseline. Combine AI assistance with careful contracts, browser automation, distributed observations, terminal orchestration, and honest reporting. Your final deliverable is the executable work and its measured evidence, together with a clear account of what it still does not prove.",
+      "bullets": [
+        "Choose one uncovered risk",
+        "Define evidence before generating",
+        "Deliver code, outcomes and limits"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "AI-assisted capstone · Human review and measured evidence",
+      "start": 413.23,
+      "duration": 38.762,
+      "audio": "audio/12/12-12.wav"
+    }
+  ],
+  "duration": 451.992,
+  "captions": [
+    {
+      "text": "The capstone combines a defensible regression plan with AI-assisted implementation and",
+      "start": 0.7,
+      "end": 5.3999999999999995
+    },
+    {
+      "text": "actual execution evidence. Choose your primary language and keep the same local",
+      "start": 5.4125,
+      "end": 10.4125
+    },
+    {
+      "text": "contract. Your required business cases are successful transfer, insufficient funds,",
+      "start": 10.424999999999999,
+      "end": 16.25
+    },
+    {
+      "text": "and sequential idempotent replay. Add the delayed ledger observation, a focused UI",
+      "start": 16.4375,
+      "end": 21.8625
+    },
+    {
+      "text": "error mock, and the hybrid terminal comparison as separately labeled coverage. Produce",
+      "start": 21.875,
+      "end": 27.475
+    },
+    {
+      "text": "tests whose assumptions, business assertions, ownership, and observed outcomes you can",
+      "start": 27.4875,
+      "end": 32.0625
+    },
+    {
+      "text": "explain and reproduce.",
+      "start": 32.075,
+      "end": 33.6
+    },
+    {
+      "text": "Start by supplying the contract, relevant source files, exact accessible labels,",
+      "start": 35.814,
+      "end": 40.8015
+    },
+    {
+      "text": "runner configuration, and a sanitized example response. Ask AI to list unresolved",
+      "start": 40.989,
+      "end": 46.976499999999994
+    },
+    {
+      "text": "facts before proposing implementation. This exposes unsupported endpoints and helper",
+      "start": 46.989,
+      "end": 52.6265
+    },
+    {
+      "text": "methods. The prompt excerpt on screen is reusable, but attach the actual evidence it",
+      "start": 52.638999999999996,
+      "end": 58.289
+    },
+    {
+      "text": "requests. A model cannot inspect an omitted file merely because the prompt mentions",
+      "start": 58.3015,
+      "end": 63.6515
+    },
+    {
+      "text": "its name. Keep any missing input marked as unresolved until you or the model can",
+      "start": 63.664,
+      "end": 68.5765
+    },
+    {
+      "text": "inspect a reliable source.",
+      "start": 68.589,
+      "end": 70.1765
+    },
+    {
+      "text": "Ask for a matrix connecting each business risk with setup, action, authoritative",
+      "start": 72.39200000000001,
+      "end": 77.042
+    },
+    {
+      "text": "observation, and expected result. Require the three core cases and give their exact",
+      "start": 77.0545,
+      "end": 82.71700000000001
+    },
+    {
+      "text": "values. For the distributed extension, distinguish canonical transfers from the",
+      "start": 82.7295,
+      "end": 88.042
+    },
+    {
+      "text": "delayed ledger endpoint. For the terminal extension, state that the screen presents",
+      "start": 88.0545,
+      "end": 93.12950000000001
+    },
+    {
+      "text": "the same in-memory account data. Review the matrix yourself before generating code.",
+      "start": 93.14200000000001,
+      "end": 98.34200000000001
+    },
+    {
+      "text": "This is the point where a missing no-debit assertion or a false independent-mainframe",
+      "start": 99.20450000000001,
+      "end": 103.242
+    },
+    {
+      "text": "claim is easiest to correct, while the design remains visible.",
+      "start": 103.25450000000001,
+      "end": 106.62950000000001
+    },
+    {
+      "text": "Generate the successful case before asking for every extension. Specify the chosen",
+      "start": 108.85000000000001,
+      "end": 114.4
+    },
+    {
+      "text": "runner and require setup, authentication, accessible UI actions, server assertions,",
+      "start": 114.41250000000001,
+      "end": 119.7625
+    },
+    {
+      "text": "evidence capture, and targeted cleanup. Ask for project changes with imports and",
+      "start": 119.9375,
+      "end": 125.17500000000001
+    },
+    {
+      "text": "commands, not just a fragment that assumes invisible helpers. Review and run this",
+      "start": 125.1875,
+      "end": 130.60000000000002
+    },
+    {
+      "text": "first case. Reuse its fixture for the other cases. If the generated code fails to",
+      "start": 130.6125,
+      "end": 136.95000000000002
+    },
+    {
+      "text": "compile, fix that implementation issue while preserving the business contract; do not",
+      "start": 136.9625,
+      "end": 141.875
+    },
+    {
+      "text": "record the application as regressed because an invented method was rejected.",
+      "start": 141.88750000000002,
+      "end": 145.85000000000002
+    },
+    {
+      "text": "When translating the case, ask AI to preserve the evidence matrix while adapting",
+      "start": 148.06799999999998,
+      "end": 152.518
+    },
+    {
+      "text": "lifecycle and reporting to the target runner. TypeScript uses Playwright Test",
+      "start": 152.5305,
+      "end": 157.343
+    },
+    {
+      "text": "fixtures, Python uses pytest fixtures, and Java uses its explicit JUnit resource",
+      "start": 157.3555,
+      "end": 162.618
+    },
+    {
+      "text": "ownership. Do not copy configuration flags across languages without checking that the",
+      "start": 162.63049999999998,
+      "end": 168.043
+    },
+    {
+      "text": "target runner supports them. Require explanations and check official documentation for",
+      "start": 168.0555,
+      "end": 173.743
+    },
+    {
+      "text": "uncertain APIs. Then execute each language separately. A successful TypeScript run",
+      "start": 173.75549999999998,
+      "end": 180.4305
+    },
+    {
+      "text": "does not establish that a generated Java or Python translation was discovered or",
+      "start": 180.44299999999998,
+      "end": 184.81799999999998
+    },
+    {
+      "text": "executed correctly.",
+      "start": 184.8305,
+      "end": 186.06799999999998
+    },
+    {
+      "text": "For the hybrid case, provide the existing adapter rather than asking AI to invent a",
+      "start": 188.29399999999998,
+      "end": 192.994
+    },
+    {
+      "text": "mainframe connection. Specify the exact reference flow, terminal deadline, process",
+      "start": 193.0065,
+      "end": 198.844
+    },
+    {
+      "text": "timeout, structured output fields, and cleanup sequence. Require argument arrays when",
+      "start": 198.85649999999998,
+      "end": 204.85649999999998
+    },
+    {
+      "text": "invoking the adapter from another language. Keep the terminal's simulation flag and",
+      "start": 204.869,
+      "end": 210.0065
+    },
+    {
+      "text": "shared data source explicit in the assertions and report. This prompt should produce",
+      "start": 210.019,
+      "end": 214.894
+    },
+    {
+      "text": "orchestration around a known boundary. It should not create hostnames, credentials,",
+      "start": 214.9065,
+      "end": 220.16899999999998
+    },
+    {
+      "text": "panel identifiers, or claims about systems that are absent from the local laboratory.",
+      "start": 220.269,
+      "end": 225.219
+    },
+    {
+      "text": "Review the generated suite against a fixed checklist. Does each attempt own its data",
+      "start": 227.44,
+      "end": 232.4275
+    },
+    {
+      "text": "and session? Does success verify the correct account, amount, currency, and count?",
+      "start": 232.44,
+      "end": 238.0025
+    },
+    {
+      "text": "Does rejection prove no business effect? Does replay preserve one key and body while",
+      "start": 238.865,
+      "end": 243.965
+    },
+    {
+      "text": "checking one debit and record? Does delayed polling only read state? Does the terminal",
+      "start": 243.97750000000002,
+      "end": 249.85250000000002
+    },
+    {
+      "text": "assertion match the same reference? Ask AI to identify concrete omissions with source",
+      "start": 249.865,
+      "end": 255.3025
+    },
+    {
+      "text": "locations, then verify. A polished explanation cannot compensate for a missing",
+      "start": 255.315,
+      "end": 260.90250000000003
+    },
+    {
+      "text": "assertion in the actual test code.",
+      "start": 260.915,
+      "end": 262.815
+    },
+    {
+      "text": "When a test fails, provide the contract, actual error, relevant trace observations,",
+      "start": 265.026,
+      "end": 270.11350000000004
+    },
+    {
+      "text": "and state snapshot. Ask AI to separate facts from hypotheses and propose the smallest",
+      "start": 270.2635,
+      "end": 276.201
+    },
+    {
+      "text": "check that distinguishes likely causes. Explicitly protect the monetary and count",
+      "start": 276.2135,
+      "end": 281.576
+    },
+    {
+      "text": "assertions. Do not ask for a green run at any cost. A useful response may reveal an",
+      "start": 281.5885,
+      "end": 288.25100000000003
+    },
+    {
+      "text": "incorrect fixture, an outdated locator, or a genuine implementation defect. Apply only",
+      "start": 288.2635,
+      "end": 294.68850000000003
+    },
+    {
+      "text": "a justified change, then rerun the affected case and preserve the evidence that shows",
+      "start": 294.701,
+      "end": 299.401
+    },
+    {
+      "text": "whether the diagnosis held.",
+      "start": 299.4135,
+      "end": 300.93850000000003
+    },
+    {
+      "text": "Run the three core cases first in the healthy local environment and inspect actual",
+      "start": 303.164,
+      "end": 307.3515
+    },
+    {
+      "text": "test discovery and outcomes. Then run the delayed projection, mock, and hybrid cases",
+      "start": 307.364,
+      "end": 313.1765
+    },
+    {
+      "text": "under their declared boundaries. Execute the controlled defect case separately and",
+      "start": 313.189,
+      "end": 318.214
+    },
+    {
+      "text": "retain its expected failure evidence. Record the application variant, language,",
+      "start": 318.2265,
+      "end": 323.614
+    },
+    {
+      "text": "browser, test selection, and artifact locations for every run. Keep installation and",
+      "start": 323.7265,
+      "end": 329.889
+    },
+    {
+      "text": "service-startup failures distinct from business regressions. This order keeps the",
+      "start": 329.9015,
+      "end": 334.7265
+    },
+    {
+      "text": "evidence package's environments and intended outcomes understandable.",
+      "start": 334.739,
+      "end": 338.4265
+    },
+    {
+      "text": "Ask AI to summarize the actual results you supply, with links to artifacts and",
+      "start": 340.654,
+      "end": 345.204
+    },
+    {
+      "text": "explicit limitations. Require it to separate generated, reviewed, executed, passed,",
+      "start": 345.2165,
+      "end": 351.4415
+    },
+    {
+      "text": "failed, and blocked work. The final report should name the tested environment and",
+      "start": 351.5665,
+      "end": 356.629
+    },
+    {
+      "text": "avoid claiming hosted CI execution unless a real pipeline result exists. Include the",
+      "start": 356.6415,
+      "end": 362.6415
+    },
+    {
+      "text": "terminal's shared local data source and the sequential scope of idempotency. These",
+      "start": 362.654,
+      "end": 367.6665
+    },
+    {
+      "text": "limits help another engineer identify missing coverage without overestimating what the",
+      "start": 367.67900000000003,
+      "end": 371.904
+    },
+    {
+      "text": "tests exercised.",
+      "start": 371.9165,
+      "end": 373.2165
+    },
+    {
+      "text": "Score five areas from zero to two: business coverage, isolation, review of AI",
+      "start": 375.432,
+      "end": 380.5695
+    },
+    {
+      "text": "assumptions, execution and diagnosis, and reporting of integration boundaries. Eight",
+      "start": 380.58200000000005,
+      "end": 386.6945
+    },
+    {
+      "text": "out of ten is the target, with mandatory gates: no fabricated results, no leaked",
+      "start": 386.70700000000005,
+      "end": 391.757
+    },
+    {
+      "text": "sensitive data, and no weakened business assertions. Missing execution evidence",
+      "start": 391.76950000000005,
+      "end": 397.1695
+    },
+    {
+      "text": "remains incomplete even when the design is strong. Review a partner's submission and",
+      "start": 397.182,
+      "end": 402.307
+    },
+    {
+      "text": "ask them to explain one failing case. The explanation should connect a concrete",
+      "start": 402.3195,
+      "end": 407.482
+    },
+    {
+      "text": "observation to the original requirement, beyond repeating an error message.",
+      "start": 407.4945,
+      "end": 411.71950000000004
+    },
+    {
+      "text": "Finish by selecting one next increment based on an uncovered risk: concurrent replay,",
+      "start": 413.93,
+      "end": 418.9175
+    },
+    {
+      "text": "a real authorized recovery scenario, broader browser coverage, or another business",
+      "start": 419.14250000000004,
+      "end": 423.805
+    },
+    {
+      "text": "rule. Define its expected behavior and evidence before generating more code. Preserve",
+      "start": 423.8175,
+      "end": 429.9925
+    },
+    {
+      "text": "the core suite and its reproducible fixture design as the baseline. Combine AI",
+      "start": 430.005,
+      "end": 435.09250000000003
+    },
+    {
+      "text": "assistance with careful contracts, browser automation, distributed observations,",
+      "start": 435.105,
+      "end": 439.93
+    },
+    {
+      "text": "terminal orchestration, and honest reporting. Your final deliverable is the executable",
+      "start": 440.0675,
+      "end": 445.71750000000003
+    },
+    {
+      "text": "work and its measured evidence, together with a clear account of what it still does",
+      "start": 445.73,
+      "end": 449.73
+    },
+    {
+      "text": "not prove.",
+      "start": 449.7425,
+      "end": 450.48
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 108.42199999999866,
+  "caption_mapping_revision": 2
+}

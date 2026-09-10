@@ -1,0 +1,648 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\playwright.config.ts",
+    "rootDir": "C:/Users/daedg/OneDrive/Documentos/HSBC/Playwright/work/videos/lab/distributed/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/daedg/OneDrive/Documentos/HSBC/Playwright/work/videos/lab/distributed/evidence/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/daedg/OneDrive/Documentos/HSBC/Playwright/work/videos/lab/distributed/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "evidence/html-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "evidence/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "regression.spec.ts",
+      "file": "regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TR-01 | UI transfer commits exactly one debit and record",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:40.560Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiNjJmMjE2Y2YtZjcxMi00ZTExLTgzNGUtNjhiNzRlNjdlZGE4IiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICIxZmU1Y2RjZS00OWRlLTRhYmUtYTA1My0yY2QwNmE4ZThmNjYiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogOTAwMDAKICB9LAogICJ0cmFuc2ZlcnMiOiB7CiAgICAiaXRlbXMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiZTUxMjk5NWMtNGIzYy00NjZmLWE0MGQtODEyY2IxZjViOWU0IiwKICAgICAgICAic3RhdHVzIjogIkNPTVBMRVRFRCIsCiAgICAgICAgInNvdXJjZUFjY291bnRJZCI6ICIxZmU1Y2RjZS00OWRlLTRhYmUtYTA1My0yY2QwNmE4ZThmNjYiLAogICAgICAgICJiZW5lZmljaWFyeUlkIjogImJjNGZhZmJiLWE5YWQtNDg5OC1iMmJiLWFiNTNhNzYyNDNkOCIsCiAgICAgICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAgICAgImFtb3VudE1pbm9yIjogMTAwMDAKICAgICAgfQogICAgXSwKICAgICJ0b3RhbCI6IDEKICB9Cn0="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-3dff7badb1e79d3ec639",
+          "file": "regression.spec.ts",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "TR-02 | Insufficient funds leaves balance and ledger unchanged",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1355,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:44.388Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-02-Insuffici-7170f-alance-and-ledger-unchanged-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiNDg2MTExOTQtZGM1NS00NjFkLWEwYjYtNWExODZiMjVlYzM4IiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICJjODQzMmYwNy0xZjJiLTQyMDAtYmZmNy0zNjUwNmU2NmM1MWMiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-02-Insuffici-7170f-alance-and-ledger-unchanged-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-02-Insuffici-7170f-alance-and-ledger-unchanged-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-8ea164307e47a9e170a1",
+          "file": "regression.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "TR-03 | Sequential retry uses same key, body and transfer id",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1525,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:45.906Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-03-Sequentia-22c57-me-key-body-and-transfer-id-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiYTcyZjQ5YTQtYWViMi00OWVkLTllNDItZjIyOTI5MjgxNjQxIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICJkOWEyNzQ3ZS1lYzEwLTQ3NTctOWRmZi1hNGQ5NWMwNmRiNjUiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogOTAwMDAKICB9LAogICJ0cmFuc2ZlcnMiOiB7CiAgICAiaXRlbXMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiM2RkYzQ3YWUtZTI5NC00N2YwLWExYTItNDEwN2YxZjk3N2JiIiwKICAgICAgICAic3RhdHVzIjogIkNPTVBMRVRFRCIsCiAgICAgICAgInNvdXJjZUFjY291bnRJZCI6ICJkOWEyNzQ3ZS1lYzEwLTQ3NTctOWRmZi1hNGQ5NWMwNmRiNjUiLAogICAgICAgICJiZW5lZmljaWFyeUlkIjogIjViZWYxYzMwLTYwNGUtNDc0ZC04M2U0LTQwNmZmM2QwNGYwMSIsCiAgICAgICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAgICAgImFtb3VudE1pbm9yIjogMTAwMDAKICAgICAgfQogICAgXSwKICAgICJ0b3RhbCI6IDEKICB9Cn0="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-03-Sequentia-22c57-me-key-body-and-transfer-id-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-03-Sequentia-22c57-me-key-body-and-transfer-id-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-1ee1ef02d78b928d6cd5",
+          "file": "regression.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "TR-04 | API rejects invalid minor amount 0",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 804,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:47.533Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiY2NkNjBlYWUtMGNlZS00YTA1LWJlMGUtODU3Y2E4NGE4ZjNkIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICI4NmI2ZTllOS0xNzk4LTQ2YWEtOWI3ZS0wYzhmODRhYmRhNmQiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-e2f76c0c56dacc1b0169",
+          "file": "regression.spec.ts",
+          "line": 62,
+          "column": 3
+        },
+        {
+          "title": "TR-04 | API rejects invalid minor amount -1",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 933,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:48.403Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount--1-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiZWRmNmM5ZDItMmIwYy00YTI4LWIyOTYtYjMzNjVjYjZhYjI1IiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICI5M2Y2OWEwMy05NWE3LTQ1YjctYmY2My02NjFkYjNmNzkyMjgiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount--1-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount--1-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-d77382f31555c105624c",
+          "file": "regression.spec.ts",
+          "line": 62,
+          "column": 3
+        },
+        {
+          "title": "TR-04 | API rejects invalid minor amount 0.5",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 993,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:49.414Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-5-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiYmFhZGQwYjktMWFlOC00YjY0LTgyMWYtY2E1ZmFhN2EyM2RjIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICI2MjUwMGVkYi0xZGVhLTQ3NDktYjAzNi1jYjIwMzdjZTEwMzIiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-5-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-04-API-rejects-invalid-minor-amount-0-5-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-32128da3310ba68606e6",
+          "file": "regression.spec.ts",
+          "line": 62,
+          "column": 3
+        },
+        {
+          "title": "TR-05 | Mocked503 verifies UI recovery without backend effects",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:50.490Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-05-Mocked503-fd413-ery-without-backend-effects-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiMjZhMzg3NmQtYjk0NC00ZDgyLWJmMzYtYmFlODM0MWE4YWQwIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICIyYzhkYzk4NS1iYWM5LTQ5YTQtYTIzNC1lZjFhODM2NzIzYTciLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-05-Mocked503-fd413-ery-without-backend-effects-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-05-Mocked503-fd413-ery-without-backend-effects-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-4cb3803fdf6bba2f29f0",
+          "file": "regression.spec.ts",
+          "line": 72,
+          "column": 1
+        },
+        {
+          "title": "TR-06 | Exact reference reaches the independent ledger within5seconds",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:52.030Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-06-Exact-ref-614d1-ndent-ledger-within5seconds-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiOTdhMDUyYWUtNDM1NS00YTExLWJmOTAtYjY0MzY2MTA0MTFjIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICJlNjllMjk3Ni1kMzAwLTRlMTktODBmYy1lMzZkZWEzYTBkOWMiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogOTAwMDAKICB9LAogICJ0cmFuc2ZlcnMiOiB7CiAgICAiaXRlbXMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiZWMxNmY5OTMtNjJkOS00MzgxLWJhMDItMjVmMmU1NTg1MDY1IiwKICAgICAgICAic3RhdHVzIjogIkNPTVBMRVRFRCIsCiAgICAgICAgInNvdXJjZUFjY291bnRJZCI6ICJlNjllMjk3Ni1kMzAwLTRlMTktODBmYy1lMzZkZWEzYTBkOWMiLAogICAgICAgICJiZW5lZmljaWFyeUlkIjogIjJmMjNkZTg5LWE5NjktNGY3NC04MzIwLTdiZjQ2YTIxNzY1MSIsCiAgICAgICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAgICAgImFtb3VudE1pbm9yIjogMTAwMDAKICAgICAgfQogICAgXSwKICAgICJ0b3RhbCI6IDEKICB9Cn0="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-06-Exact-ref-614d1-ndent-ledger-within5seconds-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-06-Exact-ref-614d1-ndent-ledger-within5seconds-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-28c4ccb2be1abf806fa7",
+          "file": "regression.spec.ts",
+          "line": 88,
+          "column": 1
+        },
+        {
+          "title": "TR-07 | Reusing an idempotency key with different amount conflicts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 725,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:52.786Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-07-Reusing-a-06ac0--different-amount-conflicts-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiMjFjZjE4YjAtNDg4MS00MzFjLWJmNTktMDU4NjllMmFmNjM3IiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICIxZTMxN2M1Mi0zMTA1LTQzMDItYjcxYy1lOTQyMTcxYmE3N2QiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogOTAwMDAKICB9LAogICJ0cmFuc2ZlcnMiOiB7CiAgICAiaXRlbXMiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAiMWI1ZmIyNTMtNzdkZS00YTg3LTk3OTItZWFkZDUyZTdmYzQ4IiwKICAgICAgICAic3RhdHVzIjogIkNPTVBMRVRFRCIsCiAgICAgICAgInNvdXJjZUFjY291bnRJZCI6ICIxZTMxN2M1Mi0zMTA1LTQzMDItYjcxYy1lOTQyMTcxYmE3N2QiLAogICAgICAgICJiZW5lZmljaWFyeUlkIjogImRmNzEzMDFhLTcwZTgtNDQ0Zi1hNjQ0LTk1M2M4MTVjOTMwNiIsCiAgICAgICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAgICAgImFtb3VudE1pbm9yIjogMTAwMDAKICAgICAgfQogICAgXSwKICAgICJ0b3RhbCI6IDEKICB9Cn0="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-07-Reusing-a-06ac0--different-amount-conflicts-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-07-Reusing-a-06ac0--different-amount-conflicts-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-dd436250666f2cc00fbf",
+          "file": "regression.spec.ts",
+          "line": 107,
+          "column": 1
+        },
+        {
+          "title": "TR-08 | Missing session and cross-fixture account access are rejected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 942,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-09T21:25:53.588Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-08-Missing-s-c9c03-account-access-are-rejected-chromium\\test-finished-1.png"
+                    },
+                    {
+                      "name": "business-state",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlSWQiOiAiYmRjZWYxNGItMDI4Zi00MGMwLWE4NTYtNTZmNGZhMmE0ZjMxIiwKICAiYWNjb3VudCI6IHsKICAgICJpZCI6ICJjNGQxOTYyYy1jMWRmLTQwZjgtOTk3Yi03MWU4ZDBiOTM5ZDAiLAogICAgImN1cnJlbmN5IjogIk1YTiIsCiAgICAiYmFsYW5jZU1pbm9yIjogMTAwMDAwCiAgfSwKICAidHJhbnNmZXJzIjogewogICAgIml0ZW1zIjogW10sCiAgICAidG90YWwiOiAwCiAgfQp9"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-08-Missing-s-c9c03-account-access-are-rejected-chromium\\video.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\daedg\\OneDrive\\Documentos\\HSBC\\Playwright\\work\\videos\\lab\\distributed\\evidence\\test-results\\regression-TR-08-Missing-s-c9c03-account-access-are-rejected-chromium\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9dc370239c4a30f174fb-c0d35e3839db4122c0e8",
+          "file": "regression.spec.ts",
+          "line": 116,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-09T21:25:39.246Z",
+    "duration": 15940.615999999998,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

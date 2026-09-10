@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:53:11.039172+00:00",
+  "episode": "09",
+  "title": "Local 3270 Architecture and TNZ Setup",
+  "input": {
+    "file": "renders/09-local-3270-tnz-setup.mp4",
+    "sha256": "2b9c5e5502b9d5cf80cc851067bf3030dbaa00ede91fcacb7a7ea1f80192dc23",
+    "sizeBytes": 30320373,
+    "modifiedAtUtc": "2026-09-09T22:23:02.209831+00:00"
+  },
+  "timeline": {
+    "file": "audio/09/timeline.json",
+    "sha256": "4478803828c97bbdbd5ce2d95235550a32fe7752b22bdc64753d7ec74b073113",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 439.791667,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "09-01",
+      "title": "Add a terminal protocol boundary",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 34.562,
+      "sampleSeconds": 17.281,
+      "timestamp": "00:17.281",
+      "file": "09-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "af7eb231d52d5b90de0c315d3bd32761234621aac7e204ada83b33e9a2796b53"
+    },
+    {
+      "sceneId": "09-02",
+      "title": "Separate browser and terminal control",
+      "sceneStartSeconds": 34.562,
+      "sceneDurationSeconds": 36.65,
+      "sampleSeconds": 52.887,
+      "timestamp": "00:52.887",
+      "file": "09-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3357f10c2a8258886c150765adddb64a32b4e0a48e70fb320ee43cf83a8b0cbf"
+    },
+    {
+      "sceneId": "09-03",
+      "title": "Understand what the simulator displays",
+      "sceneStartSeconds": 71.21199999999999,
+      "sceneDurationSeconds": 36.746,
+      "sampleSeconds": 89.585,
+      "timestamp": "01:29.585",
+      "file": "09-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0fb9780147d2abaffca847f29a40a83d7fe9f95cd5ce7af7da97866b8d054d95"
+    },
+    {
+      "sceneId": "09-04",
+      "title": "Read the folder structure",
+      "sceneStartSeconds": 107.958,
+      "sceneDurationSeconds": 39.026,
+      "sampleSeconds": 127.471,
+      "timestamp": "02:07.471",
+      "file": "09-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dfa049873d38ce24ed58b76bf39040886532176d087aed14728e883226e0bc14"
+    },
+    {
+      "sceneId": "09-05",
+      "title": "Install the prepared environment",
+      "sceneStartSeconds": 146.984,
+      "sceneDurationSeconds": 37.586,
+      "sampleSeconds": 165.777,
+      "timestamp": "02:45.777",
+      "file": "09-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "78d0fe5d68e44368e067144044cf3fac73199a3749c00e966e3df1a1800609d8"
+    },
+    {
+      "sceneId": "09-06",
+      "title": "Start services in their own terminals",
+      "sceneStartSeconds": 184.57,
+      "sceneDurationSeconds": 37.85,
+      "sampleSeconds": 203.495,
+      "timestamp": "03:23.495",
+      "file": "09-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "96d5a8ad5810a6a565c29c208cf8c7e008e81bb97a11a7f20cb0c19b3ee74f7a"
+    },
+    {
+      "sceneId": "09-07",
+      "title": "Check a real terminal screen",
+      "sceneStartSeconds": 222.42,
+      "sceneDurationSeconds": 34.826,
+      "sampleSeconds": 239.833,
+      "timestamp": "03:59.833",
+      "file": "09-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5430ec9331240c5bcf3346eb17544993acce4af619b466301d3fa7f83348f415"
+    },
+    {
+      "sceneId": "09-08",
+      "title": "Identify the input and result fields",
+      "sceneStartSeconds": 257.246,
+      "sceneDurationSeconds": 34.994,
+      "sampleSeconds": 274.743,
+      "timestamp": "04:34.743",
+      "file": "09-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "41e6b7724c954ff43e9ef3dab34b22a4c0e70e3e90b9f5caf7ced1ac13903312"
+    },
+    {
+      "sceneId": "09-09",
+      "title": "Try an unknown reference",
+      "sceneStartSeconds": 292.24,
+      "sceneDurationSeconds": 36.818,
+      "sampleSeconds": 310.649,
+      "timestamp": "05:10.649",
+      "file": "09-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "776d8748b81765af7a41053f1c66bcf51c7e5d7c2211d29a8ddc95376cf239fc"
+    },
+    {
+      "sceneId": "09-10",
+      "title": "Keep plaintext local to the simulator",
+      "sceneStartSeconds": 329.058,
+      "sceneDurationSeconds": 38.306,
+      "sampleSeconds": 348.211,
+      "timestamp": "05:48.211",
+      "file": "09-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3d97e3cccc5dc1d06075565f474d6edb7205d41b62e522b1147321754a61b8b1"
+    },
+    {
+      "sceneId": "09-11",
+      "title": "Run protocol tests independently",
+      "sceneStartSeconds": 367.364,
+      "sceneDurationSeconds": 36.242,
+      "sampleSeconds": 385.485,
+      "timestamp": "06:25.485",
+      "file": "09-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7a7a78f83e510192e5d0b7b5ae86d9f1de86eba6b3f12d0d39ac63b5cd28d1ee"
+    },
+    {
+      "sceneId": "09-12",
+      "title": "Confirm the architecture checkpoint",
+      "sceneStartSeconds": 403.606,
+      "sceneDurationSeconds": 36.17,
+      "sampleSeconds": 421.691,
+      "timestamp": "07:01.691",
+      "file": "09-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d697e527dd09b2fa83134f76159e2d9465775ae306b22c0afa99b3536a90f4f2"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "09-01",
+        "09-02",
+        "09-03",
+        "09-04",
+        "09-05",
+        "09-06"
+      ],
+      "sha256": "3d931f2befb642954c2f0245ec146ab1bdb61dec5d0ec29445091422e15b334a"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "09-07",
+        "09-08",
+        "09-09",
+        "09-10",
+        "09-11",
+        "09-12"
+      ],
+      "sha256": "1bc3eac7e0cd165c4a8f2edcfcfecfaf8fdc042c2cc22202581c5c3a9f24cb3f"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "2b9c5e5502b9d5cf80cc851067bf3030dbaa00ede91fcacb7a7ea1f80192dc23",
+    "reviewedAtUtc": "2026-09-10T03:53:58.436728+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:08.535042+00:00",
+    "stage": "rendered",
+    "timelineSha256": "4478803828c97bbdbd5ce2d95235550a32fe7752b22bdc64753d7ec74b073113",
+    "artifactSha256": "2b9c5e5502b9d5cf80cc851067bf3030dbaa00ede91fcacb7a7ea1f80192dc23",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/09/timeline.json": "4478803828c97bbdbd5ce2d95235550a32fe7752b22bdc64753d7ec74b073113",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/09/narration.wav": "49128ec87b59059d9af3c90b59875edf45ce6b27eb2fd7c9d7fe5756b0a56cfc",
+      "audio/09/subtitles.srt": "6721a5588b6dbdadf13994ddfb54db4aa5a1371c1af4c78ce0cde00d22264ad0",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

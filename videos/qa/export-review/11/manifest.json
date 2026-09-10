@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:53:16.855574+00:00",
+  "episode": "11",
+  "title": "Hybrid Regression: One Correlation Across Interfaces",
+  "input": {
+    "file": "renders/11-hybrid-web-services-tnz.mp4",
+    "sha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+    "sizeBytes": 36745591,
+    "modifiedAtUtc": "2026-09-09T22:33:10.752569+00:00"
+  },
+  "timeline": {
+    "file": "audio/11/timeline.json",
+    "sha256": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 444.625,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "11-01",
+      "title": "Follow one transfer across interfaces",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 40.634,
+      "sampleSeconds": 20.317,
+      "timestamp": "00:20.317",
+      "file": "11-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "46c71a610831cc0272fdd9e23f059bb5d759ce5690f3615c3fce5e301b06cb33"
+    },
+    {
+      "sceneId": "11-02",
+      "title": "Prepare an isolated hybrid fixture",
+      "sceneStartSeconds": 40.634,
+      "sceneDurationSeconds": 35.33,
+      "sampleSeconds": 58.299,
+      "timestamp": "00:58.299",
+      "file": "11-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "62b9577764680647ed8d5857108d1a01086b699283ee27cccd3418489334aa2c"
+    },
+    {
+      "sceneId": "11-03",
+      "title": "Perform the actual browser transfer",
+      "sceneStartSeconds": 75.964,
+      "sceneDurationSeconds": 36.242,
+      "sampleSeconds": 94.085,
+      "timestamp": "01:34.085",
+      "file": "11-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b681252ef09e70ab6b6b82d5a921da47be4e0b3421db412719a6a29f5194340d"
+    },
+    {
+      "sceneId": "11-04",
+      "title": "Extract the canonical correlation",
+      "sceneStartSeconds": 112.20599999999999,
+      "sceneDurationSeconds": 38.234,
+      "sampleSeconds": 131.323,
+      "timestamp": "02:11.323",
+      "file": "11-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b41bde8ed37a67f6e753d0f1b0f02e50d195f224322dee0d6895d12090d2ded6"
+    },
+    {
+      "sceneId": "11-05",
+      "title": "Call the adapter from Python",
+      "sceneStartSeconds": 150.44,
+      "sceneDurationSeconds": 36.386,
+      "sampleSeconds": 168.633,
+      "timestamp": "02:48.633",
+      "file": "11-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c91de53fc30a1003a31136fb2391fe7515d2b6cff0b54ad4087e97d0450e636f"
+    },
+    {
+      "sceneId": "11-06",
+      "title": "Call the same boundary from TypeScript",
+      "sceneStartSeconds": 186.826,
+      "sceneDurationSeconds": 37.514,
+      "sampleSeconds": 205.583,
+      "timestamp": "03:25.583",
+      "file": "11-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b48fc8c34a2e8a18575dccc0bed38f973d43f6aefe87f7da60dea3ee6d02f97b"
+    },
+    {
+      "sceneId": "11-07",
+      "title": "Call the same boundary from Java",
+      "sceneStartSeconds": 224.34,
+      "sceneDurationSeconds": 36.434,
+      "sampleSeconds": 242.557,
+      "timestamp": "04:02.557",
+      "file": "11-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0419d2e4d4dde25a71309f445a07ad89383d0d96f519dd8960946a4f55f738f3"
+    },
+    {
+      "sceneId": "11-08",
+      "title": "Assert every business value",
+      "sceneStartSeconds": 260.774,
+      "sceneDurationSeconds": 38.618,
+      "sampleSeconds": 280.083,
+      "timestamp": "04:40.083",
+      "file": "11-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9c8749f51e68d9be215a6e00cbab586e56d1e6ee6bec54f8cabf02995d6ff0b9"
+    },
+    {
+      "sceneId": "11-09",
+      "title": "Keep ledger projection as another check",
+      "sceneStartSeconds": 299.392,
+      "sceneDurationSeconds": 35.738,
+      "sampleSeconds": 317.261,
+      "timestamp": "05:17.261",
+      "file": "11-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "19f16e70611294abd16261c72b598cbd23ee950665c9ab43ba8d9b655af02edb"
+    },
+    {
+      "sceneId": "11-10",
+      "title": "Capture evidence before cleanup",
+      "sceneStartSeconds": 335.13,
+      "sceneDurationSeconds": 38.378,
+      "sampleSeconds": 354.319,
+      "timestamp": "05:54.319",
+      "file": "11-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6fb6a377fab3c2faf3cc44aeee3f2760960c1e9b8e66156a89d48d7b74abdf52"
+    },
+    {
+      "sceneId": "11-11",
+      "title": "Add a meaningful negative case",
+      "sceneStartSeconds": 373.508,
+      "sceneDurationSeconds": 34.85,
+      "sampleSeconds": 390.933,
+      "timestamp": "06:30.933",
+      "file": "11-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "becdca4f4b4aff65030170d28f6e8320b8262fcacd982ad499180f5854aa713b"
+    },
+    {
+      "sceneId": "11-12",
+      "title": "Review the hybrid checkpoint",
+      "sceneStartSeconds": 408.358,
+      "sceneDurationSeconds": 36.242,
+      "sampleSeconds": 426.479,
+      "timestamp": "07:06.479",
+      "file": "11-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "10c3bb53368723139125de74bee0fbe9364741f7f836fb49434a5a89af1bd56c"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "11-01",
+        "11-02",
+        "11-03",
+        "11-04",
+        "11-05",
+        "11-06"
+      ],
+      "sha256": "7f7c5885c12a01f25d5fa68638447578d0d8a0cbf93db5bd13e9c42691555543"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "11-07",
+        "11-08",
+        "11-09",
+        "11-10",
+        "11-11",
+        "11-12"
+      ],
+      "sha256": "d6e2c0686de00fd7a1a837f559fbd31fa5e80e9cd91fe380806e143460882dca"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+    "reviewedAtUtc": "2026-09-10T03:54:53.992197+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:14.235357+00:00",
+    "stage": "rendered",
+    "timelineSha256": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+    "artifactSha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/11/timeline.json": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/11/narration.wav": "665a10bca9b2b711e6d51e9d744d30b79528d77e0f7441c79c46ee6e31b91574",
+      "audio/11/subtitles.srt": "e79b0081b331c934a84dfc17ed8a5bd795a3ee7a397a4af46a43c128b7b55d4b",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "lab/mainframe/evidence/hybrid-python-browser.png": "80e36f205f8ab0388182b811f499b7ca51076918b3eca0d99b3cf014a19a9f0c",
+      "lab/mainframe/evidence/hybrid-python-terminal.txt": "a240104b1624618a450e83b86cbb648760dfd8a874d63c7b09b5a7fab6cde280"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

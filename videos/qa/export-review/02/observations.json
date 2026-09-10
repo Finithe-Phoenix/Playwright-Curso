@@ -1,0 +1,48 @@
+{
+  "episode": "02",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+  "reviewedAtUtc": "2026-09-10T03:52:48.469118+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4. All production inputFiles and artifact hashes were verified against current files.",
+  "reviewedSceneIds": [
+    "02-01",
+    "02-02",
+    "02-03",
+    "02-04",
+    "02-05",
+    "02-06",
+    "02-07",
+    "02-08",
+    "02-09",
+    "02-10",
+    "02-11",
+    "02-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "02-06"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/02/timeline.json": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/02/narration.wav": "7db811cc46642f34904220bd9d9151886caec46d0767593c76fa1cb0062fbd46",
+    "audio/02/subtitles.srt": "eb02ee10311a35c38421e97942e1a59958758ce7aa5da8d022672462ac5f77c6",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+    "lab/distributed/evidence/test-results/regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium/ui-success.png": "8f2c387fd5ce14975f8c554652ac7542cd6b0a15565a2fd16d5b0beee713eb04"
+  },
+  "sampledFrameFindings": [
+    "The 12 sampled frames use the blue, cool gray, white and navy revision; no green or teal is visible.",
+    "Code operators are displayed literally, while titles, line numbers, supporting labels and subtitles fit without clipping.",
+    "Expanded frame 02-06 shows the refreshed white/blue local application capture, successful transfer state and MXN 900.00; the evidence label and source remain separate.",
+    "Three core-case outcomes and idempotency code retain their original instructional content."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

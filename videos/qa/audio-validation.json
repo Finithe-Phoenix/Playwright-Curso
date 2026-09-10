@@ -1,0 +1,177 @@
+{
+  "requestedEpisodes": 12,
+  "validatedEpisodes": 12,
+  "episodes": [
+    {
+      "episode": "01",
+      "seconds": 423.0,
+      "scenes": 12,
+      "captions": 84,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.849334716796875,
+      "rms": 0.08230437377934903,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "02",
+      "seconds": 430.392,
+      "scenes": 12,
+      "captions": 84,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.939971923828125,
+      "rms": 0.08217039395900377,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "03",
+      "seconds": 443.28,
+      "scenes": 12,
+      "captions": 86,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.890228271484375,
+      "rms": 0.0822250746989718,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "04",
+      "seconds": 438.576,
+      "scenes": 12,
+      "captions": 83,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.868438720703125,
+      "rms": 0.08279232111254348,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "05",
+      "seconds": 439.608,
+      "scenes": 12,
+      "captions": 84,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.939971923828125,
+      "rms": 0.08288540995985075,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "06",
+      "seconds": 434.496,
+      "scenes": 12,
+      "captions": 85,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.939971923828125,
+      "rms": 0.08252264905480661,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "07",
+      "seconds": 424.464,
+      "scenes": 12,
+      "captions": 83,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.917388916015625,
+      "rms": 0.08304618654028754,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "08",
+      "seconds": 434.88,
+      "scenes": 12,
+      "captions": 85,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.939971923828125,
+      "rms": 0.08290346629761117,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "09",
+      "seconds": 439.776,
+      "scenes": 12,
+      "captions": 87,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.87286376953125,
+      "rms": 0.08456690490928051,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "10",
+      "seconds": 434.4,
+      "scenes": 12,
+      "captions": 85,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.86895751953125,
+      "rms": 0.08311522194900553,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "11",
+      "seconds": 444.6,
+      "scenes": 12,
+      "captions": 88,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.8978271484375,
+      "rms": 0.08291201788109835,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    },
+    {
+      "episode": "12",
+      "seconds": 451.992,
+      "scenes": 12,
+      "captions": 86,
+      "alignment": {
+        "original words aligned to provider boundaries": 12
+      },
+      "peak": 0.94000244140625,
+      "rms": 0.0816643471861856,
+      "rate": "+0%",
+      "voice": "en-US-JennyNeural",
+      "valid": true
+    }
+  ],
+  "errors": [],
+  "totalSeconds": 5239.464,
+  "scope": "Technical validation; no automatic speech-recognition or human listening claim"
+}

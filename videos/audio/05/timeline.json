@@ -1,0 +1,702 @@
+{
+  "id": "05",
+  "slug": "isolation-authentication-test-data",
+  "title": "Isolation, Authentication and Test Data",
+  "summary": "Design fixture ownership that survives retries, failures and parallel execution.",
+  "language": "en",
+  "objectives": [
+    "Isolate browser and server state",
+    "Keep setup capabilities separate from user sessions",
+    "Preserve evidence through cleanup and retries"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/auth",
+    "https://playwright.dev/docs/test-fixtures",
+    "https://playwright.dev/docs/browser-contexts",
+    "https://playwright.dev/docs/test-retries"
+  ],
+  "scenes": [
+    {
+      "id": "05-01",
+      "title": "Treat each test as an experiment",
+      "kicker": "EPISODE 05 · STEP 1",
+      "type": "title",
+      "narration": "Reliable regression starts before the first click. In this episode, design an experiment whose starting data, identity, and cleanup belong to one test attempt. A new browser context removes browser state, but it does not reset money held by a backend service. Likewise, a fresh account does not remove cookies from a reused page. You need both boundaries. We will trace the fixture from creation to deletion and examine why retries, parallel workers, and authentication reuse can otherwise create misleading outcomes.",
+      "bullets": [
+        "Isolate browser state",
+        "Isolate server data",
+        "Own the full experiment"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 0.0,
+      "duration": 35.762,
+      "audio": "audio/05/05-01.wav"
+    },
+    {
+      "id": "05-02",
+      "title": "Create only the data you own",
+      "kicker": "EPISODE 05 · STEP 2",
+      "type": "code",
+      "narration": "Use the local fixture endpoint to create a synthetic user, source account, and beneficiary with the agreed opening balance. Include a run identifier and case identifier for diagnosis. The server adds unique identifiers, so two learners can use the same case name without sharing mutable accounts. Inspect the creation status before reading the response. Retain the fixture identifier immediately, because cleanup needs it even when the next setup step fails. Never replace targeted fixture creation with a shared account that someone manually reset earlier.",
+      "bullets": [
+        "Run and case identifiers",
+        "Server-generated account IDs",
+        "Retain the cleanup identifier"
+      ],
+      "code": "const created = await hooks.post('/__test/fixtures', {\n  data: { runId, caseId: 'TR-01',\n    currency: 'MXN', balanceMinor: 100000 },\n});\nexpect(created.status()).toBe(201);\nconst lab = await created.json();",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared clients and imports required",
+      "start": 35.762,
+      "duration": 37.394,
+      "audio": "audio/05/05-02.wav"
+    },
+    {
+      "id": "05-03",
+      "title": "Keep the hook client separate",
+      "kicker": "EPISODE 05 · STEP 3",
+      "type": "diagram",
+      "narration": "The fixture client carries a capability used only by this local training environment. Configure its hook key from the laboratory environment and restrict its use to preparation and deletion requests. The business context authenticates using the synthetic credentials returned for its fixture. Do not install the hook header globally on the browser. This separation clarifies what each observation proves: ordinary business requests must work with the user's session, while setup endpoints deliberately create the data needed for a repeatable classroom experiment.",
+      "bullets": [
+        "Hook client: create and delete",
+        "Business context: login and transact",
+        "Separate headers and ownership"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [
+        "Test attempt",
+        "Owned fixture",
+        "Browser identity",
+        "Business effects",
+        "Cleanup"
+      ],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 73.156,
+      "duration": 34.898,
+      "audio": "audio/05/05-03.wav"
+    },
+    {
+      "id": "05-04",
+      "title": "Authenticate where the page lives",
+      "kicker": "EPISODE 05 · STEP 4",
+      "type": "code",
+      "narration": "Login through the HTTP client associated with the browser context. After a successful response, the session cookie is available to that context's page. Use the same loopback hostname for login and navigation; changing between localhost and its numeric address changes the cookie's host scope. When a page unexpectedly redirects to login, inspect that relationship before changing timeouts. Avoid saving synthetic session files unless a specific exercise requires them. Per-test login keeps identity ownership visible and is sufficient for this small local workflow.",
+      "bullets": [
+        "Use one base address",
+        "Share the context cookie jar",
+        "Inspect identity before timeouts"
+      ],
+      "code": "const login = await page.request.post('/api/session', {\n  data: { username: lab.username, password: lab.password },\n});\nexpect(login.status()).toBe(200);\nawait page.goto('/transfers');",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared clients and imports required",
+      "start": 108.054,
+      "duration": 38.426,
+      "audio": "audio/05/05-04.wav"
+    },
+    {
+      "id": "05-05",
+      "title": "Understand storage state reuse",
+      "kicker": "EPISODE 05 · STEP 5",
+      "type": "steps",
+      "narration": "Some suites save authenticated storage state to avoid repeating login. That can be appropriate when tests do not collide through the same user's server data, or when each worker receives its own account. Reusing a session file alone does not isolate account balances or transfer histories. Before adopting this optimization, list every mutable resource associated with that identity and decide who owns it. For our three central cases, fresh synthetic users are easier to reason about than a fast shared login followed by complicated repairs.",
+      "bullets": [
+        "Authentication reuse is a choice",
+        "Server data still needs isolation",
+        "Optimize after correctness"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 146.48000000000002,
+      "duration": 34.802,
+      "audio": "audio/05/05-05.wav"
+    },
+    {
+      "id": "05-06",
+      "title": "Give retries new data",
+      "kicker": "EPISODE 05 · STEP 6",
+      "type": "steps",
+      "narration": "A retry is another experiment, not a continuation that may reuse an already debited account. Arrange fixture setup so each attempt gets its own source account, beneficiary, session, and idempotency key. Within the idempotency case, reuse the key only for the two requests representing the same intended transfer. Across test attempts, generate a new intention and new data. Otherwise, a retry might succeed by replaying a transfer from the failed attempt, creating the appearance of stability while exercising a different path than the original test.",
+      "bullets": [
+        "Fresh fixture per attempt",
+        "Reuse keys within one intent",
+        "Do not inherit prior effects"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 181.282,
+      "duration": 37.226,
+      "audio": "audio/05/05-06.wav"
+    },
+    {
+      "id": "05-07",
+      "title": "Verify ownership boundaries",
+      "kicker": "EPISODE 05 · STEP 7",
+      "type": "steps",
+      "narration": "Add an authorization extension after the three central cases: create two fixtures and try accessing one fixture's account with the other's session. The local contract defines a forbidden response for cross-fixture business access. Inspect both the response and the unchanged target state. This extension checks a different risk from insufficient funds. Keep it separately named and independently prepared so its purpose is clear. AI may suggest combining them for brevity, but a combined case often makes it harder to identify which rule actually failed.",
+      "bullets": [
+        "Two distinct synthetic identities",
+        "Check forbidden cross-access",
+        "Keep the risk separately named"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 218.508,
+      "duration": 36.65,
+      "audio": "audio/05/05-07.wav"
+    },
+    {
+      "id": "05-08",
+      "title": "Place cleanup after evidence",
+      "kicker": "EPISODE 05 · STEP 8",
+      "type": "steps",
+      "narration": "When a test fails, capture the relevant browser, API, and correlation evidence before deleting the fixture. Then close the browser context and remove only the owned data through the local deletion endpoint. Make the deletion operation idempotent so a second cleanup attempt is safe for that fixture. Record its response separately from the original failure. Deleting the entire laboratory state may appear convenient in a single demonstration, but it invalidates other running experiments and prevents meaningful parallel execution across learners or language versions.",
+      "bullets": [
+        "Capture evidence first",
+        "Close the context",
+        "Delete one owned fixture"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 255.15800000000002,
+      "duration": 36.986,
+      "audio": "audio/05/05-08.wav"
+    },
+    {
+      "id": "05-09",
+      "title": "Handle partial setup failures",
+      "kicker": "EPISODE 05 · STEP 9",
+      "type": "steps",
+      "narration": "Walk through a setup failure. Suppose fixture creation succeeds but authentication fails. The test body may never run, yet the created account still exists. The setup owner must therefore register cleanup as soon as creation succeeds, rather than waiting until every preparation step completes. Use the fixture mechanisms appropriate to your language and inspect their behavior during exceptions. If cleanup also fails, preserve the original cause and the remaining fixture identifier. A useful report explains both problems without converting either into a silently skipped success.",
+      "bullets": [
+        "Cleanup begins after creation",
+        "Handle failures before the test body",
+        "Keep both causes visible"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 292.144,
+      "duration": 39.242,
+      "audio": "audio/05/05-09.wav"
+    },
+    {
+      "id": "05-10",
+      "title": "Add concurrency only after isolation",
+      "kicker": "EPISODE 05 · STEP 10",
+      "type": "diagram",
+      "narration": "Now imagine two workers submitting transfers at the same time. Each owns a browser context and a separate fixture, so their account assertions remain deterministic. The shared local services can process both requests, but the observations remain filtered by each source account and transfer identifier. Increasing worker count changes scheduling, not the business oracle. If failures appear only under parallel execution, compare fixture identifiers and session ownership first. Then investigate service behavior with correlated evidence instead of immediately adding global locks around every test.",
+      "bullets": [
+        "Independent fixture per worker",
+        "Filtered business observations",
+        "Diagnose collisions with identifiers"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [
+        "Test attempt",
+        "Owned fixture",
+        "Browser identity",
+        "Business effects",
+        "Cleanup"
+      ],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 331.386,
+      "duration": 39.53,
+      "audio": "audio/05/05-10.wav"
+    },
+    {
+      "id": "05-11",
+      "title": "Ask AI to audit lifecycle edges",
+      "kicker": "EPISODE 05 · STEP 11",
+      "type": "steps",
+      "narration": "Give AI the setup and cleanup code together with the contract. Ask it to trace resource ownership through success, assertion failure, login failure, and an interrupted request. Require it to identify which fixture might remain and which evidence might be lost in each path. This is more useful than asking for generic best practices. Review every suggestion against the actual runner's lifecycle. If a proposed helper does not exist in your project, either implement it deliberately with clear responsibilities or reject that unsupported shortcut.",
+      "bullets": [
+        "Audit concrete failure paths",
+        "Require ownership explanations",
+        "Verify proposed helpers"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 370.91600000000005,
+      "duration": 35.954,
+      "audio": "audio/05/05-11.wav"
+    },
+    {
+      "id": "05-12",
+      "title": "Produce an isolation checklist",
+      "kicker": "EPISODE 05 · STEP 12",
+      "type": "recap",
+      "narration": "Your checkpoint is a short ownership checklist attached to one executed case. It names the run, attempt, fixture, source account, browser context, and cleanup result. It also explains how authentication reached the page and where failure evidence was captured. Review the checklist with a partner and ask them to predict what happens if login fails or the test is retried. When those answers follow directly from the code, you have a solid foundation for the distributed observations in the next episode.",
+      "bullets": [
+        "Starting state is explicit",
+        "Identity ownership is explicit",
+        "Cleanup evidence is explicit"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 406.87000000000006,
+      "duration": 32.738,
+      "audio": "audio/05/05-12.wav"
+    }
+  ],
+  "duration": 439.60800000000006,
+  "captions": [
+    {
+      "text": "Reliable regression starts before the first click. In this episode, design an",
+      "start": 0.7,
+      "end": 5.887499999999999
+    },
+    {
+      "text": "experiment whose starting data, identity, and cleanup belong to one test attempt. A",
+      "start": 5.8999999999999995,
+      "end": 11.625
+    },
+    {
+      "text": "new browser context removes browser state, but it does not reset money held by a",
+      "start": 11.6375,
+      "end": 15.924999999999999
+    },
+    {
+      "text": "backend service. Likewise, a fresh account does not remove cookies from a reused page.",
+      "start": 15.9375,
+      "end": 21.837500000000002
+    },
+    {
+      "text": "You need both boundaries. We will trace the fixture from creation to deletion and",
+      "start": 22.700000000000003,
+      "end": 27.712500000000002
+    },
+    {
+      "text": "examine why retries, parallel workers, and authentication reuse can otherwise create",
+      "start": 27.725,
+      "end": 32.987500000000004
+    },
+    {
+      "text": "misleading outcomes.",
+      "start": 33.0,
+      "end": 34.237500000000004
+    },
+    {
+      "text": "Use the local fixture endpoint to create a synthetic user, source account, and",
+      "start": 36.462,
+      "end": 40.9495
+    },
+    {
+      "text": "beneficiary with the agreed opening balance. Include a run identifier and case",
+      "start": 40.962,
+      "end": 46.0995
+    },
+    {
+      "text": "identifier for diagnosis. The server adds unique identifiers, so two learners can use",
+      "start": 46.112,
+      "end": 52.187
+    },
+    {
+      "text": "the same case name without sharing mutable accounts. Inspect the creation status",
+      "start": 52.1995,
+      "end": 57.4245
+    },
+    {
+      "text": "before reading the response. Retain the fixture identifier immediately, because",
+      "start": 57.437,
+      "end": 62.6745
+    },
+    {
+      "text": "cleanup needs it even when the next setup step fails. Never replace targeted fixture",
+      "start": 62.687,
+      "end": 68.1745
+    },
+    {
+      "text": "creation with a shared account that someone manually reset earlier.",
+      "start": 68.187,
+      "end": 71.637
+    },
+    {
+      "text": "The fixture client carries a capability used only by this local training environment.",
+      "start": 73.85600000000001,
+      "end": 78.331
+    },
+    {
+      "text": "Configure its hook key from the laboratory environment and restrict its use to",
+      "start": 79.1935,
+      "end": 82.91850000000001
+    },
+    {
+      "text": "preparation and deletion requests. The business context authenticates using the",
+      "start": 82.93100000000001,
+      "end": 88.18100000000001
+    },
+    {
+      "text": "synthetic credentials returned for its fixture. Do not install the hook header",
+      "start": 88.1935,
+      "end": 92.93100000000001
+    },
+    {
+      "text": "globally on the browser. This separation clarifies what each observation proves:",
+      "start": 92.9435,
+      "end": 98.0685
+    },
+    {
+      "text": "ordinary business requests must work with the user's session, while setup endpoints",
+      "start": 98.30600000000001,
+      "end": 102.74350000000001
+    },
+    {
+      "text": "deliberately create the data needed for a repeatable classroom experiment.",
+      "start": 102.756,
+      "end": 106.54350000000001
+    },
+    {
+      "text": "Login through the HTTP client associated with the browser context. After a successful",
+      "start": 108.754,
+      "end": 114.5415
+    },
+    {
+      "text": "response, the session cookie is available to that context's page. Use the same",
+      "start": 114.554,
+      "end": 119.979
+    },
+    {
+      "text": "loopback hostname for login and navigation; changing between localhost and its numeric",
+      "start": 119.9915,
+      "end": 124.804
+    },
+    {
+      "text": "address changes the cookie's host scope. When a page unexpectedly redirects to login,",
+      "start": 124.8165,
+      "end": 130.429
+    },
+    {
+      "text": "inspect that relationship before changing timeouts. Avoid saving synthetic session",
+      "start": 130.6415,
+      "end": 136.1415
+    },
+    {
+      "text": "files unless a specific exercise requires them. Per-test login keeps identity",
+      "start": 136.154,
+      "end": 141.6665
+    },
+    {
+      "text": "ownership visible and is sufficient for this small local workflow.",
+      "start": 141.679,
+      "end": 144.954
+    },
+    {
+      "text": "Some suites save authenticated storage state to avoid repeating login. That can be",
+      "start": 147.18,
+      "end": 152.34250000000003
+    },
+    {
+      "text": "appropriate when tests do not collide through the same user's server data, or when",
+      "start": 152.35500000000002,
+      "end": 156.6425
+    },
+    {
+      "text": "each worker receives its own account. Reusing a session file alone does not isolate",
+      "start": 156.65500000000003,
+      "end": 161.8925
+    },
+    {
+      "text": "account balances or transfer histories. Before adopting this optimization, list every",
+      "start": 161.90500000000003,
+      "end": 167.6175
+    },
+    {
+      "text": "mutable resource associated with that identity and decide who owns it. For our three",
+      "start": 167.63000000000002,
+      "end": 172.79250000000002
+    },
+    {
+      "text": "central cases, fresh synthetic users are easier to reason about than a fast shared",
+      "start": 172.805,
+      "end": 177.43
+    },
+    {
+      "text": "login followed by complicated repairs.",
+      "start": 177.44250000000002,
+      "end": 179.75500000000002
+    },
+    {
+      "text": "A retry is another experiment, not a continuation that may reuse an already debited",
+      "start": 181.982,
+      "end": 186.89450000000002
+    },
+    {
+      "text": "account. Arrange fixture setup so each attempt gets its own source account,",
+      "start": 186.907,
+      "end": 191.9445
+    },
+    {
+      "text": "beneficiary, session, and idempotency key. Within the idempotency case, reuse the key",
+      "start": 192.11950000000002,
+      "end": 198.657
+    },
+    {
+      "text": "only for the two requests representing the same intended transfer. Across test",
+      "start": 198.66950000000003,
+      "end": 203.80700000000002
+    },
+    {
+      "text": "attempts, generate a new intention and new data. Otherwise, a retry might succeed by",
+      "start": 203.8195,
+      "end": 209.66950000000003
+    },
+    {
+      "text": "replaying a transfer from the failed attempt, creating the appearance of stability",
+      "start": 209.68200000000002,
+      "end": 213.86950000000002
+    },
+    {
+      "text": "while exercising a different path than the original test.",
+      "start": 213.882,
+      "end": 216.98200000000003
+    },
+    {
+      "text": "Add an authorization extension after the three central cases: create two fixtures and",
+      "start": 219.208,
+      "end": 224.233
+    },
+    {
+      "text": "try accessing one fixture's account with the other's session. The local contract",
+      "start": 224.24550000000002,
+      "end": 229.4205
+    },
+    {
+      "text": "defines a forbidden response for cross-fixture business access. Inspect both the",
+      "start": 229.43300000000002,
+      "end": 234.4205
+    },
+    {
+      "text": "response and the unchanged target state. This extension checks a different risk from",
+      "start": 234.43300000000002,
+      "end": 239.72050000000002
+    },
+    {
+      "text": "insufficient funds. Keep it separately named and independently prepared so its purpose",
+      "start": 239.733,
+      "end": 245.0455
+    },
+    {
+      "text": "is clear. AI may suggest combining them for brevity, but a combined case often makes",
+      "start": 245.05800000000002,
+      "end": 250.84550000000002
+    },
+    {
+      "text": "it harder to identify which rule actually failed.",
+      "start": 250.858,
+      "end": 253.633
+    },
+    {
+      "text": "When a test fails, capture the relevant browser, API, and correlation evidence before",
+      "start": 255.858,
+      "end": 261.32050000000004
+    },
+    {
+      "text": "deleting the fixture. Then close the browser context and remove only the owned data",
+      "start": 261.333,
+      "end": 266.5205
+    },
+    {
+      "text": "through the local deletion endpoint. Make the deletion operation idempotent so a",
+      "start": 266.533,
+      "end": 271.50800000000004
+    },
+    {
+      "text": "second cleanup attempt is safe for that fixture. Record its response separately from",
+      "start": 271.5205,
+      "end": 276.75800000000004
+    },
+    {
+      "text": "the original failure. Deleting the entire laboratory state may appear convenient in a",
+      "start": 276.7705,
+      "end": 282.32050000000004
+    },
+    {
+      "text": "single demonstration, but it invalidates other running experiments and prevents",
+      "start": 282.333,
+      "end": 286.708
+    },
+    {
+      "text": "meaningful parallel execution across learners or language versions.",
+      "start": 286.7205,
+      "end": 290.63300000000004
+    },
+    {
+      "text": "Walk through a setup failure. Suppose fixture creation succeeds but authentication",
+      "start": 292.844,
+      "end": 298.119
+    },
+    {
+      "text": "fails. The test body may never run, yet the created account still exists. The setup",
+      "start": 298.1315,
+      "end": 304.9815
+    },
+    {
+      "text": "owner must therefore register cleanup as soon as creation succeeds, rather than",
+      "start": 304.994,
+      "end": 309.3565
+    },
+    {
+      "text": "waiting until every preparation step completes. Use the fixture mechanisms appropriate",
+      "start": 309.369,
+      "end": 314.8315
+    },
+    {
+      "text": "to your language and inspect their behavior during exceptions. If cleanup also fails,",
+      "start": 314.844,
+      "end": 320.3815
+    },
+    {
+      "text": "preserve the original cause and the remaining fixture identifier. A useful report",
+      "start": 320.494,
+      "end": 325.519
+    },
+    {
+      "text": "explains both problems without converting either into a silently skipped success.",
+      "start": 325.5315,
+      "end": 329.8565
+    },
+    {
+      "text": "Now imagine two workers submitting transfers at the same time. Each owns a browser",
+      "start": 332.086,
+      "end": 337.286
+    },
+    {
+      "text": "context and a separate fixture, so their account assertions remain deterministic. The",
+      "start": 337.29850000000005,
+      "end": 342.79850000000005
+    },
+    {
+      "text": "shared local services can process both requests, but the observations remain filtered",
+      "start": 342.81100000000004,
+      "end": 347.661
+    },
+    {
+      "text": "by each source account and transfer identifier. Increasing worker count changes",
+      "start": 347.67350000000005,
+      "end": 352.761
+    },
+    {
+      "text": "scheduling, not the business oracle. If failures appear only under parallel execution,",
+      "start": 352.7735,
+      "end": 358.48600000000005
+    },
+    {
+      "text": "compare fixture identifiers and session ownership first. Then investigate service",
+      "start": 358.661,
+      "end": 364.1485
+    },
+    {
+      "text": "behavior with correlated evidence instead of immediately adding global locks around",
+      "start": 364.161,
+      "end": 368.5235
+    },
+    {
+      "text": "every test.",
+      "start": 368.536,
+      "end": 369.3985
+    },
+    {
+      "text": "Give AI the setup and cleanup code together with the contract. Ask it to trace",
+      "start": 371.61600000000004,
+      "end": 376.4535000000001
+    },
+    {
+      "text": "resource ownership through success, assertion failure, login failure, and an",
+      "start": 376.46600000000007,
+      "end": 380.90350000000007
+    },
+    {
+      "text": "interrupted request. Require it to identify which fixture might remain and which",
+      "start": 380.91600000000005,
+      "end": 386.0160000000001
+    },
+    {
+      "text": "evidence might be lost in each path. This is more useful than asking for generic best",
+      "start": 386.02850000000007,
+      "end": 391.46600000000007
+    },
+    {
+      "text": "practices. Review every suggestion against the actual runner's lifecycle. If a",
+      "start": 391.47850000000005,
+      "end": 397.60350000000005
+    },
+    {
+      "text": "proposed helper does not exist in your project, either implement it deliberately with",
+      "start": 397.61600000000004,
+      "end": 401.81600000000003
+    },
+    {
+      "text": "clear responsibilities or reject that unsupported shortcut.",
+      "start": 401.8285000000001,
+      "end": 405.35350000000005
+    },
+    {
+      "text": "Your checkpoint is a short ownership checklist attached to one executed case. It names",
+      "start": 407.57000000000005,
+      "end": 413.1700000000001
+    },
+    {
+      "text": "the run, attempt, fixture, source account, browser context, and cleanup result. It",
+      "start": 413.18250000000006,
+      "end": 419.3575000000001
+    },
+    {
+      "text": "also explains how authentication reached the page and where failure evidence was",
+      "start": 419.37000000000006,
+      "end": 423.3575000000001
+    },
+    {
+      "text": "captured. Review the checklist with a partner and ask them to predict what happens if",
+      "start": 423.37000000000006,
+      "end": 428.38250000000005
+    },
+    {
+      "text": "login fails or the test is retried. When those answers follow directly from the code,",
+      "start": 428.39500000000004,
+      "end": 433.8450000000001
+    },
+    {
+      "text": "you have a solid foundation for the distributed observations in the next episode.",
+      "start": 434.05750000000006,
+      "end": 438.08250000000004
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 58.51500000000124,
+  "caption_mapping_revision": 2
+}

@@ -1,0 +1,145 @@
+# Episode 08: Traces, CI and Evidence-Based Debugging
+
+## Frame 1
+
+status: animated
+src: compositions/s0801.html
+start: 0.000
+duration: 34.850
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Use a failure as evidence
+
+A useful regression should fail when the business behavior is wrong. Inspect a controlled duplicate-debit defect and build a diagnosis from traces, API state, and runner results. We will preserve the correct expectation rather than editing it to match the defect. Then we will map the same execution into a CI job with retained artifacts. Keep local execution and hosted CI execution distinct in your report: a working command on your workstation is preparation evidence, not proof that a remote pipeline ran successfully.
+
+## Frame 2
+
+status: animated
+src: compositions/s0802.html
+start: 34.850
+duration: 34.730
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Start the defect on separate ports
+
+The laboratory includes an explicit defect switch that allows a repeated request to create another transfer. Run that variant on separate ports so the healthy classroom remains available. Use a dedicated terminal inside the distributed project. Set the synthetic hook value as documented, then start the variant with its gateway and service ports. This is a controlled experiment. Keep the environment address visible throughout the run so an expected failure from the defective version is never confused with evidence from the healthy version.
+
+## Frame 3
+
+status: animated
+src: compositions/s0803.html
+start: 69.580
+duration: 34.394
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Run the intended failing case
+
+From a separate test terminal, point the base address at the defective gateway and choose the idempotency case. Store its artifacts in a dedicated directory. The expected teaching outcome is a failing regression with a nonzero exit status, because the correct test requires one debit and one record. Do not infer the exact failure details from the switch alone. Read the actual runner result and attached business state. They tell you which assertion failed first and what the simulator produced during this particular execution.
+
+## Frame 4
+
+status: animated
+src: compositions/s0804.html
+start: 103.974
+duration: 32.426
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Open the right trace
+
+Locate the trace belonging to the failed case and its attempt, then open it with the project's Playwright trace viewer. Begin at the first failing action or assertion and inspect the surrounding timeline. Compare the page state before and after submission and identify the relevant transfer requests. Do not start by scrolling through every event without a question. Your initial question is specific: did the second request represent the same intention, and what response or state changed when the server processed it again?
+
+## Frame 5
+
+status: animated
+src: compositions/s0805.html
+start: 136.400
+duration: 38.066
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Confirm the request evidence
+
+Inspect both request bodies and their idempotency headers. The body and key should be identical within this case. If they differ, the test may be constructing two intentions, and your diagnosis must address that before diagnosing broken idempotency. If they match, compare the returned identifiers and statuses. The defective teaching variant can still return a replay-like status while creating another record. That is why status checks alone are insufficient. Follow the evidence into the account balance and transfer collection rather than stopping at HTTP metadata.
+
+## Frame 6
+
+status: animated
+src: compositions/s0806.html
+start: 174.466
+duration: 36.890
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Protect the monetary oracle
+
+The correct postcondition is ninety thousand centavos and one transfer. A duplicate debit would instead leave eighty thousand centavos and two records for this isolated opening state. Treat those actual values, when observed, as defect evidence. Do not change the expected balance, remove the count assertion, or add a skip. A good AI-assisted diagnosis explains how the request path violated the original rule and proposes an implementation correction. The regression remains the guardrail that distinguishes the corrected behavior from the teaching defect.
+
+## Frame 7
+
+status: animated
+src: compositions/s0807.html
+start: 211.356
+duration: 39.338
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Ask AI a bounded diagnostic question
+
+Provide AI with the contract, relevant request excerpts, assertion message, and sanitized state snapshot. Ask it to separate observations, hypotheses, and checks that could distinguish those hypotheses. Require it to preserve the balance and count expectations. Keep the diagnostic task focused. Review whether its proposed change belongs in the test setup, locator, or application implementation. Each possibility needs different evidence. An explanation that merely restates the failure with more technical vocabulary has not yet identified a verified cause.
+
+## Frame 8
+
+status: animated
+src: compositions/s0808.html
+start: 250.694
+duration: 35.114
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Validate the corrected path
+
+Return the test configuration to the healthy laboratory address and run the same case without altering its business assertions. Compare the outcome and artifacts with the defective run. This contrast distinguishes the implementations under the exercised conditions. If you apply a new code correction, execute that corrected build before claiming it works. Keep the failing artifact as teaching evidence and the successful artifact as a separate result. A screenshot of edited source is not a substitute for executing the modified behavior.
+
+## Frame 9
+
+status: animated
+src: compositions/s0809.html
+start: 285.808
+duration: 35.018
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Design the CI job around readiness
+
+A CI job needs more than the final test command. It checks out the project, installs the pinned dependencies and selected browser, starts the local services, waits for their documented health checks, and runs the intended suite. It must also stop the processes afterward. Keep service readiness separate from an arbitrary startup sleep. For Java and Python, use their own project commands and dependency files. This is a job design until the actual CI environment executes it and produces an accessible result for review.
+
+## Frame 10
+
+status: animated
+src: compositions/s0810.html
+start: 320.826
+duration: 38.738
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Retain evidence on failure
+
+Configure artifact collection to run even when the test command fails. Retain the runner result, failure trace, relevant screenshots, and a compact correlation summary. For Java, preserve the JUnit or Surefire output alongside the library trace; for Python, preserve the pytest result alongside plugin-managed artifacts. Inspect the collected files from a failed execution to confirm they are useful and belong to the correct attempt. Also apply the environment's approved handling rules before sharing traces that may contain authentication or request data beyond this synthetic laboratory.
+
+## Frame 11
+
+status: animated
+src: compositions/s0811.html
+start: 359.564
+duration: 38.978
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Report a precise execution status
+
+Your report should identify the application version or variant, test project, browser, selected cases, actual counts, and artifact locations. Include whether the run happened locally or in hosted CI. The template on screen uses explicit placeholders because these values must come from execution. A green summary without the selected cases can conceal tests that were never discovered. A pipeline configuration without a run should remain labeled configured. This reporting discipline makes the course's demonstration reviewable and gives a teammate enough context to reproduce the outcome.
+
+## Frame 12
+
+status: animated
+src: compositions/s0812.html
+start: 398.542
+duration: 36.338
+motion: dynamic-content-sequencing; stat-bars-and-fills; GSAP paint emphasis
+
+Close the diagnostic loop
+
+Your checkpoint is a paired explanation: why the correct regression rejects the controlled defect, and what evidence demonstrates the healthy path's outcome. Point to the request identity, business state, trace, and runner report. Then explain which CI steps are implemented and which have actually executed in their target environment. Avoid treating a retry as a diagnosis or an edited expectation as a fix. Preserve the reproducible investigation. Next, we will add a local terminal protocol boundary and keep the same standards of evidence.

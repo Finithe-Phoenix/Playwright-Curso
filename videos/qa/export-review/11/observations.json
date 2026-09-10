@@ -1,0 +1,50 @@
+{
+  "episode": "11",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+  "reviewedAtUtc": "2026-09-10T03:54:53.992197+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4. All production inputFiles and artifact hashes were verified against current files.",
+  "reviewedSceneIds": [
+    "11-01",
+    "11-02",
+    "11-03",
+    "11-04",
+    "11-05",
+    "11-06",
+    "11-07",
+    "11-08",
+    "11-09",
+    "11-10",
+    "11-11",
+    "11-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "11-10"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/11/timeline.json": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/11/narration.wav": "665a10bca9b2b711e6d51e9d744d30b79528d77e0f7441c79c46ee6e31b91574",
+    "audio/11/subtitles.srt": "e79b0081b331c934a84dfc17ed8a5bd795a3ee7a397a4af46a43c128b7b55d4b",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+    "lab/mainframe/evidence/hybrid-python-browser.png": "80e36f205f8ab0388182b811f499b7ca51076918b3eca0d99b3cf014a19a9f0c",
+    "lab/mainframe/evidence/hybrid-python-terminal.txt": "a240104b1624618a450e83b86cbb648760dfd8a874d63c7b09b5a7fab6cde280"
+  },
+  "sampledFrameFindings": [
+    "All 12 actual sampled frames use white/blue teaching cards and navy code or terminal panels; no green or teal is visible.",
+    "Python, TypeScript and Java invocation snippets remain readable with literal syntax and separate deadline units.",
+    "Expanded 11-10 shows the refreshed white/blue browser capture and navy terminal presentation with the same visible reference e4f932c4-4bc5-4297-9835-3b29e74cd457.",
+    "The evidence panel clearly shows COMPLETED, amount 10000, currency MXN and balance 90000, while retaining the local shared-data label.",
+    "No clipping or overlap is visible in titles, code, evidence, footer or sampled subtitles."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

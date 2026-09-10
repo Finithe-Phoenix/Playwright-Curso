@@ -1,0 +1,343 @@
+1
+00:00:00,700 --> 00:00:04,962
+Now implement the same business cases in Python with pytest and the synchronous
+
+2
+00:00:04,975 --> 00:00:10,888
+Playwright API. The important translation is the lifecycle, not replacing camel case
+
+3
+00:00:10,900 --> 00:00:16,312
+with underscores. Each case must receive fresh data, authenticate its own browser
+
+4
+00:00:16,325 --> 00:00:22,450
+context, execute its assertions, and release resources even when something fails. The
+
+5
+00:00:22,463 --> 00:00:27,912
+pytest plugin already provides a page and context. Build your laboratory fixtures
+
+6
+00:00:27,925 --> 00:00:33,388
+around those objects so isolation and trace options remain understandable. Keep the
+
+7
+00:00:33,400 --> 00:00:36,700
+same amounts, record counts, and idempotency rules.
+
+8
+00:00:38,934 --> 00:00:42,809
+Open the Python test project and invoke the virtual environment's interpreter
+
+9
+00:00:42,822 --> 00:00:48,084
+directly. Check the installed packages against the project's requirements, then run
+
+10
+00:00:48,096 --> 00:00:53,796
+pytest with a targeted case selection. Calling Python as a module launcher ensures
+
+11
+00:00:53,809 --> 00:00:58,847
+pytest comes from this environment. If your terminal finds a different Python on its
+
+12
+00:00:58,859 --> 00:01:02,847
+search path, packages and browsers can appear to be missing even though another
+
+13
+00:01:02,859 --> 00:01:08,047
+environment contains them. Resolve that mismatch first, and record the interpreter
+
+14
+00:01:08,059 --> 00:01:10,959
+used so another learner can reproduce your execution.
+
+15
+00:01:13,184 --> 00:01:19,059
+Draw two HTTP clients beside the browser. A dedicated preparation client uses the
+
+16
+00:01:19,072 --> 00:01:24,522
+local test hook key to create and remove fixtures. The page's associated request
+
+17
+00:01:24,534 --> 00:01:30,134
+client logs in and queries business APIs as the simulated user. Keep the hook header
+
+18
+00:01:30,146 --> 00:01:35,272
+away from global browser headers. This prevents a business request from accidentally
+
+19
+00:01:35,284 --> 00:01:41,122
+carrying administrative test capabilities. It also makes failures easier to classify:
+
+20
+00:01:41,359 --> 00:01:46,409
+fixture creation, login, transfer submission, and observation have different expected
+
+21
+00:01:46,422 --> 00:01:48,959
+responses and different evidence requirements.
+
+22
+00:01:51,178 --> 00:01:55,616
+A function-scoped fixture can yield the created dataset to a test and finalize it
+
+23
+00:01:55,628 --> 00:02:00,816
+afterward. The displayed skeleton explains ownership rather than providing a complete
+
+24
+00:02:00,828 --> 00:02:05,191
+implementation: create data through the documented local endpoint, yield its
+
+25
+00:02:05,203 --> 00:02:10,953
+identifiers, and delete that exact fixture in the finalization block. Your actual
+
+26
+00:02:10,966 --> 00:02:16,653
+helper must check response statuses and handle partial setup failures. If login fails
+
+27
+00:02:16,666 --> 00:02:22,140
+after creation, cleanup still owns the created fixture. Avoid a global reset that
+
+28
+00:02:22,153 --> 00:02:25,440
+erases data belonging to another learner or parallel worker.
+
+29
+00:02:27,660 --> 00:02:31,935
+Use the context supplied by the pytest plugin and post the fixture's synthetic
+
+30
+00:02:31,948 --> 00:02:37,335
+credentials through its associated request client. Assert the successful status before
+
+31
+00:02:37,348 --> 00:02:42,872
+navigating. Because this request belongs to the browser context, the resulting cookie
+
+32
+00:02:42,885 --> 00:02:48,710
+becomes available to the page. An independently created HTTP client has separate
+
+33
+00:02:48,723 --> 00:02:53,723
+cookie storage unless you deliberately transfer state. Keep this choice visible in the
+
+34
+00:02:53,735 --> 00:02:59,072
+fixture instead of hiding it in a utility with unclear ownership. Always identify
+
+35
+00:02:59,085 --> 00:03:01,360
+whose session the browser is actually using.
+
+36
+00:03:03,590 --> 00:03:08,178
+Inside the successful transfer test, navigate and select the fixture's account and
+
+37
+00:03:08,190 --> 00:03:13,965
+beneficiary before entering one hundred pesos. The excerpt focuses on submission once
+
+38
+00:03:13,978 --> 00:03:19,603
+those selections exist. Python's synchronous API does not require JavaScript await
+
+39
+00:03:19,615 --> 00:03:25,090
+expressions. Use Playwright's expectation object for UI assertions so the intended
+
+40
+00:03:25,103 --> 00:03:30,253
+text condition can settle. A plain immediate text comparison has different waiting
+
+41
+00:03:30,265 --> 00:03:35,953
+behavior. When asking AI to translate the test, require the synchronous API
+
+42
+00:03:35,965 --> 00:03:40,765
+throughout; mixing synchronous and asynchronous patterns produces failures unrelated
+
+43
+00:03:40,778 --> 00:03:41,778
+to the business rule.
+
+44
+00:03:44,008 --> 00:03:49,271
+Observe the account using the authenticated page request client. In Python, the
+
+45
+00:03:49,283 --> 00:03:55,421
+response status in this example is a property, while parsing JSON uses a method. These
+
+46
+00:03:55,433 --> 00:04:00,358
+small language differences are easy for generated code to get wrong. Assert the
+
+47
+00:04:00,371 --> 00:04:06,158
+successful HTTP status, then the integer balance. Apply the same pattern to the
+
+48
+00:04:06,171 --> 00:04:11,246
+canonical transfer collection and inspect its count and fields. For the separate
+
+49
+00:04:11,258 --> 00:04:15,383
+distributed ledger view, use bounded polling rather than assuming that its record
+
+50
+00:04:15,396 --> 00:04:17,658
+appears immediately after account settlement.
+
+51
+00:04:19,890 --> 00:04:25,265
+For insufficient funds, prepare eleven hundred pesos in a fresh fixture. Enter the
+
+52
+00:04:25,278 --> 00:04:29,802
+response expectation context before clicking, and match the transfer request
+
+53
+00:04:29,815 --> 00:04:35,628
+specifically. After the context closes, inspect the captured response, its business
+
+54
+00:04:35,640 --> 00:04:40,628
+error code, and the UI alert. Then prove the balance and transfer count stayed
+
+55
+00:04:40,640 --> 00:04:45,852
+unchanged. This distinguishes a business rejection from a button that never submitted
+
+56
+00:04:45,865 --> 00:04:51,852
+anything. A locator timeout, a network failure, and an insufficient funds response are
+
+57
+00:04:51,865 --> 00:04:55,652
+different observations and should not become one generic rejection result.
+
+58
+00:04:57,884 --> 00:05:02,896
+Create the request body and idempotency key once within the Python case, then submit
+
+59
+00:05:02,909 --> 00:05:08,159
+the same values twice through the authenticated context. Check creation followed by
+
+60
+00:05:08,172 --> 00:05:13,696
+replay, compare the identifiers, and assert one debit and one record. If you
+
+61
+00:05:13,709 --> 00:05:18,446
+parameterize cases later, keep the fixture function-scoped so each parameter receives
+
+62
+00:05:18,459 --> 00:05:24,296
+independent data. A parameter list describes inputs; it does not automatically isolate
+
+63
+00:05:24,309 --> 00:05:29,771
+the state those inputs mutate. Inspect resulting test names so failures identify the
+
+64
+00:05:29,784 --> 00:05:31,734
+business case and dataset used.
+
+65
+00:05:33,958 --> 00:05:38,933
+Run the Python suite with trace retention on failure and request a JUnit XML result
+
+66
+00:05:38,946 --> 00:05:44,733
+file. The plugin's trace options apply to its managed fixtures; a browser context
+
+67
+00:05:44,746 --> 00:05:49,970
+created manually in a helper needs its own trace management. That is why we extended
+
+68
+00:05:49,983 --> 00:05:55,620
+the provided fixtures. Inspect an actual failed run to confirm the trace exists and
+
+69
+00:05:55,633 --> 00:06:01,083
+can be opened. A configuration line expresses intended behavior, while a saved
+
+70
+00:06:01,095 --> 00:06:05,546
+artifact demonstrates that it occurred. Keep those statements separate in your
+
+71
+00:06:05,558 --> 00:06:06,746
+execution report.
+
+72
+00:06:08,976 --> 00:06:14,088
+Review fixture finalization after a deliberately failing assertion. Cleanup should
+
+73
+00:06:14,101 --> 00:06:18,938
+attempt to remove only the owned dataset and release its preparation client. If
+
+74
+00:06:18,951 --> 00:06:23,588
+cleanup also fails, report that problem with the fixture identifier without replacing
+
+75
+00:06:23,601 --> 00:06:28,588
+the original assertion failure. Save evidence before destroying the context or
+
+76
+00:06:28,601 --> 00:06:34,113
+deleting data needed for inspection. For an interrupted process, record outstanding
+
+77
+00:06:34,126 --> 00:06:39,588
+fixture identifiers so a later recovery step can target them. Reliable teardown
+
+78
+00:06:39,601 --> 00:06:43,988
+belongs to the experiment's design, rather than being a cosmetic action after the
+
+79
+00:06:44,001 --> 00:06:45,113
+assertions finish.
+
+80
+00:06:47,330 --> 00:06:52,742
+Finish by drawing the dependency graph for one Python test. The preparation client
+
+81
+00:06:52,755 --> 00:06:57,630
+creates the dataset; the dataset and browser context establish authentication; the
+
+82
+00:06:57,642 --> 00:07:03,305
+page performs the action; API observations verify effects; finalizers release what
+
+83
+00:07:03,317 --> 00:07:09,130
+they own. Point to the code that guarantees each transition. Then report the actual
+
+84
+00:07:09,142 --> 00:07:14,805
+status of the three cases, including blocked setup or remaining failures. You now have
+
+85
+00:07:14,817 --> 00:07:18,455
+a Python structure that preserves the TypeScript version's business meaning while
+
+86
+00:07:18,467 --> 00:07:21,755
+using pytest's own lifecycle and reporting conventions.

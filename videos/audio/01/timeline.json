@@ -1,0 +1,687 @@
+{
+  "id": "01",
+  "slug": "architecture-and-setup",
+  "title": "Build the Local Test Architecture",
+  "summary": "Prepare one local business workflow and three language-specific test runners.",
+  "language": "en",
+  "objectives": [
+    "Map browser, service and terminal boundaries",
+    "Prepare the chosen language and browser",
+    "Define three measurable business outcomes"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/intro",
+    "https://playwright.dev/python/docs/intro",
+    "https://playwright.dev/java/docs/test-runners"
+  ],
+  "scenes": [
+    {
+      "id": "01-01",
+      "title": "Start with an outcome",
+      "kicker": "EPISODE 01 · STEP 1",
+      "type": "title",
+      "narration": "Welcome to advanced Playwright with AI. We will build regression evidence around one fictional transfer, using TypeScript, Python, or Java. Later, that same transfer will cross several local services and appear on a simulated terminal. Choose one language for your practical work, and use the others to compare architecture. Before opening an editor, write the outcome you want to prove: one authorized transfer changes the correct balance exactly once and leaves a traceable business record.",
+      "bullets": [
+        "One learner, one language",
+        "One workflow, several observations"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 0.0,
+      "duration": 32.57,
+      "audio": "audio/01/01-01.wav"
+    },
+    {
+      "id": "01-02",
+      "title": "Read the system map",
+      "kicker": "EPISODE 01 · STEP 2",
+      "type": "steps",
+      "narration": "Read the diagram from left to right. The browser calls the gateway on port three thousand. The gateway coordinates an accounts service and a ledger service. Accounts owns the immediate balance change; the ledger exposes a delayed read model in our distributed variation. A Python terminal adapter later connects to a local terminal simulator. These processes run on your workstation. They provide realistic automation boundaries, but they do not represent a production bank or a real mainframe installation.",
+      "bullets": [
+        "Browser → Gateway → Accounts",
+        "Accounts outbox → Ledger (delayed projection)",
+        "TNZ → 3270 simulator → Gateway → Accounts"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 32.57,
+      "duration": 33.794,
+      "audio": "audio/01/01-02.wav"
+    },
+    {
+      "id": "01-03",
+      "title": "Choose the right observation",
+      "kicker": "EPISODE 01 · STEP 3",
+      "type": "steps",
+      "narration": "Open the laboratory contract before installing anything. The account and canonical transfer queries describe immediate business state. The distributed extension adds a separate ledger query with eventual consistency while preserving the business amounts. Keep those endpoints distinct in your notes. Otherwise, you may mistake an expected publication delay for a product defect. Write down which endpoint is authoritative, which one is delayed, and which environment your test uses. This decision determines whether an assertion should run immediately or poll.",
+      "bullets": [
+        "Canonical transfers: immediate",
+        "Ledger read model: delayed",
+        "Record the endpoint used"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 66.364,
+      "duration": 36.29,
+      "audio": "audio/01/01-03.wav"
+    },
+    {
+      "id": "01-04",
+      "title": "Prepare TypeScript",
+      "kicker": "EPISODE 01 · STEP 4",
+      "type": "terminal",
+      "narration": "For TypeScript, work inside the supplied test project and inspect its package file and lockfile. Install exactly that dependency set with the clean installation command. Then install the browser expected by the pinned configuration. The laboratory may select an installed Edge channel for the measured run, while Chromium installation supports a separately configured Chromium project. These choices must match the runner configuration. Finally, record the tool version. Keep your approved package mirror configuration instead of changing registries during the lesson.",
+      "bullets": [
+        "Use the supplied lockfile",
+        "Match the configured browser",
+        "Record the tool version"
+      ],
+      "code": "npm ci\nnpx playwright --version\nnpx playwright install chromium",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 102.654,
+      "duration": 37.418,
+      "audio": "audio/01/01-04.wav"
+    },
+    {
+      "id": "01-05",
+      "title": "Prepare Python",
+      "kicker": "EPISODE 01 · STEP 5",
+      "type": "terminal",
+      "narration": "For Python, create a virtual environment with the interpreter selected for the laboratory. Invoke its Python executable explicitly so package installation and test execution cannot accidentally use another Python installation. Install the pinned requirements file, then ask that same interpreter to install Chromium through Playwright. The pytest plugin will provide the page and context fixtures used later. Keep this environment separate from the terminal adapter environment when their dependency files differ; sharing an operating system does not require sharing every package.",
+      "bullets": [
+        "Use an explicit interpreter",
+        "Install pinned requirements",
+        "Keep environments understandable"
+      ],
+      "code": "py -3.12 -m venv .venv\n.\\.venv\\Scripts\\python.exe -m pip install -r requirements-browser.txt\n.\\.venv\\Scripts\\python.exe -m playwright install chromium",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 140.072,
+      "duration": 36.914,
+      "audio": "audio/01/01-05.wav"
+    },
+    {
+      "id": "01-06",
+      "title": "Prepare Java",
+      "kicker": "EPISODE 01 · STEP 6",
+      "type": "terminal",
+      "narration": "For Java, inspect the Maven project and confirm the JDK selected by your terminal. The project fixes Playwright, JUnit, and the build plugins it needs. Maven resolves those dependencies; the documented Playwright installation step provides the browser. These are separate from running JUnit tests. Keep classroom execution sequential initially, because a shared Playwright object is not an appropriate shortcut for parallel threads. If dependency resolution fails, solve the environment issue before interpreting any resulting message as a failed transfer regression.",
+      "bullets": [
+        "Verify the selected JDK",
+        "Inspect the Maven configuration",
+        "Begin with sequential execution"
+      ],
+      "code": "java -version\nmvn -version\n$env:PLAYWRIGHT_NODEJS_PATH=(Get-Command node).Source\n$env:TEST_HOOK_KEY='classroom-demo-only'\n$env:PW_BROWSER_CHANNEL='msedge'\n# Run tests only after browser and local service readiness:\nmvn test",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 176.986,
+      "duration": 37.898,
+      "audio": "audio/01/01-06.wav"
+    },
+    {
+      "id": "01-07",
+      "title": "Check local readiness",
+      "kicker": "EPISODE 01 · STEP 7",
+      "type": "steps",
+      "narration": "Start the local laboratory from the distributed project directory using its start script. Check the gateway health endpoint before opening the transfer page, and inspect the service output for startup errors. A page that renders a shell is not enough evidence that dependencies are ready. Confirm the documented environment metadata, then keep the services running for the exercise. Record the actual response you receive. The response shown in a slide is an expected example until your own request has completed successfully.",
+      "bullets": [
+        "Start the local services",
+        "Inspect health and logs",
+        "Record actual readiness evidence"
+      ],
+      "code": "$env:TEST_HOOK_KEY='classroom-demo-only'\nnpm run start:lab\n# In another terminal:\nInvoke-RestMethod http://127.0.0.1:3000/health",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 214.884,
+      "duration": 34.13,
+      "audio": "audio/01/01-07.wav"
+    },
+    {
+      "id": "01-08",
+      "title": "Express money precisely",
+      "kicker": "EPISODE 01 · STEP 8",
+      "type": "code",
+      "narration": "Our API represents money as integer minor units. One thousand pesos is one hundred thousand centavos; the transfer amount of one hundred pesos is ten thousand centavos. The browser displays decimal currency, but server assertions use integers. Put these values beside each other before generating tests with AI. This prevents an attractive test from sending one hundred centavos while claiming to transfer one hundred pesos. Also assert the currency explicitly, because a numerically correct amount can still describe the wrong business operation.",
+      "bullets": [
+        "Opening: MXN 1000.00",
+        "Transfer: MXN 100.00",
+        "Closing: MXN 900.00"
+      ],
+      "code": "balanceMinor: 100000\namountMinor: 10000\nexpectedBalanceMinor: 90000\ncurrency: \"MXN\"",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture required",
+      "start": 249.01399999999998,
+      "duration": 36.938,
+      "audio": "audio/01/01-08.wav"
+    },
+    {
+      "id": "01-09",
+      "title": "Define the three cases",
+      "kicker": "EPISODE 01 · STEP 9",
+      "type": "steps",
+      "narration": "Create three rows in your evidence matrix. The successful transfer must leave a balance of nine hundred pesos and one record. The insufficient funds attempt requests eleven hundred pesos, keeps the opening balance unchanged, and creates no record. The idempotency case repeats the same request with the same key and must still produce one debit and one record. Give each row a fresh fixture. These are separate experiments, so a failed first case must never prevent another case from receiving its own opening state.",
+      "bullets": [
+        "TR-01: success",
+        "TR-02: insufficient funds",
+        "TR-03: repeated intent"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 285.952,
+      "duration": 34.394,
+      "audio": "audio/01/01-09.wav"
+    },
+    {
+      "id": "01-10",
+      "title": "Separate tools from decisions",
+      "kicker": "EPISODE 01 · STEP 10",
+      "type": "steps",
+      "narration": "Ask AI to inspect the contract and list missing information before writing code. Provide the language, runner, exact UI labels, endpoints, and expected business values. The model may help organize fixtures or explain a failing assertion, but it cannot establish that a test ran merely by generating plausible output. Keep generated code, reviewed code, and executed results as separate states. When a selector or response field is unsupported by your evidence, stop that assumption and inspect the actual application or documented contract.",
+      "bullets": [
+        "Supply observed interfaces",
+        "Review generated assumptions",
+        "Keep execution status explicit"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 320.346,
+      "duration": 36.866,
+      "audio": "audio/01/01-10.wav"
+    },
+    {
+      "id": "01-11",
+      "title": "Make a first observable run",
+      "kicker": "EPISODE 01 · STEP 11",
+      "type": "code",
+      "narration": "Now run a small browser check against the local page using your chosen runner. In the TypeScript excerpt, navigation opens the transfer route and the amount field assertion checks an actual accessible label. Authentication must already be supplied by the prepared fixture. This tiny check verifies the browser can reach the intended screen; it does not prove a transfer works. Save its outcome as a readiness checkpoint, then move on to business tests with clear starting data and the stronger assertions we have defined.",
+      "bullets": [
+        "Authenticate in the fixture",
+        "Check an observable control",
+        "Classify this as readiness"
+      ],
+      "code": "await page.goto('/transfers');\nawait expect(\n  page.getByLabel('Importe (MXN)', { exact: true })\n).toBeVisible();",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Prepared fixture required",
+      "start": 357.212,
+      "duration": 32.978,
+      "audio": "audio/01/01-11.wav"
+    },
+    {
+      "id": "01-12",
+      "title": "Check your preparation",
+      "kicker": "EPISODE 01 · STEP 12",
+      "type": "recap",
+      "narration": "Before continuing, explain the system aloud without naming a testing method. Identify who owns the balance, where the transfer record appears, and which process will later display terminal data. Confirm that your chosen language runs its own test runner, your browser is installed, and your local health check has an actual result. If any item is blocked, record the blocker instead of inventing a passing checkpoint. You are ready for the next episode when the environment and the business contract are both explicit.",
+      "bullets": [
+        "Architecture understood",
+        "Chosen runner ready",
+        "Contract and blockers recorded"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 390.19,
+      "duration": 32.81,
+      "audio": "audio/01/01-12.wav"
+    }
+  ],
+  "duration": 423.0,
+  "captions": [
+    {
+      "text": "Welcome to advanced Playwright with AI. We will build regression evidence around one",
+      "start": 0.7,
+      "end": 5.8625
+    },
+    {
+      "text": "fictional transfer, using TypeScript, Python, or Java. Later, that same transfer will",
+      "start": 5.875,
+      "end": 12.299999999999999
+    },
+    {
+      "text": "cross several local services and appear on a simulated terminal. Choose one language",
+      "start": 12.3125,
+      "end": 17.650000000000002
+    },
+    {
+      "text": "for your practical work, and use the others to compare architecture. Before opening an",
+      "start": 17.6625,
+      "end": 22.9875
+    },
+    {
+      "text": "editor, write the outcome you want to prove: one authorized transfer changes the",
+      "start": 23.0,
+      "end": 27.387500000000003
+    },
+    {
+      "text": "correct balance exactly once and leaves a traceable business record.",
+      "start": 27.400000000000002,
+      "end": 31.05
+    },
+    {
+      "text": "Read the diagram from left to right. The browser calls the gateway on port three",
+      "start": 33.27,
+      "end": 38.07
+    },
+    {
+      "text": "thousand. The gateway coordinates an accounts service and a ledger service. Accounts",
+      "start": 38.082499999999996,
+      "end": 44.17
+    },
+    {
+      "text": "owns the immediate balance change; the ledger exposes a delayed read model in our",
+      "start": 44.1825,
+      "end": 48.4075
+    },
+    {
+      "text": "distributed variation. A Python terminal adapter later connects to a local terminal",
+      "start": 48.42,
+      "end": 53.8325
+    },
+    {
+      "text": "simulator. These processes run on your workstation. They provide realistic automation",
+      "start": 53.845,
+      "end": 60.1575
+    },
+    {
+      "text": "boundaries, but they do not represent a production bank or a real mainframe",
+      "start": 60.17,
+      "end": 64.02000000000001
+    },
+    {
+      "text": "installation.",
+      "start": 64.0325,
+      "end": 64.845
+    },
+    {
+      "text": "Open the laboratory contract before installing anything. The account and canonical",
+      "start": 67.06400000000001,
+      "end": 72.25150000000001
+    },
+    {
+      "text": "transfer queries describe immediate business state. The distributed extension adds a",
+      "start": 72.26400000000001,
+      "end": 77.4265
+    },
+    {
+      "text": "separate ledger query with eventual consistency while preserving the business amounts.",
+      "start": 77.43900000000001,
+      "end": 81.7765
+    },
+    {
+      "text": "Keep those endpoints distinct in your notes. Otherwise, you may mistake an expected",
+      "start": 82.63900000000001,
+      "end": 87.8015
+    },
+    {
+      "text": "publication delay for a product defect. Write down which endpoint is authoritative,",
+      "start": 87.81400000000001,
+      "end": 93.07650000000001
+    },
+    {
+      "text": "which one is delayed, and which environment your test uses. This decision determines",
+      "start": 93.239,
+      "end": 98.57650000000001
+    },
+    {
+      "text": "whether an assertion should run immediately or poll.",
+      "start": 98.589,
+      "end": 101.12650000000001
+    },
+    {
+      "text": "For TypeScript, work inside the supplied test project and inspect its package file and",
+      "start": 103.354,
+      "end": 108.179
+    },
+    {
+      "text": "lockfile. Install exactly that dependency set with the clean installation command.",
+      "start": 108.19149999999999,
+      "end": 113.62899999999999
+    },
+    {
+      "text": "Then install the browser expected by the pinned configuration. The laboratory may",
+      "start": 114.4915,
+      "end": 119.6165
+    },
+    {
+      "text": "select an installed Edge channel for the measured run, while Chromium installation",
+      "start": 119.62899999999999,
+      "end": 123.804
+    },
+    {
+      "text": "supports a separately configured Chromium project. These choices must match the runner",
+      "start": 123.81649999999999,
+      "end": 128.9915
+    },
+    {
+      "text": "configuration. Finally, record the tool version. Keep your approved package mirror",
+      "start": 129.004,
+      "end": 135.204
+    },
+    {
+      "text": "configuration instead of changing registries during the lesson.",
+      "start": 135.2165,
+      "end": 138.54149999999998
+    },
+    {
+      "text": "For Python, create a virtual environment with the interpreter selected for the",
+      "start": 140.772,
+      "end": 144.8595
+    },
+    {
+      "text": "laboratory. Invoke its Python executable explicitly so package installation and test",
+      "start": 144.872,
+      "end": 150.8845
+    },
+    {
+      "text": "execution cannot accidentally use another Python installation. Install the pinned",
+      "start": 150.897,
+      "end": 156.1345
+    },
+    {
+      "text": "requirements file, then ask that same interpreter to install Chromium through",
+      "start": 156.147,
+      "end": 160.172
+    },
+    {
+      "text": "Playwright. The pytest plugin will provide the page and context fixtures used later.",
+      "start": 160.1845,
+      "end": 165.672
+    },
+    {
+      "text": "Keep this environment separate from the terminal adapter environment when their",
+      "start": 166.5345,
+      "end": 170.0595
+    },
+    {
+      "text": "dependency files differ; sharing an operating system does not require sharing every",
+      "start": 170.072,
+      "end": 174.7595
+    },
+    {
+      "text": "package.",
+      "start": 174.772,
+      "end": 175.472
+    },
+    {
+      "text": "For Java, inspect the Maven project and confirm the JDK selected by your terminal. The",
+      "start": 177.68599999999998,
+      "end": 183.611
+    },
+    {
+      "text": "project fixes Playwright, JUnit, and the build plugins it needs. Maven resolves those",
+      "start": 183.62349999999998,
+      "end": 189.4735
+    },
+    {
+      "text": "dependencies; the documented Playwright installation step provides the browser. These",
+      "start": 189.486,
+      "end": 195.02349999999998
+    },
+    {
+      "text": "are separate from running JUnit tests. Keep classroom execution sequential initially,",
+      "start": 195.036,
+      "end": 200.62349999999998
+    },
+    {
+      "text": "because a shared Playwright object is not an appropriate shortcut for parallel",
+      "start": 200.83599999999998,
+      "end": 204.5985
+    },
+    {
+      "text": "threads. If dependency resolution fails, solve the environment issue before",
+      "start": 204.611,
+      "end": 209.87349999999998
+    },
+    {
+      "text": "interpreting any resulting message as a failed transfer regression.",
+      "start": 209.886,
+      "end": 213.361
+    },
+    {
+      "text": "Start the local laboratory from the distributed project directory using its start",
+      "start": 215.58399999999997,
+      "end": 219.60899999999998
+    },
+    {
+      "text": "script. Check the gateway health endpoint before opening the transfer page, and",
+      "start": 219.6215,
+      "end": 224.73399999999998
+    },
+    {
+      "text": "inspect the service output for startup errors. A page that renders a shell is not",
+      "start": 224.7465,
+      "end": 229.8715
+    },
+    {
+      "text": "enough evidence that dependencies are ready. Confirm the documented environment",
+      "start": 229.884,
+      "end": 234.634
+    },
+    {
+      "text": "metadata, then keep the services running for the exercise. Record the actual response",
+      "start": 234.6465,
+      "end": 240.334
+    },
+    {
+      "text": "you receive. The response shown in a slide is an expected example until your own",
+      "start": 240.3465,
+      "end": 245.434
+    },
+    {
+      "text": "request has completed successfully.",
+      "start": 245.4465,
+      "end": 247.4965
+    },
+    {
+      "text": "Our API represents money as integer minor units. One thousand pesos is one hundred",
+      "start": 249.71399999999997,
+      "end": 255.564
+    },
+    {
+      "text": "thousand centavos; the transfer amount of one hundred pesos is ten thousand centavos.",
+      "start": 255.57649999999998,
+      "end": 260.739
+    },
+    {
+      "text": "The browser displays decimal currency, but server assertions use integers. Put these",
+      "start": 261.6015,
+      "end": 267.06399999999996
+    },
+    {
+      "text": "values beside each other before generating tests with AI. This prevents an attractive",
+      "start": 267.0765,
+      "end": 272.5515
+    },
+    {
+      "text": "test from sending one hundred centavos while claiming to transfer one hundred pesos.",
+      "start": 272.56399999999996,
+      "end": 277.214
+    },
+    {
+      "text": "Also assert the currency explicitly, because a numerically correct amount can still",
+      "start": 278.0765,
+      "end": 282.489
+    },
+    {
+      "text": "describe the wrong business operation.",
+      "start": 282.50149999999996,
+      "end": 284.4265
+    },
+    {
+      "text": "Create three rows in your evidence matrix. The successful transfer must leave a",
+      "start": 286.652,
+      "end": 291.627
+    },
+    {
+      "text": "balance of nine hundred pesos and one record. The insufficient funds attempt requests",
+      "start": 291.6395,
+      "end": 297.027
+    },
+    {
+      "text": "eleven hundred pesos, keeps the opening balance unchanged, and creates no record. The",
+      "start": 297.0395,
+      "end": 302.902
+    },
+    {
+      "text": "idempotency case repeats the same request with the same key and must still produce one",
+      "start": 302.9145,
+      "end": 307.677
+    },
+    {
+      "text": "debit and one record. Give each row a fresh fixture. These are separate experiments,",
+      "start": 307.6895,
+      "end": 313.777
+    },
+    {
+      "text": "so a failed first case must never prevent another case from receiving its own opening",
+      "start": 313.9895,
+      "end": 318.302
+    },
+    {
+      "text": "state.",
+      "start": 318.3145,
+      "end": 318.827
+    },
+    {
+      "text": "Ask AI to inspect the contract and list missing information before writing code.",
+      "start": 321.046,
+      "end": 325.4085
+    },
+    {
+      "text": "Provide the language, runner, exact UI labels, endpoints, and expected business",
+      "start": 326.271,
+      "end": 331.3085
+    },
+    {
+      "text": "values. The model may help organize fixtures or explain a failing assertion, but it",
+      "start": 331.321,
+      "end": 337.0835
+    },
+    {
+      "text": "cannot establish that a test ran merely by generating plausible output. Keep generated",
+      "start": 337.096,
+      "end": 342.7835
+    },
+    {
+      "text": "code, reviewed code, and executed results as separate states. When a selector or",
+      "start": 342.796,
+      "end": 348.4335
+    },
+    {
+      "text": "response field is unsupported by your evidence, stop that assumption and inspect the",
+      "start": 348.446,
+      "end": 352.946
+    },
+    {
+      "text": "actual application or documented contract.",
+      "start": 352.9585,
+      "end": 355.6835
+    },
+    {
+      "text": "Now run a small browser check against the local page using your chosen runner. In the",
+      "start": 357.912,
+      "end": 362.9745
+    },
+    {
+      "text": "TypeScript excerpt, navigation opens the transfer route and the amount field assertion",
+      "start": 362.98699999999997,
+      "end": 367.662
+    },
+    {
+      "text": "checks an actual accessible label. Authentication must already be supplied by the",
+      "start": 367.67449999999997,
+      "end": 372.92449999999997
+    },
+    {
+      "text": "prepared fixture. This tiny check verifies the browser can reach the intended screen;",
+      "start": 372.937,
+      "end": 378.4995
+    },
+    {
+      "text": "it does not prove a transfer works. Save its outcome as a readiness checkpoint, then",
+      "start": 378.73699999999997,
+      "end": 383.9995
+    },
+    {
+      "text": "move on to business tests with clear starting data and the stronger assertions we have",
+      "start": 384.012,
+      "end": 388.037
+    },
+    {
+      "text": "defined.",
+      "start": 388.04949999999997,
+      "end": 388.662
+    },
+    {
+      "text": "Before continuing, explain the system aloud without naming a testing method. Identify",
+      "start": 390.89,
+      "end": 396.69
+    },
+    {
+      "text": "who owns the balance, where the transfer record appears, and which process will later",
+      "start": 396.7025,
+      "end": 401.0775
+    },
+    {
+      "text": "display terminal data. Confirm that your chosen language runs its own test runner,",
+      "start": 401.09,
+      "end": 406.1525
+    },
+    {
+      "text": "your browser is installed, and your local health check has an actual result. If any",
+      "start": 406.3525,
+      "end": 411.5025
+    },
+    {
+      "text": "item is blocked, record the blocker instead of inventing a passing checkpoint. You are",
+      "start": 411.515,
+      "end": 416.9025
+    },
+    {
+      "text": "ready for the next episode when the environment and the business contract are both",
+      "start": 416.915,
+      "end": 420.715
+    },
+    {
+      "text": "explicit.",
+      "start": 420.7275,
+      "end": 421.4775
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 43.98499999999967
+}

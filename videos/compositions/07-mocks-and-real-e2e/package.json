@@ -1,0 +1,8 @@
+{
+  "name": "playwright-episode-07",
+  "private": true,
+  "scripts": {
+    "render": "npx hyperframes@0.8.33 render",
+    "check": "npx hyperframes@0.8.33 check"
+  }
+}

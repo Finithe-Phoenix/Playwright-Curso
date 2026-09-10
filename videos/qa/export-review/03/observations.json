@@ -1,0 +1,45 @@
+{
+  "episode": "03",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+  "reviewedAtUtc": "2026-09-10T03:52:49.661386+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4. All production inputFiles and artifact hashes were verified against current files.",
+  "reviewedSceneIds": [
+    "03-01",
+    "03-02",
+    "03-03",
+    "03-04",
+    "03-05",
+    "03-06",
+    "03-07",
+    "03-08",
+    "03-09",
+    "03-10",
+    "03-11",
+    "03-12"
+  ],
+  "fullResolutionFramesInspected": [],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/03/timeline.json": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/03/narration.wav": "3cba5a90889a982ebae7352d0086a941d6a7b9475290330be1895845df4c1b73",
+    "audio/03/subtitles.srt": "a8a9ddb53beccec20632fbd31e362ab09311df26838f43e8243b5abf59e50173",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  "sampledFrameFindings": [
+    "All 12 sampled frames use white step cards, blue accents and navy code/caption surfaces, without visible green or teal.",
+    "The two independent HTTP responsibilities remain correctly separated into distinct cards.",
+    "Python indentation, literal comparison operators, setup commands and fixture-cleanup examples are readable without clipping.",
+    "No visible overlap between titles, content, evidence labels or displayed subtitle text."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

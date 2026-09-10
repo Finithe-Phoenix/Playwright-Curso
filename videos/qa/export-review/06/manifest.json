@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:52:12.359639+00:00",
+  "episode": "06",
+  "title": "Distributed Workflows: Correlation and Polling",
+  "input": {
+    "file": "renders/06-distributed-correlation-polling.mp4",
+    "sha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+    "sizeBytes": 31841431,
+    "modifiedAtUtc": "2026-09-09T22:09:21.117388+00:00"
+  },
+  "timeline": {
+    "file": "audio/06/timeline.json",
+    "sha256": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 434.5,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "06-01",
+      "title": "Observe a distributed business event",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 34.658,
+      "sampleSeconds": 17.329,
+      "timestamp": "00:17.329",
+      "file": "06-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a8e358280874a86ddf261f29dc6b8568949b44d682ae9ceb7a52cb3d2d7b5516"
+    },
+    {
+      "sceneId": "06-02",
+      "title": "Inspect the three processes",
+      "sceneStartSeconds": 34.658,
+      "sceneDurationSeconds": 37.898,
+      "sampleSeconds": 53.607,
+      "timestamp": "00:53.607",
+      "file": "06-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c4f0b4793e6d2ffd9990cb993cbe15ba3f34d78d7299e01dd98c769a4620ce6c"
+    },
+    {
+      "sceneId": "06-03",
+      "title": "Understand the local transaction",
+      "sceneStartSeconds": 72.55600000000001,
+      "sceneDurationSeconds": 35.738,
+      "sampleSeconds": 90.425,
+      "timestamp": "01:30.425",
+      "file": "06-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7be5b6ffd23049a6895f09c4ec0559f0c837a66f9a9ff1158f2e365e8e58fcf4"
+    },
+    {
+      "sceneId": "06-04",
+      "title": "Capture identity from the response",
+      "sceneStartSeconds": 108.29400000000001,
+      "sceneDurationSeconds": 36.146,
+      "sampleSeconds": 126.367,
+      "timestamp": "02:06.367",
+      "file": "06-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "880bbc0ebb04f6d89664ecf5afa04b81ef4338bf640f9054efb94fb66c5ce29d"
+    },
+    {
+      "sceneId": "06-05",
+      "title": "Assert commitment immediately",
+      "sceneStartSeconds": 144.44,
+      "sceneDurationSeconds": 36.482,
+      "sampleSeconds": 162.681,
+      "timestamp": "02:42.681",
+      "file": "06-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d679f0e81e6e778c251129652decf1c0e44977a7a4a52347016cc33e588550b5"
+    },
+    {
+      "sceneId": "06-06",
+      "title": "Query the delayed projection",
+      "sceneStartSeconds": 180.922,
+      "sceneDurationSeconds": 36.746,
+      "sampleSeconds": 199.295,
+      "timestamp": "03:19.295",
+      "file": "06-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "016d0c1761d51b5bcde54c23fa3d24d6ff423ced55790736455249d0d45d19d3"
+    },
+    {
+      "sceneId": "06-07",
+      "title": "Poll only the observation",
+      "sceneStartSeconds": 217.668,
+      "sceneDurationSeconds": 39.386,
+      "sampleSeconds": 237.361,
+      "timestamp": "03:57.361",
+      "file": "06-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "86d68795d28bd75d9e6870c0d03a09c6f83c28960f58202c0ec0e4fb4e80153a"
+    },
+    {
+      "sceneId": "06-08",
+      "title": "Do not replace progress with sleep",
+      "sceneStartSeconds": 257.05400000000003,
+      "sceneDurationSeconds": 35.282,
+      "sampleSeconds": 274.695,
+      "timestamp": "04:34.695",
+      "file": "06-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a10ac27f42554f238e7cdb916d9e95991b51d2290f655c060125f75a8d8249d2"
+    },
+    {
+      "sceneId": "06-09",
+      "title": "Check duplicates after visibility",
+      "sceneStartSeconds": 292.336,
+      "sceneDurationSeconds": 36.29,
+      "sampleSeconds": 310.481,
+      "timestamp": "05:10.481",
+      "file": "06-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7783a11182fde575b5f5af5f213b6274ad390cc0bc84db43da37c00a1663c5b9"
+    },
+    {
+      "sceneId": "06-10",
+      "title": "Build a failure timeline",
+      "sceneStartSeconds": 328.62600000000003,
+      "sceneDurationSeconds": 34.538,
+      "sampleSeconds": 345.895,
+      "timestamp": "05:45.895",
+      "file": "06-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6faaefc33b3d6f551327464d9f3ffbbb007dbd49f43f9b1507c939a3376b4536"
+    },
+    {
+      "sceneId": "06-11",
+      "title": "Carry correlation into reporting",
+      "sceneStartSeconds": 363.16400000000004,
+      "sceneDurationSeconds": 36.986,
+      "sampleSeconds": 381.657,
+      "timestamp": "06:21.657",
+      "file": "06-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dd439687c011ee734eda8caf51720008f4db23829fd5972f92315bc35d218d0a"
+    },
+    {
+      "sceneId": "06-12",
+      "title": "State the distributed evidence",
+      "sceneStartSeconds": 400.15000000000003,
+      "sceneDurationSeconds": 34.346,
+      "sampleSeconds": 417.323,
+      "timestamp": "06:57.323",
+      "file": "06-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d2c19db0c79a33b74a96ddf2ccf903293281643981e71e7af6888f46a9f2cac4"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "06-01",
+        "06-02",
+        "06-03",
+        "06-04",
+        "06-05",
+        "06-06"
+      ],
+      "sha256": "aef8aefa797553135414ae438c9e3cf826370ca9502d7f1ecfe7779be33711ce"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "06-07",
+        "06-08",
+        "06-09",
+        "06-10",
+        "06-11",
+        "06-12"
+      ],
+      "sha256": "dfc1317ba5ca3a5ebd2652d0400f17d8dff2477e099b0af6f492b09628af2579"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+    "reviewedAtUtc": "2026-09-10T03:53:59.120727+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:53:59.120727+00:00",
+    "stage": "rendered",
+    "timelineSha256": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+    "artifactSha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/06/timeline.json": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/06/narration.wav": "827bba787e13056fc19f3b7ec6b2e33a27e0dc0cccdc06bdc981a0a9cbcddd26",
+      "audio/06/subtitles.srt": "3ea24bf0d70baa1f5e5caa226eec2146caea9db0cca22db16217c90c60a017b0",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

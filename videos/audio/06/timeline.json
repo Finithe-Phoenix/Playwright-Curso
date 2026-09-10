@@ -1,0 +1,700 @@
+{
+  "id": "06",
+  "slug": "distributed-correlation-polling",
+  "title": "Distributed Workflows: Correlation and Polling",
+  "summary": "Follow an authoritative transfer into a delayed ledger projection using its exact identifier.",
+  "language": "en",
+  "objectives": [
+    "Distinguish canonical state from a delayed projection",
+    "Poll a read-only observation with a deadline",
+    "Build evidence around one transfer reference"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/test-assertions",
+    "https://playwright.dev/docs/api-testing",
+    "https://playwright.dev/docs/test-timeouts"
+  ],
+  "scenes": [
+    {
+      "id": "06-01",
+      "title": "Observe a distributed business event",
+      "kicker": "EPISODE 06 · STEP 1",
+      "type": "title",
+      "narration": "A browser assertion cannot tell you when another service has processed a business event. Follow one transfer from the gateway to authoritative account state and then into a separate ledger projection. We will use the returned transfer identifier to connect those observations and apply a bounded wait only where the contract permits delay. The exercise runs across local processes. Its value is learning to distinguish business commitment, asynchronous visibility, and diagnostic evidence without assuming that a quiet browser network means everything finished.",
+      "bullets": [
+        "Commitment and visibility differ",
+        "Correlate one exact transfer",
+        "Bound every delayed observation"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 0.0,
+      "duration": 34.658,
+      "audio": "audio/06/06-01.wav"
+    },
+    {
+      "id": "06-02",
+      "title": "Inspect the three processes",
+      "kicker": "EPISODE 06 · STEP 2",
+      "type": "diagram",
+      "narration": "Start the distributed laboratory and inspect its architecture. The gateway serves the browser on port three thousand. Accounts holds balances, canonical transfers, and an event log on port three thousand one. Ledger runs separately on port three thousand two and polls that log to update its own projection. The startup coordinator checks all three services. A gateway health response alone describes the gateway process, so keep dependency readiness evidence separate. These boundaries let us reproduce timing differences without connecting to any external banking infrastructure.",
+      "bullets": [
+        "Gateway: customer entry point",
+        "Accounts: authoritative state",
+        "Ledger: delayed projection"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [
+        "Browser",
+        "Gateway :3000",
+        "Accounts :3001",
+        "Outbox in memory",
+        "Ledger :3002"
+      ],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 34.658,
+      "duration": 37.898,
+      "audio": "audio/06/06-02.wav"
+    },
+    {
+      "id": "06-03",
+      "title": "Understand the local transaction",
+      "kicker": "EPISODE 06 · STEP 3",
+      "type": "steps",
+      "narration": "In this simulator, the debit, canonical transfer, and outgoing event are updated in one synchronous section of the accounts process. This illustrates an outbox: business state and the event describing it should not drift apart. However, the state is in memory. Restarting the process loses it, and there is no durable database or message broker. Describe the demonstrated guarantee precisely. A successful classroom run does not establish crash recovery, durable delivery, or transaction behavior across multiple production nodes.",
+      "bullets": [
+        "One in-memory critical section",
+        "Canonical record and event together",
+        "No durability claim"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 72.55600000000001,
+      "duration": 35.738,
+      "audio": "audio/06/06-03.wav"
+    },
+    {
+      "id": "06-04",
+      "title": "Capture identity from the response",
+      "kicker": "EPISODE 06 · STEP 4",
+      "type": "code",
+      "narration": "Submit the transfer once and capture the returned identifier from its successful response. Keep this identifier in the test's evidence object, together with the source account and expected amount. Do not search for the latest transfer across the whole system. Another test could create a newer record between your action and query. Correlation should follow the value produced by this exact operation. The same identifier will later travel into the terminal adapter, allowing the web, API, and terminal observations to refer to one synthetic transfer.",
+      "bullets": [
+        "Use the returned transfer ID",
+        "Keep source and amount beside it",
+        "Never query the global latest record"
+      ],
+      "code": "expect(response.status()).toBe(201);\nconst transfer = await response.json();\nconst reference = transfer.id;\nexpect(transfer.amountMinor).toBe(10000);\nexpect(transfer.sourceAccountId).toBe(lab.sourceAccountId);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Actual values come from the test run",
+      "start": 108.29400000000001,
+      "duration": 36.146,
+      "audio": "audio/06/06-04.wav"
+    },
+    {
+      "id": "06-05",
+      "title": "Assert commitment immediately",
+      "kicker": "EPISODE 06 · STEP 5",
+      "type": "steps",
+      "narration": "First query the authoritative account and canonical transfer collection through the gateway. These endpoints preserve the original laboratory contract: after the successful response, the balance is ninety thousand centavos and the transfer exists once. An incorrect authoritative balance is not an expected ledger delay. Fail that assertion and investigate it directly. This ordering keeps the test honest about which component owns each guarantee. It also prevents an overly generous polling loop from hiding a defect in a state transition that should already have completed.",
+      "bullets": [
+        "Account balance: immediate",
+        "Canonical transfer: immediate",
+        "Do not poll away a commitment defect"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 144.44,
+      "duration": 36.482,
+      "audio": "audio/06/06-05.wav"
+    },
+    {
+      "id": "06-06",
+      "title": "Query the delayed projection",
+      "kicker": "EPISODE 06 · STEP 6",
+      "type": "code",
+      "narration": "Now query the separate ledger endpoint, filtered by the source account. Its response contains the projected records and may also expose a projection cursor for diagnostics. Inspect the HTTP status before treating its body as business data. The endpoint is intentionally different from the canonical transfer collection, despite similar records. Write both paths explicitly in the evidence matrix. If you accidentally query the canonical endpoint twice, the test may look distributed while never observing whether the ledger process consumed the event at all.",
+      "bullets": [
+        "Use the ledger-specific route",
+        "Filter by the owned account",
+        "Keep endpoint identity visible"
+      ],
+      "code": "const projected = await page.request.get(\n  '/api/ledger/transfers',\n  { params: { sourceAccountId: lab.sourceAccountId } }\n);\nexpect(projected.status()).toBe(200);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Actual values come from the test run",
+      "start": 180.922,
+      "duration": 36.746,
+      "audio": "audio/06/06-06.wav"
+    },
+    {
+      "id": "06-07",
+      "title": "Poll only the observation",
+      "kicker": "EPISODE 06 · STEP 7",
+      "type": "code",
+      "narration": "Use a bounded polling assertion to repeat the read until the exact transfer identifier appears. The polling body must not submit another transfer. It observes progress without creating new business effects. The excerpt checks membership within a five-second classroom deadline; afterward, inspect the matching record's amount, currency, source, and count. This deadline is a laboratory expectation, not a claim about production performance. On timeout, preserve the last response and correlation identifier so the failure explains what was observed instead of reporting only that time elapsed.",
+      "bullets": [
+        "Read-only polling",
+        "Exact identifier match",
+        "Five-second laboratory deadline"
+      ],
+      "code": "await expect.poll(async () => {\n  const r = await page.request.get('/api/ledger/transfers', {\n    params: { sourceAccountId: lab.sourceAccountId },\n  });\n  if (r.status() !== 200) return false;\n  const body = await r.json();\n  return body.items.some(item => item.id === reference);\n}, { timeout: 5000 }).toBe(true);",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Actual values come from the test run",
+      "start": 217.668,
+      "duration": 39.386,
+      "audio": "audio/06/06-07.wav"
+    },
+    {
+      "id": "06-08",
+      "title": "Do not replace progress with sleep",
+      "kicker": "EPISODE 06 · STEP 8",
+      "type": "steps",
+      "narration": "Compare polling with a fixed sleep. A fixed pause always waits the full duration, yet still fails if publication takes slightly longer. Polling can finish as soon as its business condition holds and produces a defined failure when the deadline expires. Browser locator waiting solves a different problem: it observes browser state, not the ledger process. Choose the wait according to the state you are observing. If publication is consistently slow, inspect service behavior and the expectation before increasing the timeout to hide failures.",
+      "bullets": [
+        "Wait on a business condition",
+        "Finish when the condition holds",
+        "Keep the timeout diagnostic"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 257.05400000000003,
+      "duration": 35.282,
+      "audio": "audio/06/06-08.wav"
+    },
+    {
+      "id": "06-09",
+      "title": "Check duplicates after visibility",
+      "kicker": "EPISODE 06 · STEP 9",
+      "type": "steps",
+      "narration": "Once the projected transfer appears, inspect the filtered collection rather than stopping at membership. Verify its amount, currency, source account, and completed status, and ensure the expected single record count holds for this isolated fixture. In the replay case, correlate both responses to the same canonical identifier and inspect the projection for one business record. This demonstrates the simulator's observed behavior for that scenario. It does not prove every message-delivery failure mode, because the local event mechanism is deliberately limited.",
+      "bullets": [
+        "Membership is only the first check",
+        "Inspect full business fields",
+        "Check the isolated record count"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 292.336,
+      "duration": 36.29,
+      "audio": "audio/06/06-09.wav"
+    },
+    {
+      "id": "06-10",
+      "title": "Build a failure timeline",
+      "kicker": "EPISODE 06 · STEP 10",
+      "type": "steps",
+      "narration": "When the projection deadline expires, build a short timeline from the available evidence. Record the transfer response, authoritative balance, canonical record, ledger response, and process health observations with the same reference. Then form a hypothesis: the transfer may have committed while publication or consumption failed. Do not label that hypothesis as a confirmed root cause until logs or another observation support it. Use evidence to locate the broken boundary before asking AI to explain a distributed timeout.",
+      "bullets": [
+        "Collect a correlated timeline",
+        "Separate observation and hypothesis",
+        "Locate the failing boundary"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 328.62600000000003,
+      "duration": 34.538,
+      "audio": "audio/06/06-10.wav"
+    },
+    {
+      "id": "06-11",
+      "title": "Carry correlation into reporting",
+      "kicker": "EPISODE 06 · STEP 11",
+      "type": "code",
+      "narration": "Attach a compact correlation summary to the test result. Include the case, fixture, transfer reference, expected amount, and paths used for authoritative and projected observations. Exclude credentials and unrelated account data. A reviewer should be able to move from a failed assertion to the matching service evidence without guessing which request mattered. The displayed structure is an example report shape, not proof of an executed result. Populate it with values captured during the actual attempt, and link the corresponding artifacts after the run completes.",
+      "bullets": [
+        "Case and fixture",
+        "Transfer reference",
+        "Actual observation paths"
+      ],
+      "code": "{\n  \"caseId\": \"TR-06\",\n  \"reference\": \"<captured transfer id>\",\n  \"amountMinor\": 10000,\n  \"authoritative\": \"/api/transfers\",\n  \"projection\": \"/api/ledger/transfers\"\n}",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Actual values come from the test run",
+      "start": 363.16400000000004,
+      "duration": 36.986,
+      "audio": "audio/06/06-11.wav"
+    },
+    {
+      "id": "06-12",
+      "title": "State the distributed evidence",
+      "kicker": "EPISODE 06 · STEP 12",
+      "type": "recap",
+      "narration": "Your distributed checkpoint should answer four questions. Did the account change correctly? Did the canonical transfer exist exactly once? Did that same identifier reach the separate projection within the classroom deadline? What evidence supports each answer? Keep any timeout or missing observation visible in the report. You now have a regression that crosses process boundaries while distinguishing commitment from delayed visibility. Next, a browser mock will help compare focused UI evidence with an integrated workflow.",
+      "bullets": [
+        "Commitment checked",
+        "Projection checked by correlation",
+        "Limits and actual results recorded"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Distributed local simulator · No production durability guarantee",
+      "start": 400.15000000000003,
+      "duration": 34.346,
+      "audio": "audio/06/06-12.wav"
+    }
+  ],
+  "duration": 434.49600000000004,
+  "captions": [
+    {
+      "text": "A browser assertion cannot tell you when another service has processed a business",
+      "start": 0.7,
+      "end": 4.5249999999999995
+    },
+    {
+      "text": "event. Follow one transfer from the gateway to authoritative account state and then",
+      "start": 4.5375,
+      "end": 9.625
+    },
+    {
+      "text": "into a separate ledger projection. We will use the returned transfer identifier to",
+      "start": 9.6375,
+      "end": 14.6625
+    },
+    {
+      "text": "connect those observations and apply a bounded wait only where the contract permits",
+      "start": 14.674999999999999,
+      "end": 18.900000000000002
+    },
+    {
+      "text": "delay. The exercise runs across local processes. Its value is learning to distinguish",
+      "start": 18.9125,
+      "end": 25.525000000000002
+    },
+    {
+      "text": "business commitment, asynchronous visibility, and diagnostic evidence without assuming",
+      "start": 25.5375,
+      "end": 30.25
+    },
+    {
+      "text": "that a quiet browser network means everything finished.",
+      "start": 30.262500000000003,
+      "end": 33.125
+    },
+    {
+      "text": "Start the distributed laboratory and inspect its architecture. The gateway serves the",
+      "start": 35.358000000000004,
+      "end": 40.5205
+    },
+    {
+      "text": "browser on port three thousand. Accounts holds balances, canonical transfers, and an",
+      "start": 40.533,
+      "end": 46.295500000000004
+    },
+    {
+      "text": "event log on port three thousand one. Ledger runs separately on port three thousand",
+      "start": 46.308,
+      "end": 51.49550000000001
+    },
+    {
+      "text": "two and polls that log to update its own projection. The startup coordinator checks",
+      "start": 51.508,
+      "end": 56.49550000000001
+    },
+    {
+      "text": "all three services. A gateway health response alone describes the gateway process, so",
+      "start": 56.508,
+      "end": 62.2205
+    },
+    {
+      "text": "keep dependency readiness evidence separate. These boundaries let us reproduce timing",
+      "start": 62.233000000000004,
+      "end": 67.458
+    },
+    {
+      "text": "differences without connecting to any external banking infrastructure.",
+      "start": 67.4705,
+      "end": 71.0455
+    },
+    {
+      "text": "In this simulator, the debit, canonical transfer, and outgoing event are updated in",
+      "start": 73.25600000000001,
+      "end": 78.3435
+    },
+    {
+      "text": "one synchronous section of the accounts process. This illustrates an outbox: business",
+      "start": 78.35600000000001,
+      "end": 83.83100000000002
+    },
+    {
+      "text": "state and the event describing it should not drift apart. However, the state is in",
+      "start": 83.8435,
+      "end": 88.79350000000001
+    },
+    {
+      "text": "memory. Restarting the process loses it, and there is no durable database or message",
+      "start": 88.80600000000001,
+      "end": 94.11850000000001
+    },
+    {
+      "text": "broker. Describe the demonstrated guarantee precisely. A successful classroom run does",
+      "start": 94.13100000000001,
+      "end": 100.51850000000002
+    },
+    {
+      "text": "not establish crash recovery, durable delivery, or transaction behavior across",
+      "start": 100.531,
+      "end": 105.29350000000002
+    },
+    {
+      "text": "multiple production nodes.",
+      "start": 105.30600000000001,
+      "end": 106.781
+    },
+    {
+      "text": "Submit the transfer once and capture the returned identifier from its successful",
+      "start": 108.99400000000001,
+      "end": 112.9565
+    },
+    {
+      "text": "response. Keep this identifier in the test's evidence object, together with the source",
+      "start": 112.96900000000001,
+      "end": 118.43150000000001
+    },
+    {
+      "text": "account and expected amount. Do not search for the latest transfer across the whole",
+      "start": 118.44400000000002,
+      "end": 123.30650000000001
+    },
+    {
+      "text": "system. Another test could create a newer record between your action and query.",
+      "start": 123.31900000000002,
+      "end": 128.544
+    },
+    {
+      "text": "Correlation should follow the value produced by this exact operation. The same",
+      "start": 129.40650000000002,
+      "end": 134.2315
+    },
+    {
+      "text": "identifier will later travel into the terminal adapter, allowing the web, API, and",
+      "start": 134.24400000000003,
+      "end": 139.65650000000002
+    },
+    {
+      "text": "terminal observations to refer to one synthetic transfer.",
+      "start": 139.669,
+      "end": 142.90650000000002
+    },
+    {
+      "text": "First query the authoritative account and canonical transfer collection through the",
+      "start": 145.14,
+      "end": 149.0525
+    },
+    {
+      "text": "gateway. These endpoints preserve the original laboratory contract: after the",
+      "start": 149.065,
+      "end": 154.1275
+    },
+    {
+      "text": "successful response, the balance is ninety thousand centavos and the transfer exists",
+      "start": 154.14,
+      "end": 158.915
+    },
+    {
+      "text": "once. An incorrect authoritative balance is not an expected ledger delay. Fail that",
+      "start": 158.9275,
+      "end": 165.2275
+    },
+    {
+      "text": "assertion and investigate it directly. This ordering keeps the test honest about which",
+      "start": 165.24,
+      "end": 170.4275
+    },
+    {
+      "text": "component owns each guarantee. It also prevents an overly generous polling loop from",
+      "start": 170.44,
+      "end": 175.665
+    },
+    {
+      "text": "hiding a defect in a state transition that should already have completed.",
+      "start": 175.6775,
+      "end": 179.39
+    },
+    {
+      "text": "Now query the separate ledger endpoint, filtered by the source account. Its response",
+      "start": 181.62199999999999,
+      "end": 186.8845
+    },
+    {
+      "text": "contains the projected records and may also expose a projection cursor for",
+      "start": 186.897,
+      "end": 190.7095
+    },
+    {
+      "text": "diagnostics. Inspect the HTTP status before treating its body as business data.",
+      "start": 190.722,
+      "end": 196.7595
+    },
+    {
+      "text": "The endpoint is intentionally different from the canonical transfer collection,",
+      "start": 197.622,
+      "end": 201.422
+    },
+    {
+      "text": "despite similar records. Write both paths explicitly in the evidence matrix. If you",
+      "start": 201.6595,
+      "end": 208.097
+    },
+    {
+      "text": "accidentally query the canonical endpoint twice, the test may look distributed while",
+      "start": 208.1095,
+      "end": 212.797
+    },
+    {
+      "text": "never observing whether the ledger process consumed the event at all.",
+      "start": 212.8095,
+      "end": 216.147
+    },
+    {
+      "text": "Use a bounded polling assertion to repeat the read until the exact transfer identifier",
+      "start": 218.368,
+      "end": 222.9555
+    },
+    {
+      "text": "appears. The polling body must not submit another transfer. It observes progress",
+      "start": 222.96800000000002,
+      "end": 229.143
+    },
+    {
+      "text": "without creating new business effects. The excerpt checks membership within a",
+      "start": 229.15550000000002,
+      "end": 233.8555
+    },
+    {
+      "text": "five-second classroom deadline; afterward, inspect the matching record's amount,",
+      "start": 233.868,
+      "end": 238.3805
+    },
+    {
+      "text": "currency, source, and count. This deadline is a laboratory expectation, not a claim",
+      "start": 238.543,
+      "end": 244.90550000000002
+    },
+    {
+      "text": "about production performance. On timeout, preserve the last response and correlation",
+      "start": 244.918,
+      "end": 250.318
+    },
+    {
+      "text": "identifier so the failure explains what was observed instead of reporting only that",
+      "start": 250.3305,
+      "end": 254.6305
+    },
+    {
+      "text": "time elapsed.",
+      "start": 254.643,
+      "end": 255.53050000000002
+    },
+    {
+      "text": "Compare polling with a fixed sleep. A fixed pause always waits the full duration, yet",
+      "start": 257.754,
+      "end": 263.329
+    },
+    {
+      "text": "still fails if publication takes slightly longer. Polling can finish as soon as its",
+      "start": 263.34150000000005,
+      "end": 268.47900000000004
+    },
+    {
+      "text": "business condition holds and produces a defined failure when the deadline expires.",
+      "start": 268.49150000000003,
+      "end": 272.754
+    },
+    {
+      "text": "Browser locator waiting solves a different problem: it observes browser state, not the",
+      "start": 273.61650000000003,
+      "end": 278.10400000000004
+    },
+    {
+      "text": "ledger process. Choose the wait according to the state you are observing. If",
+      "start": 278.11650000000003,
+      "end": 283.41650000000004
+    },
+    {
+      "text": "publication is consistently slow, inspect service behavior and the expectation before",
+      "start": 283.42900000000003,
+      "end": 288.6415
+    },
+    {
+      "text": "increasing the timeout to hide failures.",
+      "start": 288.65400000000005,
+      "end": 290.8165
+    },
+    {
+      "text": "Once the projected transfer appears, inspect the filtered collection rather than",
+      "start": 293.036,
+      "end": 297.2735
+    },
+    {
+      "text": "stopping at membership. Verify its amount, currency, source account, and completed",
+      "start": 297.286,
+      "end": 303.036
+    },
+    {
+      "text": "status, and ensure the expected single record count holds for this isolated fixture.",
+      "start": 303.0485,
+      "end": 308.011
+    },
+    {
+      "text": "In the replay case, correlate both responses to the same canonical identifier and",
+      "start": 308.87350000000004,
+      "end": 313.661
+    },
+    {
+      "text": "inspect the projection for one business record. This demonstrates the simulator's",
+      "start": 313.6735,
+      "end": 318.5735
+    },
+    {
+      "text": "observed behavior for that scenario. It does not prove every message-delivery failure",
+      "start": 318.586,
+      "end": 323.636
+    },
+    {
+      "text": "mode, because the local event mechanism is deliberately limited.",
+      "start": 323.6485,
+      "end": 327.111
+    },
+    {
+      "text": "When the projection deadline expires, build a short timeline from the available",
+      "start": 329.326,
+      "end": 333.48850000000004
+    },
+    {
+      "text": "evidence. Record the transfer response, authoritative balance, canonical record,",
+      "start": 333.50100000000003,
+      "end": 339.0135
+    },
+    {
+      "text": "ledger response, and process health observations with the same reference. Then form a",
+      "start": 339.18850000000003,
+      "end": 344.5885
+    },
+    {
+      "text": "hypothesis: the transfer may have committed while publication or consumption failed.",
+      "start": 344.60100000000006,
+      "end": 349.326
+    },
+    {
+      "text": "Do not label that hypothesis as a confirmed root cause until logs or another",
+      "start": 350.18850000000003,
+      "end": 354.326
+    },
+    {
+      "text": "observation support it. Use evidence to locate the broken boundary before asking AI to",
+      "start": 354.3385,
+      "end": 359.951
+    },
+    {
+      "text": "explain a distributed timeout.",
+      "start": 359.9635,
+      "end": 361.6385
+    },
+    {
+      "text": "Attach a compact correlation summary to the test result. Include the case, fixture,",
+      "start": 363.86400000000003,
+      "end": 369.53900000000004
+    },
+    {
+      "text": "transfer reference, expected amount, and paths used for authoritative and projected",
+      "start": 369.70150000000007,
+      "end": 374.2515
+    },
+    {
+      "text": "observations. Exclude credentials and unrelated account data. A reviewer should be",
+      "start": 374.26400000000007,
+      "end": 380.51400000000007
+    },
+    {
+      "text": "able to move from a failed assertion to the matching service evidence without guessing",
+      "start": 380.52650000000006,
+      "end": 384.40150000000006
+    },
+    {
+      "text": "which request mattered. The displayed structure is an example report shape, not proof",
+      "start": 384.41400000000004,
+      "end": 389.78900000000004
+    },
+    {
+      "text": "of an executed result. Populate it with values captured during the actual attempt, and",
+      "start": 389.80150000000003,
+      "end": 395.51400000000007
+    },
+    {
+      "text": "link the corresponding artifacts after the run completes.",
+      "start": 395.52650000000006,
+      "end": 398.6265
+    },
+    {
+      "text": "Your distributed checkpoint should answer four questions. Did the account change",
+      "start": 400.85,
+      "end": 405.50000000000006
+    },
+    {
+      "text": "correctly? Did the canonical transfer exist exactly once? Did that same identifier",
+      "start": 405.51250000000005,
+      "end": 411.88750000000005
+    },
+    {
+      "text": "reach the separate projection within the classroom deadline? What evidence supports",
+      "start": 411.90000000000003,
+      "end": 416.425
+    },
+    {
+      "text": "each answer? Keep any timeout or missing observation visible in the report. You now",
+      "start": 416.43750000000006,
+      "end": 422.35
+    },
+    {
+      "text": "have a regression that crosses process boundaries while distinguishing commitment from",
+      "start": 422.3625,
+      "end": 426.2375
+    },
+    {
+      "text": "delayed visibility. Next, a browser mock will help compare focused UI evidence with an",
+      "start": 426.25000000000006,
+      "end": 431.83750000000003
+    },
+    {
+      "text": "integrated workflow.",
+      "start": 431.85,
+      "end": 432.975
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 47.32799999999952,
+  "caption_mapping_revision": 2
+}

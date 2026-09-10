@@ -1,0 +1,16 @@
+{
+  "episode": "01",
+  "duration": 423.0,
+  "sampleRate": 24000,
+  "channels": 1,
+  "sceneCount": 12,
+  "captionCount": 84,
+  "captionBoundsValid": true,
+  "captionAlignment": {
+    "original words aligned to provider boundaries": 12
+  },
+  "generationSeconds": 43.98499999999967,
+  "engine": "edge-tts 7.2.8",
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%"
+}

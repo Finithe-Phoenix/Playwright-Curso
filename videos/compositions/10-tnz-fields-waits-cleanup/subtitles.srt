@@ -1,0 +1,339 @@
+1
+00:00:00,700 --> 00:00:05,238
+Inspect the adapter that turns terminal interaction into a predictable test boundary.
+
+2
+00:00:06,100 --> 00:00:10,588
+We will connect, wait for the correct panel, enter a transfer reference, parse the
+
+3
+00:00:10,600 --> 00:00:15,812
+result, and close the session. Each step has a specific condition and a bounded
+
+4
+00:00:15,825 --> 00:00:21,388
+lifetime. The public laboratory wrapper is named TerminalSession; it is our adapter,
+
+5
+00:00:21,625 --> 00:00:28,325
+not an IBM library class. Its implementation uses real TNZ methods, so you can inspect
+
+6
+00:00:28,338 --> 00:00:32,650
+the difference between application-specific screen logic and the underlying protocol
+
+7
+00:00:32,662 --> 00:00:33,212
+client.
+
+8
+00:00:35,430 --> 00:00:41,305
+Open the adapter source and find the TNZ object creation. One object represents this
+
+9
+00:00:41,317 --> 00:00:46,430
+terminal connection. The adapter selects the character encoding used by the local
+
+10
+00:00:46,442 --> 00:00:52,317
+simulator, so screen bytes become the intended text. A browser page and a terminal
+
+11
+00:00:52,330 --> 00:00:57,742
+screen do not share a locator model or character buffer. Keep this conversion visible
+
+12
+00:00:57,755 --> 00:01:03,380
+when diagnosing unexpected symbols or missing labels. The displayed initialization is
+
+13
+00:01:03,392 --> 00:01:08,092
+an excerpt from the adapter; connection, bounded waiting, and cleanup belong to the
+
+14
+00:01:08,105 --> 00:01:11,142
+following lifecycle rather than being optional additions.
+
+15
+00:01:13,376 --> 00:01:18,913
+The adapter connects to loopback on the simulator's terminal port. Its host validation
+
+16
+00:01:18,926 --> 00:01:24,376
+rejects nonlocal addresses before attempting this plaintext classroom connection. The
+
+17
+00:01:24,388 --> 00:01:29,213
+secure flag shown here describes only that local setup; certificate verification has
+
+18
+00:01:29,226 --> 00:01:34,063
+no effect when the connection is unencrypted. After connecting, the adapter
+
+19
+00:01:34,076 --> 00:01:39,376
+immediately waits for the expected initial panel. A successful socket call is not
+
+20
+00:01:39,388 --> 00:01:44,813
+enough to begin typing. If setup fails after connection, the session owner must still
+
+21
+00:01:44,826 --> 00:01:48,813
+shut down the partially established connection before reporting the original error.
+
+22
+00:01:51,034 --> 00:01:56,384
+Inspect the wait helper. It computes a deadline from a monotonic clock, reads the
+
+23
+00:01:56,396 --> 00:02:01,059
+current screen, and processes incoming terminal events in short bounded increments.
+
+24
+00:02:01,922 --> 00:02:06,284
+Repeating a screen read without processing events may keep observing stale content.
+
+25
+00:02:07,146 --> 00:02:11,434
+The helper also checks whether the session disconnected and saves a timeout snapshot
+
+26
+00:02:11,446 --> 00:02:16,534
+before raising an error. This is application-level waiting around the TNZ event
+
+27
+00:02:16,546 --> 00:02:22,059
+method. The deadline expresses how long this local operation may take, and prevents a
+
+28
+00:02:22,072 --> 00:02:25,096
+missing panel from hanging the test process indefinitely.
+
+29
+00:02:27,324 --> 00:02:32,299
+The wait helper does not accept matching text alone. It also checks the terminal's
+
+30
+00:02:32,312 --> 00:02:37,424
+program-wait and system-lock conditions before returning control to the caller. This
+
+31
+00:02:37,436 --> 00:02:41,674
+prevents the test from typing while the displayed panel is still not ready for input.
+
+32
+00:02:42,536 --> 00:02:47,374
+Treat those conditions as part of the adapter's readiness contract. If the label
+
+33
+00:02:47,386 --> 00:02:52,036
+appears but input remains locked, inspect the terminal exchange and timeout evidence.
+
+34
+00:02:52,899 --> 00:02:57,486
+Do not bypass the lock check merely because a screenshot looks complete; presentation
+
+35
+00:02:57,499 --> 00:02:59,362
+and readiness can be different states.
+
+36
+00:03:01,574 --> 00:03:05,799
+Before touching the field, validate the reference against the adapter's allowed length
+
+37
+00:03:05,812 --> 00:03:11,274
+and characters. The local field accepts one to forty-eight ASCII letters, digits,
+
+38
+00:03:11,374 --> 00:03:16,999
+underscores, or hyphens. Then move to the input field with the home key, erase its
+
+39
+00:03:17,011 --> 00:03:21,662
+previous contents, and type the reference through TNZ. Clearing matters when a new
+
+40
+00:03:21,674 --> 00:03:26,186
+reference is shorter than the old one; otherwise, stale characters can remain and
+
+41
+00:03:26,199 --> 00:03:31,524
+select the wrong lookup value. This field sequence belongs to our panel and must be
+
+42
+00:03:31,536 --> 00:03:33,574
+reviewed for any different application.
+
+43
+00:03:35,800 --> 00:03:40,400
+After Enter, wait for a result screen containing the submitted reference and a status
+
+44
+00:03:40,412 --> 00:03:45,575
+that is no longer the initial ready state. A generic completed message could belong to
+
+45
+00:03:45,588 --> 00:03:50,675
+a previous lookup. Correlation therefore belongs in the screen predicate itself,
+
+46
+00:03:50,838 --> 00:03:56,225
+before parsing amounts or declaring success. The helper still requires an unlocked
+
+47
+00:03:56,238 --> 00:04:01,662
+terminal and a deadline. If the server returns not found or backend unavailable, the
+
+48
+00:04:01,675 --> 00:04:05,650
+screen can be a valid response even though the business operation did not produce a
+
+49
+00:04:05,662 --> 00:04:07,175
+successful lookup result.
+
+50
+00:04:09,402 --> 00:04:14,277
+The adapter extracts values from labeled result lines and returns a structured object.
+
+51
+00:04:15,140 --> 00:04:19,377
+For a completed lookup, it converts amount and balance into integers and preserves
+
+52
+00:04:19,390 --> 00:04:25,752
+currency, source account, status, and reference. The hybrid test compares those values
+
+53
+00:04:25,764 --> 00:04:31,102
+with the transfer it created; parsing is insufficient. Missing labels or invalid
+
+54
+00:04:31,114 --> 00:04:35,177
+numbers should surface as errors rather than becoming empty strings or zeros that
+
+55
+00:04:35,190 --> 00:04:40,452
+happen to satisfy a weak assertion. Review the parser alongside the actual screen
+
+56
+00:04:40,464 --> 00:04:43,314
+contract whenever a field name or layout changes.
+
+57
+00:04:45,548 --> 00:04:50,798
+Use the adapter's snapshot option to save the observed panels. The resulting text
+
+58
+00:04:50,810 --> 00:04:55,748
+connects readiness and result states with named steps. Pair this snapshot with the
+
+59
+00:04:55,761 --> 00:05:00,348
+structured JSON output so a reviewer can inspect both the parsed values and their
+
+60
+00:05:00,360 --> 00:05:05,336
+source screen. The placeholder reference in the displayed command must be replaced
+
+61
+00:05:05,348 --> 00:05:10,410
+with a real transfer identifier whose fixture still exists. Do not present the
+
+62
+00:05:10,423 --> 00:05:15,748
+placeholder as a successful lookup. If the fixture was already deleted, a not-found
+
+63
+00:05:15,761 --> 00:05:18,148
+result is the meaningful expected behavior.
+
+64
+00:05:20,374 --> 00:05:25,374
+The session wrapper closes the TNZ connection on exit, including after a parsing or
+
+65
+00:05:25,386 --> 00:05:30,624
+assertion failure. Its setup path also closes if the initial panel never becomes
+
+66
+00:05:30,636 --> 00:05:36,424
+ready. Inspect both paths, because a finalization block around only the test body
+
+67
+00:05:36,436 --> 00:05:41,362
+cannot clean up a resource that failed earlier during entry. The underlying close
+
+68
+00:05:41,374 --> 00:05:47,162
+operation uses TNZ shutdown. Capture necessary screen evidence before releasing the
+
+69
+00:05:47,174 --> 00:05:51,774
+session, and preserve the original failure if a secondary cleanup problem appears.
+
+70
+00:05:52,636 --> 00:05:55,712
+Ownership should remain understandable across test cases.
+
+71
+00:05:57,936 --> 00:06:02,674
+Run the terminal protocol tests for successful lookup, unknown reference, unavailable
+
+72
+00:06:02,686 --> 00:06:07,986
+backend, invalid input, and a missing-screen timeout. These checks distinguish
+
+73
+00:06:07,999 --> 00:06:13,224
+business data, missing records, dependency errors, validation, and bounded waiting.
+
+74
+00:06:14,086 --> 00:06:19,586
+Inspect each actual result independently. The adapter's exit code of two represents a
+
+75
+00:06:19,599 --> 00:06:25,611
+business response; code one represents an operational or validation failure. Interpret
+
+76
+00:06:25,624 --> 00:06:30,711
+the structured status too. Treating every nonzero result as identical loses the
+
+77
+00:06:30,724 --> 00:06:33,974
+information needed to diagnose a hybrid workflow efficiently.
+
+78
+00:06:36,194 --> 00:06:40,657
+Your checkpoint is an explanation of the adapter's full contract: permitted reference
+
+79
+00:06:40,669 --> 00:06:45,719
+input, loopback destination, ready-screen condition, field operations, result
+
+80
+00:06:45,732 --> 00:06:50,982
+predicate, structured values, timeout behavior, and cleanup. Point to the
+
+81
+00:06:50,994 --> 00:06:56,107
+implementation and one actual snapshot. Then explain why matching the reference
+
+82
+00:06:56,119 --> 00:07:01,494
+matters before accepting a completed status. Call the adapter from a browser test
+
+83
+00:07:01,506 --> 00:07:06,556
+without embedding terminal details everywhere. The next episode uses that boundary
+
+84
+00:07:06,569 --> 00:07:11,506
+from Python and Java to compare the same synthetic transfer across web, service, and
+
+85
+00:07:11,519 --> 00:07:12,882
+terminal observations.

@@ -1,0 +1,335 @@
+1
+00:00:00,700 --> 00:00:05,887
+Reliable regression starts before the first click. In this episode, design an
+
+2
+00:00:05,900 --> 00:00:11,625
+experiment whose starting data, identity, and cleanup belong to one test attempt. A
+
+3
+00:00:11,638 --> 00:00:15,925
+new browser context removes browser state, but it does not reset money held by a
+
+4
+00:00:15,938 --> 00:00:21,838
+backend service. Likewise, a fresh account does not remove cookies from a reused page.
+
+5
+00:00:22,700 --> 00:00:27,713
+You need both boundaries. We will trace the fixture from creation to deletion and
+
+6
+00:00:27,725 --> 00:00:32,988
+examine why retries, parallel workers, and authentication reuse can otherwise create
+
+7
+00:00:33,000 --> 00:00:34,238
+misleading outcomes.
+
+8
+00:00:36,462 --> 00:00:40,950
+Use the local fixture endpoint to create a synthetic user, source account, and
+
+9
+00:00:40,962 --> 00:00:46,100
+beneficiary with the agreed opening balance. Include a run identifier and case
+
+10
+00:00:46,112 --> 00:00:52,187
+identifier for diagnosis. The server adds unique identifiers, so two learners can use
+
+11
+00:00:52,200 --> 00:00:57,424
+the same case name without sharing mutable accounts. Inspect the creation status
+
+12
+00:00:57,437 --> 00:01:02,674
+before reading the response. Retain the fixture identifier immediately, because
+
+13
+00:01:02,687 --> 00:01:08,174
+cleanup needs it even when the next setup step fails. Never replace targeted fixture
+
+14
+00:01:08,187 --> 00:01:11,637
+creation with a shared account that someone manually reset earlier.
+
+15
+00:01:13,856 --> 00:01:18,331
+The fixture client carries a capability used only by this local training environment.
+
+16
+00:01:19,194 --> 00:01:22,919
+Configure its hook key from the laboratory environment and restrict its use to
+
+17
+00:01:22,931 --> 00:01:28,181
+preparation and deletion requests. The business context authenticates using the
+
+18
+00:01:28,194 --> 00:01:32,931
+synthetic credentials returned for its fixture. Do not install the hook header
+
+19
+00:01:32,944 --> 00:01:38,068
+globally on the browser. This separation clarifies what each observation proves:
+
+20
+00:01:38,306 --> 00:01:42,744
+ordinary business requests must work with the user's session, while setup endpoints
+
+21
+00:01:42,756 --> 00:01:46,544
+deliberately create the data needed for a repeatable classroom experiment.
+
+22
+00:01:48,754 --> 00:01:54,542
+Login through the HTTP client associated with the browser context. After a successful
+
+23
+00:01:54,554 --> 00:01:59,979
+response, the session cookie is available to that context's page. Use the same
+
+24
+00:01:59,992 --> 00:02:04,804
+loopback hostname for login and navigation; changing between localhost and its numeric
+
+25
+00:02:04,816 --> 00:02:10,429
+address changes the cookie's host scope. When a page unexpectedly redirects to login,
+
+26
+00:02:10,642 --> 00:02:16,142
+inspect that relationship before changing timeouts. Avoid saving synthetic session
+
+27
+00:02:16,154 --> 00:02:21,666
+files unless a specific exercise requires them. Per-test login keeps identity
+
+28
+00:02:21,679 --> 00:02:24,954
+ownership visible and is sufficient for this small local workflow.
+
+29
+00:02:27,180 --> 00:02:32,343
+Some suites save authenticated storage state to avoid repeating login. That can be
+
+30
+00:02:32,355 --> 00:02:36,642
+appropriate when tests do not collide through the same user's server data, or when
+
+31
+00:02:36,655 --> 00:02:41,892
+each worker receives its own account. Reusing a session file alone does not isolate
+
+32
+00:02:41,905 --> 00:02:47,618
+account balances or transfer histories. Before adopting this optimization, list every
+
+33
+00:02:47,630 --> 00:02:52,793
+mutable resource associated with that identity and decide who owns it. For our three
+
+34
+00:02:52,805 --> 00:02:57,430
+central cases, fresh synthetic users are easier to reason about than a fast shared
+
+35
+00:02:57,443 --> 00:02:59,755
+login followed by complicated repairs.
+
+36
+00:03:01,982 --> 00:03:06,895
+A retry is another experiment, not a continuation that may reuse an already debited
+
+37
+00:03:06,907 --> 00:03:11,944
+account. Arrange fixture setup so each attempt gets its own source account,
+
+38
+00:03:12,120 --> 00:03:18,657
+beneficiary, session, and idempotency key. Within the idempotency case, reuse the key
+
+39
+00:03:18,670 --> 00:03:23,807
+only for the two requests representing the same intended transfer. Across test
+
+40
+00:03:23,820 --> 00:03:29,670
+attempts, generate a new intention and new data. Otherwise, a retry might succeed by
+
+41
+00:03:29,682 --> 00:03:33,870
+replaying a transfer from the failed attempt, creating the appearance of stability
+
+42
+00:03:33,882 --> 00:03:36,982
+while exercising a different path than the original test.
+
+43
+00:03:39,208 --> 00:03:44,233
+Add an authorization extension after the three central cases: create two fixtures and
+
+44
+00:03:44,246 --> 00:03:49,420
+try accessing one fixture's account with the other's session. The local contract
+
+45
+00:03:49,433 --> 00:03:54,420
+defines a forbidden response for cross-fixture business access. Inspect both the
+
+46
+00:03:54,433 --> 00:03:59,721
+response and the unchanged target state. This extension checks a different risk from
+
+47
+00:03:59,733 --> 00:04:05,046
+insufficient funds. Keep it separately named and independently prepared so its purpose
+
+48
+00:04:05,058 --> 00:04:10,846
+is clear. AI may suggest combining them for brevity, but a combined case often makes
+
+49
+00:04:10,858 --> 00:04:13,633
+it harder to identify which rule actually failed.
+
+50
+00:04:15,858 --> 00:04:21,321
+When a test fails, capture the relevant browser, API, and correlation evidence before
+
+51
+00:04:21,333 --> 00:04:26,520
+deleting the fixture. Then close the browser context and remove only the owned data
+
+52
+00:04:26,533 --> 00:04:31,508
+through the local deletion endpoint. Make the deletion operation idempotent so a
+
+53
+00:04:31,520 --> 00:04:36,758
+second cleanup attempt is safe for that fixture. Record its response separately from
+
+54
+00:04:36,770 --> 00:04:42,321
+the original failure. Deleting the entire laboratory state may appear convenient in a
+
+55
+00:04:42,333 --> 00:04:46,708
+single demonstration, but it invalidates other running experiments and prevents
+
+56
+00:04:46,720 --> 00:04:50,633
+meaningful parallel execution across learners or language versions.
+
+57
+00:04:52,844 --> 00:04:58,119
+Walk through a setup failure. Suppose fixture creation succeeds but authentication
+
+58
+00:04:58,132 --> 00:05:04,982
+fails. The test body may never run, yet the created account still exists. The setup
+
+59
+00:05:04,994 --> 00:05:09,356
+owner must therefore register cleanup as soon as creation succeeds, rather than
+
+60
+00:05:09,369 --> 00:05:14,832
+waiting until every preparation step completes. Use the fixture mechanisms appropriate
+
+61
+00:05:14,844 --> 00:05:20,382
+to your language and inspect their behavior during exceptions. If cleanup also fails,
+
+62
+00:05:20,494 --> 00:05:25,519
+preserve the original cause and the remaining fixture identifier. A useful report
+
+63
+00:05:25,532 --> 00:05:29,856
+explains both problems without converting either into a silently skipped success.
+
+64
+00:05:32,086 --> 00:05:37,286
+Now imagine two workers submitting transfers at the same time. Each owns a browser
+
+65
+00:05:37,299 --> 00:05:42,799
+context and a separate fixture, so their account assertions remain deterministic. The
+
+66
+00:05:42,811 --> 00:05:47,661
+shared local services can process both requests, but the observations remain filtered
+
+67
+00:05:47,674 --> 00:05:52,761
+by each source account and transfer identifier. Increasing worker count changes
+
+68
+00:05:52,774 --> 00:05:58,486
+scheduling, not the business oracle. If failures appear only under parallel execution,
+
+69
+00:05:58,661 --> 00:06:04,148
+compare fixture identifiers and session ownership first. Then investigate service
+
+70
+00:06:04,161 --> 00:06:08,524
+behavior with correlated evidence instead of immediately adding global locks around
+
+71
+00:06:08,536 --> 00:06:09,398
+every test.
+
+72
+00:06:11,616 --> 00:06:16,454
+Give AI the setup and cleanup code together with the contract. Ask it to trace
+
+73
+00:06:16,466 --> 00:06:20,904
+resource ownership through success, assertion failure, login failure, and an
+
+74
+00:06:20,916 --> 00:06:26,016
+interrupted request. Require it to identify which fixture might remain and which
+
+75
+00:06:26,029 --> 00:06:31,466
+evidence might be lost in each path. This is more useful than asking for generic best
+
+76
+00:06:31,479 --> 00:06:37,604
+practices. Review every suggestion against the actual runner's lifecycle. If a
+
+77
+00:06:37,616 --> 00:06:41,816
+proposed helper does not exist in your project, either implement it deliberately with
+
+78
+00:06:41,829 --> 00:06:45,354
+clear responsibilities or reject that unsupported shortcut.
+
+79
+00:06:47,570 --> 00:06:53,170
+Your checkpoint is a short ownership checklist attached to one executed case. It names
+
+80
+00:06:53,183 --> 00:06:59,358
+the run, attempt, fixture, source account, browser context, and cleanup result. It
+
+81
+00:06:59,370 --> 00:07:03,358
+also explains how authentication reached the page and where failure evidence was
+
+82
+00:07:03,370 --> 00:07:08,383
+captured. Review the checklist with a partner and ask them to predict what happens if
+
+83
+00:07:08,395 --> 00:07:13,845
+login fails or the test is retried. When those answers follow directly from the code,
+
+84
+00:07:14,058 --> 00:07:18,083
+you have a solid foundation for the distributed observations in the next episode.

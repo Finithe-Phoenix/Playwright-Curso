@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TransferLab | Distributed testing classroom</title>
+<style>
+:root{font-family:Segoe UI,Arial,sans-serif;color:#14213D;background:#F4F7FC}*{box-sizing:border-box}body{margin:0}main{max-width:1150px;margin:50px auto;padding:0 36px}.eyebrow{font-size:14px;letter-spacing:3px;color:#2457E6}h1{font-size:44px;margin:14px 0}h2{font-size:24px;margin:0 0 24px}.muted{color:#526079;line-height:1.65}.banner{padding:15px 20px;border:1px solid #D7DFED;border-radius:12px;margin:24px 0;color:#526079}.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}.card{background:#FFFFFF;padding:30px;border:1px solid #D7DFED;border-radius:20px}label{display:block;margin:22px 0 9px;color:#526079}input,select{width:100%;padding:14px;background:#FFFFFF;color:#14213D;border:1px solid #D7DFED;border-radius:9px;font-size:17px}button{border:0;border-radius:9px;padding:14px 25px;font-weight:700;font-size:17px;background:#2457E6;color:#FFFFFF;margin:24px 0 0;cursor:pointer}button:disabled{opacity:.5}.balance{font-size:40px;margin:14px 0 28px;font-weight:700}.node{padding:14px;background:#EAF0FF;border-radius:8px;margin:10px 0;font-size:16px}.node b{color:#2457E6}.flow{color:#526079;text-align:center}[role=status]{color:#2457E6;font-weight:700;font-size:19px}[role=alert]{color:#14213D;font-size:19px}#reference{word-break:break-word;color:#526079;font-family:Consolas,monospace;font-size:13px}footer{margin:25px 0;font-size:13px;color:#526079}@media(max-width:800px){.grid{grid-template-columns:1fr}h1{font-size:32px}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">PLAYWRIGHT + AI / ADVANCED LAB</div><h1>TransferLab</h1>
+<p class="muted">One user action. Three independent services. Verifiable business outcomes.</p>
+<div class="banner">Classroom simulator · Synthetic data only · In-memory state · Not an HSBC application</div>
+<section id="login-card" class="card" hidden><h2>Acceso al laboratorio</h2><p class="muted">Use the synthetic credentials returned by your isolated fixture.</p>
+<form id="login"><label for="username">Usuario</label><input id="username" autocomplete="off"><label for="password">Contraseña</label><input id="password" type="password" autocomplete="off"><button>Iniciar sesión</button></form></section>
+<div id="workspace" class="grid" hidden><section class="card"><h2>Nueva transferencia</h2>
+<form id="transfer" novalidate><label for="source">Cuenta origen</label><select id="source"></select>
+<label for="beneficiary">Beneficiario</label><select id="beneficiary"></select>
+<label for="amount">Importe (MXN)</label><input id="amount" inputmode="decimal" placeholder="100.00" autocomplete="off">
+<button id="submit" type="submit">Transferir</button></form><div id="message" aria-live="polite"></div><p id="reference"></p></section>
+<aside class="card"><div class="muted">Saldo disponible</div><div class="balance" data-testid="account-balance">—</div>
+<div class="node"><b>01</b> Browser → Gateway :3000</div><div class="flow">↓ HTTP command</div>
+<div class="node"><b>02</b> Accounts :3001 · debit + outbox</div><div class="flow">↓ periodic event delivery</div>
+<div class="node"><b>03</b> Ledger :3002 · read model</div>
+<p class="muted">The authoritative account changes immediately. The independent ledger projection is eventually consistent.</p></aside></div>
+<footer>Accessible labels keep the course contract stable. All processes bind to 127.0.0.1.</footer>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let identity;
+let pendingIntent;
+const money = value => `MXN ${(value / 100).toFixed(2)}`;
+function message(role, text) {
+  $('message').replaceChildren();
+  const element = document.createElement('p'); element.setAttribute('role', role); element.textContent = text;
+  $('message').append(element);
+}
+async function load() {
+  const response = await fetch('/api/me');
+  if (response.status !== 200) { $('login-card').hidden = false; $('workspace').hidden = true; return; }
+  identity = await response.json(); $('login-card').hidden = true; $('workspace').hidden = false;
+  $('source').replaceChildren(new Option('Cuenta de pruebas · MXN', identity.sourceAccountId));
+  $('beneficiary').replaceChildren(new Option('Beneficiario sintético', identity.beneficiaryId));
+  const account = await (await fetch(`/api/accounts/${identity.sourceAccountId}`)).json();
+  document.querySelector('[data-testid="account-balance"]').textContent = money(account.balanceMinor);
+}
+$('login').addEventListener('submit', async event => {
+  event.preventDefault();
+  const response = await fetch('/api/session', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({username:$('username').value,password:$('password').value}) });
+  if (response.ok) await load(); else message('alert','Credenciales incorrectas');
+});
+$('transfer').addEventListener('submit', async event => {
+  event.preventDefault();
+  const value = $('amount').value.trim();
+  if (!/^\d+(?:\.\d{1,2})?$/.test(value)) { message('alert','Importe inválido'); return; }
+  const [whole, fraction = ''] = value.split('.');
+  const amountMinor = Number(whole) * 100 + Number(fraction.padEnd(2,'0'));
+  if (!Number.isSafeInteger(amountMinor) || amountMinor <= 0) { message('alert','Importe inválido'); return; }
+  const transfer = { sourceAccountId:$('source').value, beneficiaryId:$('beneficiary').value, currency:'MXN', amountMinor };
+  const fingerprint = JSON.stringify(transfer);
+  if (!pendingIntent || pendingIntent.fingerprint !== fingerprint) pendingIntent = { fingerprint, key:crypto.randomUUID() };
+  $('submit').disabled = true; $('message').replaceChildren(); $('reference').textContent = '';
+  try {
+    const response = await fetch('/api/transfers',{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':pendingIntent.key},body:fingerprint});
+    const result = await response.json();
+    if (response.ok) {
+      message('status','Transferencia realizada'); $('reference').textContent = `Reference: ${result.id}`;
+      pendingIntent = undefined; await load();
+    } else { message('alert',result.message); if(response.status < 500) pendingIntent = undefined; }
+  } catch { message('alert','Servicio temporalmente no disponible'); }
+  finally { $('submit').disabled = false; }
+});
+load();
+</script></body></html>

@@ -1,0 +1,347 @@
+1
+00:00:00,700 --> 00:00:06,325
+We now extend the workflow beyond the browser. The terminal exercises use IBM's real
+
+2
+00:00:06,337 --> 00:00:12,688
+Python TNZ library to communicate over a socket with a small local TN3270 simulator.
+
+3
+00:00:13,550 --> 00:00:17,938
+The simulator displays a synthetic transfer lookup screen and queries the same account
+
+4
+00:00:17,950 --> 00:00:23,412
+data as our web application. This is practical cross-protocol automation, not a
+
+5
+00:00:23,425 --> 00:00:28,513
+connection to a real mainframe. You will understand the boundary, install the prepared
+
+6
+00:00:28,525 --> 00:00:33,050
+client environment, and verify terminal readiness through an actual screen exchange.
+
+7
+00:00:35,262 --> 00:00:41,337
+Playwright controls the browser and its HTTP observations. TNZ controls the terminal
+
+8
+00:00:41,350 --> 00:00:47,512
+session. The hybrid test coordinates both tools through a transfer reference. Trying
+
+9
+00:00:47,524 --> 00:00:51,200
+to locate a terminal field with a browser locator would confuse two different
+
+10
+00:00:51,212 --> 00:00:55,824
+interfaces, unless your actual application provided a browser-based terminal with its
+
+11
+00:00:55,837 --> 00:01:01,937
+own separate contract. Our laboratory uses a protocol client directly. Keep the
+
+12
+00:01:01,950 --> 00:01:06,374
+boundary visible in the architecture diagram so each failure points to the tool and
+
+13
+00:01:06,387 --> 00:01:09,700
+connection that actually produced its evidence during the test run.
+
+14
+00:01:11,912 --> 00:01:17,112
+The terminal screen reads a local lookup endpoint using the transfer reference. That
+
+15
+00:01:17,124 --> 00:01:21,287
+endpoint returns the authoritative in-memory transfer and current account balance from
+
+16
+00:01:21,300 --> 00:01:26,624
+the accounts service. It does not query an independent mainframe database, and it does
+
+17
+00:01:26,637 --> 00:01:31,687
+not prove durable persistence. The distributed ledger projection remains a separate
+
+18
+00:01:31,699 --> 00:01:36,462
+observation from the earlier episode. This distinction matters when describing
+
+19
+00:01:36,474 --> 00:01:41,649
+coverage: the terminal exercise checks reference transport, field interaction, screen
+
+20
+00:01:41,662 --> 00:01:46,424
+parsing, and agreement across interfaces that expose the same synthetic data source.
+
+21
+00:01:48,658 --> 00:01:53,920
+Open the mainframe laboratory directory beside the distributed project. The simulator
+
+22
+00:01:53,933 --> 00:01:59,646
+file owns the server-side terminal behavior. The adapter file wraps the real TNZ
+
+23
+00:01:59,658 --> 00:02:04,583
+client with a session lifecycle, bounded waits, input validation, and structured
+
+24
+00:02:04,596 --> 00:02:10,333
+output. Terminal protocol tests exercise this boundary with deterministic data, while
+
+25
+00:02:10,346 --> 00:02:15,508
+the hybrid browser test uses the running distributed services. Read the requirements
+
+26
+00:02:15,520 --> 00:02:20,583
+files before installation. Their separation lets you install a small terminal-only
+
+27
+00:02:20,596 --> 00:02:24,558
+environment or include the browser dependencies required for the complete hybrid
+
+28
+00:02:24,570 --> 00:02:25,458
+exercise.
+
+29
+00:02:27,684 --> 00:02:32,634
+Run the supplied setup script from the mainframe directory. Use the browser option
+
+30
+00:02:32,646 --> 00:02:37,372
+when you plan to execute the Python hybrid case, because terminal-only setup does not
+
+31
+00:02:37,384 --> 00:02:43,184
+provide every browser dependency. Installation downloads packages and, when requested,
+
+32
+00:02:43,296 --> 00:02:48,972
+Chromium; the completed exercise communicates only with local services. Finish those
+
+33
+00:02:48,984 --> 00:02:53,896
+downloads before the live workshop. If your approved environment already supplies
+
+34
+00:02:53,909 --> 00:02:57,922
+Edge, use the documented browser-channel option in the test runner rather than
+
+35
+00:02:57,934 --> 00:03:02,347
+assuming a Chromium executable exists just because a browser opens normally on your
+
+36
+00:03:02,359 --> 00:03:03,046
+desktop.
+
+37
+00:03:05,270 --> 00:03:09,682
+First start the distributed application using its documented synthetic hook value.
+
+38
+00:03:10,545 --> 00:03:14,695
+Then start the terminal simulator in a separate terminal from the mainframe directory.
+
+39
+00:03:15,558 --> 00:03:20,570
+Its default address is loopback on port twenty-three twenty-three. Leave that terminal
+
+40
+00:03:20,582 --> 00:03:25,658
+running while the adapter connects. If the port is already occupied, inspect the
+
+41
+00:03:25,670 --> 00:03:30,945
+conflict instead of stopping an unrelated application. The laboratory startup and
+
+42
+00:03:30,957 --> 00:03:36,295
+shutdown instructions target only its own processes. Keeping these terminals separate
+
+43
+00:03:36,308 --> 00:03:40,308
+also makes it easier to identify which service reported a connection or lookup
+
+44
+00:03:40,320 --> 00:03:40,908
+failure.
+
+45
+00:03:43,120 --> 00:03:49,070
+Run the adapter's health action with a bounded timeout. This check opens a TNZ session
+
+46
+00:03:49,082 --> 00:03:53,895
+and waits for the expected screen, rather than treating an open TCP port as sufficient
+
+47
+00:03:53,908 --> 00:03:59,258
+readiness. A ready terminal does not prove the gateway is available: the simulator can
+
+48
+00:03:59,270 --> 00:04:04,395
+display its initial panel while business lookup remains unavailable. Record the health
+
+49
+00:04:04,408 --> 00:04:09,382
+result and then verify the distributed services separately. When you later submit a
+
+50
+00:04:09,395 --> 00:04:13,457
+reference, any backend-unavailable status belongs to a different stage from
+
+51
+00:04:13,470 --> 00:04:15,732
+establishing the terminal connection itself.
+
+52
+00:04:17,946 --> 00:04:23,258
+Inspect the initial screen snapshot and find the transfer reference input. This local
+
+53
+00:04:23,271 --> 00:04:27,458
+panel deliberately has one reference field and labeled result lines for status,
+
+54
+00:04:27,608 --> 00:04:32,784
+amount, currency, source account, and balance. Those labels are part of the
+
+55
+00:04:32,796 --> 00:04:38,796
+simulator's contract. They are not universal mainframe field names. In the next
+
+56
+00:04:38,808 --> 00:04:43,408
+episode, we will inspect how the adapter positions the cursor, clears the input,
+
+57
+00:04:43,646 --> 00:04:48,271
+enters the reference, and waits for a result associated with that exact value before
+
+58
+00:04:48,284 --> 00:04:50,708
+parsing any business fields from the screen.
+
+59
+00:04:52,940 --> 00:04:57,665
+Before creating a transfer, run a lookup using a valid reference that does not exist
+
+60
+00:04:57,678 --> 00:05:03,640
+in the current dataset. The expected business result is not found. This is different
+
+61
+00:05:03,653 --> 00:05:07,590
+from failing to connect or reaching a deadline without receiving a usable panel.
+
+62
+00:05:08,452 --> 00:05:14,628
+Inspect the adapter's JSON output and exit status together. Its command-line contract
+
+63
+00:05:14,640 --> 00:05:19,340
+distinguishes successful readiness or completion, business results such as not found,
+
+64
+00:05:19,565 --> 00:05:25,015
+and operational failures. Preserving these categories makes a hybrid test report much
+
+65
+00:05:25,028 --> 00:05:27,528
+more useful than a single generic terminal error.
+
+66
+00:05:29,758 --> 00:05:34,108
+The classroom adapter uses an unencrypted connection only to loopback and rejects
+
+67
+00:05:34,120 --> 00:05:39,645
+nonlocal destinations. That is part of this simulator's design, not a template for
+
+68
+00:05:39,658 --> 00:05:44,633
+connecting to an external host. An authorized real environment would need its own
+
+69
+00:05:44,645 --> 00:05:50,908
+host, screen contract, test records, and verified transport configuration. None of
+
+70
+00:05:50,920 --> 00:05:55,933
+those are established by this lesson. Keeping the local boundary explicit allows you
+
+71
+00:05:55,946 --> 00:06:00,070
+to learn field automation and orchestration without suggesting that a successful
+
+72
+00:06:00,083 --> 00:06:05,096
+synthetic lookup validates access, security, or behavior on an actual mainframe
+
+73
+00:06:05,108 --> 00:06:05,833
+platform.
+
+74
+00:06:08,064 --> 00:06:13,826
+Execute the standalone terminal tests before the full hybrid path. These tests launch
+
+75
+00:06:13,839 --> 00:06:17,714
+their own local server with deterministic fixture data and communicate through the
+
+76
+00:06:17,726 --> 00:06:24,189
+actual TNZ library over a real socket. They help isolate connection, field, and status
+
+77
+00:06:24,201 --> 00:06:29,989
+handling from browser or gateway issues. Inspect the actual test count and result file
+
+78
+00:06:30,001 --> 00:06:35,464
+instead of assuming the suite passed because it exists. A successful protocol suite
+
+79
+00:06:35,476 --> 00:06:39,976
+supports the adapter boundary; the browser-to-terminal workflow still requires its own
+
+80
+00:06:39,989 --> 00:06:42,089
+run against the distributed application.
+
+81
+00:06:44,306 --> 00:06:49,068
+Explain the complete lookup path to a partner: TNZ sends a reference to the local
+
+82
+00:06:49,081 --> 00:06:53,544
+simulator, which calls the gateway lookup endpoint and displays shared account data.
+
+83
+00:06:54,406 --> 00:06:59,518
+Then show your actual readiness result and protocol test outcome. Identify which
+
+84
+00:06:59,531 --> 00:07:04,644
+components were running and which were unnecessary for the standalone tests. If an
+
+85
+00:07:04,656 --> 00:07:09,894
+installation or connection failed, keep that checkpoint unresolved. You are prepared
+
+86
+00:07:09,906 --> 00:07:14,231
+for the next episode when you can distinguish terminal protocol behavior, business
+
+87
+00:07:14,244 --> 00:07:18,244
+lookup behavior, and the limits of this deliberately simulated environment.

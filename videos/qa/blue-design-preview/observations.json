@@ -1,0 +1,17 @@
+{
+  "reviewedAtUtc": "2026-09-10T03:49:38.938808+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewedFrames": 8,
+  "expandedFrames": [
+    "frame-03-at-35s.png",
+    "frame-07-at-75s.png"
+  ],
+  "type": "Calibration composition frames, not final lesson exports",
+  "findings": [
+    "Blue, gray, white and navy design visible; no green or teal observed in the eight samples.",
+    "Code, active line emphasis, chapter card, architecture nodes and refreshed browser/terminal evidence are visually coherent without clipping.",
+    "Episode 98 and shortened caption text are deliberate calibration source content, not final lesson data."
+  ],
+  "issues": [],
+  "scope": "Review of eight calibration frames and two expanded frames only; does not establish final MP4 review or audio listening."
+}

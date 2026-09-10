@@ -1,0 +1,84 @@
+{
+  "episode": "01",
+  "inputHash": "205f70052a645ac3c31ce4b3b157013fdd9d78a5ce532a69403ab97d1a196875",
+  "profile": {
+    "hyperframes": "0.8.33",
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "quality": "high",
+    "workers": 1,
+    "lowMemoryMode": true,
+    "gpu": true,
+    "staticFrameDedup": true,
+    "durationToleranceSeconds": 0.3
+  },
+  "artifact": {
+    "path": "renders/01-architecture-and-setup.mp4",
+    "duration": 423.0,
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "sampleRate": "48000",
+    "bytes": 28846507,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "videoCodec": "h264",
+    "sha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+    "audioDecode": {
+      "ok": true,
+      "log": "logs/01-audio-integrity.log",
+      "seconds": 1.031
+    }
+  },
+  "check": {
+    "log": "logs/01-check.json",
+    "seconds": 29.047,
+    "ok": true,
+    "stderr": "logs/01-check.stderr.log"
+  },
+  "captions": {
+    "count": 84,
+    "bounds": "passed",
+    "srtMatchesTimeline": true
+  },
+  "snapshots": {
+    "log": "logs/01-snapshots.log",
+    "seconds": 14.531,
+    "frames": [
+      "qa/episodes/01/205f70052a64/frame-00-at-16.285s.png",
+      "qa/episodes/01/205f70052a64/frame-01-at-49.467s.png",
+      "qa/episodes/01/205f70052a64/frame-02-at-84.509s.png",
+      "qa/episodes/01/205f70052a64/frame-03-at-121.363s.png",
+      "qa/episodes/01/205f70052a64/frame-04-at-158.529s.png",
+      "qa/episodes/01/205f70052a64/frame-05-at-195.935s.png",
+      "qa/episodes/01/205f70052a64/frame-06-at-231.949s.png",
+      "qa/episodes/01/205f70052a64/frame-07-at-267.483s.png",
+      "qa/episodes/01/205f70052a64/frame-08-at-303.149s.png",
+      "qa/episodes/01/205f70052a64/frame-09-at-338.779s.png",
+      "qa/episodes/01/205f70052a64/frame-10-at-373.701s.png",
+      "qa/episodes/01/205f70052a64/frame-11-at-406.595s.png"
+    ],
+    "contactSheets": [
+      "qa/episodes/01/205f70052a64/contact-sheet-1.jpg",
+      "qa/episodes/01/205f70052a64/contact-sheet-2.jpg"
+    ],
+    "times": [
+      16.285,
+      49.467,
+      84.509,
+      121.363,
+      158.529,
+      195.935,
+      231.94899999999998,
+      267.483,
+      303.149,
+      338.779,
+      373.70099999999996,
+      406.595
+    ],
+    "visualReview": "pending"
+  },
+  "visualReview": "pending",
+  "validatedAt": "2026-09-09T21:34:21.933555+00:00"
+}

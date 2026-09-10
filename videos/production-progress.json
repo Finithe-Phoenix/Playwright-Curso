@@ -1,0 +1,1453 @@
+{
+  "schemaVersion": 1,
+  "episodes": {
+    "01": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T21:34:21.943088+00:00",
+      "inputHash": "205f70052a645ac3c31ce4b3b157013fdd9d78a5ce532a69403ab97d1a196875",
+      "inputFiles": {
+        "audio/01/timeline.json": "964ca22f2fb173c8fe6283513d59de49cff3c48c161d9bf8dccf569334229774",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/01/narration.wav": "0404fda4bcd7e80cf9538593f480548d867b16f351312ee21875fbafae383de1",
+        "audio/01/subtitles.srt": "c3e408729216ebcd73c70db341ec847f9c69b59ecdf08967d216ae84aebeaba2",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 423.0,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20304044
+      },
+      "expectedDuration": 423.0,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/01-architecture-and-setup.mp4",
+        "duration": 423.0,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 28678542,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "097d478501c76fa462d75e254f4f2f228155b9289f8e6943c11ca5dbf0906129",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/01-audio-integrity.log",
+          "seconds": 1.531
+        }
+      },
+      "artifact": {
+        "path": "renders/01-architecture-and-setup.mp4",
+        "duration": 423.0,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 28846507,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/01-audio-integrity.log",
+          "seconds": 1.031
+        }
+      },
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/01-build.log",
+        "seconds": 0.516
+      },
+      "check": {
+        "log": "logs/01-check.json",
+        "seconds": 29.047,
+        "ok": true,
+        "stderr": "logs/01-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/01-snapshots.log",
+        "seconds": 14.531,
+        "frames": [
+          "qa/episodes/01/205f70052a64/frame-00-at-16.285s.png",
+          "qa/episodes/01/205f70052a64/frame-01-at-49.467s.png",
+          "qa/episodes/01/205f70052a64/frame-02-at-84.509s.png",
+          "qa/episodes/01/205f70052a64/frame-03-at-121.363s.png",
+          "qa/episodes/01/205f70052a64/frame-04-at-158.529s.png",
+          "qa/episodes/01/205f70052a64/frame-05-at-195.935s.png",
+          "qa/episodes/01/205f70052a64/frame-06-at-231.949s.png",
+          "qa/episodes/01/205f70052a64/frame-07-at-267.483s.png",
+          "qa/episodes/01/205f70052a64/frame-08-at-303.149s.png",
+          "qa/episodes/01/205f70052a64/frame-09-at-338.779s.png",
+          "qa/episodes/01/205f70052a64/frame-10-at-373.701s.png",
+          "qa/episodes/01/205f70052a64/frame-11-at-406.595s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/01/205f70052a64/contact-sheet-1.jpg",
+          "qa/episodes/01/205f70052a64/contact-sheet-2.jpg"
+        ],
+        "times": [
+          16.285,
+          49.467,
+          84.509,
+          121.363,
+          158.529,
+          195.935,
+          231.94899999999998,
+          267.483,
+          303.149,
+          338.779,
+          373.70099999999996,
+          406.595
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/01-render.log",
+        "seconds": 276.25
+      },
+      "visualReview": "pending",
+      "pendingAdoption": false
+    },
+    "02": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T21:40:58.149888+00:00",
+      "inputHash": "ae8cb4c259a534bc04611d1be788bbb92d165f5f0a4f27f7e83ea040755d6a12",
+      "inputFiles": {
+        "audio/02/timeline.json": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/02/narration.wav": "7db811cc46642f34904220bd9d9151886caec46d0767593c76fa1cb0062fbd46",
+        "audio/02/subtitles.srt": "eb02ee10311a35c38421e97942e1a59958758ce7aa5da8d022672462ac5f77c6",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+        "lab/distributed/evidence/test-results/regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium/ui-success.png": "8f2c387fd5ce14975f8c554652ac7542cd6b0a15565a2fd16d5b0beee713eb04"
+      },
+      "narration": {
+        "duration": 430.392,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20658860
+      },
+      "expectedDuration": 430.39200000000005,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/02-typescript-ui-api-regression.mp4",
+        "duration": 430.416667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 33826050,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "6b3b7e415faf37fe8d82316b35b55ca328f953499448916d1f28c7befd235b39",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/02-audio-integrity.log",
+          "seconds": 1.531
+        }
+      },
+      "artifact": {
+        "path": "renders/02-typescript-ui-api-regression.mp4",
+        "duration": 430.416667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 34560260,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/02-audio-integrity.log",
+          "seconds": 1.547
+        }
+      },
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/02-build.log",
+        "seconds": 0.531
+      },
+      "check": {
+        "log": "logs/02-check.json",
+        "seconds": 26.047,
+        "ok": true,
+        "stderr": "logs/02-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/02-snapshots.log",
+        "seconds": 15.532,
+        "frames": [
+          "qa/episodes/02/ae8cb4c259a5/frame-00-at-17.341s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-01-at-51.423s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-02-at-85.565s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-03-at-120.259s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-04-at-156.261s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-05-at-193.307s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-06-at-228.085s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-07-at-262.923s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-08-at-299.309s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-09-at-335.911s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-10-at-372.825s.png",
+          "qa/episodes/02/ae8cb4c259a5/frame-11-at-410.759s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/02/ae8cb4c259a5/contact-sheet-1.jpg",
+          "qa/episodes/02/ae8cb4c259a5/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.341,
+          51.423,
+          85.565,
+          120.25900000000001,
+          156.26100000000002,
+          193.30700000000002,
+          228.08500000000004,
+          262.92300000000006,
+          299.309,
+          335.91100000000006,
+          372.82500000000005,
+          410.759
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/02-render.log",
+        "seconds": 350.828
+      },
+      "pendingAdoption": false,
+      "visualReview": "pending"
+    },
+    "03": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T21:50:21.313430+00:00",
+      "inputHash": "fc9e0859e4521eb1f32154bd38c9ff0bdcf1f106c48a1d6f61af0ef94c2c2310",
+      "inputFiles": {
+        "audio/03/timeline.json": "0500f675d939e9b6e5211622a38ab1610d6f7964857021cc6bbb3fe29f2694bd",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/03/narration.wav": "3cba5a90889a982ebae7352d0086a941d6a7b9475290330be1895845df4c1b73",
+        "audio/03/subtitles.srt": "a8a9ddb53beccec20632fbd31e362ab09311df26838f43e8243b5abf59e50173",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 443.28,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21277484
+      },
+      "expectedDuration": 443.2799999999999,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/03-python-pytest-fixtures.mp4",
+        "duration": 443.291667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 32758600,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "ba9a482c1600190642522af1f83e65d6880f3a16623ad4b791f4db43fbcb9742",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/03-audio-integrity.log",
+          "seconds": 1.531
+        }
+      },
+      "artifact": {
+        "path": "renders/03-python-pytest-fixtures.mp4",
+        "duration": 443.291667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 33313507,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "7f1cca90aac782936882d89a395de74b40d002bf2de006972e3d10d615fdaef0",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/03-audio-integrity.log",
+          "seconds": 1.546
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/03-build.log",
+        "seconds": 1.187
+      },
+      "check": {
+        "log": "logs/03-check.json",
+        "seconds": 63.109,
+        "ok": true,
+        "stderr": "logs/03-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/03-snapshots.log",
+        "seconds": 23.547,
+        "frames": [
+          "qa/episodes/03/fc9e0859e452/frame-00-at-19.117s.png",
+          "qa/episodes/03/fc9e0859e452/frame-01-at-55.359s.png",
+          "qa/episodes/03/fc9e0859e452/frame-02-at-91.481s.png",
+          "qa/episodes/03/fc9e0859e452/frame-03-at-128.719s.png",
+          "qa/episodes/03/fc9e0859e452/frame-04-at-164.925s.png",
+          "qa/episodes/03/fc9e0859e452/frame-05-at-203.099s.png",
+          "qa/episodes/03/fc9e0859e452/frame-06-at-241.249s.png",
+          "qa/episodes/03/fc9e0859e452/frame-07-at-278.187s.png",
+          "qa/episodes/03/fc9e0859e452/frame-08-at-315.221s.png",
+          "qa/episodes/03/fc9e0859e452/frame-09-at-350.767s.png",
+          "qa/episodes/03/fc9e0859e452/frame-10-at-387.453s.png",
+          "qa/episodes/03/fc9e0859e452/frame-11-at-424.955s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/03/fc9e0859e452/contact-sheet-1.jpg",
+          "qa/episodes/03/fc9e0859e452/contact-sheet-2.jpg"
+        ],
+        "times": [
+          19.117,
+          55.359,
+          91.48100000000001,
+          128.719,
+          164.925,
+          203.09900000000002,
+          241.24900000000002,
+          278.187,
+          315.22099999999995,
+          350.767,
+          387.453,
+          424.9549999999999
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/03-render.log",
+        "seconds": 472.625
+      },
+      "visualReview": "pending"
+    },
+    "04": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T21:58:13.166846+00:00",
+      "inputHash": "c2dd2dcc90201d1e1b5da9afc9a72c615fbd4043ce7a0c274a5e334019abe9f9",
+      "inputFiles": {
+        "audio/04/timeline.json": "dd5b95ed92df2cd5e658301b99e0d1164ff61678658c37a3c7e81434045dac33",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/04/narration.wav": "c2f8d2bc6c72218bcfe1f1311d3fcaea16559d6cbadb0f98de8faaad324dc451",
+        "audio/04/subtitles.srt": "8e4b759126e8a2c74a052c81defd77db2e481dd83ed00e3ad261758e617a8fab",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 438.576,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21051692
+      },
+      "expectedDuration": 438.576,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/04-java-junit-lifecycle.mp4",
+        "duration": 438.583333,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 33412091,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "e08ed2bca312e48dde9dfade197e9070461873e79760614e49527b5fbc224477",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/04-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "artifact": {
+        "path": "renders/04-java-junit-lifecycle.mp4",
+        "duration": 438.583333,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 33752932,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "03ad64f600f3d50608c9b91592f9034426981179241c8779af820cfc0a20afe4",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/04-audio-integrity.log",
+          "seconds": 1.531
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/04-build.log",
+        "seconds": 0.531
+      },
+      "check": {
+        "log": "logs/04-check.json",
+        "seconds": 38.078,
+        "ok": true,
+        "stderr": "logs/04-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/04-snapshots.log",
+        "seconds": 23.047,
+        "frames": [
+          "qa/episodes/04/c2dd2dcc9020/frame-00-at-18.853s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-01-at-56.871s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-02-at-93.641s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-03-at-129.979s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-04-at-167.409s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-05-at-204.407s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-06-at-239.761s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-07-at-276.699s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-08-at-313.109s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-09-at-347.695s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-10-at-383.601s.png",
+          "qa/episodes/04/c2dd2dcc9020/frame-11-at-420.011s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/04/c2dd2dcc9020/contact-sheet-1.jpg",
+          "qa/episodes/04/c2dd2dcc9020/contact-sheet-2.jpg"
+        ],
+        "times": [
+          18.853,
+          56.871,
+          93.641,
+          129.979,
+          167.40900000000002,
+          204.407,
+          239.76100000000002,
+          276.699,
+          313.109,
+          347.695,
+          383.601,
+          420.011
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/04-render.log",
+        "seconds": 407.047
+      },
+      "visualReview": "pending"
+    },
+    "05": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:04:12.424379+00:00",
+      "inputHash": "d7ec8a166f5dccf007e28f9ed3f747b4651eab7ba52cfa2e250e6e0b8d180485",
+      "inputFiles": {
+        "audio/05/timeline.json": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/05/narration.wav": "15cae55d387f1a659afc130a6aba530667039a9e43390c4738366e9605539e5d",
+        "audio/05/subtitles.srt": "6f363ef8bb232213172d074e9e6f06dd44dd54f0b9d02c5ac30fa85050ef05e5",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 439.608,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21101228
+      },
+      "expectedDuration": 439.60800000000006,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/05-isolation-authentication-test-data.mp4",
+        "duration": 439.625,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 29438950,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "c0959deb3030c08cd97a330808cd31db5b964729a57d8d94c881ad46bd4c9601",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/05-audio-integrity.log",
+          "seconds": 1.031
+        }
+      },
+      "artifact": {
+        "path": "renders/05-isolation-authentication-test-data.mp4",
+        "duration": 439.625,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 29843517,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/05-audio-integrity.log",
+          "seconds": 1.531
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/05-build.log",
+        "seconds": 0.515
+      },
+      "check": {
+        "log": "logs/05-check.json",
+        "seconds": 32.062,
+        "ok": true,
+        "stderr": "logs/05-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/05-snapshots.log",
+        "seconds": 21.032,
+        "frames": [
+          "qa/episodes/05/d7ec8a166f5d/frame-00-at-17.881s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-01-at-54.459s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-02-at-90.605s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-03-at-127.267s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-04-at-163.881s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-05-at-199.895s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-06-at-236.833s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-07-at-273.651s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-08-at-311.765s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-09-at-351.151s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-10-at-388.893s.png",
+          "qa/episodes/05/d7ec8a166f5d/frame-11-at-423.239s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/05/d7ec8a166f5d/contact-sheet-1.jpg",
+          "qa/episodes/05/d7ec8a166f5d/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.881,
+          54.459,
+          90.605,
+          127.267,
+          163.88100000000003,
+          199.895,
+          236.833,
+          273.651,
+          311.765,
+          351.151,
+          388.89300000000003,
+          423.23900000000003
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/05-render.log",
+        "seconds": 302.297
+      },
+      "visualReview": "pending"
+    },
+    "06": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:09:22.362681+00:00",
+      "inputHash": "a46cee28cd324305f6d6c7fb29b7099c6f42f6b996711de65d5707ea02688a1a",
+      "inputFiles": {
+        "audio/06/timeline.json": "b62a2cfcc93f4305d613a66415613fa0869472d3cff370bdd4f5c05c5a0e7bfb",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/06/narration.wav": "827bba787e13056fc19f3b7ec6b2e33a27e0dc0cccdc06bdc981a0a9cbcddd26",
+        "audio/06/subtitles.srt": "3ea24bf0d70baa1f5e5caa226eec2146caea9db0cca22db16217c90c60a017b0",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 434.496,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20855852
+      },
+      "expectedDuration": 434.49600000000004,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/06-distributed-correlation-polling.mp4",
+        "duration": 434.5,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31481029,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "9ae8ad24350bdccf6d6992a5d06acaa92757088a45cc4a1285813ddc2a08c429",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/06-audio-integrity.log",
+          "seconds": 1.015
+        }
+      },
+      "artifact": {
+        "path": "renders/06-distributed-correlation-polling.mp4",
+        "duration": 434.5,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31841431,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "7830da07543f8cde85bcd27eee4aebdf34eaeffcad849b18963aea9583cac012",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/06-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/06-build.log",
+        "seconds": 0.516
+      },
+      "check": {
+        "log": "logs/06-check.json",
+        "seconds": 32.547,
+        "ok": true,
+        "stderr": "logs/06-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/06-snapshots.log",
+        "seconds": 21.531,
+        "frames": [
+          "qa/episodes/06/a46cee28cd32/frame-00-at-17.329s.png",
+          "qa/episodes/06/a46cee28cd32/frame-01-at-53.607s.png",
+          "qa/episodes/06/a46cee28cd32/frame-02-at-90.425s.png",
+          "qa/episodes/06/a46cee28cd32/frame-03-at-126.367s.png",
+          "qa/episodes/06/a46cee28cd32/frame-04-at-162.681s.png",
+          "qa/episodes/06/a46cee28cd32/frame-05-at-199.295s.png",
+          "qa/episodes/06/a46cee28cd32/frame-06-at-237.361s.png",
+          "qa/episodes/06/a46cee28cd32/frame-07-at-274.695s.png",
+          "qa/episodes/06/a46cee28cd32/frame-08-at-310.481s.png",
+          "qa/episodes/06/a46cee28cd32/frame-09-at-345.895s.png",
+          "qa/episodes/06/a46cee28cd32/frame-10-at-381.657s.png",
+          "qa/episodes/06/a46cee28cd32/frame-11-at-417.323s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/06/a46cee28cd32/contact-sheet-1.jpg",
+          "qa/episodes/06/a46cee28cd32/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.329,
+          53.607,
+          90.42500000000001,
+          126.36700000000002,
+          162.68099999999998,
+          199.295,
+          237.36100000000002,
+          274.69500000000005,
+          310.481,
+          345.89500000000004,
+          381.65700000000004,
+          417.32300000000004
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/06-render.log",
+        "seconds": 254.235
+      },
+      "visualReview": "pending"
+    },
+    "07": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:13:56.990960+00:00",
+      "inputHash": "e4459aca71a76cd04fd727f26f8e7a427c41fc4659b2beb18fb3c5c94ce967d3",
+      "inputFiles": {
+        "audio/07/timeline.json": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/07/narration.wav": "02c479279ec5c1c83d0a2e88b76af9de1b93a7cebb6712d418b24e976c3a56cb",
+        "audio/07/subtitles.srt": "7bcf32f91966354cf39529f2319d7fa1efa7357be8495331fd7edf343cb0f6da",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 424.464,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20374316
+      },
+      "expectedDuration": 424.464,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/07-mocks-and-real-e2e.mp4",
+        "duration": 424.5,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 30357597,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "27bbb833a569c0bff32d5b4f0cc8740298fc8ac8ed4ac1bc4dda0ea8011ddd45",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/07-audio-integrity.log",
+          "seconds": 0.5
+        }
+      },
+      "artifact": {
+        "path": "renders/07-mocks-and-real-e2e.mp4",
+        "duration": 424.5,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 30537250,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/07-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/07-build.log",
+        "seconds": 0.5
+      },
+      "check": {
+        "log": "logs/07-check.json",
+        "seconds": 28.031,
+        "ok": true,
+        "stderr": "logs/07-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/07-snapshots.log",
+        "seconds": 17.531,
+        "frames": [
+          "qa/episodes/07/e4459aca71a7/frame-00-at-16.513s.png",
+          "qa/episodes/07/e4459aca71a7/frame-01-at-50.079s.png",
+          "qa/episodes/07/e4459aca71a7/frame-02-at-84.773s.png",
+          "qa/episodes/07/e4459aca71a7/frame-03-at-121.459s.png",
+          "qa/episodes/07/e4459aca71a7/frame-04-at-157.353s.png",
+          "qa/episodes/07/e4459aca71a7/frame-05-at-192.443s.png",
+          "qa/episodes/07/e4459aca71a7/frame-06-at-226.873s.png",
+          "qa/episodes/07/e4459aca71a7/frame-07-at-261.339s.png",
+          "qa/episodes/07/e4459aca71a7/frame-08-at-297.017s.png",
+          "qa/episodes/07/e4459aca71a7/frame-09-at-332.551s.png",
+          "qa/episodes/07/e4459aca71a7/frame-10-at-369.861s.png",
+          "qa/episodes/07/e4459aca71a7/frame-11-at-406.751s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/07/e4459aca71a7/contact-sheet-1.jpg",
+          "qa/episodes/07/e4459aca71a7/contact-sheet-2.jpg"
+        ],
+        "times": [
+          16.513,
+          50.07900000000001,
+          84.773,
+          121.459,
+          157.353,
+          192.44300000000004,
+          226.87300000000002,
+          261.339,
+          297.017,
+          332.551,
+          369.86100000000005,
+          406.75100000000003
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/07-render.log",
+        "seconds": 227.703
+      },
+      "visualReview": "pending"
+    },
+    "08": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:18:40.631508+00:00",
+      "inputHash": "de098b53f227f2e1bdeef8d83c31a69a3a86743a5f9595daccc758b4e1569254",
+      "inputFiles": {
+        "audio/08/timeline.json": "92d594a07113805b29495e890f6936a8a84fd45b6045307d3d9d08b219fa9106",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/08/narration.wav": "5319821d563c6031fba2575846fe2bdd0257fa1f7c9cce5636a1dcb419b3bafe",
+        "audio/08/subtitles.srt": "f6d65056006037325cc7b70ae5bd45970437b8bf9ebcdb6c04619a28301253cc",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 434.88,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20874284
+      },
+      "expectedDuration": 434.88000000000005,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/08-traces-ci-debugging.mp4",
+        "duration": 434.916667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31475572,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "0ac14d20f8fbf0faee1200c2983605126aa6919bdb42b7b58609f7a16ba83b97",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/08-audio-integrity.log",
+          "seconds": 1.0
+        }
+      },
+      "artifact": {
+        "path": "renders/08-traces-ci-debugging.mp4",
+        "duration": 434.916667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31613485,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "56e9ee0bbba84fd552006eacabb1050529da6d901ed2e77d6bcdc12be8b52eeb",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/08-audio-integrity.log",
+          "seconds": 0.5
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/08-build.log",
+        "seconds": 0.515
+      },
+      "check": {
+        "log": "logs/08-check.json",
+        "seconds": 28.047,
+        "ok": true,
+        "stderr": "logs/08-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/08-snapshots.log",
+        "seconds": 17.015,
+        "frames": [
+          "qa/episodes/08/de098b53f227/frame-00-at-17.425s.png",
+          "qa/episodes/08/de098b53f227/frame-01-at-52.215s.png",
+          "qa/episodes/08/de098b53f227/frame-02-at-86.777s.png",
+          "qa/episodes/08/de098b53f227/frame-03-at-120.187s.png",
+          "qa/episodes/08/de098b53f227/frame-04-at-155.433s.png",
+          "qa/episodes/08/de098b53f227/frame-05-at-192.911s.png",
+          "qa/episodes/08/de098b53f227/frame-06-at-231.025s.png",
+          "qa/episodes/08/de098b53f227/frame-07-at-268.251s.png",
+          "qa/episodes/08/de098b53f227/frame-08-at-303.317s.png",
+          "qa/episodes/08/de098b53f227/frame-09-at-340.195s.png",
+          "qa/episodes/08/de098b53f227/frame-10-at-379.053s.png",
+          "qa/episodes/08/de098b53f227/frame-11-at-416.711s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/08/de098b53f227/contact-sheet-1.jpg",
+          "qa/episodes/08/de098b53f227/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.425,
+          52.215,
+          86.777,
+          120.18699999999998,
+          155.433,
+          192.91099999999997,
+          231.025,
+          268.251,
+          303.317,
+          340.19500000000005,
+          379.053,
+          416.711
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/08-render.log",
+        "seconds": 237.203
+      },
+      "visualReview": "pending"
+    },
+    "09": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:23:04.273790+00:00",
+      "inputHash": "fad52509ad6309a91bed8e53563b57b3677cd39403e4fca5d5a1e7d70ed4e68a",
+      "inputFiles": {
+        "audio/09/timeline.json": "4478803828c97bbdbd5ce2d95235550a32fe7752b22bdc64753d7ec74b073113",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/09/narration.wav": "49128ec87b59059d9af3c90b59875edf45ce6b27eb2fd7c9d7fe5756b0a56cfc",
+        "audio/09/subtitles.srt": "6721a5588b6dbdadf13994ddfb54db4aa5a1371c1af4c78ce0cde00d22264ad0",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 439.776,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21109292
+      },
+      "expectedDuration": 439.776,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/09-local-3270-tnz-setup.mp4",
+        "duration": 439.791667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 30014626,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "8a13f440efed2a0ef2c19fdfe45aea6b201dbf2c7f56eb08eadb33da43031340",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/09-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "artifact": {
+        "path": "renders/09-local-3270-tnz-setup.mp4",
+        "duration": 439.791667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 30320373,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "2b9c5e5502b9d5cf80cc851067bf3030dbaa00ede91fcacb7a7ea1f80192dc23",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/09-audio-integrity.log",
+          "seconds": 1.016
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/09-build.log",
+        "seconds": 0.516
+      },
+      "check": {
+        "log": "logs/09-check.json",
+        "seconds": 28.031,
+        "ok": true,
+        "stderr": "logs/09-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/09-snapshots.log",
+        "seconds": 17.015,
+        "frames": [
+          "qa/episodes/09/fad52509ad63/frame-00-at-17.281s.png",
+          "qa/episodes/09/fad52509ad63/frame-01-at-52.887s.png",
+          "qa/episodes/09/fad52509ad63/frame-02-at-89.585s.png",
+          "qa/episodes/09/fad52509ad63/frame-03-at-127.471s.png",
+          "qa/episodes/09/fad52509ad63/frame-04-at-165.777s.png",
+          "qa/episodes/09/fad52509ad63/frame-05-at-203.495s.png",
+          "qa/episodes/09/fad52509ad63/frame-06-at-239.833s.png",
+          "qa/episodes/09/fad52509ad63/frame-07-at-274.743s.png",
+          "qa/episodes/09/fad52509ad63/frame-08-at-310.649s.png",
+          "qa/episodes/09/fad52509ad63/frame-09-at-348.211s.png",
+          "qa/episodes/09/fad52509ad63/frame-10-at-385.485s.png",
+          "qa/episodes/09/fad52509ad63/frame-11-at-421.691s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/09/fad52509ad63/contact-sheet-1.jpg",
+          "qa/episodes/09/fad52509ad63/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.281,
+          52.887,
+          89.585,
+          127.471,
+          165.77700000000002,
+          203.495,
+          239.833,
+          274.743,
+          310.649,
+          348.211,
+          385.48499999999996,
+          421.691
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/09-render.log",
+        "seconds": 216.687
+      },
+      "visualReview": "pending"
+    },
+    "10": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:27:54.472656+00:00",
+      "inputHash": "fc8048d077492b97955cd456749650a2d0a61a6703773acff87999b8934c8069",
+      "inputFiles": {
+        "audio/10/timeline.json": "d9c9eb58d1845b75c2785bcfa96c5d6896b8138a7b4c7abd59a1aea5a8478423",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/10/narration.wav": "fa33a28dbc2b60f8d8eb925f58d7e103fa16d52e7d5468a3bedacf4ad0c5bf64",
+        "audio/10/subtitles.srt": "1cb410c0ee153f4d5df5f8b403e106e7695156352c210b98892f63ed7bcd2c37",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 434.4,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 20851244
+      },
+      "expectedDuration": 434.40000000000003,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/10-tnz-fields-waits-cleanup.mp4",
+        "duration": 434.416667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31023820,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "21c75642fa529a276275c3b8205ee970fda0f815749e934418984a78b616ed6e",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/10-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "artifact": {
+        "path": "renders/10-tnz-fields-waits-cleanup.mp4",
+        "duration": 434.416667,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 31203553,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "0099481a904323926a7936ab2eeff66d5ed1282635a67d72180e51ab1b5816f3",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/10-audio-integrity.log",
+          "seconds": 1.0
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/10-build.log",
+        "seconds": 0.516
+      },
+      "check": {
+        "log": "logs/10-check.json",
+        "seconds": 28.531,
+        "ok": true,
+        "stderr": "logs/10-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/10-snapshots.log",
+        "seconds": 17.515,
+        "frames": [
+          "qa/episodes/10/fc8048d07749/frame-00-at-17.365s.png",
+          "qa/episodes/10/fc8048d07749/frame-01-at-53.703s.png",
+          "qa/episodes/10/fc8048d07749/frame-02-at-91.505s.png",
+          "qa/episodes/10/fc8048d07749/frame-03-at-128.479s.png",
+          "qa/episodes/10/fc8048d07749/frame-04-at-163.749s.png",
+          "qa/episodes/10/fc8048d07749/frame-05-at-197.987s.png",
+          "qa/episodes/10/fc8048d07749/frame-06-at-231.901s.png",
+          "qa/episodes/10/fc8048d07749/frame-07-at-266.775s.png",
+          "qa/episodes/10/fc8048d07749/frame-08-at-302.261s.png",
+          "qa/episodes/10/fc8048d07749/frame-09-at-338.455s.png",
+          "qa/episodes/10/fc8048d07749/frame-10-at-376.365s.png",
+          "qa/episodes/10/fc8048d07749/frame-11-at-414.947s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/10/fc8048d07749/contact-sheet-1.jpg",
+          "qa/episodes/10/fc8048d07749/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.365,
+          53.702999999999996,
+          91.505,
+          128.47899999999998,
+          163.749,
+          197.987,
+          231.90099999999998,
+          266.775,
+          302.261,
+          338.45500000000004,
+          376.36500000000007,
+          414.947
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/10-render.log",
+        "seconds": 242.219
+      },
+      "visualReview": "pending"
+    },
+    "11": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-09T22:33:12.208439+00:00",
+      "inputHash": "4a9a0c9c5a721579cd4906dd17e5ab817742fb31ce1bfaef09eec7813dd8eff7",
+      "inputFiles": {
+        "audio/11/timeline.json": "5504e39c5d671b8f59d641fe0c50443d74ff07cbe35d8c73fb39bfa7c61413df",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/11/narration.wav": "665a10bca9b2b711e6d51e9d744d30b79528d77e0f7441c79c46ee6e31b91574",
+        "audio/11/subtitles.srt": "e79b0081b331c934a84dfc17ed8a5bd795a3ee7a397a4af46a43c128b7b55d4b",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+        "lab/mainframe/evidence/hybrid-python-browser.png": "80e36f205f8ab0388182b811f499b7ca51076918b3eca0d99b3cf014a19a9f0c",
+        "lab/mainframe/evidence/hybrid-python-terminal.txt": "a240104b1624618a450e83b86cbb648760dfd8a874d63c7b09b5a7fab6cde280"
+      },
+      "narration": {
+        "duration": 444.6,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21340844
+      },
+      "expectedDuration": 444.6,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/11-hybrid-web-services-tnz.mp4",
+        "duration": 444.625,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 36133774,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "b7d78e3c2f5e687cc99520c95aaa165b6d285ccb56f95188a2ec14f2e4f1a960",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/11-audio-integrity.log",
+          "seconds": 1.016
+        }
+      },
+      "artifact": {
+        "path": "renders/11-hybrid-web-services-tnz.mp4",
+        "duration": 444.625,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 36745591,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "1166915629028e9ab65821b88850d78b37e7fd03aec1bc4f5f65d0e9defe6fa3",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/11-audio-integrity.log",
+          "seconds": 0.516
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/11-build.log",
+        "seconds": 0.516
+      },
+      "check": {
+        "log": "logs/11-check.json",
+        "seconds": 29.031,
+        "ok": true,
+        "stderr": "logs/11-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/11-snapshots.log",
+        "seconds": 18.031,
+        "frames": [
+          "qa/episodes/11/4a9a0c9c5a72/frame-00-at-20.317s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-01-at-58.299s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-02-at-94.085s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-03-at-131.323s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-04-at-168.633s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-05-at-205.583s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-06-at-242.557s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-07-at-280.083s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-08-at-317.261s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-09-at-354.319s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-10-at-390.933s.png",
+          "qa/episodes/11/4a9a0c9c5a72/frame-11-at-426.479s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/11/4a9a0c9c5a72/contact-sheet-1.jpg",
+          "qa/episodes/11/4a9a0c9c5a72/contact-sheet-2.jpg"
+        ],
+        "times": [
+          20.317,
+          58.299,
+          94.085,
+          131.32299999999998,
+          168.633,
+          205.583,
+          242.55700000000002,
+          280.083,
+          317.26099999999997,
+          354.319,
+          390.933,
+          426.479
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/11-render.log",
+        "seconds": 269.218
+      },
+      "visualReview": "pending"
+    },
+    "12": {
+      "stage": "rendered",
+      "updatedAt": "2026-09-10T03:54:01.498085+00:00",
+      "inputHash": "45c5ae07042c60a3006cc393fea8615d182ee4e3aeda472c020129099a7b3d50",
+      "inputFiles": {
+        "audio/12/timeline.json": "237bba85ee91d157eee41545b1a00477c5046fd7f9159778f221d17a9bbd478b",
+        "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+        "audio/12/narration.wav": "44b9f7362fcf3be0481dc290d6f103095956ce71d645702790bd7cc0dd5199f7",
+        "audio/12/subtitles.srt": "716ac5907778d6ec2ab1e54937a45e79a19264e2e31ad709e8988a56e11e8941",
+        "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+        "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+        "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+      },
+      "narration": {
+        "duration": 451.992,
+        "audioCodec": "pcm_s16le",
+        "audioChannels": 1,
+        "sampleRate": "24000",
+        "bytes": 21695660
+      },
+      "expectedDuration": 451.992,
+      "voice": {
+        "engine": "edge-tts 7.2.8",
+        "voice": "en-US-JennyNeural",
+        "rate": "+0%"
+      },
+      "previousArtifact": {
+        "path": "renders/12-ai-regression-capstone.mp4",
+        "duration": 452.0,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 40131773,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "29d35d052f773b8430feb963b23aedf350e0c6144307f3a15571119f6caf2afa",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/12-audio-integrity.log",
+          "seconds": 1.016
+        }
+      },
+      "artifact": {
+        "path": "renders/12-ai-regression-capstone.mp4",
+        "duration": 452.0,
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "sampleRate": "48000",
+        "bytes": 40775265,
+        "width": 1920,
+        "height": 1080,
+        "fps": 24.0,
+        "videoCodec": "h264",
+        "sha256": "16f817c3b0cb836bf9d86156cf2bb50350e29404a3a62ebbf3c495b7c2fe8d35",
+        "audioDecode": {
+          "ok": true,
+          "log": "logs/12-audio-integrity.log",
+          "seconds": 0.5
+        }
+      },
+      "pendingAdoption": false,
+      "reused": false,
+      "error": null,
+      "build": {
+        "log": "logs/12-build.log",
+        "seconds": 0.5
+      },
+      "check": {
+        "log": "logs/12-check.json",
+        "seconds": 17.016,
+        "ok": true,
+        "stderr": "logs/12-check.stderr.log"
+      },
+      "snapshots": {
+        "log": "logs/12-snapshots.log",
+        "seconds": 6.016,
+        "frames": [
+          "qa/episodes/12/45c5ae07042c/frame-00-at-17.557s.png",
+          "qa/episodes/12/45c5ae07042c/frame-01-at-53.403s.png",
+          "qa/episodes/12/45c5ae07042c/frame-02-at-89.921s.png",
+          "qa/episodes/12/45c5ae07042c/frame-03-at-127.759s.png",
+          "qa/episodes/12/45c5ae07042c/frame-04-at-167.481s.png",
+          "qa/episodes/12/45c5ae07042c/frame-05-at-207.167s.png",
+          "qa/episodes/12/45c5ae07042c/frame-06-at-245.533s.png",
+          "qa/episodes/12/45c5ae07042c/frame-07-at-283.395s.png",
+          "qa/episodes/12/45c5ae07042c/frame-08-at-321.209s.png",
+          "qa/episodes/12/45c5ae07042c/frame-09-at-357.343s.png",
+          "qa/episodes/12/45c5ae07042c/frame-10-at-393.981s.png",
+          "qa/episodes/12/45c5ae07042c/frame-11-at-432.611s.png"
+        ],
+        "contactSheets": [
+          "qa/episodes/12/45c5ae07042c/contact-sheet-1.jpg",
+          "qa/episodes/12/45c5ae07042c/contact-sheet-2.jpg"
+        ],
+        "times": [
+          17.557,
+          53.403,
+          89.921,
+          127.75900000000001,
+          167.481,
+          207.167,
+          245.53300000000002,
+          283.39500000000004,
+          321.209,
+          357.343,
+          393.98100000000005,
+          432.611
+        ],
+        "visualReview": "pending"
+      },
+      "render": {
+        "log": "logs/12-render.log",
+        "seconds": 153.61
+      },
+      "visualReview": "pending"
+    }
+  },
+  "profile": {
+    "hyperframes": "0.8.33",
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "quality": "high",
+    "workers": 1,
+    "lowMemoryMode": true,
+    "gpu": true,
+    "staticFrameDedup": true,
+    "durationToleranceSeconds": 0.3
+  },
+  "performance": {
+    "hyperframesVersion": "0.8.33",
+    "originalSha256": "af57f08331c602ce6b5903945bc2b55a565d6b1ab839a26a0fcefbfa620d033f",
+    "patchedSha256": "498d89e63be732b0919fca4ff4c11c7feb9289c93a75ac12cfe5ce6b9336ac50",
+    "cli": "node_modules/hyperframes/dist/cli.js",
+    "backup": ".tools/hyperframes-backups/cli-0.8.33-af57f08331c602ce6b5903945bc2b55a565d6b1ab839a26a0fcefbfa620d033f.js",
+    "modifiedAssignmentCount": 1,
+    "upstreamDefaultMs": 15000,
+    "courseBudgetMs": 90000,
+    "environmentVariable": "HF_COURSE_STATIC_VERIFY_MAX_MS",
+    "frameComparisonsEnabled": true,
+    "change": "Allow a longer verification budget before falling back to frame capture; keep pixel comparisons unchanged",
+    "alreadyPatched": true,
+    "dryRun": false,
+    "checkedAt": "2026-09-10T03:51:03.225167+00:00"
+  },
+  "updatedAt": "2026-09-10T03:54:01.498085+00:00"
+}

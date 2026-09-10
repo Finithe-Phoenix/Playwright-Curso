@@ -1,0 +1,335 @@
+1
+00:00:00,700 --> 00:00:05,862
+Welcome to advanced Playwright with AI. We will build regression evidence around one
+
+2
+00:00:05,875 --> 00:00:12,300
+fictional transfer, using TypeScript, Python, or Java. Later, that same transfer will
+
+3
+00:00:12,312 --> 00:00:17,650
+cross several local services and appear on a simulated terminal. Choose one language
+
+4
+00:00:17,662 --> 00:00:22,988
+for your practical work, and use the others to compare architecture. Before opening an
+
+5
+00:00:23,000 --> 00:00:27,388
+editor, write the outcome you want to prove: one authorized transfer changes the
+
+6
+00:00:27,400 --> 00:00:31,050
+correct balance exactly once and leaves a traceable business record.
+
+7
+00:00:33,270 --> 00:00:38,070
+Read the diagram from left to right. The browser calls the gateway on port three
+
+8
+00:00:38,082 --> 00:00:44,170
+thousand. The gateway coordinates an accounts service and a ledger service. Accounts
+
+9
+00:00:44,182 --> 00:00:48,408
+owns the immediate balance change; the ledger exposes a delayed read model in our
+
+10
+00:00:48,420 --> 00:00:53,832
+distributed variation. A Python terminal adapter later connects to a local terminal
+
+11
+00:00:53,845 --> 00:01:00,158
+simulator. These processes run on your workstation. They provide realistic automation
+
+12
+00:01:00,170 --> 00:01:04,020
+boundaries, but they do not represent a production bank or a real mainframe
+
+13
+00:01:04,032 --> 00:01:04,845
+installation.
+
+14
+00:01:07,064 --> 00:01:12,252
+Open the laboratory contract before installing anything. The account and canonical
+
+15
+00:01:12,264 --> 00:01:17,426
+transfer queries describe immediate business state. The distributed extension adds a
+
+16
+00:01:17,439 --> 00:01:21,776
+separate ledger query with eventual consistency while preserving the business amounts.
+
+17
+00:01:22,639 --> 00:01:27,802
+Keep those endpoints distinct in your notes. Otherwise, you may mistake an expected
+
+18
+00:01:27,814 --> 00:01:33,077
+publication delay for a product defect. Write down which endpoint is authoritative,
+
+19
+00:01:33,239 --> 00:01:38,577
+which one is delayed, and which environment your test uses. This decision determines
+
+20
+00:01:38,589 --> 00:01:41,126
+whether an assertion should run immediately or poll.
+
+21
+00:01:43,354 --> 00:01:48,179
+For TypeScript, work inside the supplied test project and inspect its package file and
+
+22
+00:01:48,191 --> 00:01:53,629
+lockfile. Install exactly that dependency set with the clean installation command.
+
+23
+00:01:54,492 --> 00:01:59,616
+Then install the browser expected by the pinned configuration. The laboratory may
+
+24
+00:01:59,629 --> 00:02:03,804
+select an installed Edge channel for the measured run, while Chromium installation
+
+25
+00:02:03,816 --> 00:02:08,992
+supports a separately configured Chromium project. These choices must match the runner
+
+26
+00:02:09,004 --> 00:02:15,204
+configuration. Finally, record the tool version. Keep your approved package mirror
+
+27
+00:02:15,216 --> 00:02:18,541
+configuration instead of changing registries during the lesson.
+
+28
+00:02:20,772 --> 00:02:24,860
+For Python, create a virtual environment with the interpreter selected for the
+
+29
+00:02:24,872 --> 00:02:30,884
+laboratory. Invoke its Python executable explicitly so package installation and test
+
+30
+00:02:30,897 --> 00:02:36,134
+execution cannot accidentally use another Python installation. Install the pinned
+
+31
+00:02:36,147 --> 00:02:40,172
+requirements file, then ask that same interpreter to install Chromium through
+
+32
+00:02:40,184 --> 00:02:45,672
+Playwright. The pytest plugin will provide the page and context fixtures used later.
+
+33
+00:02:46,534 --> 00:02:50,060
+Keep this environment separate from the terminal adapter environment when their
+
+34
+00:02:50,072 --> 00:02:54,760
+dependency files differ; sharing an operating system does not require sharing every
+
+35
+00:02:54,772 --> 00:02:55,472
+package.
+
+36
+00:02:57,686 --> 00:03:03,611
+For Java, inspect the Maven project and confirm the JDK selected by your terminal. The
+
+37
+00:03:03,623 --> 00:03:09,474
+project fixes Playwright, JUnit, and the build plugins it needs. Maven resolves those
+
+38
+00:03:09,486 --> 00:03:15,023
+dependencies; the documented Playwright installation step provides the browser. These
+
+39
+00:03:15,036 --> 00:03:20,623
+are separate from running JUnit tests. Keep classroom execution sequential initially,
+
+40
+00:03:20,836 --> 00:03:24,598
+because a shared Playwright object is not an appropriate shortcut for parallel
+
+41
+00:03:24,611 --> 00:03:29,873
+threads. If dependency resolution fails, solve the environment issue before
+
+42
+00:03:29,886 --> 00:03:33,361
+interpreting any resulting message as a failed transfer regression.
+
+43
+00:03:35,584 --> 00:03:39,609
+Start the local laboratory from the distributed project directory using its start
+
+44
+00:03:39,622 --> 00:03:44,734
+script. Check the gateway health endpoint before opening the transfer page, and
+
+45
+00:03:44,746 --> 00:03:49,872
+inspect the service output for startup errors. A page that renders a shell is not
+
+46
+00:03:49,884 --> 00:03:54,634
+enough evidence that dependencies are ready. Confirm the documented environment
+
+47
+00:03:54,646 --> 00:04:00,334
+metadata, then keep the services running for the exercise. Record the actual response
+
+48
+00:04:00,346 --> 00:04:05,434
+you receive. The response shown in a slide is an expected example until your own
+
+49
+00:04:05,446 --> 00:04:07,496
+request has completed successfully.
+
+50
+00:04:09,714 --> 00:04:15,564
+Our API represents money as integer minor units. One thousand pesos is one hundred
+
+51
+00:04:15,576 --> 00:04:20,739
+thousand centavos; the transfer amount of one hundred pesos is ten thousand centavos.
+
+52
+00:04:21,602 --> 00:04:27,064
+The browser displays decimal currency, but server assertions use integers. Put these
+
+53
+00:04:27,076 --> 00:04:32,552
+values beside each other before generating tests with AI. This prevents an attractive
+
+54
+00:04:32,564 --> 00:04:37,214
+test from sending one hundred centavos while claiming to transfer one hundred pesos.
+
+55
+00:04:38,076 --> 00:04:42,489
+Also assert the currency explicitly, because a numerically correct amount can still
+
+56
+00:04:42,501 --> 00:04:44,426
+describe the wrong business operation.
+
+57
+00:04:46,652 --> 00:04:51,627
+Create three rows in your evidence matrix. The successful transfer must leave a
+
+58
+00:04:51,640 --> 00:04:57,027
+balance of nine hundred pesos and one record. The insufficient funds attempt requests
+
+59
+00:04:57,040 --> 00:05:02,902
+eleven hundred pesos, keeps the opening balance unchanged, and creates no record. The
+
+60
+00:05:02,914 --> 00:05:07,677
+idempotency case repeats the same request with the same key and must still produce one
+
+61
+00:05:07,690 --> 00:05:13,777
+debit and one record. Give each row a fresh fixture. These are separate experiments,
+
+62
+00:05:13,990 --> 00:05:18,302
+so a failed first case must never prevent another case from receiving its own opening
+
+63
+00:05:18,314 --> 00:05:18,827
+state.
+
+64
+00:05:21,046 --> 00:05:25,408
+Ask AI to inspect the contract and list missing information before writing code.
+
+65
+00:05:26,271 --> 00:05:31,308
+Provide the language, runner, exact UI labels, endpoints, and expected business
+
+66
+00:05:31,321 --> 00:05:37,084
+values. The model may help organize fixtures or explain a failing assertion, but it
+
+67
+00:05:37,096 --> 00:05:42,784
+cannot establish that a test ran merely by generating plausible output. Keep generated
+
+68
+00:05:42,796 --> 00:05:48,434
+code, reviewed code, and executed results as separate states. When a selector or
+
+69
+00:05:48,446 --> 00:05:52,946
+response field is unsupported by your evidence, stop that assumption and inspect the
+
+70
+00:05:52,958 --> 00:05:55,684
+actual application or documented contract.
+
+71
+00:05:57,912 --> 00:06:02,974
+Now run a small browser check against the local page using your chosen runner. In the
+
+72
+00:06:02,987 --> 00:06:07,662
+TypeScript excerpt, navigation opens the transfer route and the amount field assertion
+
+73
+00:06:07,674 --> 00:06:12,924
+checks an actual accessible label. Authentication must already be supplied by the
+
+74
+00:06:12,937 --> 00:06:18,500
+prepared fixture. This tiny check verifies the browser can reach the intended screen;
+
+75
+00:06:18,737 --> 00:06:24,000
+it does not prove a transfer works. Save its outcome as a readiness checkpoint, then
+
+76
+00:06:24,012 --> 00:06:28,037
+move on to business tests with clear starting data and the stronger assertions we have
+
+77
+00:06:28,049 --> 00:06:28,662
+defined.
+
+78
+00:06:30,890 --> 00:06:36,690
+Before continuing, explain the system aloud without naming a testing method. Identify
+
+79
+00:06:36,702 --> 00:06:41,078
+who owns the balance, where the transfer record appears, and which process will later
+
+80
+00:06:41,090 --> 00:06:46,152
+display terminal data. Confirm that your chosen language runs its own test runner,
+
+81
+00:06:46,352 --> 00:06:51,502
+your browser is installed, and your local health check has an actual result. If any
+
+82
+00:06:51,515 --> 00:06:56,902
+item is blocked, record the blocker instead of inventing a passing checkpoint. You are
+
+83
+00:06:56,915 --> 00:07:00,715
+ready for the next episode when the environment and the business contract are both
+
+84
+00:07:00,728 --> 00:07:01,478
+explicit.

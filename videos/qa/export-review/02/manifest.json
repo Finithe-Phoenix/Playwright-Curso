@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:51:41.341719+00:00",
+  "episode": "02",
+  "title": "TypeScript: Reliable UI and API Regression",
+  "input": {
+    "file": "renders/02-typescript-ui-api-regression.mp4",
+    "sha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+    "sizeBytes": 34560260,
+    "modifiedAtUtc": "2026-09-09T21:40:54.478100+00:00"
+  },
+  "timeline": {
+    "file": "audio/02/timeline.json",
+    "sha256": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 430.416667,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "02-01",
+      "title": "Design the test around risk",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 34.682,
+      "sampleSeconds": 17.341,
+      "timestamp": "00:17.341",
+      "file": "02-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a224722e058355811a3fbcb77de1ee4a19067bcdd41835cbba2f668ac5a3674c"
+    },
+    {
+      "sceneId": "02-02",
+      "title": "Use the accessible contract",
+      "sceneStartSeconds": 34.682,
+      "sceneDurationSeconds": 33.482,
+      "sampleSeconds": 51.423,
+      "timestamp": "00:51.423",
+      "file": "02-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "49679f45167c4c306f351d82ab542d041c2c527473a41f5bfa0f451c29576e29"
+    },
+    {
+      "sceneId": "02-03",
+      "title": "Observe the right request",
+      "sceneStartSeconds": 68.164,
+      "sceneDurationSeconds": 34.802,
+      "sampleSeconds": 85.565,
+      "timestamp": "01:25.565",
+      "file": "02-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a3a3df5002a995be721c4dfb7a93f41acd14dffa32e54f75efe6bca28d3a9cad"
+    },
+    {
+      "sceneId": "02-04",
+      "title": "Wait on the UI meaning",
+      "sceneStartSeconds": 102.96600000000001,
+      "sceneDurationSeconds": 34.586,
+      "sampleSeconds": 120.259,
+      "timestamp": "02:00.259",
+      "file": "02-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ca868820d8e02175268d74f27d40104dc412e0bcb8f643377f4acd8e7b79cf87"
+    },
+    {
+      "sceneId": "02-05",
+      "title": "Verify the authoritative account",
+      "sceneStartSeconds": 137.55200000000002,
+      "sceneDurationSeconds": 37.418,
+      "sampleSeconds": 156.261,
+      "timestamp": "02:36.261",
+      "file": "02-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5bcc56cede959cf0d8f5a38cb9937d7d83ec87769bd126c5b6e9fa3c0a735eb8"
+    },
+    {
+      "sceneId": "02-06",
+      "title": "Verify the transfer record",
+      "sceneStartSeconds": 174.97000000000003,
+      "sceneDurationSeconds": 36.674,
+      "sampleSeconds": 193.307,
+      "timestamp": "03:13.307",
+      "file": "02-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "bc2b2cf38b94f9d99a9525722d2bf363f910828fbb640294b1b8c3f6507a6044"
+    },
+    {
+      "sceneId": "02-07",
+      "title": "Build insufficient funds separately",
+      "sceneStartSeconds": 211.64400000000003,
+      "sceneDurationSeconds": 32.882,
+      "sampleSeconds": 228.085,
+      "timestamp": "03:48.085",
+      "file": "02-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "fddfbebf1b0680df0cfe0401271513279dbcf86a1bedebad6506c2ab550122ff"
+    },
+    {
+      "sceneId": "02-08",
+      "title": "Keep an idempotent intention",
+      "sceneStartSeconds": 244.52600000000004,
+      "sceneDurationSeconds": 36.794,
+      "sampleSeconds": 262.923,
+      "timestamp": "04:22.923",
+      "file": "02-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "43ed602a844412c905c6180bb6e7980ebbc6d28f3ec5ba222f19fcc9ff9d09a6"
+    },
+    {
+      "sceneId": "02-09",
+      "title": "Compare identity and effects",
+      "sceneStartSeconds": 281.32000000000005,
+      "sceneDurationSeconds": 35.978,
+      "sampleSeconds": 299.309,
+      "timestamp": "04:59.309",
+      "file": "02-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "0f071e93f55490478228ba1b1c066e524dcd0dde90f1118b3c140cb173862e95"
+    },
+    {
+      "sceneId": "02-10",
+      "title": "Run with an honest outcome",
+      "sceneStartSeconds": 317.29800000000006,
+      "sceneDurationSeconds": 37.226,
+      "sampleSeconds": 335.911,
+      "timestamp": "05:35.911",
+      "file": "02-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "410244db8bdaf5595d518489c61aa519c14746e982da04615a56e7bf5f10dcf9"
+    },
+    {
+      "sceneId": "02-11",
+      "title": "Review an AI patch",
+      "sceneStartSeconds": 354.52400000000006,
+      "sceneDurationSeconds": 36.602,
+      "sampleSeconds": 372.825,
+      "timestamp": "06:12.825",
+      "file": "02-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "013e66f796110e57dc361e07a59bc528c5eb737222a49c0df4993cd998e0a159"
+    },
+    {
+      "sceneId": "02-12",
+      "title": "Name what you proved",
+      "sceneStartSeconds": 391.12600000000003,
+      "sceneDurationSeconds": 39.266,
+      "sampleSeconds": 410.759,
+      "timestamp": "06:50.759",
+      "file": "02-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6d0ea07bdb74f5947d5d2b339e69a1bfa5f8b9a69ccc61505d91a242dc9df8d1"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "02-01",
+        "02-02",
+        "02-03",
+        "02-04",
+        "02-05",
+        "02-06"
+      ],
+      "sha256": "f89bfa2330100eb8658eaebc601432afab38bae59b30f8af6a32ec7ebfe6e77a"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "02-07",
+        "02-08",
+        "02-09",
+        "02-10",
+        "02-11",
+        "02-12"
+      ],
+      "sha256": "5c004a58464189924c3e400f198680f9f7392aede0621458744a113e589c1999"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+    "reviewedAtUtc": "2026-09-10T03:52:48.469118+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:51:38.338985+00:00",
+    "stage": "rendered",
+    "timelineSha256": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+    "artifactSha256": "e04f5eae9ddd6a15fc11efcc5f952ba03cd9cb7c6556298966044aca435ee154",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/02/timeline.json": "7c960eed6fc2705bab625db4ef931c1bc4a14f07ec0c5cd6e32b13bb46e246ac",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/02/narration.wav": "7db811cc46642f34904220bd9d9151886caec46d0767593c76fa1cb0062fbd46",
+      "audio/02/subtitles.srt": "eb02ee10311a35c38421e97942e1a59958758ce7aa5da8d022672462ac5f77c6",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "lab/distributed/evidence/test-results/regression-TR-01-UI-transf-6b8b3-xactly-one-debit-and-record-chromium/ui-success.png": "8f2c387fd5ce14975f8c554652ac7542cd6b0a15565a2fd16d5b0beee713eb04"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

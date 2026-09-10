@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-09T21:36:52.957165+00:00",
+  "episode": "01",
+  "title": "Build the Local Test Architecture",
+  "input": {
+    "file": "renders/01-architecture-and-setup.mp4",
+    "sha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+    "sizeBytes": 28846507,
+    "modifiedAtUtc": "2026-09-09T21:34:17.920262+00:00"
+  },
+  "timeline": {
+    "file": "audio/01/timeline.json",
+    "sha256": "964ca22f2fb173c8fe6283513d59de49cff3c48c161d9bf8dccf569334229774",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 423.0,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "01-01",
+      "title": "Start with an outcome",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 32.57,
+      "sampleSeconds": 16.285,
+      "timestamp": "00:16.285",
+      "file": "01-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "20709b5003cf5294ba7364cfec345ad694f8bbb30bf1e684c352ed148d5964b3"
+    },
+    {
+      "sceneId": "01-02",
+      "title": "Read the system map",
+      "sceneStartSeconds": 32.57,
+      "sceneDurationSeconds": 33.794,
+      "sampleSeconds": 49.467,
+      "timestamp": "00:49.467",
+      "file": "01-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "32e30e7ba8f99b22c81dae11020d1d578849fc390b8bf5e060087eccaa15b161"
+    },
+    {
+      "sceneId": "01-03",
+      "title": "Choose the right observation",
+      "sceneStartSeconds": 66.364,
+      "sceneDurationSeconds": 36.29,
+      "sampleSeconds": 84.509,
+      "timestamp": "01:24.509",
+      "file": "01-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b824360c41858ec241abb72c1ffc1f0bbcd13b0fdefae4201ca08bcb4ddc4a64"
+    },
+    {
+      "sceneId": "01-04",
+      "title": "Prepare TypeScript",
+      "sceneStartSeconds": 102.654,
+      "sceneDurationSeconds": 37.418,
+      "sampleSeconds": 121.363,
+      "timestamp": "02:01.363",
+      "file": "01-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a8fdccd54965ebd47f731e805a95a8913eeb86e0478a29bad29f29b19ef2c645"
+    },
+    {
+      "sceneId": "01-05",
+      "title": "Prepare Python",
+      "sceneStartSeconds": 140.072,
+      "sceneDurationSeconds": 36.914,
+      "sampleSeconds": 158.529,
+      "timestamp": "02:38.529",
+      "file": "01-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "19c8954aae1df319f797f647c32c4af746eeef27845a18358a3cdccb931b464c"
+    },
+    {
+      "sceneId": "01-06",
+      "title": "Prepare Java",
+      "sceneStartSeconds": 176.986,
+      "sceneDurationSeconds": 37.898,
+      "sampleSeconds": 195.935,
+      "timestamp": "03:15.935",
+      "file": "01-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b204167fd3161baa9c5d59ab3a29fc1020d7a8430e514183225db53b9aaebade"
+    },
+    {
+      "sceneId": "01-07",
+      "title": "Check local readiness",
+      "sceneStartSeconds": 214.884,
+      "sceneDurationSeconds": 34.13,
+      "sampleSeconds": 231.949,
+      "timestamp": "03:51.949",
+      "file": "01-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "69841001312d629e7241a0e2a3da52d18da26ec8d77e32dc52bac6ee0e2005fe"
+    },
+    {
+      "sceneId": "01-08",
+      "title": "Express money precisely",
+      "sceneStartSeconds": 249.01399999999998,
+      "sceneDurationSeconds": 36.938,
+      "sampleSeconds": 267.483,
+      "timestamp": "04:27.483",
+      "file": "01-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "93a29e018c6faf4ed03e549b6f3c79c079d9395f7b969ee81d5867fef834536c"
+    },
+    {
+      "sceneId": "01-09",
+      "title": "Define the three cases",
+      "sceneStartSeconds": 285.952,
+      "sceneDurationSeconds": 34.394,
+      "sampleSeconds": 303.149,
+      "timestamp": "05:03.149",
+      "file": "01-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3861def587ad463ff5043a0b3ffc3431710d756fc0eb06db4f91975aa6a0bd91"
+    },
+    {
+      "sceneId": "01-10",
+      "title": "Separate tools from decisions",
+      "sceneStartSeconds": 320.346,
+      "sceneDurationSeconds": 36.866,
+      "sampleSeconds": 338.779,
+      "timestamp": "05:38.779",
+      "file": "01-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "26ae8544176f4a203bdbdff81c213030f46161d1ba21cce89e363adfa5a57326"
+    },
+    {
+      "sceneId": "01-11",
+      "title": "Make a first observable run",
+      "sceneStartSeconds": 357.212,
+      "sceneDurationSeconds": 32.978,
+      "sampleSeconds": 373.701,
+      "timestamp": "06:13.701",
+      "file": "01-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dc6eb6d800a0b0d9078ae9a14ec71de6751e1705dfabe68323f07eb6a6a05b4e"
+    },
+    {
+      "sceneId": "01-12",
+      "title": "Check your preparation",
+      "sceneStartSeconds": 390.19,
+      "sceneDurationSeconds": 32.81,
+      "sampleSeconds": 406.595,
+      "timestamp": "06:46.595",
+      "file": "01-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "07296d76d4f52f7192aaa0d77a2a7851db3229fbb3a51d2b5413c997cd00242d"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "01-01",
+        "01-02",
+        "01-03",
+        "01-04",
+        "01-05",
+        "01-06"
+      ],
+      "sha256": "d7065b014d33cda3883c91a38f0db2d430f77a4e1a8bc9daccbd9fa6dbd1fe80"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "01-07",
+        "01-08",
+        "01-09",
+        "01-10",
+        "01-11",
+        "01-12"
+      ],
+      "sha256": "c51b3d896b75e3a311868d9cdf16d0b34f3c96a03840aab043a6b68077354808"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+    "reviewedAtUtc": "2026-09-09T21:39:14.658132+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-09T21:36:46.480597+00:00",
+    "stage": "rendered",
+    "timelineSha256": "964ca22f2fb173c8fe6283513d59de49cff3c48c161d9bf8dccf569334229774",
+    "artifactSha256": "4609b81f277343584900d22069c0f7441cf05175e0cff2c6205ac71cc62b1db1",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/01/timeline.json": "964ca22f2fb173c8fe6283513d59de49cff3c48c161d9bf8dccf569334229774",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/01/narration.wav": "0404fda4bcd7e80cf9538593f480548d867b16f351312ee21875fbafae383de1",
+      "audio/01/subtitles.srt": "c3e408729216ebcd73c70db341ec847f9c69b59ecdf08967d216ae84aebeaba2",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

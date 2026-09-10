@@ -1,0 +1,711 @@
+{
+  "id": "09",
+  "slug": "local-3270-tnz-setup",
+  "title": "Local 3270 Architecture and TNZ Setup",
+  "summary": "Prepare a real TNZ client against a local terminal simulator with explicit evidence limits.",
+  "language": "en",
+  "objectives": [
+    "Separate browser and terminal responsibilities",
+    "Install and start the prepared local simulator",
+    "Verify terminal readiness and protocol outcomes"
+  ],
+  "sources": [
+    "https://github.com/IBM/tnz",
+    "https://ibm.github.io/tnz/",
+    "https://ibm.github.io/tnz/tnz/",
+    "https://ibm.github.io/tnz/security/"
+  ],
+  "scenes": [
+    {
+      "id": "09-01",
+      "title": "Add a terminal protocol boundary",
+      "kicker": "EPISODE 09 · STEP 1",
+      "type": "title",
+      "narration": "We now extend the workflow beyond the browser. The terminal exercises use IBM's real Python TNZ library to communicate over a socket with a small local TN3270 simulator. The simulator displays a synthetic transfer lookup screen and queries the same account data as our web application. This is practical cross-protocol automation, not a connection to a real mainframe. You will understand the boundary, install the prepared client environment, and verify terminal readiness through an actual screen exchange.",
+      "bullets": [
+        "Real IBM TNZ client",
+        "Local TN3270 simulator",
+        "No real mainframe connection"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 0.0,
+      "duration": 34.562,
+      "audio": "audio/09/09-01.wav"
+    },
+    {
+      "id": "09-02",
+      "title": "Separate browser and terminal control",
+      "kicker": "EPISODE 09 · STEP 2",
+      "type": "diagram",
+      "narration": "Playwright controls the browser and its HTTP observations. TNZ controls the terminal session. The hybrid test coordinates both tools through a transfer reference. Trying to locate a terminal field with a browser locator would confuse two different interfaces, unless your actual application provided a browser-based terminal with its own separate contract. Our laboratory uses a protocol client directly. Keep the boundary visible in the architecture diagram so each failure points to the tool and connection that actually produced its evidence during the test run.",
+      "bullets": [
+        "Playwright: browser and HTTP",
+        "TNZ: terminal session",
+        "Test runner: orchestration"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [
+        "Playwright browser",
+        "Transfer reference",
+        "Python TNZ",
+        "Simulator :2323",
+        "Shared Accounts data"
+      ],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 34.562,
+      "duration": 36.65,
+      "audio": "audio/09/09-02.wav"
+    },
+    {
+      "id": "09-03",
+      "title": "Understand what the simulator displays",
+      "kicker": "EPISODE 09 · STEP 3",
+      "type": "steps",
+      "narration": "The terminal screen reads a local lookup endpoint using the transfer reference. That endpoint returns the authoritative in-memory transfer and current account balance from the accounts service. It does not query an independent mainframe database, and it does not prove durable persistence. The distributed ledger projection remains a separate observation from the earlier episode. This distinction matters when describing coverage: the terminal exercise checks reference transport, field interaction, screen parsing, and agreement across interfaces that expose the same synthetic data source.",
+      "bullets": [
+        "Same authoritative local data",
+        "Alternative presentation",
+        "No independent reconciliation claim"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 71.21199999999999,
+      "duration": 36.746,
+      "audio": "audio/09/09-03.wav"
+    },
+    {
+      "id": "09-04",
+      "title": "Read the folder structure",
+      "kicker": "EPISODE 09 · STEP 4",
+      "type": "steps",
+      "narration": "Open the mainframe laboratory directory beside the distributed project. The simulator file owns the server-side terminal behavior. The adapter file wraps the real TNZ client with a session lifecycle, bounded waits, input validation, and structured output. Terminal protocol tests exercise this boundary with deterministic data, while the hybrid browser test uses the running distributed services. Read the requirements files before installation. Their separation lets you install a small terminal-only environment or include the browser dependencies required for the complete hybrid exercise.",
+      "bullets": [
+        "simulator.py: local server",
+        "adapter.py: TNZ client lifecycle",
+        "Separate protocol and hybrid tests"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 107.958,
+      "duration": 39.026,
+      "audio": "audio/09/09-04.wav"
+    },
+    {
+      "id": "09-05",
+      "title": "Install the prepared environment",
+      "kicker": "EPISODE 09 · STEP 5",
+      "type": "terminal",
+      "narration": "Run the supplied setup script from the mainframe directory. Use the browser option when you plan to execute the Python hybrid case, because terminal-only setup does not provide every browser dependency. Installation downloads packages and, when requested, Chromium; the completed exercise communicates only with local services. Finish those downloads before the live workshop. If your approved environment already supplies Edge, use the documented browser-channel option in the test runner rather than assuming a Chromium executable exists just because a browser opens normally on your desktop.",
+      "bullets": [
+        "Choose terminal-only or browser setup",
+        "Finish downloads before class",
+        "Match the configured browser"
+      ],
+      "code": ".\\setup.ps1\n# Include Python browser tests and Chromium:\n.\\setup.ps1 -Browser",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local TN3270 simulator · Screen labels shown as contract",
+      "start": 146.984,
+      "duration": 37.586,
+      "audio": "audio/09/09-05.wav"
+    },
+    {
+      "id": "09-06",
+      "title": "Start services in their own terminals",
+      "kicker": "EPISODE 09 · STEP 6",
+      "type": "terminal",
+      "narration": "First start the distributed application using its documented synthetic hook value. Then start the terminal simulator in a separate terminal from the mainframe directory. Its default address is loopback on port twenty-three twenty-three. Leave that terminal running while the adapter connects. If the port is already occupied, inspect the conflict instead of stopping an unrelated application. The laboratory startup and shutdown instructions target only its own processes. Keeping these terminals separate also makes it easier to identify which service reported a connection or lookup failure.",
+      "bullets": [
+        "Start the distributed application",
+        "Start the terminal simulator",
+        "Keep process ownership visible"
+      ],
+      "code": ".\\start.ps1\n# Equivalent simulator command:\n.\\.venv\\Scripts\\python.exe simulator.py",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local TN3270 simulator · Screen labels shown as contract",
+      "start": 184.57,
+      "duration": 37.85,
+      "audio": "audio/09/09-06.wav"
+    },
+    {
+      "id": "09-07",
+      "title": "Check a real terminal screen",
+      "kicker": "EPISODE 09 · STEP 7",
+      "type": "terminal",
+      "narration": "Run the adapter's health action with a bounded timeout. This check opens a TNZ session and waits for the expected screen, rather than treating an open TCP port as sufficient readiness. A ready terminal does not prove the gateway is available: the simulator can display its initial panel while business lookup remains unavailable. Record the health result and then verify the distributed services separately. When you later submit a reference, any backend-unavailable status belongs to a different stage from establishing the terminal connection itself.",
+      "bullets": [
+        "Health uses a TNZ session",
+        "Screen readiness is observable",
+        "Backend readiness is separate"
+      ],
+      "code": ".\\.venv\\Scripts\\python.exe adapter.py health --timeout 5",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local TN3270 simulator · Screen labels shown as contract",
+      "start": 222.42,
+      "duration": 34.826,
+      "audio": "audio/09/09-07.wav"
+    },
+    {
+      "id": "09-08",
+      "title": "Identify the input and result fields",
+      "kicker": "EPISODE 09 · STEP 8",
+      "type": "terminal",
+      "narration": "Inspect the initial screen snapshot and find the transfer reference input. This local panel deliberately has one reference field and labeled result lines for status, amount, currency, source account, and balance. Those labels are part of the simulator's contract. They are not universal mainframe field names. In the next episode, we will inspect how the adapter positions the cursor, clears the input, enters the reference, and waits for a result associated with that exact value before parsing any business fields from the screen.",
+      "bullets": [
+        "One reference input",
+        "Labeled result values",
+        "Panel contract is application-specific"
+      ],
+      "code": "TRANSFER REFERENCE\nREFERENCE    : <submitted reference>\nSTATUS       : <observed status>\nAMOUNT MINOR : <integer amount>\nCURRENCY     : MXN\nSOURCE       : <source account>\nBALANCE MINOR: <integer balance>",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local TN3270 simulator · Screen labels shown as contract",
+      "start": 257.246,
+      "duration": 34.994,
+      "audio": "audio/09/09-08.wav"
+    },
+    {
+      "id": "09-09",
+      "title": "Try an unknown reference",
+      "kicker": "EPISODE 09 · STEP 9",
+      "type": "steps",
+      "narration": "Before creating a transfer, run a lookup using a valid reference that does not exist in the current dataset. The expected business result is not found. This is different from failing to connect or reaching a deadline without receiving a usable panel. Inspect the adapter's JSON output and exit status together. Its command-line contract distinguishes successful readiness or completion, business results such as not found, and operational failures. Preserving these categories makes a hybrid test report much more useful than a single generic terminal error.",
+      "bullets": [
+        "Valid but unknown reference",
+        "Business result versus connection failure",
+        "Read JSON and exit status"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 292.24,
+      "duration": 36.818,
+      "audio": "audio/09/09-09.wav"
+    },
+    {
+      "id": "09-10",
+      "title": "Keep plaintext local to the simulator",
+      "kicker": "EPISODE 09 · STEP 10",
+      "type": "steps",
+      "narration": "The classroom adapter uses an unencrypted connection only to loopback and rejects nonlocal destinations. That is part of this simulator's design, not a template for connecting to an external host. An authorized real environment would need its own host, screen contract, test records, and verified transport configuration. None of those are established by this lesson. Keeping the local boundary explicit allows you to learn field automation and orchestration without suggesting that a successful synthetic lookup validates access, security, or behavior on an actual mainframe platform.",
+      "bullets": [
+        "Loopback-only classroom connection",
+        "Real hosts require a separate contract",
+        "No real-host validation claimed"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 329.058,
+      "duration": 38.306,
+      "audio": "audio/09/09-10.wav"
+    },
+    {
+      "id": "09-11",
+      "title": "Run protocol tests independently",
+      "kicker": "EPISODE 09 · STEP 11",
+      "type": "terminal",
+      "narration": "Execute the standalone terminal tests before the full hybrid path. These tests launch their own local server with deterministic fixture data and communicate through the actual TNZ library over a real socket. They help isolate connection, field, and status handling from browser or gateway issues. Inspect the actual test count and result file instead of assuming the suite passed because it exists. A successful protocol suite supports the adapter boundary; the browser-to-terminal workflow still requires its own run against the distributed application.",
+      "bullets": [
+        "Real socket and TNZ client",
+        "Deterministic protocol fixtures",
+        "Hybrid execution remains separate"
+      ],
+      "code": ".\\.venv\\Scripts\\python.exe -m pytest test_terminal.py -q",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local TN3270 simulator · Screen labels shown as contract",
+      "start": 367.364,
+      "duration": 36.242,
+      "audio": "audio/09/09-11.wav"
+    },
+    {
+      "id": "09-12",
+      "title": "Confirm the architecture checkpoint",
+      "kicker": "EPISODE 09 · STEP 12",
+      "type": "recap",
+      "narration": "Explain the complete lookup path to a partner: TNZ sends a reference to the local simulator, which calls the gateway lookup endpoint and displays shared account data. Then show your actual readiness result and protocol test outcome. Identify which components were running and which were unnecessary for the standalone tests. If an installation or connection failed, keep that checkpoint unresolved. You are prepared for the next episode when you can distinguish terminal protocol behavior, business lookup behavior, and the limits of this deliberately simulated environment.",
+      "bullets": [
+        "Lookup path understood",
+        "Actual readiness recorded",
+        "Simulation limits explicit"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Local simulation · No z/OS, CICS or database execution claimed",
+      "start": 403.606,
+      "duration": 36.17,
+      "audio": "audio/09/09-12.wav"
+    }
+  ],
+  "duration": 439.776,
+  "captions": [
+    {
+      "text": "We now extend the workflow beyond the browser. The terminal exercises use IBM's real",
+      "start": 0.7,
+      "end": 6.324999999999999
+    },
+    {
+      "text": "Python TNZ library to communicate over a socket with a small local TN3270 simulator.",
+      "start": 6.3374999999999995,
+      "end": 12.6875
+    },
+    {
+      "text": "The simulator displays a synthetic transfer lookup screen and queries the same account",
+      "start": 13.549999999999999,
+      "end": 17.9375
+    },
+    {
+      "text": "data as our web application. This is practical cross-protocol automation, not a",
+      "start": 17.950000000000003,
+      "end": 23.4125
+    },
+    {
+      "text": "connection to a real mainframe. You will understand the boundary, install the prepared",
+      "start": 23.425,
+      "end": 28.512500000000003
+    },
+    {
+      "text": "client environment, and verify terminal readiness through an actual screen exchange.",
+      "start": 28.525000000000002,
+      "end": 33.050000000000004
+    },
+    {
+      "text": "Playwright controls the browser and its HTTP observations. TNZ controls the terminal",
+      "start": 35.262,
+      "end": 41.336999999999996
+    },
+    {
+      "text": "session. The hybrid test coordinates both tools through a transfer reference. Trying",
+      "start": 41.3495,
+      "end": 47.512
+    },
+    {
+      "text": "to locate a terminal field with a browser locator would confuse two different",
+      "start": 47.524499999999996,
+      "end": 51.1995
+    },
+    {
+      "text": "interfaces, unless your actual application provided a browser-based terminal with its",
+      "start": 51.212,
+      "end": 55.8245
+    },
+    {
+      "text": "own separate contract. Our laboratory uses a protocol client directly. Keep the",
+      "start": 55.837,
+      "end": 61.937
+    },
+    {
+      "text": "boundary visible in the architecture diagram so each failure points to the tool and",
+      "start": 61.9495,
+      "end": 66.3745
+    },
+    {
+      "text": "connection that actually produced its evidence during the test run.",
+      "start": 66.387,
+      "end": 69.6995
+    },
+    {
+      "text": "The terminal screen reads a local lookup endpoint using the transfer reference. That",
+      "start": 71.91199999999999,
+      "end": 77.112
+    },
+    {
+      "text": "endpoint returns the authoritative in-memory transfer and current account balance from",
+      "start": 77.12449999999998,
+      "end": 81.28699999999999
+    },
+    {
+      "text": "the accounts service. It does not query an independent mainframe database, and it does",
+      "start": 81.2995,
+      "end": 86.62449999999998
+    },
+    {
+      "text": "not prove durable persistence. The distributed ledger projection remains a separate",
+      "start": 86.63699999999999,
+      "end": 91.68699999999998
+    },
+    {
+      "text": "observation from the earlier episode. This distinction matters when describing",
+      "start": 91.69949999999999,
+      "end": 96.46199999999999
+    },
+    {
+      "text": "coverage: the terminal exercise checks reference transport, field interaction, screen",
+      "start": 96.47449999999999,
+      "end": 101.64949999999999
+    },
+    {
+      "text": "parsing, and agreement across interfaces that expose the same synthetic data source.",
+      "start": 101.66199999999999,
+      "end": 106.4245
+    },
+    {
+      "text": "Open the mainframe laboratory directory beside the distributed project. The simulator",
+      "start": 108.658,
+      "end": 113.9205
+    },
+    {
+      "text": "file owns the server-side terminal behavior. The adapter file wraps the real TNZ",
+      "start": 113.93299999999999,
+      "end": 119.6455
+    },
+    {
+      "text": "client with a session lifecycle, bounded waits, input validation, and structured",
+      "start": 119.658,
+      "end": 124.583
+    },
+    {
+      "text": "output. Terminal protocol tests exercise this boundary with deterministic data, while",
+      "start": 124.5955,
+      "end": 130.333
+    },
+    {
+      "text": "the hybrid browser test uses the running distributed services. Read the requirements",
+      "start": 130.34550000000002,
+      "end": 135.508
+    },
+    {
+      "text": "files before installation. Their separation lets you install a small terminal-only",
+      "start": 135.5205,
+      "end": 140.583
+    },
+    {
+      "text": "environment or include the browser dependencies required for the complete hybrid",
+      "start": 140.59550000000002,
+      "end": 144.558
+    },
+    {
+      "text": "exercise.",
+      "start": 144.5705,
+      "end": 145.458
+    },
+    {
+      "text": "Run the supplied setup script from the mainframe directory. Use the browser option",
+      "start": 147.684,
+      "end": 152.63400000000001
+    },
+    {
+      "text": "when you plan to execute the Python hybrid case, because terminal-only setup does not",
+      "start": 152.6465,
+      "end": 157.3715
+    },
+    {
+      "text": "provide every browser dependency. Installation downloads packages and, when requested,",
+      "start": 157.38400000000001,
+      "end": 163.184
+    },
+    {
+      "text": "Chromium; the completed exercise communicates only with local services. Finish those",
+      "start": 163.2965,
+      "end": 168.97150000000002
+    },
+    {
+      "text": "downloads before the live workshop. If your approved environment already supplies",
+      "start": 168.984,
+      "end": 173.8965
+    },
+    {
+      "text": "Edge, use the documented browser-channel option in the test runner rather than",
+      "start": 173.90900000000002,
+      "end": 177.9215
+    },
+    {
+      "text": "assuming a Chromium executable exists just because a browser opens normally on your",
+      "start": 177.93400000000003,
+      "end": 182.34650000000002
+    },
+    {
+      "text": "desktop.",
+      "start": 182.359,
+      "end": 183.0465
+    },
+    {
+      "text": "First start the distributed application using its documented synthetic hook value.",
+      "start": 185.26999999999998,
+      "end": 189.6825
+    },
+    {
+      "text": "Then start the terminal simulator in a separate terminal from the mainframe directory.",
+      "start": 190.545,
+      "end": 194.695
+    },
+    {
+      "text": "Its default address is loopback on port twenty-three twenty-three. Leave that terminal",
+      "start": 195.5575,
+      "end": 200.57
+    },
+    {
+      "text": "running while the adapter connects. If the port is already occupied, inspect the",
+      "start": 200.58249999999998,
+      "end": 205.6575
+    },
+    {
+      "text": "conflict instead of stopping an unrelated application. The laboratory startup and",
+      "start": 205.67,
+      "end": 210.945
+    },
+    {
+      "text": "shutdown instructions target only its own processes. Keeping these terminals separate",
+      "start": 210.95749999999998,
+      "end": 216.295
+    },
+    {
+      "text": "also makes it easier to identify which service reported a connection or lookup",
+      "start": 216.3075,
+      "end": 220.3075
+    },
+    {
+      "text": "failure.",
+      "start": 220.32,
+      "end": 220.9075
+    },
+    {
+      "text": "Run the adapter's health action with a bounded timeout. This check opens a TNZ session",
+      "start": 223.11999999999998,
+      "end": 229.07
+    },
+    {
+      "text": "and waits for the expected screen, rather than treating an open TCP port as sufficient",
+      "start": 229.08249999999998,
+      "end": 233.89499999999998
+    },
+    {
+      "text": "readiness. A ready terminal does not prove the gateway is available: the simulator can",
+      "start": 233.9075,
+      "end": 239.2575
+    },
+    {
+      "text": "display its initial panel while business lookup remains unavailable. Record the health",
+      "start": 239.26999999999998,
+      "end": 244.39499999999998
+    },
+    {
+      "text": "result and then verify the distributed services separately. When you later submit a",
+      "start": 244.4075,
+      "end": 249.3825
+    },
+    {
+      "text": "reference, any backend-unavailable status belongs to a different stage from",
+      "start": 249.39499999999998,
+      "end": 253.45749999999998
+    },
+    {
+      "text": "establishing the terminal connection itself.",
+      "start": 253.47,
+      "end": 255.7325
+    },
+    {
+      "text": "Inspect the initial screen snapshot and find the transfer reference input. This local",
+      "start": 257.94599999999997,
+      "end": 263.25849999999997
+    },
+    {
+      "text": "panel deliberately has one reference field and labeled result lines for status,",
+      "start": 263.27099999999996,
+      "end": 267.45849999999996
+    },
+    {
+      "text": "amount, currency, source account, and balance. Those labels are part of the",
+      "start": 267.6085,
+      "end": 272.7835
+    },
+    {
+      "text": "simulator's contract. They are not universal mainframe field names. In the next",
+      "start": 272.796,
+      "end": 278.796
+    },
+    {
+      "text": "episode, we will inspect how the adapter positions the cursor, clears the input,",
+      "start": 278.8085,
+      "end": 283.4085
+    },
+    {
+      "text": "enters the reference, and waits for a result associated with that exact value before",
+      "start": 283.64599999999996,
+      "end": 288.27099999999996
+    },
+    {
+      "text": "parsing any business fields from the screen.",
+      "start": 288.2835,
+      "end": 290.70849999999996
+    },
+    {
+      "text": "Before creating a transfer, run a lookup using a valid reference that does not exist",
+      "start": 292.94,
+      "end": 297.665
+    },
+    {
+      "text": "in the current dataset. The expected business result is not found. This is different",
+      "start": 297.6775,
+      "end": 303.64
+    },
+    {
+      "text": "from failing to connect or reaching a deadline without receiving a usable panel.",
+      "start": 303.65250000000003,
+      "end": 307.59000000000003
+    },
+    {
+      "text": "Inspect the adapter's JSON output and exit status together. Its command-line contract",
+      "start": 308.4525,
+      "end": 314.6275
+    },
+    {
+      "text": "distinguishes successful readiness or completion, business results such as not found,",
+      "start": 314.64,
+      "end": 319.34000000000003
+    },
+    {
+      "text": "and operational failures. Preserving these categories makes a hybrid test report much",
+      "start": 319.565,
+      "end": 325.015
+    },
+    {
+      "text": "more useful than a single generic terminal error.",
+      "start": 325.02750000000003,
+      "end": 327.52750000000003
+    },
+    {
+      "text": "The classroom adapter uses an unencrypted connection only to loopback and rejects",
+      "start": 329.758,
+      "end": 334.108
+    },
+    {
+      "text": "nonlocal destinations. That is part of this simulator's design, not a template for",
+      "start": 334.1205,
+      "end": 339.64549999999997
+    },
+    {
+      "text": "connecting to an external host. An authorized real environment would need its own",
+      "start": 339.658,
+      "end": 344.633
+    },
+    {
+      "text": "host, screen contract, test records, and verified transport configuration. None of",
+      "start": 344.64549999999997,
+      "end": 350.908
+    },
+    {
+      "text": "those are established by this lesson. Keeping the local boundary explicit allows you",
+      "start": 350.9205,
+      "end": 355.933
+    },
+    {
+      "text": "to learn field automation and orchestration without suggesting that a successful",
+      "start": 355.9455,
+      "end": 360.0705
+    },
+    {
+      "text": "synthetic lookup validates access, security, or behavior on an actual mainframe",
+      "start": 360.08299999999997,
+      "end": 365.0955
+    },
+    {
+      "text": "platform.",
+      "start": 365.108,
+      "end": 365.83299999999997
+    },
+    {
+      "text": "Execute the standalone terminal tests before the full hybrid path. These tests launch",
+      "start": 368.06399999999996,
+      "end": 373.82649999999995
+    },
+    {
+      "text": "their own local server with deterministic fixture data and communicate through the",
+      "start": 373.839,
+      "end": 377.714
+    },
+    {
+      "text": "actual TNZ library over a real socket. They help isolate connection, field, and status",
+      "start": 377.7265,
+      "end": 384.18899999999996
+    },
+    {
+      "text": "handling from browser or gateway issues. Inspect the actual test count and result file",
+      "start": 384.20149999999995,
+      "end": 389.989
+    },
+    {
+      "text": "instead of assuming the suite passed because it exists. A successful protocol suite",
+      "start": 390.00149999999996,
+      "end": 395.464
+    },
+    {
+      "text": "supports the adapter boundary; the browser-to-terminal workflow still requires its own",
+      "start": 395.4765,
+      "end": 399.9765
+    },
+    {
+      "text": "run against the distributed application.",
+      "start": 399.989,
+      "end": 402.089
+    },
+    {
+      "text": "Explain the complete lookup path to a partner: TNZ sends a reference to the local",
+      "start": 404.306,
+      "end": 409.0685
+    },
+    {
+      "text": "simulator, which calls the gateway lookup endpoint and displays shared account data.",
+      "start": 409.081,
+      "end": 413.5435
+    },
+    {
+      "text": "Then show your actual readiness result and protocol test outcome. Identify which",
+      "start": 414.406,
+      "end": 419.5185
+    },
+    {
+      "text": "components were running and which were unnecessary for the standalone tests. If an",
+      "start": 419.531,
+      "end": 424.6435
+    },
+    {
+      "text": "installation or connection failed, keep that checkpoint unresolved. You are prepared",
+      "start": 424.656,
+      "end": 429.8935
+    },
+    {
+      "text": "for the next episode when you can distinguish terminal protocol behavior, business",
+      "start": 429.906,
+      "end": 434.231
+    },
+    {
+      "text": "lookup behavior, and the limits of this deliberately simulated environment.",
+      "start": 434.2435,
+      "end": 438.2435
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 131.90600000000086,
+  "caption_mapping_revision": 2
+}

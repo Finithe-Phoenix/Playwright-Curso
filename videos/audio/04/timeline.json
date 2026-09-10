@@ -1,0 +1,685 @@
+{
+  "id": "04",
+  "slug": "java-junit-lifecycle",
+  "title": "Java: JUnit Lifecycle and Evidence",
+  "summary": "Preserve regression meaning with explicit Java resource ownership and assertions.",
+  "language": "en",
+  "objectives": [
+    "Separate Playwright, JUnit and Maven responsibilities",
+    "Own contexts and data per test",
+    "Preserve trace and JUnit evidence"
+  ],
+  "sources": [
+    "https://playwright.dev/java/docs/test-runners",
+    "https://playwright.dev/java/docs/multithreading",
+    "https://playwright.dev/java/docs/api/class-tracing",
+    "https://maven.apache.org/surefire/maven-surefire-plugin/"
+  ],
+  "scenes": [
+    {
+      "id": "04-01",
+      "title": "Own the Java lifecycle",
+      "kicker": "EPISODE 04 · STEP 1",
+      "type": "title",
+      "narration": "This episode builds the Java equivalent using Playwright with JUnit. Start by separating the browser library from the test runner. Playwright controls pages and performs its locator assertions; JUnit organizes test execution and records test outcomes. Maven supplies dependencies and launches the configured test process. Those responsibilities do not become identical merely because the TypeScript edition packages them together. Your job is to preserve the three business cases while making resource ownership, assertion choices, and reporting explicit in the Java project.",
+      "bullets": [
+        "Playwright: browser control",
+        "JUnit: test lifecycle",
+        "Maven: build and execution"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 0.0,
+      "duration": 37.706,
+      "audio": "audio/04/04-01.wav"
+    },
+    {
+      "id": "04-02",
+      "title": "Inspect the project first",
+      "kicker": "EPISODE 04 · STEP 2",
+      "type": "terminal",
+      "narration": "Open the supplied Maven project and inspect the versions fixed in its project file. Confirm which JSON library it includes, because response parsing examples must match that library. The working hybrid example uses Gson; an example using Jackson needs its own dependency and imports. Also inspect the browser channel configuration before launching. Run Maven's version command to check the selected Java installation. If the project does not compile, treat compiler errors as implementation feedback rather than evidence that the application violated a transfer rule.",
+      "bullets": [
+        "Read the dependency versions",
+        "Match the JSON library",
+        "Check the selected Java"
+      ],
+      "code": "mvn -version\nmvn test",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 37.706,
+      "duration": 38.33,
+      "audio": "audio/04/04-02.wav"
+    },
+    {
+      "id": "04-03",
+      "title": "Choose ownership boundaries",
+      "kicker": "EPISODE 04 · STEP 3",
+      "type": "steps",
+      "narration": "For the classroom, begin with sequential tests. A test may own Playwright, the browser, and its context through resource blocks, as in the hybrid example. A larger suite can use JUnit lifecycle methods while keeping one fresh context per case. Whichever structure you choose, draw who closes each object. Avoid a static page shared across tests. Its session, open dialogs, and navigation state can leak between cases even when the test methods look independent in the source file and have different names.",
+      "bullets": [
+        "Test owns Playwright, browser and context",
+        "Test creates its own server fixture",
+        "Finally: delete the fixture and close browser resources"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 76.036,
+      "duration": 35.21,
+      "audio": "audio/04/04-03.wav"
+    },
+    {
+      "id": "04-04",
+      "title": "Create a fresh context",
+      "kicker": "EPISODE 04 · STEP 4",
+      "type": "code",
+      "narration": "The excerpt shows the central context boundary inside an existing browser lifecycle. Set the local base address when creating the context, then obtain its page. Authentication happens on this context before protected navigation. Closing the context releases its pages and browser session together. In a lifecycle method, the corresponding cleanup belongs in the matching after method; in a resource block, Java manages closing. Do not mix the two ownership approaches accidentally and leave an object alive because each layer expected another layer to close it.",
+      "bullets": [
+        "Configure the local base URL",
+        "Create the page inside its context",
+        "Close the owning context"
+      ],
+      "code": "try (BrowserContext context = browser.newContext(\n    new Browser.NewContextOptions()\n        .setBaseURL(\"http://127.0.0.1:3000\"))) {\n  Page page = context.newPage();\n  // Authenticate, act, and assert inside this lifecycle.\n}",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative Java excerpt · Imports and fixture required",
+      "start": 111.24600000000001,
+      "duration": 37.466,
+      "audio": "audio/04/04-04.wav"
+    },
+    {
+      "id": "04-05",
+      "title": "Authenticate with the same identity",
+      "kicker": "EPISODE 04 · STEP 5",
+      "type": "code",
+      "narration": "Post the synthetic fixture credentials through the context's request client. Check the response status before reading the transfer page. The displayed request options carry only the business login data; the local test hook key belongs on preparation requests. By keeping those responsibilities separate, your Java test reflects the same authorization model as the other language versions. If login succeeds but navigation appears anonymous, inspect cookie scope and the base address instead of inserting credentials into unrelated requests or bypassing the protected page entirely.",
+      "bullets": [
+        "Synthetic login credentials",
+        "Context-associated HTTP client",
+        "No global hook header"
+      ],
+      "code": "APIResponse login = context.request().post(\"/api/session\",\n    RequestOptions.create().setData(Map.of(\n        \"username\", username,\n        \"password\", password)));\nassertEquals(200, login.status());",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative Java excerpt · Imports and fixture required",
+      "start": 148.71200000000002,
+      "duration": 37.394,
+      "audio": "audio/04/04-05.wav"
+    },
+    {
+      "id": "04-06",
+      "title": "Use Java locator assertions",
+      "kicker": "EPISODE 04 · STEP 6",
+      "type": "code",
+      "narration": "After selecting the source and beneficiary, fill the amount field and submit through the accessible button. Use Playwright's assertion import for the visible balance, because it provides locator-aware waiting. JUnit's ordinary equality assertion remains appropriate for values you already obtained from an API response. These assertions serve different observations, so inspect the imports when AI generates a test. A method named assertThat from another library may have entirely different behavior even if the surrounding Java code looks familiar and the editor offers an automatic import.",
+      "bullets": [
+        "Use accessible labels",
+        "Choose the intended assertion import",
+        "Wait for the UI condition"
+      ],
+      "code": "page.getByLabel(\"Importe (MXN)\").fill(\"100.00\");\npage.getByRole(AriaRole.BUTTON,\n    new Page.GetByRoleOptions().setName(\"Transferir\")).click();\nassertThat(page.getByTestId(\"account-balance\"))\n    .hasText(\"MXN 900.00\");",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative Java excerpt · Imports and fixture required",
+      "start": 186.10600000000002,
+      "duration": 36.602,
+      "audio": "audio/04/04-06.wav"
+    },
+    {
+      "id": "04-07",
+      "title": "Inspect the integer account balance",
+      "kicker": "EPISODE 04 · STEP 7",
+      "type": "code",
+      "narration": "Fetch the source account through the same context and verify the successful response before parsing its body. The excerpt uses Gson, matching the supplied hybrid Java project. Compare the balance in minor units and preserve the source identifier in your report. Next, read the canonical transfer collection and check its count and complete business fields. Parsing a number is not enough if the query selected the wrong account. This is why fixture identifiers remain visible through the action and every following assertion.",
+      "bullets": [
+        "Assert status first",
+        "Parse with the installed library",
+        "Check the owned account"
+      ],
+      "code": "APIResponse account = context.request().get(\n    \"/api/accounts/\" + sourceAccountId);\nassertEquals(200, account.status());\nJsonObject body = JsonParser.parseString(account.text())\n    .getAsJsonObject();\nassertEquals(90000, body.get(\"balanceMinor\").getAsInt());",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative Java excerpt · Imports and fixture required",
+      "start": 222.70800000000003,
+      "duration": 34.106,
+      "audio": "audio/04/04-07.wav"
+    },
+    {
+      "id": "04-08",
+      "title": "Implement rejection and replay",
+      "kicker": "EPISODE 04 · STEP 8",
+      "type": "steps",
+      "narration": "Create separate fixtures for the rejection and replay tests. For rejection, verify the business error, unchanged balance, and empty transfer list. For replay, send the same request body and key twice, verify the creation and replay response statuses, and compare their identifiers. Keep the final balance and count assertions even when both identifiers match. Java's request option objects do not create idempotency by themselves; the server contract interprets the key. Make that relationship explicit in the test name and review the generated request construction carefully.",
+      "bullets": [
+        "Fresh data for each case",
+        "Rejection means no side effects",
+        "Replay means one business effect"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 256.814,
+      "duration": 39.77,
+      "audio": "audio/04/04-08.wav"
+    },
+    {
+      "id": "04-09",
+      "title": "Record a Java trace",
+      "kicker": "EPISODE 04 · STEP 9",
+      "type": "code",
+      "narration": "Start tracing before the browser actions you want to diagnose, then stop and save it before closing the context. The excerpt shows the lifecycle calls. Your fixture or JUnit extension decides when to retain the artifact and how to name it per test. Keep the JUnit outcome alongside the trace, because the library trace is not a replacement for the runner's assertion report. Verify this arrangement using an actual failure rather than assuming a configured filename guarantees a useful diagnostic artifact.",
+      "bullets": [
+        "Start before actions",
+        "Save before closing",
+        "Keep JUnit results too"
+      ],
+      "code": "context.tracing().start(new Tracing.StartOptions()\n    .setScreenshots(true).setSnapshots(true));\n// Browser actions and assertions occur here.\ncontext.tracing().stop(new Tracing.StopOptions()\n    .setPath(Path.of(\"evidence\", \"java-trace.zip\")));",
+      "code_language": "java",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative Java excerpt · Imports and fixture required",
+      "start": 296.584,
+      "duration": 33.05,
+      "audio": "audio/04/04-09.wav"
+    },
+    {
+      "id": "04-10",
+      "title": "Avoid unsafe parallel sharing",
+      "kicker": "EPISODE 04 · STEP 10",
+      "type": "steps",
+      "narration": "Only add parallel execution after the sequential suite is reproducible. Playwright Java objects should remain on their owning thread unless you implement the required synchronization. Give each parallel execution its own Playwright instance and keep calls on that thread. This is separate from data isolation: independent browser objects can still collide when they mutate one shared account. Review both the thread ownership and fixture identifiers before increasing concurrency, and keep failures attributable to one test attempt rather than a mixture of overlapping sessions.",
+      "bullets": [
+        "Respect thread ownership",
+        "Isolate mutable server data",
+        "Increase concurrency deliberately"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 329.634,
+      "duration": 36.122,
+      "audio": "audio/04/04-10.wav"
+    },
+    {
+      "id": "04-11",
+      "title": "Read the actual runner result",
+      "kicker": "EPISODE 04 · STEP 11",
+      "type": "terminal",
+      "narration": "Run the selected Maven test and inspect its Surefire reports. A successful compilation is only the preparation stage; the result must show that the intended test method actually executed. Confirm the number of tests and inspect failures or skipped cases. If a browser or terminal dependency is unavailable, keep that limitation in the report. For hybrid work later, a Java test may invoke the Python adapter as a bounded subprocess, but Java still owns the final assertion about the returned correlation and business values.",
+      "bullets": [
+        "Confirm test discovery",
+        "Inspect counts and failures",
+        "Keep dependency blockers visible"
+      ],
+      "code": "mvn -Dtest=HybridTransferTest test\n# Inspect target/surefire-reports after the run.",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 365.75600000000003,
+      "duration": 35.69,
+      "audio": "audio/04/04-11.wav"
+    },
+    {
+      "id": "04-12",
+      "title": "Compare meaning across languages",
+      "kicker": "EPISODE 04 · STEP 12",
+      "type": "recap",
+      "narration": "Place the Java, Python, and TypeScript evidence matrices beside each other. Each should describe the same starting balance, transfer amount, rejection behavior, and single-effect replay. The lifecycle, configuration, and artifact commands differ; the business promise does not. Explain why you used a locator assertion for the browser and a value assertion for parsed JSON. Then point to cleanup and the actual result files. The skill is adapting test architecture to a language without quietly weakening what the regression is supposed to prove.",
+      "bullets": [
+        "Same business promise",
+        "Different lifecycle mechanics",
+        "Evidence remains comparable"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 401.446,
+      "duration": 37.13,
+      "audio": "audio/04/04-12.wav"
+    }
+  ],
+  "duration": 438.576,
+  "captions": [
+    {
+      "text": "This episode builds the Java equivalent using Playwright with JUnit. Start by",
+      "start": 0.7,
+      "end": 5.6875
+    },
+    {
+      "text": "separating the browser library from the test runner. Playwright controls pages and",
+      "start": 5.699999999999999,
+      "end": 10.6875
+    },
+    {
+      "text": "performs its locator assertions; JUnit organizes test execution and records test",
+      "start": 10.7,
+      "end": 15.8375
+    },
+    {
+      "text": "outcomes. Maven supplies dependencies and launches the configured test process. Those",
+      "start": 15.85,
+      "end": 22.425
+    },
+    {
+      "text": "responsibilities do not become identical merely because the TypeScript edition",
+      "start": 22.4375,
+      "end": 26.3625
+    },
+    {
+      "text": "packages them together. Your job is to preserve the three business cases while making",
+      "start": 26.375,
+      "end": 31.375
+    },
+    {
+      "text": "resource ownership, assertion choices, and reporting explicit in the Java project.",
+      "start": 31.387500000000003,
+      "end": 36.1875
+    },
+    {
+      "text": "Open the supplied Maven project and inspect the versions fixed in its project file.",
+      "start": 38.406000000000006,
+      "end": 42.993500000000004
+    },
+    {
+      "text": "Confirm which JSON library it includes, because response parsing examples must match",
+      "start": 43.856,
+      "end": 49.1685
+    },
+    {
+      "text": "that library. The working hybrid example uses Gson; an example using Jackson needs its",
+      "start": 49.181000000000004,
+      "end": 55.181000000000004
+    },
+    {
+      "text": "own dependency and imports. Also inspect the browser channel configuration before",
+      "start": 55.1935,
+      "end": 60.581
+    },
+    {
+      "text": "launching. Run Maven's version command to check the selected Java installation. If the",
+      "start": 60.593500000000006,
+      "end": 66.74350000000001
+    },
+    {
+      "text": "project does not compile, treat compiler errors as implementation feedback rather than",
+      "start": 66.756,
+      "end": 71.656
+    },
+    {
+      "text": "evidence that the application violated a transfer rule.",
+      "start": 71.6685,
+      "end": 74.5185
+    },
+    {
+      "text": "For the classroom, begin with sequential tests. A test may own Playwright, the",
+      "start": 76.736,
+      "end": 82.036
+    },
+    {
+      "text": "browser, and its context through resource blocks, as in the hybrid example. A larger",
+      "start": 82.0485,
+      "end": 87.7735
+    },
+    {
+      "text": "suite can use JUnit lifecycle methods while keeping one fresh context per case.",
+      "start": 87.786,
+      "end": 92.4485
+    },
+    {
+      "text": "Whichever structure you choose, draw who closes each object. Avoid a static page",
+      "start": 93.311,
+      "end": 98.761
+    },
+    {
+      "text": "shared across tests. Its session, open dialogs, and navigation state can leak between",
+      "start": 98.7735,
+      "end": 104.9235
+    },
+    {
+      "text": "cases even when the test methods look independent in the source file and have",
+      "start": 104.936,
+      "end": 108.8235
+    },
+    {
+      "text": "different names.",
+      "start": 108.83600000000001,
+      "end": 109.7235
+    },
+    {
+      "text": "The excerpt shows the central context boundary inside an existing browser lifecycle.",
+      "start": 111.94600000000001,
+      "end": 116.6085
+    },
+    {
+      "text": "Set the local base address when creating the context, then obtain its page.",
+      "start": 117.471,
+      "end": 121.7835
+    },
+    {
+      "text": "Authentication happens on this context before protected navigation. Closing the",
+      "start": 122.64600000000002,
+      "end": 127.95850000000002
+    },
+    {
+      "text": "context releases its pages and browser session together. In a lifecycle method, the",
+      "start": 127.971,
+      "end": 133.496
+    },
+    {
+      "text": "corresponding cleanup belongs in the matching after method; in a resource block, Java",
+      "start": 133.50850000000003,
+      "end": 138.35850000000002
+    },
+    {
+      "text": "manages closing. Do not mix the two ownership approaches accidentally and leave an",
+      "start": 138.371,
+      "end": 143.4835
+    },
+    {
+      "text": "object alive because each layer expected another layer to close it.",
+      "start": 143.496,
+      "end": 147.19600000000003
+    },
+    {
+      "text": "Post the synthetic fixture credentials through the context's request client. Check the",
+      "start": 149.412,
+      "end": 154.57450000000003
+    },
+    {
+      "text": "response status before reading the transfer page. The displayed request options carry",
+      "start": 154.58700000000002,
+      "end": 160.0995
+    },
+    {
+      "text": "only the business login data; the local test hook key belongs on preparation requests.",
+      "start": 160.11200000000002,
+      "end": 164.98700000000002
+    },
+    {
+      "text": "By keeping those responsibilities separate, your Java test reflects the same",
+      "start": 165.84950000000003,
+      "end": 169.9995
+    },
+    {
+      "text": "authorization model as the other language versions. If login succeeds but navigation",
+      "start": 170.01200000000003,
+      "end": 175.79950000000002
+    },
+    {
+      "text": "appears anonymous, inspect cookie scope and the base address instead of inserting",
+      "start": 175.812,
+      "end": 180.062
+    },
+    {
+      "text": "credentials into unrelated requests or bypassing the protected page entirely.",
+      "start": 180.07450000000003,
+      "end": 184.57450000000003
+    },
+    {
+      "text": "After selecting the source and beneficiary, fill the amount field and submit through",
+      "start": 186.806,
+      "end": 191.09350000000003
+    },
+    {
+      "text": "the accessible button. Use Playwright's assertion import for the visible balance,",
+      "start": 191.10600000000002,
+      "end": 195.95600000000002
+    },
+    {
+      "text": "because it provides locator-aware waiting. JUnit's ordinary equality assertion remains",
+      "start": 196.13100000000003,
+      "end": 201.59350000000003
+    },
+    {
+      "text": "appropriate for values you already obtained from an API response. These assertions",
+      "start": 201.60600000000002,
+      "end": 206.93100000000004
+    },
+    {
+      "text": "serve different observations, so inspect the imports when AI generates a test. A",
+      "start": 206.94350000000003,
+      "end": 212.46850000000003
+    },
+    {
+      "text": "method named assertThat from another library may have entirely different behavior even",
+      "start": 212.48100000000002,
+      "end": 216.74350000000004
+    },
+    {
+      "text": "if the surrounding Java code looks familiar and the editor offers an automatic import.",
+      "start": 216.75600000000003,
+      "end": 221.19350000000003
+    },
+    {
+      "text": "Fetch the source account through the same context and verify the successful response",
+      "start": 223.40800000000002,
+      "end": 227.54550000000003
+    },
+    {
+      "text": "before parsing its body. The excerpt uses Gson, matching the supplied hybrid Java",
+      "start": 227.55800000000002,
+      "end": 233.20800000000003
+    },
+    {
+      "text": "project. Compare the balance in minor units and preserve the source identifier in your",
+      "start": 233.22050000000002,
+      "end": 238.40800000000002
+    },
+    {
+      "text": "report. Next, read the canonical transfer collection and check its count and complete",
+      "start": 238.42050000000003,
+      "end": 244.05800000000002
+    },
+    {
+      "text": "business fields. Parsing a number is not enough if the query selected the wrong",
+      "start": 244.07050000000004,
+      "end": 248.84550000000002
+    },
+    {
+      "text": "account. This is why fixture identifiers remain visible through the action and every",
+      "start": 248.85800000000003,
+      "end": 254.19550000000004
+    },
+    {
+      "text": "following assertion.",
+      "start": 254.20800000000003,
+      "end": 255.29550000000003
+    },
+    {
+      "text": "Create separate fixtures for the rejection and replay tests. For rejection, verify the",
+      "start": 257.514,
+      "end": 263.36400000000003
+    },
+    {
+      "text": "business error, unchanged balance, and empty transfer list. For replay, send the same",
+      "start": 263.3765,
+      "end": 269.589
+    },
+    {
+      "text": "request body and key twice, verify the creation and replay response statuses, and",
+      "start": 269.60150000000004,
+      "end": 274.91400000000004
+    },
+    {
+      "text": "compare their identifiers. Keep the final balance and count assertions even when both",
+      "start": 274.92650000000003,
+      "end": 280.1265
+    },
+    {
+      "text": "identifiers match. Java's request option objects do not create idempotency by",
+      "start": 280.139,
+      "end": 285.72650000000004
+    },
+    {
+      "text": "themselves; the server contract interprets the key. Make that relationship explicit in",
+      "start": 285.73900000000003,
+      "end": 291.5015
+    },
+    {
+      "text": "the test name and review the generated request construction carefully.",
+      "start": 291.514,
+      "end": 295.064
+    },
+    {
+      "text": "Start tracing before the browser actions you want to diagnose, then stop and save it",
+      "start": 297.284,
+      "end": 301.959
+    },
+    {
+      "text": "before closing the context. The excerpt shows the lifecycle calls. Your fixture or",
+      "start": 301.9715,
+      "end": 308.3965
+    },
+    {
+      "text": "JUnit extension decides when to retain the artifact and how to name it per test. Keep",
+      "start": 308.409,
+      "end": 313.8715
+    },
+    {
+      "text": "the JUnit outcome alongside the trace, because the library trace is not a replacement",
+      "start": 313.884,
+      "end": 318.5715
+    },
+    {
+      "text": "for the runner's assertion report. Verify this arrangement using an actual failure",
+      "start": 318.584,
+      "end": 323.684
+    },
+    {
+      "text": "rather than assuming a configured filename guarantees a useful diagnostic artifact.",
+      "start": 323.6965,
+      "end": 328.1215
+    },
+    {
+      "text": "Only add parallel execution after the sequential suite is reproducible. Playwright",
+      "start": 330.334,
+      "end": 335.7215
+    },
+    {
+      "text": "Java objects should remain on their owning thread unless you implement the required",
+      "start": 335.73400000000004,
+      "end": 339.5965
+    },
+    {
+      "text": "synchronization. Give each parallel execution its own Playwright instance and keep",
+      "start": 339.60900000000004,
+      "end": 344.8465
+    },
+    {
+      "text": "calls on that thread. This is separate from data isolation: independent browser",
+      "start": 344.85900000000004,
+      "end": 350.034
+    },
+    {
+      "text": "objects can still collide when they mutate one shared account. Review both the thread",
+      "start": 350.04650000000004,
+      "end": 355.17150000000004
+    },
+    {
+      "text": "ownership and fixture identifiers before increasing concurrency, and keep failures",
+      "start": 355.184,
+      "end": 359.8965
+    },
+    {
+      "text": "attributable to one test attempt rather than a mixture of overlapping sessions.",
+      "start": 359.909,
+      "end": 364.23400000000004
+    },
+    {
+      "text": "Run the selected Maven test and inspect its Surefire reports. A successful compilation",
+      "start": 366.456,
+      "end": 372.43100000000004
+    },
+    {
+      "text": "is only the preparation stage; the result must show that the intended test method",
+      "start": 372.44350000000003,
+      "end": 376.94350000000003
+    },
+    {
+      "text": "actually executed. Confirm the number of tests and inspect failures or skipped cases.",
+      "start": 376.956,
+      "end": 382.906
+    },
+    {
+      "text": "If a browser or terminal dependency is unavailable, keep that limitation in the",
+      "start": 383.7685,
+      "end": 387.8935
+    },
+    {
+      "text": "report. For hybrid work later, a Java test may invoke the Python adapter as a bounded",
+      "start": 387.906,
+      "end": 393.98100000000005
+    },
+    {
+      "text": "subprocess, but Java still owns the final assertion about the returned correlation and",
+      "start": 393.99350000000004,
+      "end": 398.81850000000003
+    },
+    {
+      "text": "business values.",
+      "start": 398.831,
+      "end": 399.91850000000005
+    },
+    {
+      "text": "Place the Java, Python, and TypeScript evidence matrices beside each other. Each",
+      "start": 402.146,
+      "end": 407.7085
+    },
+    {
+      "text": "should describe the same starting balance, transfer amount, rejection behavior, and",
+      "start": 407.721,
+      "end": 412.30850000000004
+    },
+    {
+      "text": "single-effect replay. The lifecycle, configuration, and artifact commands differ; the",
+      "start": 412.321,
+      "end": 418.521
+    },
+    {
+      "text": "business promise does not. Explain why you used a locator assertion for the browser",
+      "start": 418.5335,
+      "end": 423.846
+    },
+    {
+      "text": "and a value assertion for parsed JSON. Then point to cleanup and the actual result",
+      "start": 423.85850000000005,
+      "end": 429.3335
+    },
+    {
+      "text": "files. The skill is adapting test architecture to a language without quietly weakening",
+      "start": 429.346,
+      "end": 434.99600000000004
+    },
+    {
+      "text": "what the regression is supposed to prove.",
+      "start": 435.0085,
+      "end": 437.04600000000005
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 59.29700000000048,
+  "caption_mapping_revision": 2
+}

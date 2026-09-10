@@ -1,0 +1,331 @@
+1
+00:00:00,700 --> 00:00:05,688
+This episode builds the Java equivalent using Playwright with JUnit. Start by
+
+2
+00:00:05,700 --> 00:00:10,688
+separating the browser library from the test runner. Playwright controls pages and
+
+3
+00:00:10,700 --> 00:00:15,838
+performs its locator assertions; JUnit organizes test execution and records test
+
+4
+00:00:15,850 --> 00:00:22,425
+outcomes. Maven supplies dependencies and launches the configured test process. Those
+
+5
+00:00:22,438 --> 00:00:26,362
+responsibilities do not become identical merely because the TypeScript edition
+
+6
+00:00:26,375 --> 00:00:31,375
+packages them together. Your job is to preserve the three business cases while making
+
+7
+00:00:31,388 --> 00:00:36,188
+resource ownership, assertion choices, and reporting explicit in the Java project.
+
+8
+00:00:38,406 --> 00:00:42,994
+Open the supplied Maven project and inspect the versions fixed in its project file.
+
+9
+00:00:43,856 --> 00:00:49,168
+Confirm which JSON library it includes, because response parsing examples must match
+
+10
+00:00:49,181 --> 00:00:55,181
+that library. The working hybrid example uses Gson; an example using Jackson needs its
+
+11
+00:00:55,194 --> 00:01:00,581
+own dependency and imports. Also inspect the browser channel configuration before
+
+12
+00:01:00,594 --> 00:01:06,744
+launching. Run Maven's version command to check the selected Java installation. If the
+
+13
+00:01:06,756 --> 00:01:11,656
+project does not compile, treat compiler errors as implementation feedback rather than
+
+14
+00:01:11,668 --> 00:01:14,518
+evidence that the application violated a transfer rule.
+
+15
+00:01:16,736 --> 00:01:22,036
+For the classroom, begin with sequential tests. A test may own Playwright, the
+
+16
+00:01:22,048 --> 00:01:27,774
+browser, and its context through resource blocks, as in the hybrid example. A larger
+
+17
+00:01:27,786 --> 00:01:32,448
+suite can use JUnit lifecycle methods while keeping one fresh context per case.
+
+18
+00:01:33,311 --> 00:01:38,761
+Whichever structure you choose, draw who closes each object. Avoid a static page
+
+19
+00:01:38,774 --> 00:01:44,924
+shared across tests. Its session, open dialogs, and navigation state can leak between
+
+20
+00:01:44,936 --> 00:01:48,824
+cases even when the test methods look independent in the source file and have
+
+21
+00:01:48,836 --> 00:01:49,724
+different names.
+
+22
+00:01:51,946 --> 00:01:56,608
+The excerpt shows the central context boundary inside an existing browser lifecycle.
+
+23
+00:01:57,471 --> 00:02:01,784
+Set the local base address when creating the context, then obtain its page.
+
+24
+00:02:02,646 --> 00:02:07,959
+Authentication happens on this context before protected navigation. Closing the
+
+25
+00:02:07,971 --> 00:02:13,496
+context releases its pages and browser session together. In a lifecycle method, the
+
+26
+00:02:13,509 --> 00:02:18,359
+corresponding cleanup belongs in the matching after method; in a resource block, Java
+
+27
+00:02:18,371 --> 00:02:23,484
+manages closing. Do not mix the two ownership approaches accidentally and leave an
+
+28
+00:02:23,496 --> 00:02:27,196
+object alive because each layer expected another layer to close it.
+
+29
+00:02:29,412 --> 00:02:34,575
+Post the synthetic fixture credentials through the context's request client. Check the
+
+30
+00:02:34,587 --> 00:02:40,100
+response status before reading the transfer page. The displayed request options carry
+
+31
+00:02:40,112 --> 00:02:44,987
+only the business login data; the local test hook key belongs on preparation requests.
+
+32
+00:02:45,850 --> 00:02:50,000
+By keeping those responsibilities separate, your Java test reflects the same
+
+33
+00:02:50,012 --> 00:02:55,800
+authorization model as the other language versions. If login succeeds but navigation
+
+34
+00:02:55,812 --> 00:03:00,062
+appears anonymous, inspect cookie scope and the base address instead of inserting
+
+35
+00:03:00,075 --> 00:03:04,575
+credentials into unrelated requests or bypassing the protected page entirely.
+
+36
+00:03:06,806 --> 00:03:11,094
+After selecting the source and beneficiary, fill the amount field and submit through
+
+37
+00:03:11,106 --> 00:03:15,956
+the accessible button. Use Playwright's assertion import for the visible balance,
+
+38
+00:03:16,131 --> 00:03:21,594
+because it provides locator-aware waiting. JUnit's ordinary equality assertion remains
+
+39
+00:03:21,606 --> 00:03:26,931
+appropriate for values you already obtained from an API response. These assertions
+
+40
+00:03:26,944 --> 00:03:32,469
+serve different observations, so inspect the imports when AI generates a test. A
+
+41
+00:03:32,481 --> 00:03:36,744
+method named assertThat from another library may have entirely different behavior even
+
+42
+00:03:36,756 --> 00:03:41,194
+if the surrounding Java code looks familiar and the editor offers an automatic import.
+
+43
+00:03:43,408 --> 00:03:47,546
+Fetch the source account through the same context and verify the successful response
+
+44
+00:03:47,558 --> 00:03:53,208
+before parsing its body. The excerpt uses Gson, matching the supplied hybrid Java
+
+45
+00:03:53,221 --> 00:03:58,408
+project. Compare the balance in minor units and preserve the source identifier in your
+
+46
+00:03:58,421 --> 00:04:04,058
+report. Next, read the canonical transfer collection and check its count and complete
+
+47
+00:04:04,071 --> 00:04:08,846
+business fields. Parsing a number is not enough if the query selected the wrong
+
+48
+00:04:08,858 --> 00:04:14,196
+account. This is why fixture identifiers remain visible through the action and every
+
+49
+00:04:14,208 --> 00:04:15,296
+following assertion.
+
+50
+00:04:17,514 --> 00:04:23,364
+Create separate fixtures for the rejection and replay tests. For rejection, verify the
+
+51
+00:04:23,376 --> 00:04:29,589
+business error, unchanged balance, and empty transfer list. For replay, send the same
+
+52
+00:04:29,602 --> 00:04:34,914
+request body and key twice, verify the creation and replay response statuses, and
+
+53
+00:04:34,927 --> 00:04:40,126
+compare their identifiers. Keep the final balance and count assertions even when both
+
+54
+00:04:40,139 --> 00:04:45,727
+identifiers match. Java's request option objects do not create idempotency by
+
+55
+00:04:45,739 --> 00:04:51,502
+themselves; the server contract interprets the key. Make that relationship explicit in
+
+56
+00:04:51,514 --> 00:04:55,064
+the test name and review the generated request construction carefully.
+
+57
+00:04:57,284 --> 00:05:01,959
+Start tracing before the browser actions you want to diagnose, then stop and save it
+
+58
+00:05:01,972 --> 00:05:08,396
+before closing the context. The excerpt shows the lifecycle calls. Your fixture or
+
+59
+00:05:08,409 --> 00:05:13,872
+JUnit extension decides when to retain the artifact and how to name it per test. Keep
+
+60
+00:05:13,884 --> 00:05:18,572
+the JUnit outcome alongside the trace, because the library trace is not a replacement
+
+61
+00:05:18,584 --> 00:05:23,684
+for the runner's assertion report. Verify this arrangement using an actual failure
+
+62
+00:05:23,696 --> 00:05:28,122
+rather than assuming a configured filename guarantees a useful diagnostic artifact.
+
+63
+00:05:30,334 --> 00:05:35,722
+Only add parallel execution after the sequential suite is reproducible. Playwright
+
+64
+00:05:35,734 --> 00:05:39,596
+Java objects should remain on their owning thread unless you implement the required
+
+65
+00:05:39,609 --> 00:05:44,846
+synchronization. Give each parallel execution its own Playwright instance and keep
+
+66
+00:05:44,859 --> 00:05:50,034
+calls on that thread. This is separate from data isolation: independent browser
+
+67
+00:05:50,047 --> 00:05:55,172
+objects can still collide when they mutate one shared account. Review both the thread
+
+68
+00:05:55,184 --> 00:05:59,896
+ownership and fixture identifiers before increasing concurrency, and keep failures
+
+69
+00:05:59,909 --> 00:06:04,234
+attributable to one test attempt rather than a mixture of overlapping sessions.
+
+70
+00:06:06,456 --> 00:06:12,431
+Run the selected Maven test and inspect its Surefire reports. A successful compilation
+
+71
+00:06:12,444 --> 00:06:16,944
+is only the preparation stage; the result must show that the intended test method
+
+72
+00:06:16,956 --> 00:06:22,906
+actually executed. Confirm the number of tests and inspect failures or skipped cases.
+
+73
+00:06:23,768 --> 00:06:27,894
+If a browser or terminal dependency is unavailable, keep that limitation in the
+
+74
+00:06:27,906 --> 00:06:33,981
+report. For hybrid work later, a Java test may invoke the Python adapter as a bounded
+
+75
+00:06:33,994 --> 00:06:38,818
+subprocess, but Java still owns the final assertion about the returned correlation and
+
+76
+00:06:38,831 --> 00:06:39,919
+business values.
+
+77
+00:06:42,146 --> 00:06:47,708
+Place the Java, Python, and TypeScript evidence matrices beside each other. Each
+
+78
+00:06:47,721 --> 00:06:52,309
+should describe the same starting balance, transfer amount, rejection behavior, and
+
+79
+00:06:52,321 --> 00:06:58,521
+single-effect replay. The lifecycle, configuration, and artifact commands differ; the
+
+80
+00:06:58,534 --> 00:07:03,846
+business promise does not. Explain why you used a locator assertion for the browser
+
+81
+00:07:03,859 --> 00:07:09,334
+and a value assertion for parsed JSON. Then point to cleanup and the actual result
+
+82
+00:07:09,346 --> 00:07:14,996
+files. The skill is adapting test architecture to a language without quietly weakening
+
+83
+00:07:15,008 --> 00:07:17,046
+what the regression is supposed to prove.

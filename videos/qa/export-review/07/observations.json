@@ -1,0 +1,46 @@
+{
+  "episode": "07",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "a7b03c1f02e1c3062ed328b653045de902c6488e782edd610c3ad70568099fa8",
+  "reviewedAtUtc": "2026-09-10T03:53:59.242399+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4, plus the listed native-resolution code sample. All production inputFiles and artifact hashes were verified against current files before extraction and again before recording this review.",
+  "reviewedSceneIds": [
+    "07-01",
+    "07-02",
+    "07-03",
+    "07-04",
+    "07-05",
+    "07-06",
+    "07-07",
+    "07-08",
+    "07-09",
+    "07-10",
+    "07-11",
+    "07-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "07-04"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/07/timeline.json": "e56bcd6619db3d465ae18855d864b6eed855ab4978ca81126cd73b68252a43f3",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/07/narration.wav": "02c479279ec5c1c83d0a2e88b76af9de1b93a7cebb6712d418b24e976c3a56cb",
+    "audio/07/subtitles.srt": "7bcf32f91966354cf39529f2319d7fa1efa7357be8495331fd7edf343cb0f6da",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  "sampledFrameFindings": [
+    "The ten-line route-handler excerpt was inspected at native 1920x1080. All lines, the explanation below the code and the footer remain visible without overlap.",
+    "Mock and integrated-test evidence use separate white rows with blue text; the mock scope label remains visible on the relevant panels.",
+    "Across the twelve samples, titles and subtitle cues remain readable within their bounds; the palette contains no visible green or teal."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

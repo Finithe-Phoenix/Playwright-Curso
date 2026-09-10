@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-09",
+  "mode": "local TN3270 simulator; no real mainframe",
+  "suites": [
+    {
+      "report": "terminal-tests.xml",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "python-core-plugin-tests.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "hybrid-java-tests.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "core-java-tests.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "report": "hybrid-typescript-tests.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totalTests": 12,
+  "cleanup": {
+    "fixtures": 0,
+    "operations": 0
+  }
+}

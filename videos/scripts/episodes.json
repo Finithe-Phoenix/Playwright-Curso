@@ -1,0 +1,2706 @@
+[
+  {
+    "id": "01",
+    "slug": "architecture-and-setup",
+    "title": "Build the Local Test Architecture",
+    "summary": "Prepare one local business workflow and three language-specific test runners.",
+    "language": "en",
+    "objectives": [
+      "Map browser, service and terminal boundaries",
+      "Prepare the chosen language and browser",
+      "Define three measurable business outcomes"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/intro",
+      "https://playwright.dev/python/docs/intro",
+      "https://playwright.dev/java/docs/test-runners"
+    ],
+    "scenes": [
+      {
+        "id": "01-01",
+        "title": "Start with an outcome",
+        "kicker": "EPISODE 01 · STEP 1",
+        "type": "title",
+        "narration": "Welcome to advanced Playwright with AI. We will build regression evidence around one fictional transfer, using TypeScript, Python, or Java. Later, that same transfer will cross several local services and appear on a simulated terminal. Choose one language for your practical work, and use the others to compare architecture. Before opening an editor, write the outcome you want to prove: one authorized transfer changes the correct balance exactly once and leaves a traceable business record.",
+        "bullets": [
+          "One learner, one language",
+          "One workflow, several observations"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-02",
+        "title": "Read the system map",
+        "kicker": "EPISODE 01 · STEP 2",
+        "type": "steps",
+        "narration": "Read the diagram from left to right. The browser calls the gateway on port three thousand. The gateway coordinates an accounts service and a ledger service. Accounts owns the immediate balance change; the ledger exposes a delayed read model in our distributed variation. A Python terminal adapter later connects to a local terminal simulator. These processes run on your workstation. They provide realistic automation boundaries, but they do not represent a production bank or a real mainframe installation.",
+        "bullets": [
+          "Browser → Gateway → Accounts",
+          "Accounts outbox → Ledger (delayed projection)",
+          "TNZ → 3270 simulator → Gateway → Accounts"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-03",
+        "title": "Choose the right observation",
+        "kicker": "EPISODE 01 · STEP 3",
+        "type": "steps",
+        "narration": "Open the laboratory contract before installing anything. The account and canonical transfer queries describe immediate business state. The distributed extension adds a separate ledger query with eventual consistency while preserving the business amounts. Keep those endpoints distinct in your notes. Otherwise, you may mistake an expected publication delay for a product defect. Write down which endpoint is authoritative, which one is delayed, and which environment your test uses. This decision determines whether an assertion should run immediately or poll.",
+        "bullets": [
+          "Canonical transfers: immediate",
+          "Ledger read model: delayed",
+          "Record the endpoint used"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-04",
+        "title": "Prepare TypeScript",
+        "kicker": "EPISODE 01 · STEP 4",
+        "type": "terminal",
+        "narration": "For TypeScript, work inside the supplied test project and inspect its package file and lockfile. Install exactly that dependency set with the clean installation command. Then install the browser expected by the pinned configuration. The laboratory may select an installed Edge channel for the measured run, while Chromium installation supports a separately configured Chromium project. These choices must match the runner configuration. Finally, record the tool version. Keep your approved package mirror configuration instead of changing registries during the lesson.",
+        "bullets": [
+          "Use the supplied lockfile",
+          "Match the configured browser",
+          "Record the tool version"
+        ],
+        "code": "npm ci\nnpx playwright --version\nnpx playwright install chromium",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-05",
+        "title": "Prepare Python",
+        "kicker": "EPISODE 01 · STEP 5",
+        "type": "terminal",
+        "narration": "For Python, create a virtual environment with the interpreter selected for the laboratory. Invoke its Python executable explicitly so package installation and test execution cannot accidentally use another Python installation. Install the pinned requirements file, then ask that same interpreter to install Chromium through Playwright. The pytest plugin will provide the page and context fixtures used later. Keep this environment separate from the terminal adapter environment when their dependency files differ; sharing an operating system does not require sharing every package.",
+        "bullets": [
+          "Use an explicit interpreter",
+          "Install pinned requirements",
+          "Keep environments understandable"
+        ],
+        "code": "py -3.12 -m venv .venv\n.\\.venv\\Scripts\\python.exe -m pip install -r requirements-browser.txt\n.\\.venv\\Scripts\\python.exe -m playwright install chromium",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-06",
+        "title": "Prepare Java",
+        "kicker": "EPISODE 01 · STEP 6",
+        "type": "terminal",
+        "narration": "For Java, inspect the Maven project and confirm the JDK selected by your terminal. The project fixes Playwright, JUnit, and the build plugins it needs. Maven resolves those dependencies; the documented Playwright installation step provides the browser. These are separate from running JUnit tests. Keep classroom execution sequential initially, because a shared Playwright object is not an appropriate shortcut for parallel threads. If dependency resolution fails, solve the environment issue before interpreting any resulting message as a failed transfer regression.",
+        "bullets": [
+          "Verify the selected JDK",
+          "Inspect the Maven configuration",
+          "Begin with sequential execution"
+        ],
+        "code": "java -version\nmvn -version\n$env:PLAYWRIGHT_NODEJS_PATH=(Get-Command node).Source\n$env:TEST_HOOK_KEY='classroom-demo-only'\n$env:PW_BROWSER_CHANNEL='msedge'\n# Run tests only after browser and local service readiness:\nmvn test",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-07",
+        "title": "Check local readiness",
+        "kicker": "EPISODE 01 · STEP 7",
+        "type": "steps",
+        "narration": "Start the local laboratory from the distributed project directory using its start script. Check the gateway health endpoint before opening the transfer page, and inspect the service output for startup errors. A page that renders a shell is not enough evidence that dependencies are ready. Confirm the documented environment metadata, then keep the services running for the exercise. Record the actual response you receive. The response shown in a slide is an expected example until your own request has completed successfully.",
+        "bullets": [
+          "Start the local services",
+          "Inspect health and logs",
+          "Record actual readiness evidence"
+        ],
+        "code": "$env:TEST_HOOK_KEY='classroom-demo-only'\nnpm run start:lab\n# In another terminal:\nInvoke-RestMethod http://127.0.0.1:3000/health",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-08",
+        "title": "Express money precisely",
+        "kicker": "EPISODE 01 · STEP 8",
+        "type": "code",
+        "narration": "Our API represents money as integer minor units. One thousand pesos is one hundred thousand centavos; the transfer amount of one hundred pesos is ten thousand centavos. The browser displays decimal currency, but server assertions use integers. Put these values beside each other before generating tests with AI. This prevents an attractive test from sending one hundred centavos while claiming to transfer one hundred pesos. Also assert the currency explicitly, because a numerically correct amount can still describe the wrong business operation.",
+        "bullets": [
+          "Opening: MXN 1000.00",
+          "Transfer: MXN 100.00",
+          "Closing: MXN 900.00"
+        ],
+        "code": "balanceMinor: 100000\namountMinor: 10000\nexpectedBalanceMinor: 90000\ncurrency: \"MXN\"",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture required"
+      },
+      {
+        "id": "01-09",
+        "title": "Define the three cases",
+        "kicker": "EPISODE 01 · STEP 9",
+        "type": "steps",
+        "narration": "Create three rows in your evidence matrix. The successful transfer must leave a balance of nine hundred pesos and one record. The insufficient funds attempt requests eleven hundred pesos, keeps the opening balance unchanged, and creates no record. The idempotency case repeats the same request with the same key and must still produce one debit and one record. Give each row a fresh fixture. These are separate experiments, so a failed first case must never prevent another case from receiving its own opening state.",
+        "bullets": [
+          "TR-01: success",
+          "TR-02: insufficient funds",
+          "TR-03: repeated intent"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-10",
+        "title": "Separate tools from decisions",
+        "kicker": "EPISODE 01 · STEP 10",
+        "type": "steps",
+        "narration": "Ask AI to inspect the contract and list missing information before writing code. Provide the language, runner, exact UI labels, endpoints, and expected business values. The model may help organize fixtures or explain a failing assertion, but it cannot establish that a test ran merely by generating plausible output. Keep generated code, reviewed code, and executed results as separate states. When a selector or response field is unsupported by your evidence, stop that assumption and inspect the actual application or documented contract.",
+        "bullets": [
+          "Supply observed interfaces",
+          "Review generated assumptions",
+          "Keep execution status explicit"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "01-11",
+        "title": "Make a first observable run",
+        "kicker": "EPISODE 01 · STEP 11",
+        "type": "code",
+        "narration": "Now run a small browser check against the local page using your chosen runner. In the TypeScript excerpt, navigation opens the transfer route and the amount field assertion checks an actual accessible label. Authentication must already be supplied by the prepared fixture. This tiny check verifies the browser can reach the intended screen; it does not prove a transfer works. Save its outcome as a readiness checkpoint, then move on to business tests with clear starting data and the stronger assertions we have defined.",
+        "bullets": [
+          "Authenticate in the fixture",
+          "Check an observable control",
+          "Classify this as readiness"
+        ],
+        "code": "await page.goto('/transfers');\nawait expect(\n  page.getByLabel('Importe (MXN)', { exact: true })\n).toBeVisible();",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture required"
+      },
+      {
+        "id": "01-12",
+        "title": "Check your preparation",
+        "kicker": "EPISODE 01 · STEP 12",
+        "type": "recap",
+        "narration": "Before continuing, explain the system aloud without naming a testing method. Identify who owns the balance, where the transfer record appears, and which process will later display terminal data. Confirm that your chosen language runs its own test runner, your browser is installed, and your local health check has an actual result. If any item is blocked, record the blocker instead of inventing a passing checkpoint. You are ready for the next episode when the environment and the business contract are both explicit.",
+        "bullets": [
+          "Architecture understood",
+          "Chosen runner ready",
+          "Contract and blockers recorded"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "slug": "typescript-ui-api-regression",
+    "title": "TypeScript: Reliable UI and API Regression",
+    "summary": "Implement three business cases with accessible locators and server-side evidence.",
+    "language": "en",
+    "objectives": [
+      "Use stable locators and web-first assertions",
+      "Verify UI outcomes against authenticated APIs",
+      "Implement sequential idempotency without duplicate debits"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/locators",
+      "https://playwright.dev/docs/test-assertions",
+      "https://playwright.dev/docs/api-testing"
+    ],
+    "scenes": [
+      {
+        "id": "02-01",
+        "title": "Design the test around risk",
+        "kicker": "EPISODE 02 · STEP 1",
+        "type": "title",
+        "narration": "Build the TypeScript version of our three regression cases. Begin with the prepared fixture, not a shared account you clicked through earlier. The fixture supplies an authenticated page, source account, and beneficiary. Read the test name as a business promise: a transfer of one hundred pesos reduces the correct account by one hundred pesos exactly once. Your UI steps exercise the customer path, while authenticated API queries verify the resulting state. Neither observation should silently replace the other.",
+        "bullets": [
+          "Start with an isolated fixture",
+          "Exercise the customer path",
+          "Inspect business state"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "02-02",
+        "title": "Use the accessible contract",
+        "kicker": "EPISODE 02 · STEP 2",
+        "type": "code",
+        "narration": "Navigate to the transfer page and select the fixture's source account and beneficiary by their exact accessible labels. Fill the amount using the documented decimal format. These locators communicate what a user is choosing rather than where a control happens to sit in the page structure. If a label no longer matches, inspect whether the application changed deliberately. Avoid replacing the locator with a positional selector simply to obtain a green run; that could operate on the wrong account without an obvious failure.",
+        "bullets": [
+          "Select the fixture account",
+          "Select the fixture beneficiary",
+          "Enter a decimal amount"
+        ],
+        "code": "await page.goto('/transfers');\nawait page.getByLabel('Cuenta origen', { exact: true })\n  .selectOption(lab.sourceAccountId);\nawait page.getByLabel('Beneficiario', { exact: true })\n  .selectOption(lab.beneficiaryId);\nawait page.getByLabel('Importe (MXN)', { exact: true })\n  .fill('100.00');",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-03",
+        "title": "Observe the right request",
+        "kicker": "EPISODE 02 · STEP 3",
+        "type": "code",
+        "narration": "When the response itself is part of your evidence, register the response waiter before clicking. Match both the HTTP method and the pathname, so an unrelated request cannot satisfy the waiter. Keep the response promise and await it after the click. This order avoids missing a fast response from a local server. The displayed predicate is deliberately narrow. If your gateway adds another relevant request, inspect the network evidence and update the predicate from that observation rather than introducing a general wait for all traffic.",
+        "bullets": [
+          "Register before the action",
+          "Match method and path",
+          "Inspect the captured response"
+        ],
+        "code": "const sent = page.waitForResponse(r =>\n  r.request().method() === 'POST' &&\n  new URL(r.url()).pathname === '/api/transfers'\n);\nawait page.getByRole('button',\n  { name: 'Transferir', exact: true }).click();\nconst response = await sent;\nexpect(response.status()).toBe(201);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-04",
+        "title": "Wait on the UI meaning",
+        "kicker": "EPISODE 02 · STEP 4",
+        "type": "code",
+        "narration": "After submission, assert the exact confirmation and the visible balance using Playwright's locator assertions. These assertions wait for the relevant UI condition instead of taking a single immediate text snapshot. They do not remove the need to understand your application's consistency guarantees. The balance is an immediate account observation in this lab, so nine hundred pesos is the expected result. A confirmation message alone is weaker: it could appear even if the amount, account, or number of debits were wrong underneath the interface.",
+        "bullets": [
+          "Assert confirmation",
+          "Assert displayed balance",
+          "Keep the business expectation"
+        ],
+        "code": "await expect(page.getByRole('status'))\n  .toHaveText('Transferencia realizada');\nawait expect(page.getByTestId('account-balance'))\n  .toHaveText('MXN 900.00');",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-05",
+        "title": "Verify the authoritative account",
+        "kicker": "EPISODE 02 · STEP 5",
+        "type": "code",
+        "narration": "Query the source account through the page's associated request context. It shares the browser session, so the query represents the same authenticated identity that submitted the transfer. Assert the HTTP status before interpreting the JSON body. Then compare the integer balance with ninety thousand centavos. If the request fails with an authorization response, diagnose authentication or ownership instead of reporting a wrong balance. Also retain the account identifier with your evidence so a reviewer can see which account the assertion actually examined during this run.",
+        "bullets": [
+          "Use the same identity",
+          "Check status before data",
+          "Assert integer money"
+        ],
+        "code": "const account = await page.request.get(\n  '/api/accounts/' + lab.sourceAccountId\n);\nexpect(account.status()).toBe(200);\nexpect((await account.json()).balanceMinor).toBe(90000);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-06",
+        "title": "Verify the transfer record",
+        "kicker": "EPISODE 02 · STEP 6",
+        "type": "steps",
+        "narration": "Read the canonical transfer collection filtered by the source account. This observation is immediate; the separate ledger read model uses bounded polling introduced later. Assert one item and a total of one, then compare its source account, beneficiary, currency, amount, and completed status. Capture the returned transfer identifier for correlation. Counting a record without inspecting its values can approve the wrong transfer. Conversely, finding a matching record without checking the total can miss an accidental second debit and duplicated business record.",
+        "bullets": [
+          "Filter by the owned account",
+          "Check count and record fields",
+          "Preserve the returned transfer ID"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "02-07",
+        "title": "Build insufficient funds separately",
+        "kicker": "EPISODE 02 · STEP 7",
+        "type": "steps",
+        "narration": "Create a fresh fixture for the insufficient funds case and fill eleven hundred pesos. Register the same targeted response waiter, click once, and verify the rejection status and business error code. Assert the exact alert in the browser. Then query the account and transfer collection: the balance must remain one hundred thousand centavos, and the collection must remain empty. This is a test of absence of side effects, so a correct error message is only the beginning of the evidence you need to collect.",
+        "bullets": [
+          "Fresh opening balance",
+          "Expected rejection and alert",
+          "No debit and no record"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "02-08",
+        "title": "Keep an idempotent intention",
+        "kicker": "EPISODE 02 · STEP 8",
+        "type": "code",
+        "narration": "For the idempotency case, prepare one request body and one key before sending either request. Reuse both values for the second submission. The fixture must belong to this case alone, and the two requests are sequential. In the correct local contract, the first response creates the transfer and the second returns the existing transfer. Two independent browser clicks with newly generated keys represent different intentions, so they would not test this rule. Inspect the request construction carefully when reviewing an AI-generated implementation.",
+        "bullets": [
+          "One body",
+          "One key",
+          "Two sequential submissions"
+        ],
+        "code": "const options = {\n  headers: { 'Idempotency-Key': key },\n  data: transferBody,\n};\nconst first = await page.request.post('/api/transfers', options);\nconst second = await page.request.post('/api/transfers', options);\nexpect(first.status()).toBe(201);\nexpect(second.status()).toBe(200);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-09",
+        "title": "Compare identity and effects",
+        "kicker": "EPISODE 02 · STEP 9",
+        "type": "code",
+        "narration": "Parse both responses and compare their transfer identifiers. Then perform the state checks: the source balance is ninety thousand centavos and there is exactly one transfer record with that identifier. Reload the page and verify the visible balance as a UI observation. Matching identifiers alone would not exclude an implementation that accidentally debits twice while returning the same identifier. State and identity therefore answer different questions. Keep both assertions, if AI suggests simplifying the case to make it shorter or faster.",
+        "bullets": [
+          "Same transfer identifier",
+          "One debit and one record",
+          "Reload and inspect UI"
+        ],
+        "code": "const created = await first.json();\nconst replayed = await second.json();\nexpect(replayed.id).toBe(created.id);\nawait page.goto('/transfers');\nawait page.reload();\nawait expect(page.getByTestId('account-balance'))\n  .toHaveText('MXN 900.00');",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared fixture and imports required"
+      },
+      {
+        "id": "02-10",
+        "title": "Run with an honest outcome",
+        "kicker": "EPISODE 02 · STEP 10",
+        "type": "terminal",
+        "narration": "Run the three cases in the supplied TypeScript project and inspect the actual report. During diagnosis, begin without retries so the first failure remains visible. A failed case is useful evidence when its assertion reflects the business contract. Read the test name, the expected and actual values, and the associated request or trace before editing code. If startup failed, report a preparation failure separately. Do not label generated tests as passed because they compile, or because a previous execution used another application build and dataset.",
+        "bullets": [
+          "Run the chosen project",
+          "Inspect actual results",
+          "Separate preparation from regression"
+        ],
+        "code": "npx playwright test --grep 'TR-0[123]' --retries=0\nnpm run report",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "02-11",
+        "title": "Review an AI patch",
+        "kicker": "EPISODE 02 · STEP 11",
+        "type": "steps",
+        "narration": "Give AI a focused review task: inspect these three tests for missing business assertions, shared mutable data, invented APIs, and waits that could hide a defect. Include the contract and a sanitized failure excerpt. Ask it to explain every suggested change and identify the evidence supporting that change. Review the patch before applying it. A useful suggestion may improve a locator or cleanup block; an unacceptable suggestion changes ninety thousand to eighty thousand merely because a defective implementation produced that value during an actual run.",
+        "bullets": [
+          "Provide the contract and failure",
+          "Require reasons for each edit",
+          "Protect balance and count assertions"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "02-12",
+        "title": "Name what you proved",
+        "kicker": "EPISODE 02 · STEP 12",
+        "type": "recap",
+        "narration": "Your TypeScript checkpoint consists of three isolated cases, not simply three browser recordings. The successful case combines UI behavior with authoritative state. The insufficient funds case proves rejection without side effects. The repeated request case checks one intention, one identifier, one debit, and one record. Record the actual outcome for each case and link its evidence. If a case remains blocked or failing, say so explicitly. In the next episodes, we preserve these business promises while changing the language and lifecycle management around the tests.",
+        "bullets": [
+          "TR-01: correct effect",
+          "TR-02: no effect",
+          "TR-03: one effect"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "slug": "python-pytest-fixtures",
+    "title": "Python: Fixtures That Own Their Data",
+    "summary": "Use pytest fixtures to prepare, authenticate, execute and clean up isolated tests.",
+    "language": "en",
+    "objectives": [
+      "Compose function-scoped data and browser fixtures",
+      "Use synchronous Playwright APIs consistently",
+      "Preserve failure evidence and cleanup"
+    ],
+    "sources": [
+      "https://playwright.dev/python/docs/test-runners",
+      "https://playwright.dev/python/docs/api-testing",
+      "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+    ],
+    "scenes": [
+      {
+        "id": "03-01",
+        "title": "Translate the lifecycle",
+        "kicker": "EPISODE 03 · STEP 1",
+        "type": "title",
+        "narration": "Now implement the same business cases in Python with pytest and the synchronous Playwright API. The important translation is the lifecycle, not replacing camel case with underscores. Each case must receive fresh data, authenticate its own browser context, execute its assertions, and release resources even when something fails. The pytest plugin already provides a page and context. Build your laboratory fixtures around those objects so isolation and trace options remain understandable. Keep the same amounts, record counts, and idempotency rules.",
+        "bullets": [
+          "Same business contract",
+          "Python lifecycle",
+          "Plugin-owned page and context"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-02",
+        "title": "Confirm one Python environment",
+        "kicker": "EPISODE 03 · STEP 2",
+        "type": "terminal",
+        "narration": "Open the Python test project and invoke the virtual environment's interpreter directly. Check the installed packages against the project's requirements, then run pytest with a targeted case selection. Calling Python as a module launcher ensures pytest comes from this environment. If your terminal finds a different Python on its search path, packages and browsers can appear to be missing even though another environment contains them. Resolve that mismatch first, and record the interpreter used so another learner can reproduce your execution.",
+        "bullets": [
+          "Use the virtual environment",
+          "Select the intended case",
+          "Record environment evidence"
+        ],
+        "code": ".\\.venv\\Scripts\\python.exe -m pip show playwright\n.\\.venv\\Scripts\\python.exe -m pytest test_hybrid_browser.py -q",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-03",
+        "title": "Separate two HTTP responsibilities",
+        "kicker": "EPISODE 03 · STEP 3",
+        "type": "steps",
+        "narration": "Draw two HTTP clients beside the browser. A dedicated preparation client uses the local test hook key to create and remove fixtures. The page's associated request client logs in and queries business APIs as the simulated user. Keep the hook header away from global browser headers. This prevents a business request from accidentally carrying administrative test capabilities. It also makes failures easier to classify: fixture creation, login, transfer submission, and observation have different expected responses and different evidence requirements.",
+        "bullets": [
+          "Preparation → test hooks → owned data",
+          "Browser context → authenticated business API"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-04",
+        "title": "Use a yielding fixture",
+        "kicker": "EPISODE 03 · STEP 4",
+        "type": "code",
+        "narration": "A function-scoped fixture can yield the created dataset to a test and finalize it afterward. The displayed skeleton explains ownership rather than providing a complete implementation: create data through the documented local endpoint, yield its identifiers, and delete that exact fixture in the finalization block. Your actual helper must check response statuses and handle partial setup failures. If login fails after creation, cleanup still owns the created fixture. Avoid a global reset that erases data belonging to another learner or parallel worker.",
+        "bullets": [
+          "One fixture per case",
+          "Yield owned identifiers",
+          "Delete only owned data"
+        ],
+        "code": "@pytest.fixture\ndef fixture_data(hook_client):\n    data = create_fixture(hook_client)\n    try:\n        yield data\n    finally:\n        delete_fixture(hook_client, data['fixtureId'])",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Lab helpers and imports required"
+      },
+      {
+        "id": "03-05",
+        "title": "Authenticate the provided context",
+        "kicker": "EPISODE 03 · STEP 5",
+        "type": "code",
+        "narration": "Use the context supplied by the pytest plugin and post the fixture's synthetic credentials through its associated request client. Assert the successful status before navigating. Because this request belongs to the browser context, the resulting cookie becomes available to the page. An independently created HTTP client has separate cookie storage unless you deliberately transfer state. Keep this choice visible in the fixture instead of hiding it in a utility with unclear ownership. Always identify whose session the browser is actually using.",
+        "bullets": [
+          "Use synthetic credentials",
+          "Authenticate the plugin context",
+          "Check login before navigation"
+        ],
+        "code": "login = context.request.post('/api/session', data={\n    'username': fixture_data['username'],\n    'password': fixture_data['password'],\n})\nassert login.status == 200",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Lab helpers and imports required"
+      },
+      {
+        "id": "03-06",
+        "title": "Write the visible behavior",
+        "kicker": "EPISODE 03 · STEP 6",
+        "type": "code",
+        "narration": "Inside the successful transfer test, navigate and select the fixture's account and beneficiary before entering one hundred pesos. The excerpt focuses on submission once those selections exist. Python's synchronous API does not require JavaScript await expressions. Use Playwright's expectation object for UI assertions so the intended text condition can settle. A plain immediate text comparison has different waiting behavior. When asking AI to translate the test, require the synchronous API throughout; mixing synchronous and asynchronous patterns produces failures unrelated to the business rule.",
+        "bullets": [
+          "Select the fixture data first",
+          "Use synchronous calls",
+          "Use locator expectations"
+        ],
+        "code": "page.get_by_label('Importe (MXN)', exact=True).fill('100.00')\npage.get_by_role('button', name='Transferir', exact=True).click()\nexpect(page.get_by_role('status')).to_have_text(\n    'Transferencia realizada'\n)\nexpect(page.get_by_test_id('account-balance')).to_have_text(\n    'MXN 900.00'\n)",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Lab helpers and imports required"
+      },
+      {
+        "id": "03-07",
+        "title": "Check response semantics",
+        "kicker": "EPISODE 03 · STEP 7",
+        "type": "code",
+        "narration": "Observe the account using the authenticated page request client. In Python, the response status in this example is a property, while parsing JSON uses a method. These small language differences are easy for generated code to get wrong. Assert the successful HTTP status, then the integer balance. Apply the same pattern to the canonical transfer collection and inspect its count and fields. For the separate distributed ledger view, use bounded polling rather than assuming that its record appears immediately after account settlement.",
+        "bullets": [
+          "Check HTTP status",
+          "Parse the body",
+          "Keep the monetary oracle"
+        ],
+        "code": "account = page.request.get(\n    '/api/accounts/' + fixture_data['sourceAccountId']\n)\nassert account.status == 200\nassert account.json()['balanceMinor'] == 90000",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Lab helpers and imports required"
+      },
+      {
+        "id": "03-08",
+        "title": "Capture the rejection response",
+        "kicker": "EPISODE 03 · STEP 8",
+        "type": "code",
+        "narration": "For insufficient funds, prepare eleven hundred pesos in a fresh fixture. Enter the response expectation context before clicking, and match the transfer request specifically. After the context closes, inspect the captured response, its business error code, and the UI alert. Then prove the balance and transfer count stayed unchanged. This distinguishes a business rejection from a button that never submitted anything. A locator timeout, a network failure, and an insufficient funds response are different observations and should not become one generic rejection result.",
+        "bullets": [
+          "Observe the POST",
+          "Inspect the business error",
+          "Verify no side effects"
+        ],
+        "code": "with page.expect_response(\n    lambda r: r.request.method == 'POST'\n    and r.url.endswith('/api/transfers')\n) as sent:\n    page.get_by_role('button', name='Transferir').click()\nassert sent.value.status == 422\nassert sent.value.json()['code'] == 'INSUFFICIENT_FUNDS'",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Lab helpers and imports required"
+      },
+      {
+        "id": "03-09",
+        "title": "Keep idempotency outside variation",
+        "kicker": "EPISODE 03 · STEP 9",
+        "type": "steps",
+        "narration": "Create the request body and idempotency key once within the Python case, then submit the same values twice through the authenticated context. Check creation followed by replay, compare the identifiers, and assert one debit and one record. If you parameterize cases later, keep the fixture function-scoped so each parameter receives independent data. A parameter list describes inputs; it does not automatically isolate the state those inputs mutate. Inspect resulting test names so failures identify the business case and dataset used.",
+        "bullets": [
+          "Create the key once",
+          "Reuse the same body",
+          "Isolate parameterized data"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-10",
+        "title": "Retain a useful trace",
+        "kicker": "EPISODE 03 · STEP 10",
+        "type": "terminal",
+        "narration": "Run the Python suite with trace retention on failure and request a JUnit XML result file. The plugin's trace options apply to its managed fixtures; a browser context created manually in a helper needs its own trace management. That is why we extended the provided fixtures. Inspect an actual failed run to confirm the trace exists and can be opened. A configuration line expresses intended behavior, while a saved artifact demonstrates that it occurred. Keep those statements separate in your execution report.",
+        "bullets": [
+          "Retain failure traces",
+          "Write JUnit XML",
+          "Verify an actual artifact"
+        ],
+        "code": ".\\.venv\\Scripts\\python.exe -m pytest --tracing=retain-on-failure\n.\\.venv\\Scripts\\python.exe -m pytest --junitxml=results.xml",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-11",
+        "title": "Preserve the original failure",
+        "kicker": "EPISODE 03 · STEP 11",
+        "type": "steps",
+        "narration": "Review fixture finalization after a deliberately failing assertion. Cleanup should attempt to remove only the owned dataset and release its preparation client. If cleanup also fails, report that problem with the fixture identifier without replacing the original assertion failure. Save evidence before destroying the context or deleting data needed for inspection. For an interrupted process, record outstanding fixture identifiers so a later recovery step can target them. Reliable teardown belongs to the experiment's design, rather than being a cosmetic action after the assertions finish.",
+        "bullets": [
+          "Capture evidence first",
+          "Preserve the original failure",
+          "Report cleanup separately"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "03-12",
+        "title": "Explain your fixture graph",
+        "kicker": "EPISODE 03 · STEP 12",
+        "type": "recap",
+        "narration": "Finish by drawing the dependency graph for one Python test. The preparation client creates the dataset; the dataset and browser context establish authentication; the page performs the action; API observations verify effects; finalizers release what they own. Point to the code that guarantees each transition. Then report the actual status of the three cases, including blocked setup or remaining failures. You now have a Python structure that preserves the TypeScript version's business meaning while using pytest's own lifecycle and reporting conventions.",
+        "bullets": [
+          "Know who creates resources",
+          "Know who releases them",
+          "Report actual case outcomes"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "slug": "java-junit-lifecycle",
+    "title": "Java: JUnit Lifecycle and Evidence",
+    "summary": "Preserve regression meaning with explicit Java resource ownership and assertions.",
+    "language": "en",
+    "objectives": [
+      "Separate Playwright, JUnit and Maven responsibilities",
+      "Own contexts and data per test",
+      "Preserve trace and JUnit evidence"
+    ],
+    "sources": [
+      "https://playwright.dev/java/docs/test-runners",
+      "https://playwright.dev/java/docs/multithreading",
+      "https://playwright.dev/java/docs/api/class-tracing",
+      "https://maven.apache.org/surefire/maven-surefire-plugin/"
+    ],
+    "scenes": [
+      {
+        "id": "04-01",
+        "title": "Own the Java lifecycle",
+        "kicker": "EPISODE 04 · STEP 1",
+        "type": "title",
+        "narration": "This episode builds the Java equivalent using Playwright with JUnit. Start by separating the browser library from the test runner. Playwright controls pages and performs its locator assertions; JUnit organizes test execution and records test outcomes. Maven supplies dependencies and launches the configured test process. Those responsibilities do not become identical merely because the TypeScript edition packages them together. Your job is to preserve the three business cases while making resource ownership, assertion choices, and reporting explicit in the Java project.",
+        "bullets": [
+          "Playwright: browser control",
+          "JUnit: test lifecycle",
+          "Maven: build and execution"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-02",
+        "title": "Inspect the project first",
+        "kicker": "EPISODE 04 · STEP 2",
+        "type": "terminal",
+        "narration": "Open the supplied Maven project and inspect the versions fixed in its project file. Confirm which JSON library it includes, because response parsing examples must match that library. The working hybrid example uses Gson; an example using Jackson needs its own dependency and imports. Also inspect the browser channel configuration before launching. Run Maven's version command to check the selected Java installation. If the project does not compile, treat compiler errors as implementation feedback rather than evidence that the application violated a transfer rule.",
+        "bullets": [
+          "Read the dependency versions",
+          "Match the JSON library",
+          "Check the selected Java"
+        ],
+        "code": "mvn -version\nmvn test",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-03",
+        "title": "Choose ownership boundaries",
+        "kicker": "EPISODE 04 · STEP 3",
+        "type": "steps",
+        "narration": "For the classroom, begin with sequential tests. A test may own Playwright, the browser, and its context through resource blocks, as in the hybrid example. A larger suite can use JUnit lifecycle methods while keeping one fresh context per case. Whichever structure you choose, draw who closes each object. Avoid a static page shared across tests. Its session, open dialogs, and navigation state can leak between cases even when the test methods look independent in the source file and have different names.",
+        "bullets": [
+          "Test owns Playwright, browser and context",
+          "Test creates its own server fixture",
+          "Finally: delete the fixture and close browser resources"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-04",
+        "title": "Create a fresh context",
+        "kicker": "EPISODE 04 · STEP 4",
+        "type": "code",
+        "narration": "The excerpt shows the central context boundary inside an existing browser lifecycle. Set the local base address when creating the context, then obtain its page. Authentication happens on this context before protected navigation. Closing the context releases its pages and browser session together. In a lifecycle method, the corresponding cleanup belongs in the matching after method; in a resource block, Java manages closing. Do not mix the two ownership approaches accidentally and leave an object alive because each layer expected another layer to close it.",
+        "bullets": [
+          "Configure the local base URL",
+          "Create the page inside its context",
+          "Close the owning context"
+        ],
+        "code": "try (BrowserContext context = browser.newContext(\n    new Browser.NewContextOptions()\n        .setBaseURL(\"http://127.0.0.1:3000\"))) {\n  Page page = context.newPage();\n  // Authenticate, act, and assert inside this lifecycle.\n}",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative Java excerpt · Imports and fixture required"
+      },
+      {
+        "id": "04-05",
+        "title": "Authenticate with the same identity",
+        "kicker": "EPISODE 04 · STEP 5",
+        "type": "code",
+        "narration": "Post the synthetic fixture credentials through the context's request client. Check the response status before reading the transfer page. The displayed request options carry only the business login data; the local test hook key belongs on preparation requests. By keeping those responsibilities separate, your Java test reflects the same authorization model as the other language versions. If login succeeds but navigation appears anonymous, inspect cookie scope and the base address instead of inserting credentials into unrelated requests or bypassing the protected page entirely.",
+        "bullets": [
+          "Synthetic login credentials",
+          "Context-associated HTTP client",
+          "No global hook header"
+        ],
+        "code": "APIResponse login = context.request().post(\"/api/session\",\n    RequestOptions.create().setData(Map.of(\n        \"username\", username,\n        \"password\", password)));\nassertEquals(200, login.status());",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative Java excerpt · Imports and fixture required"
+      },
+      {
+        "id": "04-06",
+        "title": "Use Java locator assertions",
+        "kicker": "EPISODE 04 · STEP 6",
+        "type": "code",
+        "narration": "After selecting the source and beneficiary, fill the amount field and submit through the accessible button. Use Playwright's assertion import for the visible balance, because it provides locator-aware waiting. JUnit's ordinary equality assertion remains appropriate for values you already obtained from an API response. These assertions serve different observations, so inspect the imports when AI generates a test. A method named assertThat from another library may have entirely different behavior even if the surrounding Java code looks familiar and the editor offers an automatic import.",
+        "bullets": [
+          "Use accessible labels",
+          "Choose the intended assertion import",
+          "Wait for the UI condition"
+        ],
+        "code": "page.getByLabel(\"Importe (MXN)\").fill(\"100.00\");\npage.getByRole(AriaRole.BUTTON,\n    new Page.GetByRoleOptions().setName(\"Transferir\")).click();\nassertThat(page.getByTestId(\"account-balance\"))\n    .hasText(\"MXN 900.00\");",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative Java excerpt · Imports and fixture required"
+      },
+      {
+        "id": "04-07",
+        "title": "Inspect the integer account balance",
+        "kicker": "EPISODE 04 · STEP 7",
+        "type": "code",
+        "narration": "Fetch the source account through the same context and verify the successful response before parsing its body. The excerpt uses Gson, matching the supplied hybrid Java project. Compare the balance in minor units and preserve the source identifier in your report. Next, read the canonical transfer collection and check its count and complete business fields. Parsing a number is not enough if the query selected the wrong account. This is why fixture identifiers remain visible through the action and every following assertion.",
+        "bullets": [
+          "Assert status first",
+          "Parse with the installed library",
+          "Check the owned account"
+        ],
+        "code": "APIResponse account = context.request().get(\n    \"/api/accounts/\" + sourceAccountId);\nassertEquals(200, account.status());\nJsonObject body = JsonParser.parseString(account.text())\n    .getAsJsonObject();\nassertEquals(90000, body.get(\"balanceMinor\").getAsInt());",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative Java excerpt · Imports and fixture required"
+      },
+      {
+        "id": "04-08",
+        "title": "Implement rejection and replay",
+        "kicker": "EPISODE 04 · STEP 8",
+        "type": "steps",
+        "narration": "Create separate fixtures for the rejection and replay tests. For rejection, verify the business error, unchanged balance, and empty transfer list. For replay, send the same request body and key twice, verify the creation and replay response statuses, and compare their identifiers. Keep the final balance and count assertions even when both identifiers match. Java's request option objects do not create idempotency by themselves; the server contract interprets the key. Make that relationship explicit in the test name and review the generated request construction carefully.",
+        "bullets": [
+          "Fresh data for each case",
+          "Rejection means no side effects",
+          "Replay means one business effect"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-09",
+        "title": "Record a Java trace",
+        "kicker": "EPISODE 04 · STEP 9",
+        "type": "code",
+        "narration": "Start tracing before the browser actions you want to diagnose, then stop and save it before closing the context. The excerpt shows the lifecycle calls. Your fixture or JUnit extension decides when to retain the artifact and how to name it per test. Keep the JUnit outcome alongside the trace, because the library trace is not a replacement for the runner's assertion report. Verify this arrangement using an actual failure rather than assuming a configured filename guarantees a useful diagnostic artifact.",
+        "bullets": [
+          "Start before actions",
+          "Save before closing",
+          "Keep JUnit results too"
+        ],
+        "code": "context.tracing().start(new Tracing.StartOptions()\n    .setScreenshots(true).setSnapshots(true));\n// Browser actions and assertions occur here.\ncontext.tracing().stop(new Tracing.StopOptions()\n    .setPath(Path.of(\"evidence\", \"java-trace.zip\")));",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative Java excerpt · Imports and fixture required"
+      },
+      {
+        "id": "04-10",
+        "title": "Avoid unsafe parallel sharing",
+        "kicker": "EPISODE 04 · STEP 10",
+        "type": "steps",
+        "narration": "Only add parallel execution after the sequential suite is reproducible. Playwright Java objects should remain on their owning thread unless you implement the required synchronization. Give each parallel execution its own Playwright instance and keep calls on that thread. This is separate from data isolation: independent browser objects can still collide when they mutate one shared account. Review both the thread ownership and fixture identifiers before increasing concurrency, and keep failures attributable to one test attempt rather than a mixture of overlapping sessions.",
+        "bullets": [
+          "Respect thread ownership",
+          "Isolate mutable server data",
+          "Increase concurrency deliberately"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-11",
+        "title": "Read the actual runner result",
+        "kicker": "EPISODE 04 · STEP 11",
+        "type": "terminal",
+        "narration": "Run the selected Maven test and inspect its Surefire reports. A successful compilation is only the preparation stage; the result must show that the intended test method actually executed. Confirm the number of tests and inspect failures or skipped cases. If a browser or terminal dependency is unavailable, keep that limitation in the report. For hybrid work later, a Java test may invoke the Python adapter as a bounded subprocess, but Java still owns the final assertion about the returned correlation and business values.",
+        "bullets": [
+          "Confirm test discovery",
+          "Inspect counts and failures",
+          "Keep dependency blockers visible"
+        ],
+        "code": "mvn -Dtest=HybridTransferTest test\n# Inspect target/surefire-reports after the run.",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "04-12",
+        "title": "Compare meaning across languages",
+        "kicker": "EPISODE 04 · STEP 12",
+        "type": "recap",
+        "narration": "Place the Java, Python, and TypeScript evidence matrices beside each other. Each should describe the same starting balance, transfer amount, rejection behavior, and single-effect replay. The lifecycle, configuration, and artifact commands differ; the business promise does not. Explain why you used a locator assertion for the browser and a value assertion for parsed JSON. Then point to cleanup and the actual result files. The skill is adapting test architecture to a language without quietly weakening what the regression is supposed to prove.",
+        "bullets": [
+          "Same business promise",
+          "Different lifecycle mechanics",
+          "Evidence remains comparable"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "slug": "isolation-authentication-test-data",
+    "title": "Isolation, Authentication and Test Data",
+    "summary": "Design fixture ownership that survives retries, failures and parallel execution.",
+    "language": "en",
+    "objectives": [
+      "Isolate browser and server state",
+      "Keep setup capabilities separate from user sessions",
+      "Preserve evidence through cleanup and retries"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/auth",
+      "https://playwright.dev/docs/test-fixtures",
+      "https://playwright.dev/docs/browser-contexts",
+      "https://playwright.dev/docs/test-retries"
+    ],
+    "scenes": [
+      {
+        "id": "05-01",
+        "title": "Treat each test as an experiment",
+        "kicker": "EPISODE 05 · STEP 1",
+        "type": "title",
+        "narration": "Reliable regression starts before the first click. In this episode, design an experiment whose starting data, identity, and cleanup belong to one test attempt. A new browser context removes browser state, but it does not reset money held by a backend service. Likewise, a fresh account does not remove cookies from a reused page. You need both boundaries. We will trace the fixture from creation to deletion and examine why retries, parallel workers, and authentication reuse can otherwise create misleading outcomes.",
+        "bullets": [
+          "Isolate browser state",
+          "Isolate server data",
+          "Own the full experiment"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-02",
+        "title": "Create only the data you own",
+        "kicker": "EPISODE 05 · STEP 2",
+        "type": "code",
+        "narration": "Use the local fixture endpoint to create a synthetic user, source account, and beneficiary with the agreed opening balance. Include a run identifier and case identifier for diagnosis. The server adds unique identifiers, so two learners can use the same case name without sharing mutable accounts. Inspect the creation status before reading the response. Retain the fixture identifier immediately, because cleanup needs it even when the next setup step fails. Never replace targeted fixture creation with a shared account that someone manually reset earlier.",
+        "bullets": [
+          "Run and case identifiers",
+          "Server-generated account IDs",
+          "Retain the cleanup identifier"
+        ],
+        "code": "const created = await hooks.post('/__test/fixtures', {\n  data: { runId, caseId: 'TR-01',\n    currency: 'MXN', balanceMinor: 100000 },\n});\nexpect(created.status()).toBe(201);\nconst lab = await created.json();",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared clients and imports required"
+      },
+      {
+        "id": "05-03",
+        "title": "Keep the hook client separate",
+        "kicker": "EPISODE 05 · STEP 3",
+        "type": "diagram",
+        "narration": "The fixture client carries a capability used only by this local training environment. Configure its hook key from the laboratory environment and restrict its use to preparation and deletion requests. The business context authenticates using the synthetic credentials returned for its fixture. Do not install the hook header globally on the browser. This separation clarifies what each observation proves: ordinary business requests must work with the user's session, while setup endpoints deliberately create the data needed for a repeatable classroom experiment.",
+        "bullets": [
+          "Hook client: create and delete",
+          "Business context: login and transact",
+          "Separate headers and ownership"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [
+          "Test attempt",
+          "Owned fixture",
+          "Browser identity",
+          "Business effects",
+          "Cleanup"
+        ],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-04",
+        "title": "Authenticate where the page lives",
+        "kicker": "EPISODE 05 · STEP 4",
+        "type": "code",
+        "narration": "Login through the HTTP client associated with the browser context. After a successful response, the session cookie is available to that context's page. Use the same loopback hostname for login and navigation; changing between localhost and its numeric address changes the cookie's host scope. When a page unexpectedly redirects to login, inspect that relationship before changing timeouts. Avoid saving synthetic session files unless a specific exercise requires them. Per-test login keeps identity ownership visible and is sufficient for this small local workflow.",
+        "bullets": [
+          "Use one base address",
+          "Share the context cookie jar",
+          "Inspect identity before timeouts"
+        ],
+        "code": "const login = await page.request.post('/api/session', {\n  data: { username: lab.username, password: lab.password },\n});\nexpect(login.status()).toBe(200);\nawait page.goto('/transfers');",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Prepared clients and imports required"
+      },
+      {
+        "id": "05-05",
+        "title": "Understand storage state reuse",
+        "kicker": "EPISODE 05 · STEP 5",
+        "type": "steps",
+        "narration": "Some suites save authenticated storage state to avoid repeating login. That can be appropriate when tests do not collide through the same user's server data, or when each worker receives its own account. Reusing a session file alone does not isolate account balances or transfer histories. Before adopting this optimization, list every mutable resource associated with that identity and decide who owns it. For our three central cases, fresh synthetic users are easier to reason about than a fast shared login followed by complicated repairs.",
+        "bullets": [
+          "Authentication reuse is a choice",
+          "Server data still needs isolation",
+          "Optimize after correctness"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-06",
+        "title": "Give retries new data",
+        "kicker": "EPISODE 05 · STEP 6",
+        "type": "steps",
+        "narration": "A retry is another experiment, not a continuation that may reuse an already debited account. Arrange fixture setup so each attempt gets its own source account, beneficiary, session, and idempotency key. Within the idempotency case, reuse the key only for the two requests representing the same intended transfer. Across test attempts, generate a new intention and new data. Otherwise, a retry might succeed by replaying a transfer from the failed attempt, creating the appearance of stability while exercising a different path than the original test.",
+        "bullets": [
+          "Fresh fixture per attempt",
+          "Reuse keys within one intent",
+          "Do not inherit prior effects"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-07",
+        "title": "Verify ownership boundaries",
+        "kicker": "EPISODE 05 · STEP 7",
+        "type": "steps",
+        "narration": "Add an authorization extension after the three central cases: create two fixtures and try accessing one fixture's account with the other's session. The local contract defines a forbidden response for cross-fixture business access. Inspect both the response and the unchanged target state. This extension checks a different risk from insufficient funds. Keep it separately named and independently prepared so its purpose is clear. AI may suggest combining them for brevity, but a combined case often makes it harder to identify which rule actually failed.",
+        "bullets": [
+          "Two distinct synthetic identities",
+          "Check forbidden cross-access",
+          "Keep the risk separately named"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-08",
+        "title": "Place cleanup after evidence",
+        "kicker": "EPISODE 05 · STEP 8",
+        "type": "steps",
+        "narration": "When a test fails, capture the relevant browser, API, and correlation evidence before deleting the fixture. Then close the browser context and remove only the owned data through the local deletion endpoint. Make the deletion operation idempotent so a second cleanup attempt is safe for that fixture. Record its response separately from the original failure. Deleting the entire laboratory state may appear convenient in a single demonstration, but it invalidates other running experiments and prevents meaningful parallel execution across learners or language versions.",
+        "bullets": [
+          "Capture evidence first",
+          "Close the context",
+          "Delete one owned fixture"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-09",
+        "title": "Handle partial setup failures",
+        "kicker": "EPISODE 05 · STEP 9",
+        "type": "steps",
+        "narration": "Walk through a setup failure. Suppose fixture creation succeeds but authentication fails. The test body may never run, yet the created account still exists. The setup owner must therefore register cleanup as soon as creation succeeds, rather than waiting until every preparation step completes. Use the fixture mechanisms appropriate to your language and inspect their behavior during exceptions. If cleanup also fails, preserve the original cause and the remaining fixture identifier. A useful report explains both problems without converting either into a silently skipped success.",
+        "bullets": [
+          "Cleanup begins after creation",
+          "Handle failures before the test body",
+          "Keep both causes visible"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-10",
+        "title": "Add concurrency only after isolation",
+        "kicker": "EPISODE 05 · STEP 10",
+        "type": "diagram",
+        "narration": "Now imagine two workers submitting transfers at the same time. Each owns a browser context and a separate fixture, so their account assertions remain deterministic. The shared local services can process both requests, but the observations remain filtered by each source account and transfer identifier. Increasing worker count changes scheduling, not the business oracle. If failures appear only under parallel execution, compare fixture identifiers and session ownership first. Then investigate service behavior with correlated evidence instead of immediately adding global locks around every test.",
+        "bullets": [
+          "Independent fixture per worker",
+          "Filtered business observations",
+          "Diagnose collisions with identifiers"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [
+          "Test attempt",
+          "Owned fixture",
+          "Browser identity",
+          "Business effects",
+          "Cleanup"
+        ],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-11",
+        "title": "Ask AI to audit lifecycle edges",
+        "kicker": "EPISODE 05 · STEP 11",
+        "type": "steps",
+        "narration": "Give AI the setup and cleanup code together with the contract. Ask it to trace resource ownership through success, assertion failure, login failure, and an interrupted request. Require it to identify which fixture might remain and which evidence might be lost in each path. This is more useful than asking for generic best practices. Review every suggestion against the actual runner's lifecycle. If a proposed helper does not exist in your project, either implement it deliberately with clear responsibilities or reject that unsupported shortcut.",
+        "bullets": [
+          "Audit concrete failure paths",
+          "Require ownership explanations",
+          "Verify proposed helpers"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      },
+      {
+        "id": "05-12",
+        "title": "Produce an isolation checklist",
+        "kicker": "EPISODE 05 · STEP 12",
+        "type": "recap",
+        "narration": "Your checkpoint is a short ownership checklist attached to one executed case. It names the run, attempt, fixture, source account, browser context, and cleanup result. It also explains how authentication reached the page and where failure evidence was captured. Review the checklist with a partner and ask them to predict what happens if login fails or the test is retried. When those answers follow directly from the code, you have a solid foundation for the distributed observations in the next episode.",
+        "bullets": [
+          "Starting state is explicit",
+          "Identity ownership is explicit",
+          "Cleanup evidence is explicit"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TransferLab · Local training simulator"
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "slug": "distributed-correlation-polling",
+    "title": "Distributed Workflows: Correlation and Polling",
+    "summary": "Follow an authoritative transfer into a delayed ledger projection using its exact identifier.",
+    "language": "en",
+    "objectives": [
+      "Distinguish canonical state from a delayed projection",
+      "Poll a read-only observation with a deadline",
+      "Build evidence around one transfer reference"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/test-assertions",
+      "https://playwright.dev/docs/api-testing",
+      "https://playwright.dev/docs/test-timeouts"
+    ],
+    "scenes": [
+      {
+        "id": "06-01",
+        "title": "Observe a distributed business event",
+        "kicker": "EPISODE 06 · STEP 1",
+        "type": "title",
+        "narration": "A browser assertion cannot tell you when another service has processed a business event. Follow one transfer from the gateway to authoritative account state and then into a separate ledger projection. We will use the returned transfer identifier to connect those observations and apply a bounded wait only where the contract permits delay. The exercise runs across local processes. Its value is learning to distinguish business commitment, asynchronous visibility, and diagnostic evidence without assuming that a quiet browser network means everything finished.",
+        "bullets": [
+          "Commitment and visibility differ",
+          "Correlate one exact transfer",
+          "Bound every delayed observation"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-02",
+        "title": "Inspect the three processes",
+        "kicker": "EPISODE 06 · STEP 2",
+        "type": "diagram",
+        "narration": "Start the distributed laboratory and inspect its architecture. The gateway serves the browser on port three thousand. Accounts holds balances, canonical transfers, and an event log on port three thousand one. Ledger runs separately on port three thousand two and polls that log to update its own projection. The startup coordinator checks all three services. A gateway health response alone describes the gateway process, so keep dependency readiness evidence separate. These boundaries let us reproduce timing differences without connecting to any external banking infrastructure.",
+        "bullets": [
+          "Gateway: customer entry point",
+          "Accounts: authoritative state",
+          "Ledger: delayed projection"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [
+          "Browser",
+          "Gateway :3000",
+          "Accounts :3001",
+          "Outbox in memory",
+          "Ledger :3002"
+        ],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-03",
+        "title": "Understand the local transaction",
+        "kicker": "EPISODE 06 · STEP 3",
+        "type": "steps",
+        "narration": "In this simulator, the debit, canonical transfer, and outgoing event are updated in one synchronous section of the accounts process. This illustrates an outbox: business state and the event describing it should not drift apart. However, the state is in memory. Restarting the process loses it, and there is no durable database or message broker. Describe the demonstrated guarantee precisely. A successful classroom run does not establish crash recovery, durable delivery, or transaction behavior across multiple production nodes.",
+        "bullets": [
+          "One in-memory critical section",
+          "Canonical record and event together",
+          "No durability claim"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-04",
+        "title": "Capture identity from the response",
+        "kicker": "EPISODE 06 · STEP 4",
+        "type": "code",
+        "narration": "Submit the transfer once and capture the returned identifier from its successful response. Keep this identifier in the test's evidence object, together with the source account and expected amount. Do not search for the latest transfer across the whole system. Another test could create a newer record between your action and query. Correlation should follow the value produced by this exact operation. The same identifier will later travel into the terminal adapter, allowing the web, API, and terminal observations to refer to one synthetic transfer.",
+        "bullets": [
+          "Use the returned transfer ID",
+          "Keep source and amount beside it",
+          "Never query the global latest record"
+        ],
+        "code": "expect(response.status()).toBe(201);\nconst transfer = await response.json();\nconst reference = transfer.id;\nexpect(transfer.amountMinor).toBe(10000);\nexpect(transfer.sourceAccountId).toBe(lab.sourceAccountId);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Actual values come from the test run"
+      },
+      {
+        "id": "06-05",
+        "title": "Assert commitment immediately",
+        "kicker": "EPISODE 06 · STEP 5",
+        "type": "steps",
+        "narration": "First query the authoritative account and canonical transfer collection through the gateway. These endpoints preserve the original laboratory contract: after the successful response, the balance is ninety thousand centavos and the transfer exists once. An incorrect authoritative balance is not an expected ledger delay. Fail that assertion and investigate it directly. This ordering keeps the test honest about which component owns each guarantee. It also prevents an overly generous polling loop from hiding a defect in a state transition that should already have completed.",
+        "bullets": [
+          "Account balance: immediate",
+          "Canonical transfer: immediate",
+          "Do not poll away a commitment defect"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-06",
+        "title": "Query the delayed projection",
+        "kicker": "EPISODE 06 · STEP 6",
+        "type": "code",
+        "narration": "Now query the separate ledger endpoint, filtered by the source account. Its response contains the projected records and may also expose a projection cursor for diagnostics. Inspect the HTTP status before treating its body as business data. The endpoint is intentionally different from the canonical transfer collection, despite similar records. Write both paths explicitly in the evidence matrix. If you accidentally query the canonical endpoint twice, the test may look distributed while never observing whether the ledger process consumed the event at all.",
+        "bullets": [
+          "Use the ledger-specific route",
+          "Filter by the owned account",
+          "Keep endpoint identity visible"
+        ],
+        "code": "const projected = await page.request.get(\n  '/api/ledger/transfers',\n  { params: { sourceAccountId: lab.sourceAccountId } }\n);\nexpect(projected.status()).toBe(200);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Actual values come from the test run"
+      },
+      {
+        "id": "06-07",
+        "title": "Poll only the observation",
+        "kicker": "EPISODE 06 · STEP 7",
+        "type": "code",
+        "narration": "Use a bounded polling assertion to repeat the read until the exact transfer identifier appears. The polling body must not submit another transfer. It observes progress without creating new business effects. The excerpt checks membership within a five-second classroom deadline; afterward, inspect the matching record's amount, currency, source, and count. This deadline is a laboratory expectation, not a claim about production performance. On timeout, preserve the last response and correlation identifier so the failure explains what was observed instead of reporting only that time elapsed.",
+        "bullets": [
+          "Read-only polling",
+          "Exact identifier match",
+          "Five-second laboratory deadline"
+        ],
+        "code": "await expect.poll(async () => {\n  const r = await page.request.get('/api/ledger/transfers', {\n    params: { sourceAccountId: lab.sourceAccountId },\n  });\n  if (r.status() !== 200) return false;\n  const body = await r.json();\n  return body.items.some(item => item.id === reference);\n}, { timeout: 5000 }).toBe(true);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Actual values come from the test run"
+      },
+      {
+        "id": "06-08",
+        "title": "Do not replace progress with sleep",
+        "kicker": "EPISODE 06 · STEP 8",
+        "type": "steps",
+        "narration": "Compare polling with a fixed sleep. A fixed pause always waits the full duration, yet still fails if publication takes slightly longer. Polling can finish as soon as its business condition holds and produces a defined failure when the deadline expires. Browser locator waiting solves a different problem: it observes browser state, not the ledger process. Choose the wait according to the state you are observing. If publication is consistently slow, inspect service behavior and the expectation before increasing the timeout to hide failures.",
+        "bullets": [
+          "Wait on a business condition",
+          "Finish when the condition holds",
+          "Keep the timeout diagnostic"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-09",
+        "title": "Check duplicates after visibility",
+        "kicker": "EPISODE 06 · STEP 9",
+        "type": "steps",
+        "narration": "Once the projected transfer appears, inspect the filtered collection rather than stopping at membership. Verify its amount, currency, source account, and completed status, and ensure the expected single record count holds for this isolated fixture. In the replay case, correlate both responses to the same canonical identifier and inspect the projection for one business record. This demonstrates the simulator's observed behavior for that scenario. It does not prove every message-delivery failure mode, because the local event mechanism is deliberately limited.",
+        "bullets": [
+          "Membership is only the first check",
+          "Inspect full business fields",
+          "Check the isolated record count"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-10",
+        "title": "Build a failure timeline",
+        "kicker": "EPISODE 06 · STEP 10",
+        "type": "steps",
+        "narration": "When the projection deadline expires, build a short timeline from the available evidence. Record the transfer response, authoritative balance, canonical record, ledger response, and process health observations with the same reference. Then form a hypothesis: the transfer may have committed while publication or consumption failed. Do not label that hypothesis as a confirmed root cause until logs or another observation support it. Use evidence to locate the broken boundary before asking AI to explain a distributed timeout.",
+        "bullets": [
+          "Collect a correlated timeline",
+          "Separate observation and hypothesis",
+          "Locate the failing boundary"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      },
+      {
+        "id": "06-11",
+        "title": "Carry correlation into reporting",
+        "kicker": "EPISODE 06 · STEP 11",
+        "type": "code",
+        "narration": "Attach a compact correlation summary to the test result. Include the case, fixture, transfer reference, expected amount, and paths used for authoritative and projected observations. Exclude credentials and unrelated account data. A reviewer should be able to move from a failed assertion to the matching service evidence without guessing which request mattered. The displayed structure is an example report shape, not proof of an executed result. Populate it with values captured during the actual attempt, and link the corresponding artifacts after the run completes.",
+        "bullets": [
+          "Case and fixture",
+          "Transfer reference",
+          "Actual observation paths"
+        ],
+        "code": "{\n  \"caseId\": \"TR-06\",\n  \"reference\": \"<captured transfer id>\",\n  \"amountMinor\": 10000,\n  \"authoritative\": \"/api/transfers\",\n  \"projection\": \"/api/ledger/transfers\"\n}",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Actual values come from the test run"
+      },
+      {
+        "id": "06-12",
+        "title": "State the distributed evidence",
+        "kicker": "EPISODE 06 · STEP 12",
+        "type": "recap",
+        "narration": "Your distributed checkpoint should answer four questions. Did the account change correctly? Did the canonical transfer exist exactly once? Did that same identifier reach the separate projection within the classroom deadline? What evidence supports each answer? Keep any timeout or missing observation visible in the report. You now have a regression that crosses process boundaries while distinguishing commitment from delayed visibility. Next, a browser mock will help compare focused UI evidence with an integrated workflow.",
+        "bullets": [
+          "Commitment checked",
+          "Projection checked by correlation",
+          "Limits and actual results recorded"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Distributed local simulator · No production durability guarantee"
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "slug": "mocks-and-real-e2e",
+    "title": "Mocks and Real End-to-End Evidence",
+    "summary": "Build a focused 503 UI test and explain exactly what its mocked boundary proves.",
+    "language": "en",
+    "objectives": [
+      "Intercept only the intended browser request",
+      "Verify error presentation and unchanged state",
+      "Separate mocked UI coverage from real service resilience"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/mock",
+      "https://playwright.dev/docs/network",
+      "https://playwright.dev/docs/api/class-route"
+    ],
+    "scenes": [
+      {
+        "id": "07-01",
+        "title": "Choose the boundary deliberately",
+        "kicker": "EPISODE 07 · STEP 1",
+        "type": "title",
+        "narration": "A mock is useful when its boundary matches the question you want to answer. This episode tests how the transfer page reacts to a temporary service error, then compares that evidence with the integrated cases already built. We will intercept one browser request and return a controlled response. That gives repeatable UI behavior without stopping services. It does not test whether the real backend generates that response during an outage. Write the scope beside the test name before implementing the route handler.",
+        "bullets": [
+          "Ask a focused UI question",
+          "Control one request boundary",
+          "State the evidence scope"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-02",
+        "title": "Read the error contract",
+        "kicker": "EPISODE 07 · STEP 2",
+        "type": "steps",
+        "narration": "The local error scenario uses status five hundred three with a service unavailable code and a documented Spanish message. The page should display that message in an alert and make the transfer button usable again. Because the browser interception prevents this submission from reaching the backend, the account should remain unchanged. These expectations describe our specific experiment. They do not describe every possible service failure; a real timeout after a committed debit requires a different test and a careful idempotency recovery design.",
+        "bullets": [
+          "Expected HTTP 503",
+          "Visible error and button recovery",
+          "No backend submission in this case"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-03",
+        "title": "Prepare the state before mocking",
+        "kicker": "EPISODE 07 · STEP 3",
+        "type": "steps",
+        "narration": "Create a fresh fixture, authenticate its context, and select the source account and beneficiary. Confirm the opening balance before installing the response substitution. This separates setup failures from the error behavior under test. If your handler accidentally intercepts fixture creation or login, you are testing a different path. Keep the route match narrow enough to affect only transfer submission. The test should be able to explain exactly which request is controlled and which requests still communicate with the running local services.",
+        "bullets": [
+          "Fresh authenticated fixture",
+          "Verify the opening balance",
+          "Keep setup outside the mock"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-04",
+        "title": "Install a narrow route handler",
+        "kicker": "EPISODE 07 · STEP 4",
+        "type": "code",
+        "narration": "Register the handler before clicking. Match the transfer route and check the request method inside the handler. Requests using other methods continue to the real server. For the POST, fulfill a JSON response with the agreed status, content type, code, and message. The excerpt uses an ordinary JavaScript object converted to JSON, so the browser receives the intended structure. A broad wildcard that replaces every request can make a page appear resilient while hiding broken account queries, authentication, or unrelated loading behavior.",
+        "bullets": [
+          "Match the transfer route",
+          "Intercept POST only",
+          "Preserve unrelated requests"
+        ],
+        "code": "await page.route('**/api/transfers', async route => {\n  if (route.request().method() !== 'POST') {\n    return route.continue();\n  }\n  await route.fulfill({ status: 503,\n    contentType: 'application/json',\n    body: JSON.stringify({ code: 'SERVICE_UNAVAILABLE',\n      message: 'Servicio temporalmente no disponible' }),\n  });\n});",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Browser mock, not a real outage"
+      },
+      {
+        "id": "07-05",
+        "title": "Exercise the user action once",
+        "kicker": "EPISODE 07 · STEP 5",
+        "type": "code",
+        "narration": "Enter one hundred pesos and click the transfer button once. Wait for the exact alert through a locator assertion, then verify that the button is enabled again. The visible error and recovery state are separate checks: a page might show the right message but leave the customer unable to try again. Keep the action count explicit. Repeated clicking could generate a different intention or obscure whether the UI recovered correctly from the controlled first response. The goal is a clear observation of one error transition.",
+        "bullets": [
+          "One submission",
+          "Exact alert text",
+          "Button becomes usable again"
+        ],
+        "code": "await page.getByRole('button',\n  { name: 'Transferir', exact: true }).click();\nawait expect(page.getByRole('alert')).toHaveText(\n  'Servicio temporalmente no disponible'\n);\nawait expect(page.getByRole('button',\n  { name: 'Transferir', exact: true })).toBeEnabled();",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Browser mock, not a real outage"
+      },
+      {
+        "id": "07-06",
+        "title": "Inspect real state after the mock",
+        "kicker": "EPISODE 07 · STEP 6",
+        "type": "steps",
+        "narration": "Query the authoritative account and canonical transfers using the authenticated API client. Verify the opening balance and an empty collection. This checks that your mocked browser submission did not create an unexpected backend effect. It also confirms you did not accidentally leave a real submission path active alongside the route handler. Explain the causal limit carefully: unchanged state follows because this request was intercepted before delivery. It does not prove a production service guarantees rollback whenever a customer receives a five hundred three response.",
+        "bullets": [
+          "Balance remains 100000",
+          "Canonical record count remains zero",
+          "Explain why no effect is expected"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-07",
+        "title": "Remove the controlled boundary",
+        "kicker": "EPISODE 07 · STEP 7",
+        "type": "steps",
+        "narration": "Remove the route handler when the focused case ends, or let the isolated context close under the fixture's ownership. If you reuse a page within a larger scenario, unregister the exact handler before attempting a real transfer. Otherwise, the next operation may keep receiving the synthetic error and your diagnosis will point at the wrong service. Prefer a separate fixture for the mocked case. Each test then has a clearly defined environment and does not depend on cleanup from a previous scenario.",
+        "bullets": [
+          "Unregister or close the context",
+          "Avoid leaking the handler",
+          "Keep the mock case isolated"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-08",
+        "title": "Compare two kinds of evidence",
+        "kicker": "EPISODE 07 · STEP 8",
+        "type": "steps",
+        "narration": "Place the mocked UI case beside the integrated successful transfer. In the first, the test supplies a controlled response and observes browser behavior. In the second, the browser calls real local services and the test verifies their resulting state. Both are useful, but they answer different questions. The mock provides a deterministic way to exercise an error presentation that might be difficult to trigger reliably. The integrated case checks compatibility across the implemented boundaries for its actual environment, data, and execution conditions.",
+        "bullets": [
+          "UI test → mocked 503 → browser alert",
+          "Integrated test → local services → observed business state"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-09",
+        "title": "Keep backend resilience separate",
+        "kicker": "EPISODE 07 · STEP 9",
+        "type": "steps",
+        "narration": "Suppose you want to test a genuine service interruption next. Define where the interruption occurs, what the authoritative system may already have committed, and how the client recovers the same intention. Use a separate controlled environment and fault scenario. Do not relabel the existing browser mock as a distributed outage test. A timeout after commitment can require looking up the original transfer rather than issuing a new one. Idempotency gives a foundation, but a complete recovery scenario needs its own contract and observations.",
+        "bullets": [
+          "Define the interruption point",
+          "Account for possible commitment",
+          "Use a separate recovery scenario"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-10",
+        "title": "Review generated mocks carefully",
+        "kicker": "EPISODE 07 · STEP 10",
+        "type": "steps",
+        "narration": "Ask AI to review the route handler with the actual error contract. Require it to identify the intercepted method, URL, response shape, and assertions about the browser and backend. Then ask which guarantees remain untested. Reject a patch that returns success from the mock while claiming to validate real transfer settlement. Also inspect whether the handler remains installed after the case. This review turns AI into an assistant for checking test scope, rather than a generator of convenient responses that make every scenario look successful.",
+        "bullets": [
+          "Inspect interception scope",
+          "Ask what remains untested",
+          "Reject invented settlement evidence"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      },
+      {
+        "id": "07-11",
+        "title": "Label the report precisely",
+        "kicker": "EPISODE 07 · STEP 11",
+        "type": "code",
+        "narration": "Name the result as a UI error-handling test with a browser-supplied response. Include the synthetic status and the actual observed alert, button state, and authoritative state checks. Keep its coverage separate from the core successful, rejected, and idempotent transfer cases. The displayed report labels describe categories, not a fabricated result. Populate the observation fields only after execution. When another team reads the regression summary, they should understand immediately that this case tested presentation and recovery controls without exercising a real service outage.",
+        "bullets": [
+          "Category: UI error handling",
+          "Response supplied by the test",
+          "Observations come from execution"
+        ],
+        "code": "Case: TR-05\nBoundary: browser POST /api/transfers\nInjected response: HTTP 503\nExpected UI: alert + enabled button\nExpected backend: unchanged balance, zero records\nActual outcome: populate from the run",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Illustrative excerpt · Browser mock, not a real outage"
+      },
+      {
+        "id": "07-12",
+        "title": "Choose the next useful test",
+        "kicker": "EPISODE 07 · STEP 12",
+        "type": "recap",
+        "narration": "Your checkpoint is an executed, isolated mock case and a short explanation of its limits. Demonstrate the alert, the recovered button, and the unchanged local account state, using actual evidence. Then name one separate integrated failure scenario you would add if the product required it, such as a lost response after commitment. This distinction prevents inflated coverage claims while preserving the value of deterministic UI tests. Next, use traces and a controlled implementation defect to diagnose failure without weakening assertions.",
+        "bullets": [
+          "Focused UI behavior verified",
+          "Coverage limit documented",
+          "Next failure scenario identified"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "TR-05 · UI behavior under a controlled response"
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "slug": "traces-ci-debugging",
+    "title": "Traces, CI and Evidence-Based Debugging",
+    "summary": "Diagnose a duplicate debit without weakening assertions and prepare a reviewable CI execution.",
+    "language": "en",
+    "objectives": [
+      "Inspect a controlled failing idempotency case",
+      "Correlate trace and authoritative state",
+      "Distinguish configured CI from executed evidence"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/trace-viewer",
+      "https://playwright.dev/docs/ci-intro",
+      "https://playwright.dev/docs/test-reporters",
+      "https://playwright.dev/java/docs/api/class-tracing"
+    ],
+    "scenes": [
+      {
+        "id": "08-01",
+        "title": "Use a failure as evidence",
+        "kicker": "EPISODE 08 · STEP 1",
+        "type": "title",
+        "narration": "A useful regression should fail when the business behavior is wrong. Inspect a controlled duplicate-debit defect and build a diagnosis from traces, API state, and runner results. We will preserve the correct expectation rather than editing it to match the defect. Then we will map the same execution into a CI job with retained artifacts. Keep local execution and hosted CI execution distinct in your report: a working command on your workstation is preparation evidence, not proof that a remote pipeline ran successfully.",
+        "bullets": [
+          "Preserve the correct expectation",
+          "Diagnose with actual artifacts",
+          "Separate local and CI execution"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-02",
+        "title": "Start the defect on separate ports",
+        "kicker": "EPISODE 08 · STEP 2",
+        "type": "terminal",
+        "narration": "The laboratory includes an explicit defect switch that allows a repeated request to create another transfer. Run that variant on separate ports so the healthy classroom remains available. Use a dedicated terminal inside the distributed project. Set the synthetic hook value as documented, then start the variant with its gateway and service ports. This is a controlled experiment. Keep the environment address visible throughout the run so an expected failure from the defective version is never confused with evidence from the healthy version.",
+        "bullets": [
+          "Dedicated defect environment",
+          "Explicit duplicate-debit switch",
+          "Keep the base URL visible"
+        ],
+        "code": "$env:TEST_HOOK_KEY='classroom-demo-only'\n$env:PORT='3100'\n$env:ACCOUNTS_PORT='3101'\n$env:LEDGER_PORT='3102'\n$env:LAB_DEFECT_DUPLICATE='1'\nnpm run start:lab",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-03",
+        "title": "Run the intended failing case",
+        "kicker": "EPISODE 08 · STEP 3",
+        "type": "terminal",
+        "narration": "From a separate test terminal, point the base address at the defective gateway and choose the idempotency case. Store its artifacts in a dedicated directory. The expected teaching outcome is a failing regression with a nonzero exit status, because the correct test requires one debit and one record. Do not infer the exact failure details from the switch alone. Read the actual runner result and attached business state. They tell you which assertion failed first and what the simulator produced during this particular execution.",
+        "bullets": [
+          "Select TR-03",
+          "Separate defect artifacts",
+          "Inspect the real failure"
+        ],
+        "code": "$env:TEST_HOOK_KEY='classroom-demo-only'\n$env:BASE_URL='http://127.0.0.1:3100'\n$env:ARTIFACT_DIR='evidence/defect'\nnpm test -- --grep TR-03",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-04",
+        "title": "Open the right trace",
+        "kicker": "EPISODE 08 · STEP 4",
+        "type": "steps",
+        "narration": "Locate the trace belonging to the failed case and its attempt, then open it with the project's Playwright trace viewer. Begin at the first failing action or assertion and inspect the surrounding timeline. Compare the page state before and after submission and identify the relevant transfer requests. Do not start by scrolling through every event without a question. Your initial question is specific: did the second request represent the same intention, and what response or state changed when the server processed it again?",
+        "bullets": [
+          "Match the trace to the attempt",
+          "Start at the first failure",
+          "Inspect the two transfer requests"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-05",
+        "title": "Confirm the request evidence",
+        "kicker": "EPISODE 08 · STEP 5",
+        "type": "steps",
+        "narration": "Inspect both request bodies and their idempotency headers. The body and key should be identical within this case. If they differ, the test may be constructing two intentions, and your diagnosis must address that before diagnosing broken idempotency. If they match, compare the returned identifiers and statuses. The defective teaching variant can still return a replay-like status while creating another record. That is why status checks alone are insufficient. Follow the evidence into the account balance and transfer collection rather than stopping at HTTP metadata.",
+        "bullets": [
+          "Same body and same key",
+          "Compare statuses and identifiers",
+          "Follow the business effects"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-06",
+        "title": "Protect the monetary oracle",
+        "kicker": "EPISODE 08 · STEP 6",
+        "type": "code",
+        "narration": "The correct postcondition is ninety thousand centavos and one transfer. A duplicate debit would instead leave eighty thousand centavos and two records for this isolated opening state. Treat those actual values, when observed, as defect evidence. Do not change the expected balance, remove the count assertion, or add a skip. A good AI-assisted diagnosis explains how the request path violated the original rule and proposes an implementation correction. The regression remains the guardrail that distinguishes the corrected behavior from the teaching defect.",
+        "bullets": [
+          "Expected: 90000 and one record",
+          "Defect example: 80000 and two",
+          "Keep the original assertions"
+        ],
+        "code": "Expected balanceMinor: 90000\nExpected transfer count: 1\nDefect illustration:\n  balanceMinor: 80000\n  transfer count: 2\nActual evidence: read the saved run artifacts",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Expected example or report template · Verify actual artifacts"
+      },
+      {
+        "id": "08-07",
+        "title": "Ask AI a bounded diagnostic question",
+        "kicker": "EPISODE 08 · STEP 7",
+        "type": "steps",
+        "narration": "Provide AI with the contract, relevant request excerpts, assertion message, and sanitized state snapshot. Ask it to separate observations, hypotheses, and checks that could distinguish those hypotheses. Require it to preserve the balance and count expectations. Keep the diagnostic task focused. Review whether its proposed change belongs in the test setup, locator, or application implementation. Each possibility needs different evidence. An explanation that merely restates the failure with more technical vocabulary has not yet identified a verified cause.",
+        "bullets": [
+          "Supply focused evidence",
+          "Separate facts and hypotheses",
+          "Require a discriminating next check"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-08",
+        "title": "Validate the corrected path",
+        "kicker": "EPISODE 08 · STEP 8",
+        "type": "steps",
+        "narration": "Return the test configuration to the healthy laboratory address and run the same case without altering its business assertions. Compare the outcome and artifacts with the defective run. This contrast distinguishes the implementations under the exercised conditions. If you apply a new code correction, execute that corrected build before claiming it works. Keep the failing artifact as teaching evidence and the successful artifact as a separate result. A screenshot of edited source is not a substitute for executing the modified behavior.",
+        "bullets": [
+          "Restore the healthy base URL",
+          "Keep assertions unchanged",
+          "Compare distinct run artifacts"
+        ],
+        "code": "$env:BASE_URL='http://127.0.0.1:3000'\n$env:ARTIFACT_DIR='evidence/healthy-recheck'\nnpm test -- --grep TR-03",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-09",
+        "title": "Design the CI job around readiness",
+        "kicker": "EPISODE 08 · STEP 9",
+        "type": "steps",
+        "narration": "A CI job needs more than the final test command. It checks out the project, installs the pinned dependencies and selected browser, starts the local services, waits for their documented health checks, and runs the intended suite. It must also stop the processes afterward. Keep service readiness separate from an arbitrary startup sleep. For Java and Python, use their own project commands and dependency files. This is a job design until the actual CI environment executes it and produces an accessible result for review.",
+        "bullets": [
+          "Install pinned dependencies",
+          "Start and verify services",
+          "Run and finalize the environment"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-10",
+        "title": "Retain evidence on failure",
+        "kicker": "EPISODE 08 · STEP 10",
+        "type": "steps",
+        "narration": "Configure artifact collection to run even when the test command fails. Retain the runner result, failure trace, relevant screenshots, and a compact correlation summary. For Java, preserve the JUnit or Surefire output alongside the library trace; for Python, preserve the pytest result alongside plugin-managed artifacts. Inspect the collected files from a failed execution to confirm they are useful and belong to the correct attempt. Also apply the environment's approved handling rules before sharing traces that may contain authentication or request data beyond this synthetic laboratory.",
+        "bullets": [
+          "Collect after failed commands",
+          "Keep runner output with traces",
+          "Verify useful, correctly linked files"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      },
+      {
+        "id": "08-11",
+        "title": "Report a precise execution status",
+        "kicker": "EPISODE 08 · STEP 11",
+        "type": "code",
+        "narration": "Your report should identify the application version or variant, test project, browser, selected cases, actual counts, and artifact locations. Include whether the run happened locally or in hosted CI. The template on screen uses explicit placeholders because these values must come from execution. A green summary without the selected cases can conceal tests that were never discovered. A pipeline configuration without a run should remain labeled configured. This reporting discipline makes the course's demonstration reviewable and gives a teammate enough context to reproduce the outcome.",
+        "bullets": [
+          "Environment and variant",
+          "Actual counts and browser",
+          "Links to evidence"
+        ],
+        "code": "Execution location: <local or hosted CI>\nVariant: <healthy or controlled defect>\nCases selected: <actual filter>\nPassed / failed / skipped: <actual counts>\nArtifacts: <verified paths or run links>\nUnresolved limitations: <observed blockers>",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Expected example or report template · Verify actual artifacts"
+      },
+      {
+        "id": "08-12",
+        "title": "Close the diagnostic loop",
+        "kicker": "EPISODE 08 · STEP 12",
+        "type": "recap",
+        "narration": "Your checkpoint is a paired explanation: why the correct regression rejects the controlled defect, and what evidence demonstrates the healthy path's outcome. Point to the request identity, business state, trace, and runner report. Then explain which CI steps are implemented and which have actually executed in their target environment. Avoid treating a retry as a diagnosis or an edited expectation as a fix. Preserve the reproducible investigation. Next, we will add a local terminal protocol boundary and keep the same standards of evidence.",
+        "bullets": [
+          "Defect evidence preserved",
+          "Healthy outcome separately verified",
+          "CI status described honestly"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Controlled defect · Preserve the original business oracle"
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "slug": "local-3270-tnz-setup",
+    "title": "Local 3270 Architecture and TNZ Setup",
+    "summary": "Prepare a real TNZ client against a local terminal simulator with explicit evidence limits.",
+    "language": "en",
+    "objectives": [
+      "Separate browser and terminal responsibilities",
+      "Install and start the prepared local simulator",
+      "Verify terminal readiness and protocol outcomes"
+    ],
+    "sources": [
+      "https://github.com/IBM/tnz",
+      "https://ibm.github.io/tnz/",
+      "https://ibm.github.io/tnz/tnz/",
+      "https://ibm.github.io/tnz/security/"
+    ],
+    "scenes": [
+      {
+        "id": "09-01",
+        "title": "Add a terminal protocol boundary",
+        "kicker": "EPISODE 09 · STEP 1",
+        "type": "title",
+        "narration": "We now extend the workflow beyond the browser. The terminal exercises use IBM's real Python TNZ library to communicate over a socket with a small local TN3270 simulator. The simulator displays a synthetic transfer lookup screen and queries the same account data as our web application. This is practical cross-protocol automation, not a connection to a real mainframe. You will understand the boundary, install the prepared client environment, and verify terminal readiness through an actual screen exchange.",
+        "bullets": [
+          "Real IBM TNZ client",
+          "Local TN3270 simulator",
+          "No real mainframe connection"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-02",
+        "title": "Separate browser and terminal control",
+        "kicker": "EPISODE 09 · STEP 2",
+        "type": "diagram",
+        "narration": "Playwright controls the browser and its HTTP observations. TNZ controls the terminal session. The hybrid test coordinates both tools through a transfer reference. Trying to locate a terminal field with a browser locator would confuse two different interfaces, unless your actual application provided a browser-based terminal with its own separate contract. Our laboratory uses a protocol client directly. Keep the boundary visible in the architecture diagram so each failure points to the tool and connection that actually produced its evidence during the test run.",
+        "bullets": [
+          "Playwright: browser and HTTP",
+          "TNZ: terminal session",
+          "Test runner: orchestration"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [
+          "Playwright browser",
+          "Transfer reference",
+          "Python TNZ",
+          "Simulator :2323",
+          "Shared Accounts data"
+        ],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-03",
+        "title": "Understand what the simulator displays",
+        "kicker": "EPISODE 09 · STEP 3",
+        "type": "steps",
+        "narration": "The terminal screen reads a local lookup endpoint using the transfer reference. That endpoint returns the authoritative in-memory transfer and current account balance from the accounts service. It does not query an independent mainframe database, and it does not prove durable persistence. The distributed ledger projection remains a separate observation from the earlier episode. This distinction matters when describing coverage: the terminal exercise checks reference transport, field interaction, screen parsing, and agreement across interfaces that expose the same synthetic data source.",
+        "bullets": [
+          "Same authoritative local data",
+          "Alternative presentation",
+          "No independent reconciliation claim"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-04",
+        "title": "Read the folder structure",
+        "kicker": "EPISODE 09 · STEP 4",
+        "type": "steps",
+        "narration": "Open the mainframe laboratory directory beside the distributed project. The simulator file owns the server-side terminal behavior. The adapter file wraps the real TNZ client with a session lifecycle, bounded waits, input validation, and structured output. Terminal protocol tests exercise this boundary with deterministic data, while the hybrid browser test uses the running distributed services. Read the requirements files before installation. Their separation lets you install a small terminal-only environment or include the browser dependencies required for the complete hybrid exercise.",
+        "bullets": [
+          "simulator.py: local server",
+          "adapter.py: TNZ client lifecycle",
+          "Separate protocol and hybrid tests"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-05",
+        "title": "Install the prepared environment",
+        "kicker": "EPISODE 09 · STEP 5",
+        "type": "terminal",
+        "narration": "Run the supplied setup script from the mainframe directory. Use the browser option when you plan to execute the Python hybrid case, because terminal-only setup does not provide every browser dependency. Installation downloads packages and, when requested, Chromium; the completed exercise communicates only with local services. Finish those downloads before the live workshop. If your approved environment already supplies Edge, use the documented browser-channel option in the test runner rather than assuming a Chromium executable exists just because a browser opens normally on your desktop.",
+        "bullets": [
+          "Choose terminal-only or browser setup",
+          "Finish downloads before class",
+          "Match the configured browser"
+        ],
+        "code": ".\\setup.ps1\n# Include Python browser tests and Chromium:\n.\\setup.ps1 -Browser",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · Screen labels shown as contract"
+      },
+      {
+        "id": "09-06",
+        "title": "Start services in their own terminals",
+        "kicker": "EPISODE 09 · STEP 6",
+        "type": "terminal",
+        "narration": "First start the distributed application using its documented synthetic hook value. Then start the terminal simulator in a separate terminal from the mainframe directory. Its default address is loopback on port twenty-three twenty-three. Leave that terminal running while the adapter connects. If the port is already occupied, inspect the conflict instead of stopping an unrelated application. The laboratory startup and shutdown instructions target only its own processes. Keeping these terminals separate also makes it easier to identify which service reported a connection or lookup failure.",
+        "bullets": [
+          "Start the distributed application",
+          "Start the terminal simulator",
+          "Keep process ownership visible"
+        ],
+        "code": ".\\start.ps1\n# Equivalent simulator command:\n.\\.venv\\Scripts\\python.exe simulator.py",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · Screen labels shown as contract"
+      },
+      {
+        "id": "09-07",
+        "title": "Check a real terminal screen",
+        "kicker": "EPISODE 09 · STEP 7",
+        "type": "terminal",
+        "narration": "Run the adapter's health action with a bounded timeout. This check opens a TNZ session and waits for the expected screen, rather than treating an open TCP port as sufficient readiness. A ready terminal does not prove the gateway is available: the simulator can display its initial panel while business lookup remains unavailable. Record the health result and then verify the distributed services separately. When you later submit a reference, any backend-unavailable status belongs to a different stage from establishing the terminal connection itself.",
+        "bullets": [
+          "Health uses a TNZ session",
+          "Screen readiness is observable",
+          "Backend readiness is separate"
+        ],
+        "code": ".\\.venv\\Scripts\\python.exe adapter.py health --timeout 5",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · Screen labels shown as contract"
+      },
+      {
+        "id": "09-08",
+        "title": "Identify the input and result fields",
+        "kicker": "EPISODE 09 · STEP 8",
+        "type": "terminal",
+        "narration": "Inspect the initial screen snapshot and find the transfer reference input. This local panel deliberately has one reference field and labeled result lines for status, amount, currency, source account, and balance. Those labels are part of the simulator's contract. They are not universal mainframe field names. In the next episode, we will inspect how the adapter positions the cursor, clears the input, enters the reference, and waits for a result associated with that exact value before parsing any business fields from the screen.",
+        "bullets": [
+          "One reference input",
+          "Labeled result values",
+          "Panel contract is application-specific"
+        ],
+        "code": "TRANSFER REFERENCE\nREFERENCE    : <submitted reference>\nSTATUS       : <observed status>\nAMOUNT MINOR : <integer amount>\nCURRENCY     : MXN\nSOURCE       : <source account>\nBALANCE MINOR: <integer balance>",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · Screen labels shown as contract"
+      },
+      {
+        "id": "09-09",
+        "title": "Try an unknown reference",
+        "kicker": "EPISODE 09 · STEP 9",
+        "type": "steps",
+        "narration": "Before creating a transfer, run a lookup using a valid reference that does not exist in the current dataset. The expected business result is not found. This is different from failing to connect or reaching a deadline without receiving a usable panel. Inspect the adapter's JSON output and exit status together. Its command-line contract distinguishes successful readiness or completion, business results such as not found, and operational failures. Preserving these categories makes a hybrid test report much more useful than a single generic terminal error.",
+        "bullets": [
+          "Valid but unknown reference",
+          "Business result versus connection failure",
+          "Read JSON and exit status"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-10",
+        "title": "Keep plaintext local to the simulator",
+        "kicker": "EPISODE 09 · STEP 10",
+        "type": "steps",
+        "narration": "The classroom adapter uses an unencrypted connection only to loopback and rejects nonlocal destinations. That is part of this simulator's design, not a template for connecting to an external host. An authorized real environment would need its own host, screen contract, test records, and verified transport configuration. None of those are established by this lesson. Keeping the local boundary explicit allows you to learn field automation and orchestration without suggesting that a successful synthetic lookup validates access, security, or behavior on an actual mainframe platform.",
+        "bullets": [
+          "Loopback-only classroom connection",
+          "Real hosts require a separate contract",
+          "No real-host validation claimed"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      },
+      {
+        "id": "09-11",
+        "title": "Run protocol tests independently",
+        "kicker": "EPISODE 09 · STEP 11",
+        "type": "terminal",
+        "narration": "Execute the standalone terminal tests before the full hybrid path. These tests launch their own local server with deterministic fixture data and communicate through the actual TNZ library over a real socket. They help isolate connection, field, and status handling from browser or gateway issues. Inspect the actual test count and result file instead of assuming the suite passed because it exists. A successful protocol suite supports the adapter boundary; the browser-to-terminal workflow still requires its own run against the distributed application.",
+        "bullets": [
+          "Real socket and TNZ client",
+          "Deterministic protocol fixtures",
+          "Hybrid execution remains separate"
+        ],
+        "code": ".\\.venv\\Scripts\\python.exe -m pytest test_terminal.py -q",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · Screen labels shown as contract"
+      },
+      {
+        "id": "09-12",
+        "title": "Confirm the architecture checkpoint",
+        "kicker": "EPISODE 09 · STEP 12",
+        "type": "recap",
+        "narration": "Explain the complete lookup path to a partner: TNZ sends a reference to the local simulator, which calls the gateway lookup endpoint and displays shared account data. Then show your actual readiness result and protocol test outcome. Identify which components were running and which were unnecessary for the standalone tests. If an installation or connection failed, keep that checkpoint unresolved. You are prepared for the next episode when you can distinguish terminal protocol behavior, business lookup behavior, and the limits of this deliberately simulated environment.",
+        "bullets": [
+          "Lookup path understood",
+          "Actual readiness recorded",
+          "Simulation limits explicit"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local simulation · No z/OS, CICS or database execution claimed"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "slug": "tnz-fields-waits-cleanup",
+    "title": "TNZ Sessions: Fields, Waits and Cleanup",
+    "summary": "Inspect real TNZ calls inside a bounded, field-aware local terminal adapter.",
+    "language": "en",
+    "objectives": [
+      "Use real TNZ methods for the local field sequence",
+      "Wait for correlated screen state with a deadline",
+      "Parse business values and close every session"
+    ],
+    "sources": [
+      "https://ibm.github.io/tnz/tnz/",
+      "https://ibm.github.io/tnz/security/",
+      "https://docs.python.org/3/library/time.html#time.monotonic"
+    ],
+    "scenes": [
+      {
+        "id": "10-01",
+        "title": "Build a predictable terminal session",
+        "kicker": "EPISODE 10 · STEP 1",
+        "type": "title",
+        "narration": "Inspect the adapter that turns terminal interaction into a predictable test boundary. We will connect, wait for the correct panel, enter a transfer reference, parse the result, and close the session. Each step has a specific condition and a bounded lifetime. The public laboratory wrapper is named TerminalSession; it is our adapter, not an IBM library class. Its implementation uses real TNZ methods, so you can inspect the difference between application-specific screen logic and the underlying protocol client.",
+        "bullets": [
+          "Connect and identify the panel",
+          "Enter one exact reference",
+          "Parse and close deterministically"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-02",
+        "title": "Create the actual TNZ client",
+        "kicker": "EPISODE 10 · STEP 2",
+        "type": "code",
+        "narration": "Open the adapter source and find the TNZ object creation. One object represents this terminal connection. The adapter selects the character encoding used by the local simulator, so screen bytes become the intended text. A browser page and a terminal screen do not share a locator model or character buffer. Keep this conversion visible when diagnosing unexpected symbols or missing labels. The displayed initialization is an excerpt from the adapter; connection, bounded waiting, and cleanup belong to the following lifecycle rather than being optional additions.",
+        "bullets": [
+          "Real TNZ object",
+          "Simulator encoding is explicit",
+          "One session owns one connection"
+        ],
+        "code": "from tnz import tnz\n\nterminal = tnz.Tnz('TRAINING')\nterminal.encoding = 'cp037'",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed adapter excerpt · Surrounding lifecycle required"
+      },
+      {
+        "id": "10-03",
+        "title": "Connect within the local boundary",
+        "kicker": "EPISODE 10 · STEP 3",
+        "type": "code",
+        "narration": "The adapter connects to loopback on the simulator's terminal port. Its host validation rejects nonlocal addresses before attempting this plaintext classroom connection. The secure flag shown here describes only that local setup; certificate verification has no effect when the connection is unencrypted. After connecting, the adapter immediately waits for the expected initial panel. A successful socket call is not enough to begin typing. If setup fails after connection, the session owner must still shut down the partially established connection before reporting the original error.",
+        "bullets": [
+          "Loopback simulator only",
+          "Wait for the initial panel",
+          "Close partial setup on failure"
+        ],
+        "code": "terminal.connect(\n    host='127.0.0.1', port=2323,\n    secure=False, verifycert=True,\n)",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed adapter excerpt · Surrounding lifecycle required"
+      },
+      {
+        "id": "10-04",
+        "title": "Use a monotonic deadline",
+        "kicker": "EPISODE 10 · STEP 4",
+        "type": "code",
+        "narration": "Inspect the wait helper. It computes a deadline from a monotonic clock, reads the current screen, and processes incoming terminal events in short bounded increments. Repeating a screen read without processing events may keep observing stale content. The helper also checks whether the session disconnected and saves a timeout snapshot before raising an error. This is application-level waiting around the TNZ event method. The deadline expresses how long this local operation may take, and prevents a missing panel from hanging the test process indefinitely.",
+        "bullets": [
+          "Monotonic deadline",
+          "Process incoming events",
+          "Capture the last screen on timeout"
+        ],
+        "code": "deadline = monotonic() + timeout\n# Inside the bounded observation loop:\nremaining = deadline - monotonic()\nif remaining <= 0:\n    raise TerminalTimeout('Expected panel did not arrive')\nterminal.wait(min(0.1, remaining))",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed adapter excerpt · Surrounding lifecycle required"
+      },
+      {
+        "id": "10-05",
+        "title": "Require a ready keyboard too",
+        "kicker": "EPISODE 10 · STEP 5",
+        "type": "steps",
+        "narration": "The wait helper does not accept matching text alone. It also checks the terminal's program-wait and system-lock conditions before returning control to the caller. This prevents the test from typing while the displayed panel is still not ready for input. Treat those conditions as part of the adapter's readiness contract. If the label appears but input remains locked, inspect the terminal exchange and timeout evidence. Do not bypass the lock check merely because a screenshot looks complete; presentation and readiness can be different states.",
+        "bullets": [
+          "Expected text is present",
+          "Input is not program-locked",
+          "Input is not system-locked"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-06",
+        "title": "Validate and enter the reference",
+        "kicker": "EPISODE 10 · STEP 6",
+        "type": "code",
+        "narration": "Before touching the field, validate the reference against the adapter's allowed length and characters. The local field accepts one to forty-eight ASCII letters, digits, underscores, or hyphens. Then move to the input field with the home key, erase its previous contents, and type the reference through TNZ. Clearing matters when a new reference is shorter than the old one; otherwise, stale characters can remain and select the wrong lookup value. This field sequence belongs to our panel and must be reviewed for any different application.",
+        "bullets": [
+          "Validate length and characters",
+          "Clear stale field contents",
+          "Enter the exact correlation value"
+        ],
+        "code": "terminal.key_home()\nterminal.key_eraseeof()\nterminal.key_data(reference)\nterminal.enter()",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed adapter excerpt · Surrounding lifecycle required"
+      },
+      {
+        "id": "10-07",
+        "title": "Wait for the submitted reference",
+        "kicker": "EPISODE 10 · STEP 7",
+        "type": "steps",
+        "narration": "After Enter, wait for a result screen containing the submitted reference and a status that is no longer the initial ready state. A generic completed message could belong to a previous lookup. Correlation therefore belongs in the screen predicate itself, before parsing amounts or declaring success. The helper still requires an unlocked terminal and a deadline. If the server returns not found or backend unavailable, the screen can be a valid response even though the business operation did not produce a successful lookup result.",
+        "bullets": [
+          "Match the submitted reference",
+          "Exclude the initial ready panel",
+          "Accept meaningful business error states"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-08",
+        "title": "Parse the labeled business values",
+        "kicker": "EPISODE 10 · STEP 8",
+        "type": "code",
+        "narration": "The adapter extracts values from labeled result lines and returns a structured object. For a completed lookup, it converts amount and balance into integers and preserves currency, source account, status, and reference. The hybrid test compares those values with the transfer it created; parsing is insufficient. Missing labels or invalid numbers should surface as errors rather than becoming empty strings or zeros that happen to satisfy a weak assertion. Review the parser alongside the actual screen contract whenever a field name or layout changes.",
+        "bullets": [
+          "Parse explicit labels",
+          "Convert monetary values to integers",
+          "Compare with the created transfer"
+        ],
+        "code": "with TerminalSession(timeout=8) as session:\n    result = session.lookup(reference)\n    assert result['reference'] == reference\n    assert result['status'] == 'COMPLETED'\n    assert result['amountMinor'] == 10000\n    assert result['balanceMinor'] == 90000",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed adapter excerpt · Surrounding lifecycle required"
+      },
+      {
+        "id": "10-09",
+        "title": "Preserve screen evidence",
+        "kicker": "EPISODE 10 · STEP 9",
+        "type": "terminal",
+        "narration": "Use the adapter's snapshot option to save the observed panels. The resulting text connects readiness and result states with named steps. Pair this snapshot with the structured JSON output so a reviewer can inspect both the parsed values and their source screen. The placeholder reference in the displayed command must be replaced with a real transfer identifier whose fixture still exists. Do not present the placeholder as a successful lookup. If the fixture was already deleted, a not-found result is the meaningful expected behavior.",
+        "bullets": [
+          "Keep parsed JSON and screen text",
+          "Use an existing fixture reference",
+          "Label placeholders explicitly"
+        ],
+        "code": ".\\.venv\\Scripts\\python.exe adapter.py lookup TRANSFER_REFERENCE\n# Add: --timeout 8 --snapshot evidence\\terminal.txt",
+        "code_language": "powershell",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-10",
+        "title": "Always release the connection",
+        "kicker": "EPISODE 10 · STEP 10",
+        "type": "steps",
+        "narration": "The session wrapper closes the TNZ connection on exit, including after a parsing or assertion failure. Its setup path also closes if the initial panel never becomes ready. Inspect both paths, because a finalization block around only the test body cannot clean up a resource that failed earlier during entry. The underlying close operation uses TNZ shutdown. Capture necessary screen evidence before releasing the session, and preserve the original failure if a secondary cleanup problem appears. Ownership should remain understandable across test cases.",
+        "bullets": [
+          "Close after success or failure",
+          "Handle failures during entry",
+          "Capture evidence before shutdown"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-11",
+        "title": "Test negative terminal outcomes",
+        "kicker": "EPISODE 10 · STEP 11",
+        "type": "steps",
+        "narration": "Run the terminal protocol tests for successful lookup, unknown reference, unavailable backend, invalid input, and a missing-screen timeout. These checks distinguish business data, missing records, dependency errors, validation, and bounded waiting. Inspect each actual result independently. The adapter's exit code of two represents a business response; code one represents an operational or validation failure. Interpret the structured status too. Treating every nonzero result as identical loses the information needed to diagnose a hybrid workflow efficiently.",
+        "bullets": [
+          "Distinguish business and operational outcomes",
+          "Inspect structured statuses",
+          "Verify each negative path"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      },
+      {
+        "id": "10-12",
+        "title": "Explain the adapter contract",
+        "kicker": "EPISODE 10 · STEP 12",
+        "type": "recap",
+        "narration": "Your checkpoint is an explanation of the adapter's full contract: permitted reference input, loopback destination, ready-screen condition, field operations, result predicate, structured values, timeout behavior, and cleanup. Point to the implementation and one actual snapshot. Then explain why matching the reference matters before accepting a completed status. Call the adapter from a browser test without embedding terminal details everywhere. The next episode uses that boundary from Python and Java to compare the same synthetic transfer across web, service, and terminal observations.",
+        "bullets": [
+          "Input and output contracts explicit",
+          "Waits and cleanup owned",
+          "Ready for hybrid orchestration"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Local TN3270 simulator · IBM TNZ client"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "slug": "hybrid-web-services-tnz",
+    "title": "Hybrid Regression: One Correlation Across Interfaces",
+    "summary": "Orchestrate Playwright and the TNZ adapter from Python, TypeScript or Java.",
+    "language": "en",
+    "objectives": [
+      "Carry one actual transfer reference into the terminal",
+      "Bound subprocess and terminal lifetimes",
+      "Compare complete business values and preserve evidence"
+    ],
+    "sources": [
+      "https://docs.python.org/3/library/subprocess.html",
+      "https://nodejs.org/api/child_process.html",
+      "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ProcessBuilder.html",
+      "https://playwright.dev/python/docs/api-testing",
+      "https://ibm.github.io/tnz/tnz/"
+    ],
+    "scenes": [
+      {
+        "id": "11-01",
+        "title": "Follow one transfer across interfaces",
+        "kicker": "EPISODE 11 · STEP 1",
+        "type": "title",
+        "narration": "Build the hybrid regression around one transfer reference. The browser submits a real request to the local services, the test obtains its canonical identifier, and the TNZ adapter enters that identifier into the simulated terminal. The final assertions compare the business values across those observations. This is orchestration across browser, HTTP, subprocess, and terminal protocol boundaries. The terminal still reads the same in-memory account data. Keep that limitation visible while demonstrating the additional field interaction and correlation behavior that the hybrid test actually exercises.",
+        "bullets": [
+          "One created transfer",
+          "One exact reference",
+          "Several interfaces, one data source"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      },
+      {
+        "id": "11-02",
+        "title": "Prepare an isolated hybrid fixture",
+        "kicker": "EPISODE 11 · STEP 2",
+        "type": "steps",
+        "narration": "Create a new synthetic fixture for the hybrid case and preserve its cleanup identifier. Send the hook header only on the preparation request, then authenticate through the browser context's request client using the returned credentials. Check both response statuses before navigating. The test owns the fixture until terminal assertions and evidence capture finish. If you delete the data immediately after the browser action, the later terminal lookup will correctly return not found. Lifecycle ordering is part of the hybrid scenario's correctness.",
+        "bullets": [
+          "Fresh synthetic account",
+          "Authenticate the browser context",
+          "Keep data until all observations finish"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      },
+      {
+        "id": "11-03",
+        "title": "Perform the actual browser transfer",
+        "kicker": "EPISODE 11 · STEP 3",
+        "type": "code",
+        "narration": "Select the fixture's source account and beneficiary, enter one hundred pesos, and click the transfer button. Assert the visible confirmation and the resulting balance. This step must use the running local application, with no route substitution for the central hybrid case. The excerpt starts after selecting account and beneficiary. A screenshot can illustrate the page, but the test result comes from the assertions and subsequent service observations. Preserve both the browser evidence and the identifiers needed to continue into the terminal boundary.",
+        "bullets": [
+          "Real local browser action",
+          "Confirmation and balance assertions",
+          "No mock in the hybrid happy path"
+        ],
+        "code": "page.get_by_label('Importe (MXN)', exact=True).fill('100.00')\npage.get_by_role('button', name='Transferir', exact=True).click()\nexpect(page.get_by_role('status')).to_have_text(\n    'Transferencia realizada'\n)\nexpect(page.get_by_test_id('account-balance')).to_have_text(\n    'MXN 900.00'\n)",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-04",
+        "title": "Extract the canonical correlation",
+        "kicker": "EPISODE 11 · STEP 4",
+        "type": "code",
+        "narration": "Read the canonical transfer collection filtered by the fixture's source account. Confirm the response is successful and that exactly one record exists before selecting its identifier. This makes the lookup unambiguous within the isolated case. The working example obtains the identifier from this canonical collection; capturing it directly from the submission response is another valid approach when that response is already observed. Never use a hardcoded example reference or a global latest-record query. The terminal must inspect the operation created by this exact browser execution.",
+        "bullets": [
+          "Filter by the owned source",
+          "Assert one canonical record",
+          "Extract its actual identifier"
+        ],
+        "code": "assert transfers.status == 200\nrecords = transfers.json()\nassert records['total'] == 1\nreference = records['items'][0]['id']",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-05",
+        "title": "Call the adapter from Python",
+        "kicker": "EPISODE 11 · STEP 5",
+        "type": "code",
+        "narration": "Invoke the adapter in a dedicated Python subprocess with an argument list. The terminal deadline is eight seconds, and the outer process call has a twelve-second timeout. Keeping TNZ in its own process gives its event loop clear ownership and avoids mixing it with the browser runner. Capture output, inspect the exit status, then parse the JSON. The executable should come from the prepared terminal environment. Do not assemble a shell command from the reference; exact arguments preserve its value and keep execution behavior predictable.",
+        "bullets": [
+          "Exact argument list",
+          "Eight-second terminal deadline",
+          "Twelve-second process timeout"
+        ],
+        "code": "process = subprocess.run([\n    sys.executable, str(ROOT / 'adapter.py'),\n    'lookup', reference, '--timeout', '8',\n], text=True, capture_output=True, timeout=12, check=False)\nassert process.returncode == 0, process.stdout + process.stderr\nresult = json.loads(process.stdout)",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-06",
+        "title": "Call the same boundary from TypeScript",
+        "kicker": "EPISODE 11 · STEP 6",
+        "type": "code",
+        "narration": "The TypeScript version uses Node's executable-file operation, wrapped as a promise, to call the same Python adapter. Pass the script path, action, reference, and timeout as separate arguments. The process timeout is measured in milliseconds in this API, unlike Python's seconds. Keep that unit difference visible when reviewing generated code. The working Windows example also hides the helper window. A rejected process call or invalid JSON fails the hybrid step; it must not be converted into an empty object followed by skipped assertions.",
+        "bullets": [
+          "Reuse the adapter CLI",
+          "Pass separate arguments",
+          "Check timeout units"
+        ],
+        "code": "const runFile = promisify(execFile);\nconst { stdout } = await runFile(python, [\n  adapterPath, 'lookup', reference, '--timeout', '8',\n], { timeout: 12000, windowsHide: true });\nconst terminal = JSON.parse(stdout);",
+        "code_language": "typescript",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-07",
+        "title": "Call the same boundary from Java",
+        "kicker": "EPISODE 11 · STEP 7",
+        "type": "code",
+        "narration": "The Java version passes the executable and arguments through ProcessBuilder, then waits with a bounded timeout. If the child process exceeds that limit, terminate it and fail the test with a clear cause. After completion, inspect its exit value and parse the structured output using the project's JSON library. Keep process lifecycle separate from browser lifecycle so cleanup can address either failure. The excerpt shows invocation and its deadline; the complete source also reads output and asserts the returned business values before finalizing the fixture.",
+        "bullets": [
+          "ProcessBuilder arguments",
+          "Bounded wait and termination",
+          "Inspect exit and structured output"
+        ],
+        "code": "Process process = new ProcessBuilder(\n    python, adapterPath, \"lookup\", reference,\n    \"--timeout\", \"8\").redirectErrorStream(true).start();\nif (!process.waitFor(12, TimeUnit.SECONDS)) {\n  process.destroyForcibly();\n  fail(\"Terminal adapter exceeded process timeout\");\n}",
+        "code_language": "java",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-08",
+        "title": "Assert every business value",
+        "kicker": "EPISODE 11 · STEP 8",
+        "type": "code",
+        "narration": "Compare the terminal result with the exact reference, completed status, source account, currency, amount, and expected balance. Also require the simulated flag so the report retains the environment's identity. A matching amount alone could describe another transfer, while a matching reference alone would not reveal incorrect numeric parsing or stale balance presentation. These checks combine identity and business content. They demonstrate agreement with shared local account data under this scenario, not an independent reconciliation against a real mainframe database or durable ledger storage system.",
+        "bullets": [
+          "Reference and completed status",
+          "Source, currency, amount and balance",
+          "Simulation identity retained"
+        ],
+        "code": "assert result['reference'] == reference\nassert result['status'] == 'COMPLETED'\nassert result['sourceAccountId'] == fixture['sourceAccountId']\nassert result['currency'] == 'MXN'\nassert result['amountMinor'] == 10000\nassert result['balanceMinor'] == 90000\nassert result['simulated'] is True",
+        "code_language": "python",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Source-backed hybrid excerpt · Imports and fixture omitted"
+      },
+      {
+        "id": "11-09",
+        "title": "Keep ledger projection as another check",
+        "kicker": "EPISODE 11 · STEP 9",
+        "type": "steps",
+        "narration": "If the capstone includes the asynchronous ledger projection, query its separate endpoint using the same source account and transfer identifier. Apply the bounded read-only polling rule from the distributed episode. Do not assume the terminal lookup proves projection completion, because the simulator reads authoritative accounts data directly. Your evidence matrix should contain a separate row for canonical state, projected ledger state, and terminal presentation. That distinction lets a failure identify which observation was missing instead of merging unrelated checks.",
+        "bullets": [
+          "Canonical state",
+          "Separate eventual projection",
+          "Terminal presentation of Accounts data"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      },
+      {
+        "id": "11-10",
+        "title": "Capture evidence before cleanup",
+        "kicker": "EPISODE 11 · STEP 10",
+        "type": "steps",
+        "narration": "Save the browser screenshot, trace, terminal snapshot, and structured comparison result while the fixture still exists. Keep their names associated with the current case and attempt. Then close the terminal process or session, finish trace capture, and delete only the owned fixture. Inspect cleanup results without erasing the original failure. The supplied examples demonstrate the sequence; before scaling to many concurrent attempts, give artifacts unique names too. Independent account data does not prevent two tests from overwriting a shared evidence filename in the same directory.",
+        "bullets": [
+          "Capture browser and terminal evidence",
+          "Preserve the original failure",
+          "Use unique artifact names when scaling"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      },
+      {
+        "id": "11-11",
+        "title": "Add a meaningful negative case",
+        "kicker": "EPISODE 11 · STEP 11",
+        "type": "steps",
+        "narration": "Add a separate lookup case for an unknown reference, or query a reference after its fixture has been deleted. The expected result is not found, rather than completed with empty fields. Keep this test separate so its data lifecycle is obvious. Also distinguish a terminal timeout from a business not-found response. Review the adapter's exit-code contract and structured status together. This negative coverage demonstrates that your orchestration rejects missing business evidence instead of accepting any screen that happens to arrive.",
+        "bullets": [
+          "Unknown or removed reference",
+          "Expect a business not-found result",
+          "Do not accept arbitrary screen arrival"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      },
+      {
+        "id": "11-12",
+        "title": "Review the hybrid checkpoint",
+        "kicker": "EPISODE 11 · STEP 12",
+        "type": "recap",
+        "narration": "Your checkpoint is one executed hybrid case in the language you selected, plus linked evidence for the browser action and terminal comparison. Explain how the reference moved between tools, how both timeout layers are bounded, and why the terminal view is not an independent data authority. If you also ran the projection check, show its separate result. Keep Java, Python, and TypeScript outcomes distinct rather than assuming translation guarantees execution. Next, assemble reusable AI prompts, a capstone regression plan, and a defensible report.",
+        "bullets": [
+          "One reference across tools",
+          "Actual result per language",
+          "Coverage boundaries remain explicit"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Hybrid local simulation · Same authoritative in-memory data"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "slug": "ai-regression-capstone",
+    "title": "AI-Assisted Regression Capstone",
+    "summary": "Generate, review, execute and report a complete regression without unsupported claims.",
+    "language": "en",
+    "objectives": [
+      "Use evidence-based generation and diagnostic prompts",
+      "Execute core and extension coverage with explicit boundaries",
+      "Deliver a measured regression report and rubric assessment"
+    ],
+    "sources": [
+      "https://playwright.dev/docs/best-practices",
+      "https://playwright.dev/docs/test-fixtures",
+      "https://playwright.dev/docs/test-assertions",
+      "https://ibm.github.io/tnz/tnz/"
+    ],
+    "scenes": [
+      {
+        "id": "12-01",
+        "title": "Turn the workflow into a capstone",
+        "kicker": "EPISODE 12 · STEP 1",
+        "type": "title",
+        "narration": "The capstone combines a defensible regression plan with AI-assisted implementation and actual execution evidence. Choose your primary language and keep the same local contract. Your required business cases are successful transfer, insufficient funds, and sequential idempotent replay. Add the delayed ledger observation, a focused UI error mock, and the hybrid terminal comparison as separately labeled coverage. Produce tests whose assumptions, business assertions, ownership, and observed outcomes you can explain and reproduce.",
+        "bullets": [
+          "One primary language",
+          "Three core business cases",
+          "Explicitly labeled extensions"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      },
+      {
+        "id": "12-02",
+        "title": "Give AI an evidence package",
+        "kicker": "EPISODE 12 · STEP 2",
+        "type": "code",
+        "narration": "Start by supplying the contract, relevant source files, exact accessible labels, runner configuration, and a sanitized example response. Ask AI to list unresolved facts before proposing implementation. This exposes unsupported endpoints and helper methods. The prompt excerpt on screen is reusable, but attach the actual evidence it requests. A model cannot inspect an omitted file merely because the prompt mentions its name. Keep any missing input marked as unresolved until you or the model can inspect a reliable source.",
+        "bullets": [
+          "Attach actual source and contract",
+          "Ask for missing facts first",
+          "Do not invent unseen interfaces"
+        ],
+        "code": "Review the attached TransferLab contract and source files.\nList supported endpoints, UI labels, runner and fixture lifecycle.\nIdentify missing facts before proposing tests.\nDo not invent selectors, helper methods or execution results.\nReturn an evidence table and specific unresolved questions.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-03",
+        "title": "Request a risk and evidence matrix",
+        "kicker": "EPISODE 12 · STEP 3",
+        "type": "code",
+        "narration": "Ask for a matrix connecting each business risk with setup, action, authoritative observation, and expected result. Require the three core cases and give their exact values. For the distributed extension, distinguish canonical transfers from the delayed ledger endpoint. For the terminal extension, state that the screen presents the same in-memory account data. Review the matrix yourself before generating code. This is the point where a missing no-debit assertion or a false independent-mainframe claim is easiest to correct, while the design remains visible.",
+        "bullets": [
+          "Risk to setup and action",
+          "Observation to expected value",
+          "Separate data authorities"
+        ],
+        "code": "Create a regression matrix for TR-01, TR-02 and TR-03.\nTR-01: 100000 minus 10000 = 90000; one transfer.\nTR-02: request 110000; keep 100000; zero transfers.\nTR-03: same key and body twice; one debit and one ID.\nSeparate canonical, ledger-projection and terminal observations.\nThe terminal uses the SAME local in-memory Accounts data.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-04",
+        "title": "Generate one complete case first",
+        "kicker": "EPISODE 12 · STEP 4",
+        "type": "code",
+        "narration": "Generate the successful case before asking for every extension. Specify the chosen runner and require setup, authentication, accessible UI actions, server assertions, evidence capture, and targeted cleanup. Ask for project changes with imports and commands, not just a fragment that assumes invisible helpers. Review and run this first case. Reuse its fixture for the other cases. If the generated code fails to compile, fix that implementation issue while preserving the business contract; do not record the application as regressed because an invented method was rejected.",
+        "bullets": [
+          "Generate one runnable case",
+          "Reuse the fixture factory; create fresh data",
+          "Review and execute before expansion"
+        ],
+        "code": "Implement TR-01 in the selected language and existing project.\nUse isolated synthetic data and context-associated login.\nAssert UI confirmation, balance 90000 and one matching record.\nInclude imports, bounded waits, evidence and targeted cleanup.\nReuse only helpers present in the attached source.\nProvide exact commands; mark results as pending execution.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-05",
+        "title": "Adapt architecture across languages",
+        "kicker": "EPISODE 12 · STEP 5",
+        "type": "steps",
+        "narration": "When translating the case, ask AI to preserve the evidence matrix while adapting lifecycle and reporting to the target runner. TypeScript uses Playwright Test fixtures, Python uses pytest fixtures, and Java uses its explicit JUnit resource ownership. Do not copy configuration flags across languages without checking that the target runner supports them. Require explanations and check official documentation for uncertain APIs. Then execute each language separately. A successful TypeScript run does not establish that a generated Java or Python translation was discovered or executed correctly.",
+        "bullets": [
+          "Preserve business meaning",
+          "Adapt lifecycle and reporting",
+          "Verify each language independently"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      },
+      {
+        "id": "12-06",
+        "title": "Generate the hybrid extension",
+        "kicker": "EPISODE 12 · STEP 6",
+        "type": "code",
+        "narration": "For the hybrid case, provide the existing adapter rather than asking AI to invent a mainframe connection. Specify the exact reference flow, terminal deadline, process timeout, structured output fields, and cleanup sequence. Require argument arrays when invoking the adapter from another language. Keep the terminal's simulation flag and shared data source explicit in the assertions and report. This prompt should produce orchestration around a known boundary. It should not create hostnames, credentials, panel identifiers, or claims about systems that are absent from the local laboratory.",
+        "bullets": [
+          "Reuse the existing adapter",
+          "Carry the exact reference",
+          "State simulation limits"
+        ],
+        "code": "Extend the browser transfer with the existing adapter.py CLI.\nPass its actual reference using exact subprocess arguments.\nUse an 8-second terminal deadline and 12-second process limit.\nAssert reference, status, source, amount, currency and balance.\nCapture evidence before targeted fixture cleanup.\nLabel the terminal local and simulated; invent no real host.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-07",
+        "title": "Audit the generated assertions",
+        "kicker": "EPISODE 12 · STEP 7",
+        "type": "steps",
+        "narration": "Review the generated suite against a fixed checklist. Does each attempt own its data and session? Does success verify the correct account, amount, currency, and count? Does rejection prove no business effect? Does replay preserve one key and body while checking one debit and record? Does delayed polling only read state? Does the terminal assertion match the same reference? Ask AI to identify concrete omissions with source locations, then verify. A polished explanation cannot compensate for a missing assertion in the actual test code.",
+        "bullets": [
+          "Data and identity ownership",
+          "Complete business assertions",
+          "Read-only waits and exact correlation"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      },
+      {
+        "id": "12-08",
+        "title": "Use a failure-specific prompt",
+        "kicker": "EPISODE 12 · STEP 8",
+        "type": "code",
+        "narration": "When a test fails, provide the contract, actual error, relevant trace observations, and state snapshot. Ask AI to separate facts from hypotheses and propose the smallest check that distinguishes likely causes. Explicitly protect the monetary and count assertions. Do not ask for a green run at any cost. A useful response may reveal an incorrect fixture, an outdated locator, or a genuine implementation defect. Apply only a justified change, then rerun the affected case and preserve the evidence that shows whether the diagnosis held.",
+        "bullets": [
+          "Supply actual failure evidence",
+          "Separate facts and hypotheses",
+          "Keep the business oracle fixed"
+        ],
+        "code": "Diagnose the attached failure against the unchanged contract.\nSeparate observed facts, hypotheses and discriminating checks.\nDo not weaken balance, identity, currency or count assertions.\nDo not add skips or retries to conceal the failure.\nPropose the smallest justified patch and its verification step.\nReport what remains unknown.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-09",
+        "title": "Execute the capstone deliberately",
+        "kicker": "EPISODE 12 · STEP 9",
+        "type": "steps",
+        "narration": "Run the three core cases first in the healthy local environment and inspect actual test discovery and outcomes. Then run the delayed projection, mock, and hybrid cases under their declared boundaries. Execute the controlled defect case separately and retain its expected failure evidence. Record the application variant, language, browser, test selection, and artifact locations for every run. Keep installation and service-startup failures distinct from business regressions. This order keeps the evidence package's environments and intended outcomes understandable.",
+        "bullets": [
+          "Healthy core cases first",
+          "Extensions separately labeled",
+          "Controlled defect run kept distinct"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      },
+      {
+        "id": "12-10",
+        "title": "Write a defensible regression report",
+        "kicker": "EPISODE 12 · STEP 10",
+        "type": "code",
+        "narration": "Ask AI to summarize the actual results you supply, with links to artifacts and explicit limitations. Require it to separate generated, reviewed, executed, passed, failed, and blocked work. The final report should name the tested environment and avoid claiming hosted CI execution unless a real pipeline result exists. Include the terminal's shared local data source and the sequential scope of idempotency. These limits help another engineer identify missing coverage without overestimating what the tests exercised.",
+        "bullets": [
+          "Use measured results only",
+          "Link inspectable artifacts",
+          "Preserve coverage limitations"
+        ],
+        "code": "Summarize only the attached execution outputs and artifacts.\nSeparate passed, failed, blocked and not-executed work.\nIdentify language, browser, variant and selected cases.\nState sequential idempotency and local simulator limitations.\nDo not claim hosted CI without a real run link.\nList the next missing coverage with its evidence requirement.",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "Copyable prompt · Attach the actual contract and evidence"
+      },
+      {
+        "id": "12-11",
+        "title": "Apply the capstone rubric",
+        "kicker": "EPISODE 12 · STEP 11",
+        "type": "steps",
+        "narration": "Score five areas from zero to two: business coverage, isolation, review of AI assumptions, execution and diagnosis, and reporting of integration boundaries. Eight out of ten is the target, with mandatory gates: no fabricated results, no leaked sensitive data, and no weakened business assertions. Missing execution evidence remains incomplete even when the design is strong. Review a partner's submission and ask them to explain one failing case. The explanation should connect a concrete observation to the original requirement, beyond repeating an error message.",
+        "bullets": [
+          "Five criteria, ten points",
+          "Target eight with mandatory gates",
+          "Missing execution remains incomplete"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      },
+      {
+        "id": "12-12",
+        "title": "Choose the next justified increment",
+        "kicker": "EPISODE 12 · STEP 12",
+        "type": "recap",
+        "narration": "Finish by selecting one next increment based on an uncovered risk: concurrent replay, a real authorized recovery scenario, broader browser coverage, or another business rule. Define its expected behavior and evidence before generating more code. Preserve the core suite and its reproducible fixture design as the baseline. Combine AI assistance with careful contracts, browser automation, distributed observations, terminal orchestration, and honest reporting. Your final deliverable is the executable work and its measured evidence, together with a clear account of what it still does not prove.",
+        "bullets": [
+          "Choose one uncovered risk",
+          "Define evidence before generating",
+          "Deliver code, outcomes and limits"
+        ],
+        "code": "",
+        "code_language": "text",
+        "diagram": [],
+        "highlight_lines": [],
+        "footer": "AI-assisted capstone · Human review and measured evidence"
+      }
+    ]
+  }
+]

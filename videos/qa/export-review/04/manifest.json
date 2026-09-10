@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:51:48.019983+00:00",
+  "episode": "04",
+  "title": "Java: JUnit Lifecycle and Evidence",
+  "input": {
+    "file": "renders/04-java-junit-lifecycle.mp4",
+    "sha256": "03ad64f600f3d50608c9b91592f9034426981179241c8779af820cfc0a20afe4",
+    "sizeBytes": 33752932,
+    "modifiedAtUtc": "2026-09-09T21:58:10.085912+00:00"
+  },
+  "timeline": {
+    "file": "audio/04/timeline.json",
+    "sha256": "dd5b95ed92df2cd5e658301b99e0d1164ff61678658c37a3c7e81434045dac33",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 438.583333,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "04-01",
+      "title": "Own the Java lifecycle",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 37.706,
+      "sampleSeconds": 18.853,
+      "timestamp": "00:18.853",
+      "file": "04-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "4c7dd6b54c6bdc765cfa0bf53a085b463da69fb3d8ffbf51dfe1be1170bd3381"
+    },
+    {
+      "sceneId": "04-02",
+      "title": "Inspect the project first",
+      "sceneStartSeconds": 37.706,
+      "sceneDurationSeconds": 38.33,
+      "sampleSeconds": 56.871,
+      "timestamp": "00:56.871",
+      "file": "04-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "edb359c6a431d9eee743a34d373d46abbcbc1a113e99b1768a9bb60c04e276f4"
+    },
+    {
+      "sceneId": "04-03",
+      "title": "Choose ownership boundaries",
+      "sceneStartSeconds": 76.036,
+      "sceneDurationSeconds": 35.21,
+      "sampleSeconds": 93.641,
+      "timestamp": "01:33.641",
+      "file": "04-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c66b345fc53562a0ab1623593ab858ad578a80cb40eb7916d664e2e6e09740ba"
+    },
+    {
+      "sceneId": "04-04",
+      "title": "Create a fresh context",
+      "sceneStartSeconds": 111.24600000000001,
+      "sceneDurationSeconds": 37.466,
+      "sampleSeconds": 129.979,
+      "timestamp": "02:09.979",
+      "file": "04-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a8590f7d6170d888418afcedc61f7509fe8675dc32fac1ac1b259a47d9ee7e99"
+    },
+    {
+      "sceneId": "04-05",
+      "title": "Authenticate with the same identity",
+      "sceneStartSeconds": 148.71200000000002,
+      "sceneDurationSeconds": 37.394,
+      "sampleSeconds": 167.409,
+      "timestamp": "02:47.409",
+      "file": "04-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ac3c7db7bf8d227b1ebf9063ddc01d9673e6bdf5fd4d73b50e30ea64f8ff863e"
+    },
+    {
+      "sceneId": "04-06",
+      "title": "Use Java locator assertions",
+      "sceneStartSeconds": 186.10600000000002,
+      "sceneDurationSeconds": 36.602,
+      "sampleSeconds": 204.407,
+      "timestamp": "03:24.407",
+      "file": "04-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "d3518879d773665a5b91ca2852d9005df37a0106e54bb103b4d92dbb7c73167f"
+    },
+    {
+      "sceneId": "04-07",
+      "title": "Inspect the integer account balance",
+      "sceneStartSeconds": 222.70800000000003,
+      "sceneDurationSeconds": 34.106,
+      "sampleSeconds": 239.761,
+      "timestamp": "03:59.761",
+      "file": "04-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c0adba4678227dc332c7627c433704569a3363873fd3e115a901c76db5ddd639"
+    },
+    {
+      "sceneId": "04-08",
+      "title": "Implement rejection and replay",
+      "sceneStartSeconds": 256.814,
+      "sceneDurationSeconds": 39.77,
+      "sampleSeconds": 276.699,
+      "timestamp": "04:36.699",
+      "file": "04-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "1f3ce2f1ade044053259adf8c29b33f9cfb5d75fb9e3ff39f2f0d0e4bdcf4a1b"
+    },
+    {
+      "sceneId": "04-09",
+      "title": "Record a Java trace",
+      "sceneStartSeconds": 296.584,
+      "sceneDurationSeconds": 33.05,
+      "sampleSeconds": 313.109,
+      "timestamp": "05:13.109",
+      "file": "04-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8a9db472b1025619206b992f233b13951db4d45a223e1e6ef849cc815ecda1c9"
+    },
+    {
+      "sceneId": "04-10",
+      "title": "Avoid unsafe parallel sharing",
+      "sceneStartSeconds": 329.634,
+      "sceneDurationSeconds": 36.122,
+      "sampleSeconds": 347.695,
+      "timestamp": "05:47.695",
+      "file": "04-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c10f68bef6df2424dcbaa9c96b678a1db72cb5300d5eba3e14f0ac917cad837d"
+    },
+    {
+      "sceneId": "04-11",
+      "title": "Read the actual runner result",
+      "sceneStartSeconds": 365.75600000000003,
+      "sceneDurationSeconds": 35.69,
+      "sampleSeconds": 383.601,
+      "timestamp": "06:23.601",
+      "file": "04-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9b6efcbdd3138a59f6572dc1aaaf4148990a9ab958d27330ba1c4b205e8215bc"
+    },
+    {
+      "sceneId": "04-12",
+      "title": "Compare meaning across languages",
+      "sceneStartSeconds": 401.446,
+      "sceneDurationSeconds": 37.13,
+      "sampleSeconds": 420.011,
+      "timestamp": "07:00.011",
+      "file": "04-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "421b91d291cec72c7408574b9cead72dd227319a78f1533596c96d670a13d855"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "04-01",
+        "04-02",
+        "04-03",
+        "04-04",
+        "04-05",
+        "04-06"
+      ],
+      "sha256": "29d782fcb64ad77e41fd5216a9100fef5c48ff74d2adc1904623c88b4f8304cb"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "04-07",
+        "04-08",
+        "04-09",
+        "04-10",
+        "04-11",
+        "04-12"
+      ],
+      "sha256": "910ddb5bc8ea8ba092f3f184246e47b9cc2b5c2639f6a9e09c7a6398864dfa0b"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "03ad64f600f3d50608c9b91592f9034426981179241c8779af820cfc0a20afe4",
+    "reviewedAtUtc": "2026-09-10T03:53:07.039853+00:00",
+    "scope": "Review covers only 12 sampled midpoint frames of this identified MP4. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:51:45.429691+00:00",
+    "stage": "rendered",
+    "timelineSha256": "dd5b95ed92df2cd5e658301b99e0d1164ff61678658c37a3c7e81434045dac33",
+    "artifactSha256": "03ad64f600f3d50608c9b91592f9034426981179241c8779af820cfc0a20afe4",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/04/timeline.json": "dd5b95ed92df2cd5e658301b99e0d1164ff61678658c37a3c7e81434045dac33",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/04/narration.wav": "c2f8d2bc6c72218bcfe1f1311d3fcaea16559d6cbadb0f98de8faaad324dc451",
+      "audio/04/subtitles.srt": "8e4b759126e8a2c74a052c81defd77db2e481dd83ed00e3ad261758e617a8fab",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

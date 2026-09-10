@@ -1,0 +1,683 @@
+{
+  "id": "07",
+  "slug": "mocks-and-real-e2e",
+  "title": "Mocks and Real End-to-End Evidence",
+  "summary": "Build a focused 503 UI test and explain exactly what its mocked boundary proves.",
+  "language": "en",
+  "objectives": [
+    "Intercept only the intended browser request",
+    "Verify error presentation and unchanged state",
+    "Separate mocked UI coverage from real service resilience"
+  ],
+  "sources": [
+    "https://playwright.dev/docs/mock",
+    "https://playwright.dev/docs/network",
+    "https://playwright.dev/docs/api/class-route"
+  ],
+  "scenes": [
+    {
+      "id": "07-01",
+      "title": "Choose the boundary deliberately",
+      "kicker": "EPISODE 07 · STEP 1",
+      "type": "title",
+      "narration": "A mock is useful when its boundary matches the question you want to answer. This episode tests how the transfer page reacts to a temporary service error, then compares that evidence with the integrated cases already built. We will intercept one browser request and return a controlled response. That gives repeatable UI behavior without stopping services. It does not test whether the real backend generates that response during an outage. Write the scope beside the test name before implementing the route handler.",
+      "bullets": [
+        "Ask a focused UI question",
+        "Control one request boundary",
+        "State the evidence scope"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 0.0,
+      "duration": 33.026,
+      "audio": "audio/07/07-01.wav"
+    },
+    {
+      "id": "07-02",
+      "title": "Read the error contract",
+      "kicker": "EPISODE 07 · STEP 2",
+      "type": "steps",
+      "narration": "The local error scenario uses status five hundred three with a service unavailable code and a documented Spanish message. The page should display that message in an alert and make the transfer button usable again. Because the browser interception prevents this submission from reaching the backend, the account should remain unchanged. These expectations describe our specific experiment. They do not describe every possible service failure; a real timeout after a committed debit requires a different test and a careful idempotency recovery design.",
+      "bullets": [
+        "Expected HTTP 503",
+        "Visible error and button recovery",
+        "No backend submission in this case"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 33.026,
+      "duration": 34.106,
+      "audio": "audio/07/07-02.wav"
+    },
+    {
+      "id": "07-03",
+      "title": "Prepare the state before mocking",
+      "kicker": "EPISODE 07 · STEP 3",
+      "type": "steps",
+      "narration": "Create a fresh fixture, authenticate its context, and select the source account and beneficiary. Confirm the opening balance before installing the response substitution. This separates setup failures from the error behavior under test. If your handler accidentally intercepts fixture creation or login, you are testing a different path. Keep the route match narrow enough to affect only transfer submission. The test should be able to explain exactly which request is controlled and which requests still communicate with the running local services.",
+      "bullets": [
+        "Fresh authenticated fixture",
+        "Verify the opening balance",
+        "Keep setup outside the mock"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 67.132,
+      "duration": 35.282,
+      "audio": "audio/07/07-03.wav"
+    },
+    {
+      "id": "07-04",
+      "title": "Install a narrow route handler",
+      "kicker": "EPISODE 07 · STEP 4",
+      "type": "code",
+      "narration": "Register the handler before clicking. Match the transfer route and check the request method inside the handler. Requests using other methods continue to the real server. For the POST, fulfill a JSON response with the agreed status, content type, code, and message. The excerpt uses an ordinary JavaScript object converted to JSON, so the browser receives the intended structure. A broad wildcard that replaces every request can make a page appear resilient while hiding broken account queries, authentication, or unrelated loading behavior.",
+      "bullets": [
+        "Match the transfer route",
+        "Intercept POST only",
+        "Preserve unrelated requests"
+      ],
+      "code": "await page.route('**/api/transfers', async route => {\n  if (route.request().method() !== 'POST') {\n    return route.continue();\n  }\n  await route.fulfill({ status: 503,\n    contentType: 'application/json',\n    body: JSON.stringify({ code: 'SERVICE_UNAVAILABLE',\n      message: 'Servicio temporalmente no disponible' }),\n  });\n});",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Browser mock, not a real outage",
+      "start": 102.414,
+      "duration": 38.09,
+      "audio": "audio/07/07-04.wav"
+    },
+    {
+      "id": "07-05",
+      "title": "Exercise the user action once",
+      "kicker": "EPISODE 07 · STEP 5",
+      "type": "code",
+      "narration": "Enter one hundred pesos and click the transfer button once. Wait for the exact alert through a locator assertion, then verify that the button is enabled again. The visible error and recovery state are separate checks: a page might show the right message but leave the customer unable to try again. Keep the action count explicit. Repeated clicking could generate a different intention or obscure whether the UI recovered correctly from the controlled first response. The goal is a clear observation of one error transition.",
+      "bullets": [
+        "One submission",
+        "Exact alert text",
+        "Button becomes usable again"
+      ],
+      "code": "await page.getByRole('button',\n  { name: 'Transferir', exact: true }).click();\nawait expect(page.getByRole('alert')).toHaveText(\n  'Servicio temporalmente no disponible'\n);\nawait expect(page.getByRole('button',\n  { name: 'Transferir', exact: true })).toBeEnabled();",
+      "code_language": "typescript",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Browser mock, not a real outage",
+      "start": 140.50400000000002,
+      "duration": 33.698,
+      "audio": "audio/07/07-05.wav"
+    },
+    {
+      "id": "07-06",
+      "title": "Inspect real state after the mock",
+      "kicker": "EPISODE 07 · STEP 6",
+      "type": "steps",
+      "narration": "Query the authoritative account and canonical transfers using the authenticated API client. Verify the opening balance and an empty collection. This checks that your mocked browser submission did not create an unexpected backend effect. It also confirms you did not accidentally leave a real submission path active alongside the route handler. Explain the causal limit carefully: unchanged state follows because this request was intercepted before delivery. It does not prove a production service guarantees rollback whenever a customer receives a five hundred three response.",
+      "bullets": [
+        "Balance remains 100000",
+        "Canonical record count remains zero",
+        "Explain why no effect is expected"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 174.20200000000003,
+      "duration": 36.482,
+      "audio": "audio/07/07-06.wav"
+    },
+    {
+      "id": "07-07",
+      "title": "Remove the controlled boundary",
+      "kicker": "EPISODE 07 · STEP 7",
+      "type": "steps",
+      "narration": "Remove the route handler when the focused case ends, or let the isolated context close under the fixture's ownership. If you reuse a page within a larger scenario, unregister the exact handler before attempting a real transfer. Otherwise, the next operation may keep receiving the synthetic error and your diagnosis will point at the wrong service. Prefer a separate fixture for the mocked case. Each test then has a clearly defined environment and does not depend on cleanup from a previous scenario.",
+      "bullets": [
+        "Unregister or close the context",
+        "Avoid leaking the handler",
+        "Keep the mock case isolated"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 210.68400000000003,
+      "duration": 32.378,
+      "audio": "audio/07/07-07.wav"
+    },
+    {
+      "id": "07-08",
+      "title": "Compare two kinds of evidence",
+      "kicker": "EPISODE 07 · STEP 8",
+      "type": "steps",
+      "narration": "Place the mocked UI case beside the integrated successful transfer. In the first, the test supplies a controlled response and observes browser behavior. In the second, the browser calls real local services and the test verifies their resulting state. Both are useful, but they answer different questions. The mock provides a deterministic way to exercise an error presentation that might be difficult to trigger reliably. The integrated case checks compatibility across the implemented boundaries for its actual environment, data, and execution conditions.",
+      "bullets": [
+        "UI test → mocked 503 → browser alert",
+        "Integrated test → local services → observed business state"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 243.062,
+      "duration": 36.554,
+      "audio": "audio/07/07-08.wav"
+    },
+    {
+      "id": "07-09",
+      "title": "Keep backend resilience separate",
+      "kicker": "EPISODE 07 · STEP 9",
+      "type": "steps",
+      "narration": "Suppose you want to test a genuine service interruption next. Define where the interruption occurs, what the authoritative system may already have committed, and how the client recovers the same intention. Use a separate controlled environment and fault scenario. Do not relabel the existing browser mock as a distributed outage test. A timeout after commitment can require looking up the original transfer rather than issuing a new one. Idempotency gives a foundation, but a complete recovery scenario needs its own contract and observations.",
+      "bullets": [
+        "Define the interruption point",
+        "Account for possible commitment",
+        "Use a separate recovery scenario"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 279.616,
+      "duration": 34.802,
+      "audio": "audio/07/07-09.wav"
+    },
+    {
+      "id": "07-10",
+      "title": "Review generated mocks carefully",
+      "kicker": "EPISODE 07 · STEP 10",
+      "type": "steps",
+      "narration": "Ask AI to review the route handler with the actual error contract. Require it to identify the intercepted method, URL, response shape, and assertions about the browser and backend. Then ask which guarantees remain untested. Reject a patch that returns success from the mock while claiming to validate real transfer settlement. Also inspect whether the handler remains installed after the case. This review turns AI into an assistant for checking test scope, rather than a generator of convenient responses that make every scenario look successful.",
+      "bullets": [
+        "Inspect interception scope",
+        "Ask what remains untested",
+        "Reject invented settlement evidence"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 314.418,
+      "duration": 36.266,
+      "audio": "audio/07/07-10.wav"
+    },
+    {
+      "id": "07-11",
+      "title": "Label the report precisely",
+      "kicker": "EPISODE 07 · STEP 11",
+      "type": "code",
+      "narration": "Name the result as a UI error-handling test with a browser-supplied response. Include the synthetic status and the actual observed alert, button state, and authoritative state checks. Keep its coverage separate from the core successful, rejected, and idempotent transfer cases. The displayed report labels describe categories, not a fabricated result. Populate the observation fields only after execution. When another team reads the regression summary, they should understand immediately that this case tested presentation and recovery controls without exercising a real service outage.",
+      "bullets": [
+        "Category: UI error handling",
+        "Response supplied by the test",
+        "Observations come from execution"
+      ],
+      "code": "Case: TR-05\nBoundary: browser POST /api/transfers\nInjected response: HTTP 503\nExpected UI: alert + enabled button\nExpected backend: unchanged balance, zero records\nActual outcome: populate from the run",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Browser mock, not a real outage",
+      "start": 350.684,
+      "duration": 38.354,
+      "audio": "audio/07/07-11.wav"
+    },
+    {
+      "id": "07-12",
+      "title": "Choose the next useful test",
+      "kicker": "EPISODE 07 · STEP 12",
+      "type": "recap",
+      "narration": "Your checkpoint is an executed, isolated mock case and a short explanation of its limits. Demonstrate the alert, the recovered button, and the unchanged local account state, using actual evidence. Then name one separate integrated failure scenario you would add if the product required it, such as a lost response after commitment. This distinction prevents inflated coverage claims while preserving the value of deterministic UI tests. Next, use traces and a controlled implementation defect to diagnose failure without weakening assertions.",
+      "bullets": [
+        "Focused UI behavior verified",
+        "Coverage limit documented",
+        "Next failure scenario identified"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TR-05 · UI behavior under a controlled response",
+      "start": 389.038,
+      "duration": 35.426,
+      "audio": "audio/07/07-12.wav"
+    }
+  ],
+  "duration": 424.464,
+  "captions": [
+    {
+      "text": "A mock is useful when its boundary matches the question you want to answer. This",
+      "start": 0.7,
+      "end": 5.3999999999999995
+    },
+    {
+      "text": "episode tests how the transfer page reacts to a temporary service error, then compares",
+      "start": 5.4125,
+      "end": 10.424999999999999
+    },
+    {
+      "text": "that evidence with the integrated cases already built. We will intercept one browser",
+      "start": 10.4375,
+      "end": 15.525
+    },
+    {
+      "text": "request and return a controlled response. That gives repeatable UI behavior without",
+      "start": 15.5375,
+      "end": 20.8125
+    },
+    {
+      "text": "stopping services. It does not test whether the real backend generates that response",
+      "start": 20.825000000000003,
+      "end": 26.075000000000003
+    },
+    {
+      "text": "during an outage. Write the scope beside the test name before implementing the route",
+      "start": 26.087500000000002,
+      "end": 30.9125
+    },
+    {
+      "text": "handler.",
+      "start": 30.925,
+      "end": 31.5
+    },
+    {
+      "text": "The local error scenario uses status five hundred three with a service unavailable",
+      "start": 33.726000000000006,
+      "end": 37.9885
+    },
+    {
+      "text": "code and a documented Spanish message. The page should display that message in an",
+      "start": 38.001000000000005,
+      "end": 43.063500000000005
+    },
+    {
+      "text": "alert and make the transfer button usable again. Because the browser interception",
+      "start": 43.076,
+      "end": 47.9635
+    },
+    {
+      "text": "prevents this submission from reaching the backend, the account should remain",
+      "start": 47.976,
+      "end": 51.413500000000006
+    },
+    {
+      "text": "unchanged. These expectations describe our specific experiment. They do not describe",
+      "start": 51.426,
+      "end": 57.813500000000005
+    },
+    {
+      "text": "every possible service failure; a real timeout after a committed debit requires a",
+      "start": 57.82600000000001,
+      "end": 62.32600000000001
+    },
+    {
+      "text": "different test and a careful idempotency recovery design.",
+      "start": 62.3385,
+      "end": 65.6135
+    },
+    {
+      "text": "Create a fresh fixture, authenticate its context, and select the source account and",
+      "start": 67.83200000000001,
+      "end": 72.45700000000001
+    },
+    {
+      "text": "beneficiary. Confirm the opening balance before installing the response substitution.",
+      "start": 72.46950000000001,
+      "end": 77.9445
+    },
+    {
+      "text": "This separates setup failures from the error behavior under test. If your handler",
+      "start": 78.807,
+      "end": 83.857
+    },
+    {
+      "text": "accidentally intercepts fixture creation or login, you are testing a different path.",
+      "start": 83.8695,
+      "end": 88.53200000000001
+    },
+    {
+      "text": "Keep the route match narrow enough to affect only transfer submission. The test should",
+      "start": 89.39450000000001,
+      "end": 94.4445
+    },
+    {
+      "text": "be able to explain exactly which request is controlled and which requests still",
+      "start": 94.45700000000001,
+      "end": 98.5445
+    },
+    {
+      "text": "communicate with the running local services.",
+      "start": 98.557,
+      "end": 100.89450000000001
+    },
+    {
+      "text": "Register the handler before clicking. Match the transfer route and check the request",
+      "start": 103.114,
+      "end": 108.1515
+    },
+    {
+      "text": "method inside the handler. Requests using other methods continue to the real server.",
+      "start": 108.164,
+      "end": 113.56400000000001
+    },
+    {
+      "text": "For the POST, fulfill a JSON response with the agreed status, content type, code, and",
+      "start": 114.4265,
+      "end": 120.214
+    },
+    {
+      "text": "message. The excerpt uses an ordinary JavaScript object converted to JSON, so the",
+      "start": 120.2265,
+      "end": 126.5265
+    },
+    {
+      "text": "browser receives the intended structure. A broad wildcard that replaces every request",
+      "start": 126.539,
+      "end": 132.239
+    },
+    {
+      "text": "can make a page appear resilient while hiding broken account queries, authentication,",
+      "start": 132.2515,
+      "end": 136.9765
+    },
+    {
+      "text": "or unrelated loading behavior.",
+      "start": 137.239,
+      "end": 138.9765
+    },
+    {
+      "text": "Enter one hundred pesos and click the transfer button once. Wait for the exact alert",
+      "start": 141.204,
+      "end": 146.69150000000002
+    },
+    {
+      "text": "through a locator assertion, then verify that the button is enabled again. The visible",
+      "start": 146.704,
+      "end": 152.05400000000003
+    },
+    {
+      "text": "error and recovery state are separate checks: a page might show the right message but",
+      "start": 152.06650000000002,
+      "end": 156.5165
+    },
+    {
+      "text": "leave the customer unable to try again. Keep the action count explicit. Repeated",
+      "start": 156.52900000000002,
+      "end": 162.604
+    },
+    {
+      "text": "clicking could generate a different intention or obscure whether the UI recovered",
+      "start": 162.61650000000003,
+      "end": 166.50400000000002
+    },
+    {
+      "text": "correctly from the controlled first response. The goal is a clear observation of one",
+      "start": 166.5165,
+      "end": 171.69150000000002
+    },
+    {
+      "text": "error transition.",
+      "start": 171.704,
+      "end": 172.67900000000003
+    },
+    {
+      "text": "Query the authoritative account and canonical transfers using the authenticated API",
+      "start": 174.90200000000002,
+      "end": 179.37700000000004
+    },
+    {
+      "text": "client. Verify the opening balance and an empty collection. This checks that your",
+      "start": 179.38950000000003,
+      "end": 185.41450000000003
+    },
+    {
+      "text": "mocked browser submission did not create an unexpected backend effect. It also",
+      "start": 185.42700000000002,
+      "end": 190.58950000000002
+    },
+    {
+      "text": "confirms you did not accidentally leave a real submission path active alongside the",
+      "start": 190.60200000000003,
+      "end": 194.75200000000004
+    },
+    {
+      "text": "route handler. Explain the causal limit carefully: unchanged state follows because",
+      "start": 194.76450000000003,
+      "end": 200.11450000000002
+    },
+    {
+      "text": "this request was intercepted before delivery. It does not prove a production service",
+      "start": 200.12700000000004,
+      "end": 205.11450000000002
+    },
+    {
+      "text": "guarantees rollback whenever a customer receives a five hundred three response.",
+      "start": 205.12700000000004,
+      "end": 209.15200000000004
+    },
+    {
+      "text": "Remove the route handler when the focused case ends, or let the isolated context close",
+      "start": 211.38400000000001,
+      "end": 216.22150000000002
+    },
+    {
+      "text": "under the fixture's ownership. If you reuse a page within a larger scenario,",
+      "start": 216.23400000000004,
+      "end": 221.00900000000001
+    },
+    {
+      "text": "unregister the exact handler before attempting a real transfer. Otherwise, the next",
+      "start": 221.19650000000001,
+      "end": 226.68400000000003
+    },
+    {
+      "text": "operation may keep receiving the synthetic error and your diagnosis will point at the",
+      "start": 226.69650000000001,
+      "end": 230.94650000000001
+    },
+    {
+      "text": "wrong service. Prefer a separate fixture for the mocked case. Each test then has a",
+      "start": 230.95900000000003,
+      "end": 237.28400000000002
+    },
+    {
+      "text": "clearly defined environment and does not depend on cleanup from a previous scenario.",
+      "start": 237.29650000000004,
+      "end": 241.53400000000002
+    },
+    {
+      "text": "Place the mocked UI case beside the integrated successful transfer. In the first, the",
+      "start": 243.762,
+      "end": 249.137
+    },
+    {
+      "text": "test supplies a controlled response and observes browser behavior. In the second, the",
+      "start": 249.14950000000002,
+      "end": 254.4745
+    },
+    {
+      "text": "browser calls real local services and the test verifies their resulting state. Both",
+      "start": 254.48700000000002,
+      "end": 259.937
+    },
+    {
+      "text": "are useful, but they answer different questions. The mock provides a deterministic way",
+      "start": 259.9495,
+      "end": 265.3245
+    },
+    {
+      "text": "to exercise an error presentation that might be difficult to trigger reliably. The",
+      "start": 265.337,
+      "end": 270.47450000000003
+    },
+    {
+      "text": "integrated case checks compatibility across the implemented boundaries for its actual",
+      "start": 270.487,
+      "end": 274.962
+    },
+    {
+      "text": "environment, data, and execution conditions.",
+      "start": 274.97450000000003,
+      "end": 278.09950000000003
+    },
+    {
+      "text": "Suppose you want to test a genuine service interruption next. Define where the",
+      "start": 280.316,
+      "end": 284.9785
+    },
+    {
+      "text": "interruption occurs, what the authoritative system may already have committed, and how",
+      "start": 284.991,
+      "end": 289.616
+    },
+    {
+      "text": "the client recovers the same intention. Use a separate controlled environment and",
+      "start": 289.6285,
+      "end": 294.466
+    },
+    {
+      "text": "fault scenario. Do not relabel the existing browser mock as a distributed outage test.",
+      "start": 294.4785,
+      "end": 300.01599999999996
+    },
+    {
+      "text": "A timeout after commitment can require looking up the original transfer rather than",
+      "start": 300.8785,
+      "end": 305.0035
+    },
+    {
+      "text": "issuing a new one. Idempotency gives a foundation, but a complete recovery scenario",
+      "start": 305.01599999999996,
+      "end": 310.566
+    },
+    {
+      "text": "needs its own contract and observations.",
+      "start": 310.57849999999996,
+      "end": 312.89099999999996
+    },
+    {
+      "text": "Ask AI to review the route handler with the actual error contract. Require it to",
+      "start": 315.118,
+      "end": 320.243
+    },
+    {
+      "text": "identify the intercepted method, URL, response shape, and assertions about the browser",
+      "start": 320.2555,
+      "end": 325.568
+    },
+    {
+      "text": "and backend. Then ask which guarantees remain untested. Reject a patch that returns",
+      "start": 325.58050000000003,
+      "end": 331.9055
+    },
+    {
+      "text": "success from the mock while claiming to validate real transfer settlement. Also",
+      "start": 331.918,
+      "end": 336.83050000000003
+    },
+    {
+      "text": "inspect whether the handler remains installed after the case. This review turns AI",
+      "start": 336.843,
+      "end": 342.093
+    },
+    {
+      "text": "into an assistant for checking test scope, rather than a generator of convenient",
+      "start": 342.1055,
+      "end": 346.2305
+    },
+    {
+      "text": "responses that make every scenario look successful.",
+      "start": 346.243,
+      "end": 349.1555
+    },
+    {
+      "text": "Name the result as a UI error-handling test with a browser-supplied response. Include",
+      "start": 351.384,
+      "end": 356.79650000000004
+    },
+    {
+      "text": "the synthetic status and the actual observed alert, button state, and authoritative",
+      "start": 356.809,
+      "end": 361.2715
+    },
+    {
+      "text": "state checks. Keep its coverage separate from the core successful, rejected, and",
+      "start": 361.28400000000005,
+      "end": 366.67150000000004
+    },
+    {
+      "text": "idempotent transfer cases. The displayed report labels describe categories, not a",
+      "start": 366.684,
+      "end": 372.29650000000004
+    },
+    {
+      "text": "fabricated result. Populate the observation fields only after execution. When another",
+      "start": 372.309,
+      "end": 378.8215
+    },
+    {
+      "text": "team reads the regression summary, they should understand immediately that this case",
+      "start": 378.834,
+      "end": 382.8215
+    },
+    {
+      "text": "tested presentation and recovery controls without exercising a real service outage.",
+      "start": 382.834,
+      "end": 387.5215
+    },
+    {
+      "text": "Your checkpoint is an executed, isolated mock case and a short explanation of its",
+      "start": 389.738,
+      "end": 394.26300000000003
+    },
+    {
+      "text": "limits. Demonstrate the alert, the recovered button, and the unchanged local account",
+      "start": 394.2755,
+      "end": 399.663
+    },
+    {
+      "text": "state, using actual evidence. Then name one separate integrated failure scenario you",
+      "start": 399.6755,
+      "end": 405.32550000000003
+    },
+    {
+      "text": "would add if the product required it, such as a lost response after commitment. This",
+      "start": 405.338,
+      "end": 410.57550000000003
+    },
+    {
+      "text": "distinction prevents inflated coverage claims while preserving the value of",
+      "start": 410.588,
+      "end": 414.2505
+    },
+    {
+      "text": "deterministic UI tests. Next, use traces and a controlled implementation defect to",
+      "start": 414.26300000000003,
+      "end": 420.363
+    },
+    {
+      "text": "diagnose failure without weakening assertions.",
+      "start": 420.3755,
+      "end": 422.938
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 56.5,
+  "caption_mapping_revision": 2
+}

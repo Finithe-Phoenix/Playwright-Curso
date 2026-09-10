@@ -1,0 +1,698 @@
+{
+  "id": "03",
+  "slug": "python-pytest-fixtures",
+  "title": "Python: Fixtures That Own Their Data",
+  "summary": "Use pytest fixtures to prepare, authenticate, execute and clean up isolated tests.",
+  "language": "en",
+  "objectives": [
+    "Compose function-scoped data and browser fixtures",
+    "Use synchronous Playwright APIs consistently",
+    "Preserve failure evidence and cleanup"
+  ],
+  "sources": [
+    "https://playwright.dev/python/docs/test-runners",
+    "https://playwright.dev/python/docs/api-testing",
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+  ],
+  "scenes": [
+    {
+      "id": "03-01",
+      "title": "Translate the lifecycle",
+      "kicker": "EPISODE 03 · STEP 1",
+      "type": "title",
+      "narration": "Now implement the same business cases in Python with pytest and the synchronous Playwright API. The important translation is the lifecycle, not replacing camel case with underscores. Each case must receive fresh data, authenticate its own browser context, execute its assertions, and release resources even when something fails. The pytest plugin already provides a page and context. Build your laboratory fixtures around those objects so isolation and trace options remain understandable. Keep the same amounts, record counts, and idempotency rules.",
+      "bullets": [
+        "Same business contract",
+        "Python lifecycle",
+        "Plugin-owned page and context"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 0.0,
+      "duration": 38.234,
+      "audio": "audio/03/03-01.wav"
+    },
+    {
+      "id": "03-02",
+      "title": "Confirm one Python environment",
+      "kicker": "EPISODE 03 · STEP 2",
+      "type": "terminal",
+      "narration": "Open the Python test project and invoke the virtual environment's interpreter directly. Check the installed packages against the project's requirements, then run pytest with a targeted case selection. Calling Python as a module launcher ensures pytest comes from this environment. If your terminal finds a different Python on its search path, packages and browsers can appear to be missing even though another environment contains them. Resolve that mismatch first, and record the interpreter used so another learner can reproduce your execution.",
+      "bullets": [
+        "Use the virtual environment",
+        "Select the intended case",
+        "Record environment evidence"
+      ],
+      "code": ".\\.venv\\Scripts\\python.exe -m pip show playwright\n.\\.venv\\Scripts\\python.exe -m pytest test_hybrid_browser.py -q",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 38.234,
+      "duration": 34.25,
+      "audio": "audio/03/03-02.wav"
+    },
+    {
+      "id": "03-03",
+      "title": "Separate two HTTP responsibilities",
+      "kicker": "EPISODE 03 · STEP 3",
+      "type": "steps",
+      "narration": "Draw two HTTP clients beside the browser. A dedicated preparation client uses the local test hook key to create and remove fixtures. The page's associated request client logs in and queries business APIs as the simulated user. Keep the hook header away from global browser headers. This prevents a business request from accidentally carrying administrative test capabilities. It also makes failures easier to classify: fixture creation, login, transfer submission, and observation have different expected responses and different evidence requirements.",
+      "bullets": [
+        "Preparation → test hooks → owned data",
+        "Browser context → authenticated business API"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 72.48400000000001,
+      "duration": 37.994,
+      "audio": "audio/03/03-03.wav"
+    },
+    {
+      "id": "03-04",
+      "title": "Use a yielding fixture",
+      "kicker": "EPISODE 03 · STEP 4",
+      "type": "code",
+      "narration": "A function-scoped fixture can yield the created dataset to a test and finalize it afterward. The displayed skeleton explains ownership rather than providing a complete implementation: create data through the documented local endpoint, yield its identifiers, and delete that exact fixture in the finalization block. Your actual helper must check response statuses and handle partial setup failures. If login fails after creation, cleanup still owns the created fixture. Avoid a global reset that erases data belonging to another learner or parallel worker.",
+      "bullets": [
+        "One fixture per case",
+        "Yield owned identifiers",
+        "Delete only owned data"
+      ],
+      "code": "@pytest.fixture\ndef fixture_data(hook_client):\n    data = create_fixture(hook_client)\n    try:\n        yield data\n    finally:\n        delete_fixture(hook_client, data['fixtureId'])",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Lab helpers and imports required",
+      "start": 110.47800000000001,
+      "duration": 36.482,
+      "audio": "audio/03/03-04.wav"
+    },
+    {
+      "id": "03-05",
+      "title": "Authenticate the provided context",
+      "kicker": "EPISODE 03 · STEP 5",
+      "type": "code",
+      "narration": "Use the context supplied by the pytest plugin and post the fixture's synthetic credentials through its associated request client. Assert the successful status before navigating. Because this request belongs to the browser context, the resulting cookie becomes available to the page. An independently created HTTP client has separate cookie storage unless you deliberately transfer state. Keep this choice visible in the fixture instead of hiding it in a utility with unclear ownership. Always identify whose session the browser is actually using.",
+      "bullets": [
+        "Use synthetic credentials",
+        "Authenticate the plugin context",
+        "Check login before navigation"
+      ],
+      "code": "login = context.request.post('/api/session', data={\n    'username': fixture_data['username'],\n    'password': fixture_data['password'],\n})\nassert login.status == 200",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Lab helpers and imports required",
+      "start": 146.96,
+      "duration": 35.93,
+      "audio": "audio/03/03-05.wav"
+    },
+    {
+      "id": "03-06",
+      "title": "Write the visible behavior",
+      "kicker": "EPISODE 03 · STEP 6",
+      "type": "code",
+      "narration": "Inside the successful transfer test, navigate and select the fixture's account and beneficiary before entering one hundred pesos. The excerpt focuses on submission once those selections exist. Python's synchronous API does not require JavaScript await expressions. Use Playwright's expectation object for UI assertions so the intended text condition can settle. A plain immediate text comparison has different waiting behavior. When asking AI to translate the test, require the synchronous API throughout; mixing synchronous and asynchronous patterns produces failures unrelated to the business rule.",
+      "bullets": [
+        "Select the fixture data first",
+        "Use synchronous calls",
+        "Use locator expectations"
+      ],
+      "code": "page.get_by_label('Importe (MXN)', exact=True).fill('100.00')\npage.get_by_role('button', name='Transferir', exact=True).click()\nexpect(page.get_by_role('status')).to_have_text(\n    'Transferencia realizada'\n)\nexpect(page.get_by_test_id('account-balance')).to_have_text(\n    'MXN 900.00'\n)",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Lab helpers and imports required",
+      "start": 182.89000000000001,
+      "duration": 40.418,
+      "audio": "audio/03/03-06.wav"
+    },
+    {
+      "id": "03-07",
+      "title": "Check response semantics",
+      "kicker": "EPISODE 03 · STEP 7",
+      "type": "code",
+      "narration": "Observe the account using the authenticated page request client. In Python, the response status in this example is a property, while parsing JSON uses a method. These small language differences are easy for generated code to get wrong. Assert the successful HTTP status, then the integer balance. Apply the same pattern to the canonical transfer collection and inspect its count and fields. For the separate distributed ledger view, use bounded polling rather than assuming that its record appears immediately after account settlement.",
+      "bullets": [
+        "Check HTTP status",
+        "Parse the body",
+        "Keep the monetary oracle"
+      ],
+      "code": "account = page.request.get(\n    '/api/accounts/' + fixture_data['sourceAccountId']\n)\nassert account.status == 200\nassert account.json()['balanceMinor'] == 90000",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Lab helpers and imports required",
+      "start": 223.30800000000002,
+      "duration": 35.882,
+      "audio": "audio/03/03-07.wav"
+    },
+    {
+      "id": "03-08",
+      "title": "Capture the rejection response",
+      "kicker": "EPISODE 03 · STEP 8",
+      "type": "code",
+      "narration": "For insufficient funds, prepare eleven hundred pesos in a fresh fixture. Enter the response expectation context before clicking, and match the transfer request specifically. After the context closes, inspect the captured response, its business error code, and the UI alert. Then prove the balance and transfer count stayed unchanged. This distinguishes a business rejection from a button that never submitted anything. A locator timeout, a network failure, and an insufficient funds response are different observations and should not become one generic rejection result.",
+      "bullets": [
+        "Observe the POST",
+        "Inspect the business error",
+        "Verify no side effects"
+      ],
+      "code": "with page.expect_response(\n    lambda r: r.request.method == 'POST'\n    and r.url.endswith('/api/transfers')\n) as sent:\n    page.get_by_role('button', name='Transferir').click()\nassert sent.value.status == 422\nassert sent.value.json()['code'] == 'INSUFFICIENT_FUNDS'",
+      "code_language": "python",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "Illustrative excerpt · Lab helpers and imports required",
+      "start": 259.19,
+      "duration": 37.994,
+      "audio": "audio/03/03-08.wav"
+    },
+    {
+      "id": "03-09",
+      "title": "Keep idempotency outside variation",
+      "kicker": "EPISODE 03 · STEP 9",
+      "type": "steps",
+      "narration": "Create the request body and idempotency key once within the Python case, then submit the same values twice through the authenticated context. Check creation followed by replay, compare the identifiers, and assert one debit and one record. If you parameterize cases later, keep the fixture function-scoped so each parameter receives independent data. A parameter list describes inputs; it does not automatically isolate the state those inputs mutate. Inspect resulting test names so failures identify the business case and dataset used.",
+      "bullets": [
+        "Create the key once",
+        "Reuse the same body",
+        "Isolate parameterized data"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 297.18399999999997,
+      "duration": 36.074,
+      "audio": "audio/03/03-09.wav"
+    },
+    {
+      "id": "03-10",
+      "title": "Retain a useful trace",
+      "kicker": "EPISODE 03 · STEP 10",
+      "type": "terminal",
+      "narration": "Run the Python suite with trace retention on failure and request a JUnit XML result file. The plugin's trace options apply to its managed fixtures; a browser context created manually in a helper needs its own trace management. That is why we extended the provided fixtures. Inspect an actual failed run to confirm the trace exists and can be opened. A configuration line expresses intended behavior, while a saved artifact demonstrates that it occurred. Keep those statements separate in your execution report.",
+      "bullets": [
+        "Retain failure traces",
+        "Write JUnit XML",
+        "Verify an actual artifact"
+      ],
+      "code": ".\\.venv\\Scripts\\python.exe -m pytest --tracing=retain-on-failure\n.\\.venv\\Scripts\\python.exe -m pytest --junitxml=results.xml",
+      "code_language": "powershell",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 333.258,
+      "duration": 35.018,
+      "audio": "audio/03/03-10.wav"
+    },
+    {
+      "id": "03-11",
+      "title": "Preserve the original failure",
+      "kicker": "EPISODE 03 · STEP 11",
+      "type": "steps",
+      "narration": "Review fixture finalization after a deliberately failing assertion. Cleanup should attempt to remove only the owned dataset and release its preparation client. If cleanup also fails, report that problem with the fixture identifier without replacing the original assertion failure. Save evidence before destroying the context or deleting data needed for inspection. For an interrupted process, record outstanding fixture identifiers so a later recovery step can target them. Reliable teardown belongs to the experiment's design, rather than being a cosmetic action after the assertions finish.",
+      "bullets": [
+        "Capture evidence first",
+        "Preserve the original failure",
+        "Report cleanup separately"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 368.27599999999995,
+      "duration": 38.354,
+      "audio": "audio/03/03-11.wav"
+    },
+    {
+      "id": "03-12",
+      "title": "Explain your fixture graph",
+      "kicker": "EPISODE 03 · STEP 12",
+      "type": "recap",
+      "narration": "Finish by drawing the dependency graph for one Python test. The preparation client creates the dataset; the dataset and browser context establish authentication; the page performs the action; API observations verify effects; finalizers release what they own. Point to the code that guarantees each transition. Then report the actual status of the three cases, including blocked setup or remaining failures. You now have a Python structure that preserves the TypeScript version's business meaning while using pytest's own lifecycle and reporting conventions.",
+      "bullets": [
+        "Know who creates resources",
+        "Know who releases them",
+        "Report actual case outcomes"
+      ],
+      "code": "",
+      "code_language": "text",
+      "diagram": [],
+      "highlight_lines": [],
+      "footer": "TransferLab · Local training simulator",
+      "start": 406.62999999999994,
+      "duration": 36.65,
+      "audio": "audio/03/03-12.wav"
+    }
+  ],
+  "duration": 443.2799999999999,
+  "captions": [
+    {
+      "text": "Now implement the same business cases in Python with pytest and the synchronous",
+      "start": 0.7,
+      "end": 4.9624999999999995
+    },
+    {
+      "text": "Playwright API. The important translation is the lifecycle, not replacing camel case",
+      "start": 4.975,
+      "end": 10.8875
+    },
+    {
+      "text": "with underscores. Each case must receive fresh data, authenticate its own browser",
+      "start": 10.9,
+      "end": 16.3125
+    },
+    {
+      "text": "context, execute its assertions, and release resources even when something fails. The",
+      "start": 16.325,
+      "end": 22.450000000000003
+    },
+    {
+      "text": "pytest plugin already provides a page and context. Build your laboratory fixtures",
+      "start": 22.462500000000002,
+      "end": 27.9125
+    },
+    {
+      "text": "around those objects so isolation and trace options remain understandable. Keep the",
+      "start": 27.925,
+      "end": 33.3875
+    },
+    {
+      "text": "same amounts, record counts, and idempotency rules.",
+      "start": 33.4,
+      "end": 36.7
+    },
+    {
+      "text": "Open the Python test project and invoke the virtual environment's interpreter",
+      "start": 38.934000000000005,
+      "end": 42.809000000000005
+    },
+    {
+      "text": "directly. Check the installed packages against the project's requirements, then run",
+      "start": 42.8215,
+      "end": 48.084
+    },
+    {
+      "text": "pytest with a targeted case selection. Calling Python as a module launcher ensures",
+      "start": 48.0965,
+      "end": 53.7965
+    },
+    {
+      "text": "pytest comes from this environment. If your terminal finds a different Python on its",
+      "start": 53.809,
+      "end": 58.846500000000006
+    },
+    {
+      "text": "search path, packages and browsers can appear to be missing even though another",
+      "start": 58.859,
+      "end": 62.846500000000006
+    },
+    {
+      "text": "environment contains them. Resolve that mismatch first, and record the interpreter",
+      "start": 62.859,
+      "end": 68.04650000000001
+    },
+    {
+      "text": "used so another learner can reproduce your execution.",
+      "start": 68.059,
+      "end": 70.959
+    },
+    {
+      "text": "Draw two HTTP clients beside the browser. A dedicated preparation client uses the",
+      "start": 73.18400000000001,
+      "end": 79.05900000000001
+    },
+    {
+      "text": "local test hook key to create and remove fixtures. The page's associated request",
+      "start": 79.07150000000001,
+      "end": 84.5215
+    },
+    {
+      "text": "client logs in and queries business APIs as the simulated user. Keep the hook header",
+      "start": 84.534,
+      "end": 90.13400000000001
+    },
+    {
+      "text": "away from global browser headers. This prevents a business request from accidentally",
+      "start": 90.1465,
+      "end": 95.2715
+    },
+    {
+      "text": "carrying administrative test capabilities. It also makes failures easier to classify:",
+      "start": 95.284,
+      "end": 101.12150000000001
+    },
+    {
+      "text": "fixture creation, login, transfer submission, and observation have different expected",
+      "start": 101.35900000000001,
+      "end": 106.40900000000002
+    },
+    {
+      "text": "responses and different evidence requirements.",
+      "start": 106.42150000000001,
+      "end": 108.959
+    },
+    {
+      "text": "A function-scoped fixture can yield the created dataset to a test and finalize it",
+      "start": 111.17800000000001,
+      "end": 115.61550000000001
+    },
+    {
+      "text": "afterward. The displayed skeleton explains ownership rather than providing a complete",
+      "start": 115.62800000000001,
+      "end": 120.81550000000001
+    },
+    {
+      "text": "implementation: create data through the documented local endpoint, yield its",
+      "start": 120.828,
+      "end": 125.19050000000001
+    },
+    {
+      "text": "identifiers, and delete that exact fixture in the finalization block. Your actual",
+      "start": 125.203,
+      "end": 130.953
+    },
+    {
+      "text": "helper must check response statuses and handle partial setup failures. If login fails",
+      "start": 130.96550000000002,
+      "end": 136.65300000000002
+    },
+    {
+      "text": "after creation, cleanup still owns the created fixture. Avoid a global reset that",
+      "start": 136.6655,
+      "end": 142.1405
+    },
+    {
+      "text": "erases data belonging to another learner or parallel worker.",
+      "start": 142.15300000000002,
+      "end": 145.44050000000001
+    },
+    {
+      "text": "Use the context supplied by the pytest plugin and post the fixture's synthetic",
+      "start": 147.66,
+      "end": 151.935
+    },
+    {
+      "text": "credentials through its associated request client. Assert the successful status before",
+      "start": 151.94750000000002,
+      "end": 157.335
+    },
+    {
+      "text": "navigating. Because this request belongs to the browser context, the resulting cookie",
+      "start": 157.3475,
+      "end": 162.8725
+    },
+    {
+      "text": "becomes available to the page. An independently created HTTP client has separate",
+      "start": 162.88500000000002,
+      "end": 168.71
+    },
+    {
+      "text": "cookie storage unless you deliberately transfer state. Keep this choice visible in the",
+      "start": 168.72250000000003,
+      "end": 173.72250000000003
+    },
+    {
+      "text": "fixture instead of hiding it in a utility with unclear ownership. Always identify",
+      "start": 173.735,
+      "end": 179.0725
+    },
+    {
+      "text": "whose session the browser is actually using.",
+      "start": 179.085,
+      "end": 181.36
+    },
+    {
+      "text": "Inside the successful transfer test, navigate and select the fixture's account and",
+      "start": 183.59,
+      "end": 188.1775
+    },
+    {
+      "text": "beneficiary before entering one hundred pesos. The excerpt focuses on submission once",
+      "start": 188.19000000000003,
+      "end": 193.965
+    },
+    {
+      "text": "those selections exist. Python's synchronous API does not require JavaScript await",
+      "start": 193.97750000000002,
+      "end": 199.60250000000002
+    },
+    {
+      "text": "expressions. Use Playwright's expectation object for UI assertions so the intended",
+      "start": 199.615,
+      "end": 205.09000000000003
+    },
+    {
+      "text": "text condition can settle. A plain immediate text comparison has different waiting",
+      "start": 205.10250000000002,
+      "end": 210.25250000000003
+    },
+    {
+      "text": "behavior. When asking AI to translate the test, require the synchronous API",
+      "start": 210.26500000000001,
+      "end": 215.95250000000001
+    },
+    {
+      "text": "throughout; mixing synchronous and asynchronous patterns produces failures unrelated",
+      "start": 215.96500000000003,
+      "end": 220.76500000000001
+    },
+    {
+      "text": "to the business rule.",
+      "start": 220.77750000000003,
+      "end": 221.77750000000003
+    },
+    {
+      "text": "Observe the account using the authenticated page request client. In Python, the",
+      "start": 224.008,
+      "end": 229.27050000000003
+    },
+    {
+      "text": "response status in this example is a property, while parsing JSON uses a method. These",
+      "start": 229.28300000000002,
+      "end": 235.42050000000003
+    },
+    {
+      "text": "small language differences are easy for generated code to get wrong. Assert the",
+      "start": 235.43300000000002,
+      "end": 240.35800000000003
+    },
+    {
+      "text": "successful HTTP status, then the integer balance. Apply the same pattern to the",
+      "start": 240.37050000000002,
+      "end": 246.15800000000002
+    },
+    {
+      "text": "canonical transfer collection and inspect its count and fields. For the separate",
+      "start": 246.17050000000003,
+      "end": 251.24550000000002
+    },
+    {
+      "text": "distributed ledger view, use bounded polling rather than assuming that its record",
+      "start": 251.25800000000004,
+      "end": 255.38300000000004
+    },
+    {
+      "text": "appears immediately after account settlement.",
+      "start": 255.39550000000003,
+      "end": 257.658
+    },
+    {
+      "text": "For insufficient funds, prepare eleven hundred pesos in a fresh fixture. Enter the",
+      "start": 259.89,
+      "end": 265.265
+    },
+    {
+      "text": "response expectation context before clicking, and match the transfer request",
+      "start": 265.2775,
+      "end": 269.8025
+    },
+    {
+      "text": "specifically. After the context closes, inspect the captured response, its business",
+      "start": 269.815,
+      "end": 275.6275
+    },
+    {
+      "text": "error code, and the UI alert. Then prove the balance and transfer count stayed",
+      "start": 275.64,
+      "end": 280.6275
+    },
+    {
+      "text": "unchanged. This distinguishes a business rejection from a button that never submitted",
+      "start": 280.64,
+      "end": 285.8525
+    },
+    {
+      "text": "anything. A locator timeout, a network failure, and an insufficient funds response are",
+      "start": 285.865,
+      "end": 291.8525
+    },
+    {
+      "text": "different observations and should not become one generic rejection result.",
+      "start": 291.865,
+      "end": 295.6525
+    },
+    {
+      "text": "Create the request body and idempotency key once within the Python case, then submit",
+      "start": 297.88399999999996,
+      "end": 302.89649999999995
+    },
+    {
+      "text": "the same values twice through the authenticated context. Check creation followed by",
+      "start": 302.909,
+      "end": 308.159
+    },
+    {
+      "text": "replay, compare the identifiers, and assert one debit and one record. If you",
+      "start": 308.1715,
+      "end": 313.69649999999996
+    },
+    {
+      "text": "parameterize cases later, keep the fixture function-scoped so each parameter receives",
+      "start": 313.70899999999995,
+      "end": 318.44649999999996
+    },
+    {
+      "text": "independent data. A parameter list describes inputs; it does not automatically isolate",
+      "start": 318.45899999999995,
+      "end": 324.2965
+    },
+    {
+      "text": "the state those inputs mutate. Inspect resulting test names so failures identify the",
+      "start": 324.30899999999997,
+      "end": 329.77149999999995
+    },
+    {
+      "text": "business case and dataset used.",
+      "start": 329.784,
+      "end": 331.734
+    },
+    {
+      "text": "Run the Python suite with trace retention on failure and request a JUnit XML result",
+      "start": 333.95799999999997,
+      "end": 338.933
+    },
+    {
+      "text": "file. The plugin's trace options apply to its managed fixtures; a browser context",
+      "start": 338.9455,
+      "end": 344.733
+    },
+    {
+      "text": "created manually in a helper needs its own trace management. That is why we extended",
+      "start": 344.7455,
+      "end": 349.97049999999996
+    },
+    {
+      "text": "the provided fixtures. Inspect an actual failed run to confirm the trace exists and",
+      "start": 349.983,
+      "end": 355.6205
+    },
+    {
+      "text": "can be opened. A configuration line expresses intended behavior, while a saved",
+      "start": 355.633,
+      "end": 361.08299999999997
+    },
+    {
+      "text": "artifact demonstrates that it occurred. Keep those statements separate in your",
+      "start": 361.09549999999996,
+      "end": 365.5455
+    },
+    {
+      "text": "execution report.",
+      "start": 365.558,
+      "end": 366.7455
+    },
+    {
+      "text": "Review fixture finalization after a deliberately failing assertion. Cleanup should",
+      "start": 368.97599999999994,
+      "end": 374.08849999999995
+    },
+    {
+      "text": "attempt to remove only the owned dataset and release its preparation client. If",
+      "start": 374.10099999999994,
+      "end": 378.9385
+    },
+    {
+      "text": "cleanup also fails, report that problem with the fixture identifier without replacing",
+      "start": 378.95099999999996,
+      "end": 383.58849999999995
+    },
+    {
+      "text": "the original assertion failure. Save evidence before destroying the context or",
+      "start": 383.60099999999994,
+      "end": 388.58849999999995
+    },
+    {
+      "text": "deleting data needed for inspection. For an interrupted process, record outstanding",
+      "start": 388.60099999999994,
+      "end": 394.11349999999993
+    },
+    {
+      "text": "fixture identifiers so a later recovery step can target them. Reliable teardown",
+      "start": 394.126,
+      "end": 399.58849999999995
+    },
+    {
+      "text": "belongs to the experiment's design, rather than being a cosmetic action after the",
+      "start": 399.60099999999994,
+      "end": 403.98849999999993
+    },
+    {
+      "text": "assertions finish.",
+      "start": 404.001,
+      "end": 405.11349999999993
+    },
+    {
+      "text": "Finish by drawing the dependency graph for one Python test. The preparation client",
+      "start": 407.3299999999999,
+      "end": 412.74249999999995
+    },
+    {
+      "text": "creates the dataset; the dataset and browser context establish authentication; the",
+      "start": 412.75499999999994,
+      "end": 417.62999999999994
+    },
+    {
+      "text": "page performs the action; API observations verify effects; finalizers release what",
+      "start": 417.6424999999999,
+      "end": 423.30499999999995
+    },
+    {
+      "text": "they own. Point to the code that guarantees each transition. Then report the actual",
+      "start": 423.31749999999994,
+      "end": 429.12999999999994
+    },
+    {
+      "text": "status of the three cases, including blocked setup or remaining failures. You now have",
+      "start": 429.1424999999999,
+      "end": 434.80499999999995
+    },
+    {
+      "text": "a Python structure that preserves the TypeScript version's business meaning while",
+      "start": 434.81749999999994,
+      "end": 438.4549999999999
+    },
+    {
+      "text": "using pytest's own lifecycle and reporting conventions.",
+      "start": 438.4674999999999,
+      "end": 441.75499999999994
+    }
+  ],
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "subtitle_timing": "Actual provider word boundaries; original acronyms restored when alignment is exact.",
+  "within_requested_range": true,
+  "generation_seconds": 75.5619999999999,
+  "caption_mapping_revision": 2
+}

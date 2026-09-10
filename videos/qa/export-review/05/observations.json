@@ -1,0 +1,46 @@
+{
+  "episode": "05",
+  "visualRevision": "blue-gray-white-2026-09-09",
+  "mp4Sha256": "5f3ac819095fb7d8cbc31cb98c157c882c7e5f18117d453e226be6120e819f67",
+  "reviewedAtUtc": "2026-09-10T03:53:58.987022+00:00",
+  "visualReviewPerformedByAgent": true,
+  "reviewMethod": "Visual inspection of both contact sheets containing all 12 actual midpoint frames of the revised final MP4, plus the listed native-resolution code sample. All production inputFiles and artifact hashes were verified against current files before extraction and again before recording this review.",
+  "reviewedSceneIds": [
+    "05-01",
+    "05-02",
+    "05-03",
+    "05-04",
+    "05-05",
+    "05-06",
+    "05-07",
+    "05-08",
+    "05-09",
+    "05-10",
+    "05-11",
+    "05-12"
+  ],
+  "fullResolutionFramesInspected": [
+    "05-02"
+  ],
+  "allProductionInputHashesVerified": true,
+  "verifiedInputFiles": {
+    "audio/05/timeline.json": "ab670366a96b8363c14a236a26bf9233e4ab94bf2e7a2459f2e048f8bb754a4e",
+    "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+    "audio/05/narration.wav": "15cae55d387f1a659afc130a6aba530667039a9e43390c4738366e9605539e5d",
+    "audio/05/subtitles.srt": "6f363ef8bb232213172d074e9e6f06dd44dd54f0b9d02c5ac30fa85050ef05e5",
+    "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+    "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  "sampledFrameFindings": [
+    "The title card, lifecycle diagram and white checklist cards use blue, cool gray and navy with no green or teal visible in the sampled frames.",
+    "The fixture creation and login excerpts fit their code panels. The fixture-creation panel was also inspected at native 1920x1080 and its six lines are readable.",
+    "The five-step ownership flow, longer headings and displayed subtitle cues remain within their panels without visible clipping or overlap."
+  ],
+  "issues": [],
+  "fullPlaybackReviewed": false,
+  "fullAudioListened": false,
+  "subtitleSynchronizationReviewed": false,
+  "animationContinuityReviewed": false,
+  "scope": "Review covers only 12 sampled midpoint frames of this identified MP4 and the explicitly listed native-resolution samples. No claim of complete playback, full listening, motion continuity or perceptual subtitle synchronization."
+}

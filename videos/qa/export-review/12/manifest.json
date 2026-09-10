@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "1.0.0",
+  "createdAtUtc": "2026-09-10T03:54:48.661203+00:00",
+  "episode": "12",
+  "title": "AI-Assisted Regression Capstone",
+  "input": {
+    "file": "renders/12-ai-regression-capstone.mp4",
+    "sha256": "16f817c3b0cb836bf9d86156cf2bb50350e29404a3a62ebbf3c495b7c2fe8d35",
+    "sizeBytes": 40775265,
+    "modifiedAtUtc": "2026-09-10T03:54:00.067453+00:00"
+  },
+  "timeline": {
+    "file": "audio/12/timeline.json",
+    "sha256": "237bba85ee91d157eee41545b1a00477c5046fd7f9159778f221d17a9bbd478b",
+    "sampling": "One frame at start + duration / 2 for each actual scene"
+  },
+  "mediaProbe": {
+    "durationSeconds": 452.0,
+    "videoCodec": "h264",
+    "width": 1920,
+    "height": 1080,
+    "averageFrameRate": "24/1",
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "withinRequestedSixToEightMinutes": true,
+    "native1920x1080": true
+  },
+  "frames": [
+    {
+      "sceneId": "12-01",
+      "title": "Turn the workflow into a capstone",
+      "sceneStartSeconds": 0.0,
+      "sceneDurationSeconds": 35.114,
+      "sampleSeconds": 17.557,
+      "timestamp": "00:17.557",
+      "file": "12-01-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8467862885d49460e8ab64732b20eb7de61257b312d8848fe1a8fcf81b34a5b0"
+    },
+    {
+      "sceneId": "12-02",
+      "title": "Give AI an evidence package",
+      "sceneStartSeconds": 35.114,
+      "sceneDurationSeconds": 36.578,
+      "sampleSeconds": 53.403,
+      "timestamp": "00:53.403",
+      "file": "12-02-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "277db3c3300b1974a00444e9a3a349e529ea2ae4ec17b66b012e378f8a0b222c"
+    },
+    {
+      "sceneId": "12-03",
+      "title": "Request a risk and evidence matrix",
+      "sceneStartSeconds": 71.69200000000001,
+      "sceneDurationSeconds": 36.458,
+      "sampleSeconds": 89.921,
+      "timestamp": "01:29.921",
+      "file": "12-03-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "21cc78989a201135df7b21f9597e5c0af21dbb3c5402d6d13864a8709af29242"
+    },
+    {
+      "sceneId": "12-04",
+      "title": "Generate one complete case first",
+      "sceneStartSeconds": 108.15,
+      "sceneDurationSeconds": 39.218,
+      "sampleSeconds": 127.759,
+      "timestamp": "02:07.759",
+      "file": "12-04-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "69a5effc6807a9b8454dba9c57e6557de3ce9475471d1a52d603cdc95da0f016"
+    },
+    {
+      "sceneId": "12-05",
+      "title": "Adapt architecture across languages",
+      "sceneStartSeconds": 147.368,
+      "sceneDurationSeconds": 40.226,
+      "sampleSeconds": 167.481,
+      "timestamp": "02:47.481",
+      "file": "12-05-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a3deb3f9bf2cb8c82b34709faeeeda545630dc11e5291cffcaf0c5d5bbe902ab"
+    },
+    {
+      "sceneId": "12-06",
+      "title": "Generate the hybrid extension",
+      "sceneStartSeconds": 187.594,
+      "sceneDurationSeconds": 39.146,
+      "sampleSeconds": 207.167,
+      "timestamp": "03:27.167",
+      "file": "12-06-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "380c96d57ceeb85fef8ac8a1519b8f9793c41162be2a198be7ee1510c31eab14"
+    },
+    {
+      "sceneId": "12-07",
+      "title": "Audit the generated assertions",
+      "sceneStartSeconds": 226.74,
+      "sceneDurationSeconds": 37.586,
+      "sampleSeconds": 245.533,
+      "timestamp": "04:05.533",
+      "file": "12-07-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "186dd22c27065fa03e2bf7f7252e9a67139cef04744f80482ea06a2374649f55"
+    },
+    {
+      "sceneId": "12-08",
+      "title": "Use a failure-specific prompt",
+      "sceneStartSeconds": 264.326,
+      "sceneDurationSeconds": 38.138,
+      "sampleSeconds": 283.395,
+      "timestamp": "04:43.395",
+      "file": "12-08-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "32547a05fea755640fbffa93c1b578574e35bd106cdb39d00894c33742bda7c7"
+    },
+    {
+      "sceneId": "12-09",
+      "title": "Execute the capstone deliberately",
+      "sceneStartSeconds": 302.464,
+      "sceneDurationSeconds": 37.49,
+      "sampleSeconds": 321.209,
+      "timestamp": "05:21.209",
+      "file": "12-09-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "7743854b3b4ac6449cd861bd9932d51ef762e96e6f084c164f53073368ebf8a5"
+    },
+    {
+      "sceneId": "12-10",
+      "title": "Write a defensible regression report",
+      "sceneStartSeconds": 339.954,
+      "sceneDurationSeconds": 34.778,
+      "sampleSeconds": 357.343,
+      "timestamp": "05:57.343",
+      "file": "12-10-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ce023d2ce52e70f2205888a8d1963b22c8a3291812a3becde54c373875827810"
+    },
+    {
+      "sceneId": "12-11",
+      "title": "Apply the capstone rubric",
+      "sceneStartSeconds": 374.732,
+      "sceneDurationSeconds": 38.498,
+      "sampleSeconds": 393.981,
+      "timestamp": "06:33.981",
+      "file": "12-11-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6ed4f37a394b5ea25f10a840cfe8b2c7d8895dd10f29198170b4b82ed9d6fa80"
+    },
+    {
+      "sceneId": "12-12",
+      "title": "Choose the next justified increment",
+      "sceneStartSeconds": 413.23,
+      "sceneDurationSeconds": 38.762,
+      "sampleSeconds": 432.611,
+      "timestamp": "07:12.611",
+      "file": "12-12-midpoint.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c3f78f3ed4dd7dad75a6ff0562bbec296fab6ebea92dff51499154128f3bf7f5"
+    }
+  ],
+  "contactSheets": [
+    {
+      "file": "contact-01.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "12-01",
+        "12-02",
+        "12-03",
+        "12-04",
+        "12-05",
+        "12-06"
+      ],
+      "sha256": "b29d99325b57d14c7a8c20023de6a9eb3af62f91305f32fe064d3326ffec6f16"
+    },
+    {
+      "file": "contact-02.jpg",
+      "width": 1920,
+      "height": 768,
+      "sceneIds": [
+        "12-07",
+        "12-08",
+        "12-09",
+        "12-10",
+        "12-11",
+        "12-12"
+      ],
+      "sha256": "089ace332175fe207bbdaf72a4fc4aec9bed49ccffb602ff0a3a27fef4b8afda"
+    }
+  ],
+  "visualReviewPerformedByAgent": true,
+  "visualReview": {
+    "observationsFile": "observations.json",
+    "mp4Sha256": "16f817c3b0cb836bf9d86156cf2bb50350e29404a3a62ebbf3c495b7c2fe8d35",
+    "reviewedAtUtc": "2026-09-10T03:55:56.088324+00:00",
+    "scope": "Review covers 12 sampled midpoint frames of this identified MP4. It does not establish complete playback, full listening, continuous motion quality or perceptual subtitle synchronization.",
+    "issueCount": 0,
+    "visualRevision": "blue-gray-white-2026-09-09"
+  },
+  "productionState": {
+    "checkedAtUtc": "2026-09-10T03:54:46.322691+00:00",
+    "stage": "rendered",
+    "timelineSha256": "237bba85ee91d157eee41545b1a00477c5046fd7f9159778f221d17a9bbd478b",
+    "artifactSha256": "16f817c3b0cb836bf9d86156cf2bb50350e29404a3a62ebbf3c495b7c2fe8d35",
+    "matchesCurrentTimelineAndArtifact": true,
+    "allInputFilesMatchCurrent": true,
+    "verifiedInputFiles": {
+      "audio/12/timeline.json": "237bba85ee91d157eee41545b1a00477c5046fd7f9159778f221d17a9bbd478b",
+      "tools/build_compositions.py": "6378b95f2d88b2c8a0d777748916dc10525294d42a8512ab626b82b9354e7c7d",
+      "audio/12/narration.wav": "44b9f7362fcf3be0481dc290d6f103095956ce71d645702790bd7cc0dd5199f7",
+      "audio/12/subtitles.srt": "716ac5907778d6ec2ab1e54937a45e79a19264e2e31ad709e8988a56e11e8941",
+      "assets/gsap.min.js": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "assets/SourceSans3.ttf": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "assets/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+    }
+  },
+  "scope": "Technical extraction only. Samples do not establish full playback, animation continuity, subtitle synchronization or audio quality. Any subsequent visual observations must identify this MP4 SHA-256."
+}

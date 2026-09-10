@@ -1,0 +1,13 @@
+# Preserve baseline evidence bytes and line endings.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.mp4 binary
+*.wav binary
+*.png binary
+*.jpg binary
+*.ttf binary
+*.woff2 binary
+# Markdown hard breaks and verbatim vendor/evidence files are intentional.
+*.md whitespace=-blank-at-eol,cr-at-eol
+**/SourceSans3-LICENSE.txt -whitespace
+**/gsap.min.js -whitespace
+**/hybrid-python-terminal.txt -whitespace
