@@ -30,11 +30,10 @@ Open [the video library](http://127.0.0.1:8766/videos/index.html) or [the course
 From the repository root, in PowerShell:
 
 ```powershell
-$env:TEST_HOOK_KEY = 'classroom-demo-only'
-node videos/lab/distributed/start-lab.mjs
+node scripts/start-demo.mjs
 ```
 
-Open [TransferLab](http://127.0.0.1:3000/transfers). The application itself uses Node's built-in modules; dependency installation is needed for the test runners. Fixture setup and test commands are documented in the [distributed laboratory README](videos/lab/distributed/README.md). Existing absolute example paths in the original documents must be replaced with your clone location.
+Open [TransferLab](http://127.0.0.1:3300/transfers). The launcher starts three services and prints a fresh synthetic login. No Docker or dependency installation is required for the application. See the [quick-start guide](docs/QUICKSTART.md) for test runners, alternate ports and verification.
 
 All services bind to localhost. Training data is synthetic and lives in memory. The TN3270 endpoint is a local simulator, not z/OS or CICS.
 
@@ -46,4 +45,15 @@ The complete viewing ZIP is attached to the [baseline release](https://github.co
 
 ## Verification scope
 
+The new launcher passed a three-service API smoke check covering transfer, sequential replay, ledger identity and cleanup. This does not replace browser regression or the preserved baseline evidence.
+
 The preserved evidence records 22 passing local tests and visual review of 144 sampled frames from the twelve final videos. These are recorded production-workstation results, not a claim that tests have already run on your computer. Full playback and listening are distinct from the recorded sampled visual review. See [`videos/qa/VIDEO-REVIEW.md`](videos/qa/VIDEO-REVIEW.md).
+
+## Improvement and regression kit
+
+- [English improvement plan and acceptance gates](docs/IMPROVEMENT-PLAN.md).
+- [One-command local application and testing quick start](docs/QUICKSTART.md).
+- [Twelve copy-and-paste prompts](docs/PROMPTS.md): discovery, critical paths, coverage, generation, reports, Excel intake and review.
+- [Excel test-case template](templates/test-cases-template.xlsx): three synthetic examples and nine steps, all requiring review.
+
+The new plan, launcher, prompt pack and template are in English. Full course/UI language migration and related video updates are planned work; the baseline remains preserved.

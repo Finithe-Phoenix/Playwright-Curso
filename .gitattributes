@@ -11,3 +11,4 @@
 **/SourceSans3-LICENSE.txt -whitespace
 **/gsap.min.js -whitespace
 **/hybrid-python-terminal.txt -whitespace
+*.xlsx binary
