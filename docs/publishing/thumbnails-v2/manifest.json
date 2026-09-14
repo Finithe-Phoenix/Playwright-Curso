@@ -1,0 +1,132 @@
+[
+  {
+    "id": "showcase",
+    "title": "From Prompt to Proof: A Live Lab Walkthrough",
+    "headline": "FROM PROMPT TO PROOF",
+    "file": "showcase.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "6ad81ba60b9838d378bc42825dc88fe60bdb1f5c9010e220da47871780d7e704",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "01",
+    "title": "Build the Local Test Architecture",
+    "headline": "BUILD THE LOCAL LAB",
+    "file": "01.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c21f8ffaca31cdf871032dde0f2175e69098c319ac4ccb94027d9e70a8ce275f",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "02",
+    "title": "TypeScript: Reliable UI and API Regression",
+    "headline": "TYPESCRIPT REGRESSION",
+    "file": "02.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "5d23e50861f7a45f8549ebf25202b6f75623ccbb09d74c95f24e8ecc67d846c0",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "03",
+    "title": "Python: Fixtures That Own Their Data",
+    "headline": "PYTHON FIXTURES",
+    "file": "03.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "048b0ce3855297413dbfea00f28ec9c23a7b2c86e62219b29c05b82360a21f46",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "04",
+    "title": "Java: JUnit Lifecycle and Evidence",
+    "headline": "JAVA TEST LIFECYCLE",
+    "file": "04.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fc2ea604e853456a5a0b35df2c94c32845b6f4c7072a2e3b321c2d2a5f2d0c89",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "05",
+    "title": "Isolation, Authentication and Test Data",
+    "headline": "ISOLATE YOUR TESTS",
+    "file": "05.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8087648b7a6acc64a5ba0bb4beac1a3958eda52a72dbcc7861782af1dac4698e",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "06",
+    "title": "Distributed Workflows: Correlation and Polling",
+    "headline": "FOLLOW THE TRANSACTION",
+    "file": "06.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8a1ba04d7660025a323fdd668085ec901fda9d5060ef9d6cac632da4e9ff5a40",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "07",
+    "title": "Mocks and Real End-to-End Evidence",
+    "headline": "MOCKS & REAL EVIDENCE",
+    "file": "07.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fd155e72931ad3fbe7faa70e8ac3f40351ff8b6c524fefba25832ba9833e52cf",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "08",
+    "title": "Traces, CI and Evidence-Based Debugging",
+    "headline": "DEBUG WITH TRACES",
+    "file": "08.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2c1446823b1465093d558a032ad713b5f5c7f5a4e8ce36db7c6f3b51a2285ba3",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "09",
+    "title": "Local 3270 Architecture and TNZ Setup",
+    "headline": "CONNECT THE 3270 LAB",
+    "file": "09.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "27f1e4ba8ebc3cd3a6402744ee08534ff0dffc4684cfb74cc49d450301ffa3eb",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "10",
+    "title": "TNZ Sessions: Fields, Waits and Cleanup",
+    "headline": "CONTROL TNZ SESSIONS",
+    "file": "10.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "c3d74e9f878c49c0be38ca73b281c7e85e850e0c834b341437a8c61eb5e9ed71",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "11",
+    "title": "Hybrid Regression: One Correlation Across Interfaces",
+    "headline": "ONE TRANSFER. TWO INTERFACES.",
+    "file": "11.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "8a54f8ff4906d1a305682371e202d0f87bd360992c48b4484c7097ef7cb65e97",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  },
+  {
+    "id": "12",
+    "title": "AI-Assisted Regression Capstone",
+    "headline": "BUILD YOUR REGRESSION SUITE",
+    "file": "12.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "fddeca659f285dec02151b5cb10ff50e5a652ea790b2dff0863c47a147d04e8c",
+    "visualReview": "Reviewed individually for title, numbering, composition and palette."
+  }
+]
