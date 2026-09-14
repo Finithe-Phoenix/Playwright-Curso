@@ -1,0 +1,21 @@
+{
+  "episode": "03",
+  "duration": 443.291667,
+  "sha256": "502d13d93674096cd42e1b488b81bf217f62977a5f0d36669db41ea14004e76d",
+  "focusShots": 7,
+  "visualReview": "Seven close-up midpoint samples reviewed: Python fixtures, assertions, browser and fixed caption band checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -21.8,
+  "audioPeakDb": -1.0,
+  "sampledFrames": 7,
+  "sampleTimes": [
+    58.613,
+    132.185,
+    168.3385,
+    203.599,
+    244.65800000000002,
+    281.79650000000004,
+    354.0935
+  ],
+  "fullPlaybackReview": "not performed"
+}

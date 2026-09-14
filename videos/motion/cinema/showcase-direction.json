@@ -1,0 +1,87 @@
+{
+  "source": "motion\\renders\\showcase-motion.mp4",
+  "shots": [
+    {
+      "scene": "showcase-02",
+      "title": "Write the contract",
+      "start": 13.924,
+      "end": 20.73,
+      "crop": [
+        210,
+        275,
+        1500,
+        560
+      ],
+      "width": 1250,
+      "height": 466,
+      "label": "MAKE IT\nPRECISE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "showcase-03",
+      "title": "Build the executable case",
+      "start": 27.123,
+      "end": 33.709,
+      "crop": [
+        210,
+        275,
+        1500,
+        560
+      ],
+      "width": 1250,
+      "height": 466,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "showcase-04",
+      "title": "Watch the browser",
+      "start": 36.646,
+      "end": 52.06,
+      "crop": [
+        351,
+        216,
+        1218,
+        684
+      ],
+      "width": 1250,
+      "height": 700,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "showcase-07",
+      "title": "Cross the terminal boundary",
+      "start": 86.794,
+      "end": 95.18,
+      "crop": [
+        210,
+        275,
+        1500,
+        560
+      ],
+      "width": 1250,
+      "height": 466,
+      "label": "SAME ID.\nSAME STATE.",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "showcase-09",
+      "title": "Control the failure",
+      "start": 111.776,
+      "end": 125.99,
+      "crop": [
+        351,
+        216,
+        1218,
+        684
+      ],
+      "width": 1250,
+      "height": 700,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

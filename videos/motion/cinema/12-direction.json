@@ -1,0 +1,119 @@
+{
+  "source": "motion\\renders\\12-motion.mp4",
+  "shots": [
+    {
+      "scene": "12-02",
+      "title": "Give AI an evidence package",
+      "start": 47.551,
+      "end": 66.205,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "12-03",
+      "title": "Request a risk and evidence matrix",
+      "start": 84.088,
+      "end": 102.681,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "12-04",
+      "title": "Generate one complete case first",
+      "start": 109.85,
+      "end": 146.668,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "12-06",
+      "title": "Generate the hybrid extension",
+      "start": 200.904,
+      "end": 220.868,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "12-07",
+      "title": "Audit the generated assertions",
+      "start": 239.519,
+      "end": 258.688,
+      "crop": [
+        65,
+        228,
+        1790,
+        654
+      ],
+      "width": 1250,
+      "height": 456,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "12-08",
+      "title": "Use a failure-specific prompt",
+      "start": 277.293,
+      "end": 296.743,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "12-10",
+      "title": "Write a defensible regression report",
+      "start": 351.779,
+      "end": 369.515,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

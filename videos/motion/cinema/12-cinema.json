@@ -1,0 +1,21 @@
+{
+  "episode": "12",
+  "duration": 452.0,
+  "sha256": "f0ba07d4875c6391e7351d0ecd9869b9cf379251c4ccec60d936a9478d3fd15d",
+  "focusShots": 7,
+  "visualReview": "Seven close-up midpoint samples reviewed: prompt panels, browser action, code and fixed subtitles checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -22.3,
+  "audioPeakDb": -1.1,
+  "sampledFrames": 7,
+  "sampleTimes": [
+    56.878,
+    93.3845,
+    128.25900000000001,
+    210.886,
+    249.1035,
+    287.01800000000003,
+    360.647
+  ],
+  "fullPlaybackReview": "not performed"
+}

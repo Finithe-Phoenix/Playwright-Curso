@@ -1,0 +1,103 @@
+{
+  "source": "motion\\renders\\01-motion.mp4",
+  "shots": [
+    {
+      "scene": "01-04",
+      "title": "Prepare TypeScript",
+      "start": 115.376,
+      "end": 134.459,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "01-05",
+      "title": "Prepare Python",
+      "start": 152.623,
+      "end": 171.449,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "01-06",
+      "title": "Prepare Java",
+      "start": 189.871,
+      "end": 209.199,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "01-07",
+      "title": "Check local readiness",
+      "start": 226.488,
+      "end": 243.894,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "01-08",
+      "title": "Express money precisely",
+      "start": 261.573,
+      "end": 280.411,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "01-11",
+      "title": "Make a first observable run",
+      "start": 368.425,
+      "end": 385.243,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

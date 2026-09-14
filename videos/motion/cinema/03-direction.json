@@ -1,0 +1,119 @@
+{
+  "source": "motion\\renders\\03-motion.mp4",
+  "shots": [
+    {
+      "scene": "03-02",
+      "title": "Confirm one Python environment",
+      "start": 49.879,
+      "end": 67.347,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "03-04",
+      "title": "Use a yielding fixture",
+      "start": 122.882,
+      "end": 141.488,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "03-05",
+      "title": "Authenticate the provided context",
+      "start": 159.176,
+      "end": 177.501,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "03-06",
+      "title": "Write the visible behavior",
+      "start": 184.59,
+      "end": 222.608,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "03-07",
+      "title": "Check response semantics",
+      "start": 235.508,
+      "end": 253.808,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "03-08",
+      "title": "Capture the rejection response",
+      "start": 272.108,
+      "end": 291.485,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "03-10",
+      "title": "Retain a useful trace",
+      "start": 345.164,
+      "end": 363.023,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

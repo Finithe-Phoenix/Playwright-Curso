@@ -1,0 +1,55 @@
+{
+  "source": "motion\\renders\\05-motion.mp4",
+  "shots": [
+    {
+      "scene": "05-02",
+      "title": "Create only the data you own",
+      "start": 48.476,
+      "end": 67.547,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "05-04",
+      "title": "Authenticate where the page lives",
+      "start": 109.754,
+      "end": 145.78,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "05-11",
+      "title": "Ask AI to audit lifecycle edges",
+      "start": 383.14,
+      "end": 401.477,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

@@ -1,0 +1,71 @@
+{
+  "source": "motion\\renders\\06-motion.mp4",
+  "shots": [
+    {
+      "scene": "06-04",
+      "title": "Capture identity from the response",
+      "start": 109.994,
+      "end": 143.74,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "06-06",
+      "title": "Query the delayed projection",
+      "start": 193.416,
+      "end": 212.156,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "06-07",
+      "title": "Poll only the observation",
+      "start": 231.059,
+      "end": 251.146,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "06-11",
+      "title": "Carry correlation into reporting",
+      "start": 375.739,
+      "end": 394.602,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

@@ -1,0 +1,55 @@
+{
+  "source": "motion\\renders\\07-motion.mp4",
+  "shots": [
+    {
+      "scene": "07-04",
+      "title": "Install a narrow route handler",
+      "start": 115.317,
+      "end": 134.743,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "07-05",
+      "title": "Exercise the user action once",
+      "start": 142.156,
+      "end": 173.454,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "07-11",
+      "title": "Label the report precisely",
+      "start": 363.676,
+      "end": 383.237,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

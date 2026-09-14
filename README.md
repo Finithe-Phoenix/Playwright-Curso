@@ -67,3 +67,7 @@ The preserved evidence records 22 passing local tests and visual review of 144 s
 - [Excel test-case template](templates/test-cases-template.xlsx): three synthetic examples and nine steps, all requiring review.
 
 The new plan, launcher, prompt pack, template, motion library and laboratory UI are in English. The updated UI contract passed 22 tests across the three language tracks and the terminal protocol. Original course documents and baseline media remain preserved; their broader editorial migration is separate from the motion edition.
+
+### Cinematic comparison
+
+The local video library now opens the cinematic edit: editorial close-ups, animated panel entrances, stronger typography and quiet transition cues. Use **Compare: original** to switch versions at the current timestamp. The twelve lesson durations and English narration are preserved. See [edition details](videos/motion/README.md).

@@ -2,6 +2,12 @@
 
 The motion edition adds progressive code reveals, animated request paths, large kinetic titles, prompt walkthroughs and recorded browser interactions to the twelve English lessons. The original baseline remains under `videos/renders`.
 
+## Cinematic focus edition
+
+The library now opens the cinematic version. Use **Compare: original** to switch to the previous edit at the same timestamp. **Watch: cinematic** switches back. Both exports retain the same chapter timing and English narration.
+
+This pass adds editorial close-ups, animated panel entrances, stronger typography and quiet transition cues. It reuses the verified Hyperframes exports and original captured interactions; it does not claim a new test run or a live assistant session. The full caption band stays fixed. The `cinema` folder contains the new MP4 files, shot decisions and review evidence. Regenerate with `python videos/tools/direct_cinema.py --episode all`; run it from the repository root with FFmpeg, NumPy and SoundFile installed. The supplied static font was instantiated from the bundled Source Sans variable font at weight 750 using FontTools.
+
 ## Watch
 
 From the repository root:

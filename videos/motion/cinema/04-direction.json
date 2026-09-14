@@ -1,0 +1,119 @@
+{
+  "source": "motion\\renders\\04-motion.mp4",
+  "shots": [
+    {
+      "scene": "04-02",
+      "title": "Inspect the project first",
+      "start": 50.738,
+      "end": 70.287,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "04-04",
+      "title": "Create a fresh context",
+      "start": 123.984,
+      "end": 143.092,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "04-05",
+      "title": "Authenticate with the same identity",
+      "start": 161.426,
+      "end": 180.497,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "04-06",
+      "title": "Use Java locator assertions",
+      "start": 187.806,
+      "end": 222.008,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "04-07",
+      "title": "Inspect the integer account balance",
+      "start": 234.304,
+      "end": 251.698,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "04-09",
+      "title": "Record a Java trace",
+      "start": 307.821,
+      "end": 324.676,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "04-11",
+      "title": "Read the actual runner result",
+      "start": 377.891,
+      "end": 396.093,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

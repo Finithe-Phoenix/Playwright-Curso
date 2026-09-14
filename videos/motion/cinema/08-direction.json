@@ -1,0 +1,103 @@
+{
+  "source": "motion\\renders\\08-motion.mp4",
+  "shots": [
+    {
+      "scene": "08-02",
+      "title": "Start the defect on separate ports",
+      "start": 46.658,
+      "end": 64.37,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "08-03",
+      "title": "Run the intended failing case",
+      "start": 81.274,
+      "end": 98.815,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "08-06",
+      "title": "Protect the monetary oracle",
+      "start": 187.009,
+      "end": 205.822,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "08-07",
+      "title": "Ask AI a bounded diagnostic question",
+      "start": 224.731,
+      "end": 244.793,
+      "crop": [
+        65,
+        228,
+        1790,
+        654
+      ],
+      "width": 1250,
+      "height": 456,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    },
+    {
+      "scene": "08-08",
+      "title": "Validate the corrected path",
+      "start": 262.633,
+      "end": 280.541,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "08-11",
+      "title": "Report a precise execution status",
+      "start": 372.817,
+      "end": 392.695,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

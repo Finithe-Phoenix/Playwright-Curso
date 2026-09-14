@@ -1,0 +1,22 @@
+{
+  "episode": "11",
+  "duration": 444.625,
+  "sha256": "b1183a34a300431b7bc37f6dc0ea0f58ff5921e67600d4b17737790afe5ec323",
+  "focusShots": 8,
+  "visualReview": "Eight close-up midpoint samples reviewed: code, complete terminal fields and fixed subtitles checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.0,
+  "sampledFrames": 8,
+  "sampleTimes": [
+    94.58500000000001,
+    134.9555,
+    172.0895,
+    209.147,
+    246.01850000000002,
+    283.75149999999996,
+    320.656,
+    357.965
+  ],
+  "fullPlaybackReview": "not performed"
+}

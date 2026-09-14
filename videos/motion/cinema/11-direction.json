@@ -1,0 +1,135 @@
+{
+  "source": "motion\\renders\\11-motion.mp4",
+  "shots": [
+    {
+      "scene": "11-03",
+      "title": "Perform the actual browser transfer",
+      "start": 77.664,
+      "end": 111.506,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "11-04",
+      "title": "Extract the canonical correlation",
+      "start": 125.206,
+      "end": 144.705,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "11-05",
+      "title": "Call the adapter from Python",
+      "start": 162.811,
+      "end": 181.368,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "11-06",
+      "title": "Call the same boundary from TypeScript",
+      "start": 199.581,
+      "end": 218.713,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "11-07",
+      "title": "Call the same boundary from Java",
+      "start": 236.728,
+      "end": 255.309,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "11-08",
+      "title": "Assert every business value",
+      "start": 273.904,
+      "end": 293.599,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "11-09",
+      "title": "Keep ledger projection as another check",
+      "start": 311.543,
+      "end": 329.769,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "11-10",
+      "title": "Capture evidence before cleanup",
+      "start": 348.179,
+      "end": 367.751,
+      "crop": [
+        65,
+        228,
+        1200,
+        654
+      ],
+      "width": 1250,
+      "height": 680,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

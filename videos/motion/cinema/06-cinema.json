@@ -1,0 +1,18 @@
+{
+  "episode": "06",
+  "duration": 434.5,
+  "sha256": "675a37dd9d1f5855aa25e93f31257fc5ad5611c0db651fb5e0534b2acfb68f24",
+  "focusShots": 4,
+  "visualReview": "Four close-up midpoint samples reviewed: browser result, projection query, polling and report excerpt checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -22.1,
+  "audioPeakDb": -1.0,
+  "sampledFrames": 4,
+  "sampleTimes": [
+    126.867,
+    202.786,
+    241.1025,
+    385.17049999999995
+  ],
+  "fullPlaybackReview": "not performed"
+}

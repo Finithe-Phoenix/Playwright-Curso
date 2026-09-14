@@ -1,0 +1,21 @@
+{
+  "episode": "04",
+  "duration": 438.583333,
+  "sha256": "38c1e98ad93dca2d5bb6de601ec9cc7cc1f727b23c0b9091f4dd7199f3143af9",
+  "focusShots": 7,
+  "visualReview": "All close-up midpoint samples reviewed: complete code/browser panels and fixed subtitles checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.2,
+  "sampledFrames": 7,
+  "sampleTimes": [
+    60.5125,
+    133.538,
+    170.9615,
+    204.907,
+    243.001,
+    316.24850000000004,
+    386.992
+  ],
+  "fullPlaybackReview": "not performed"
+}

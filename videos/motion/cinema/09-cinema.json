@@ -1,0 +1,21 @@
+{
+  "episode": "09",
+  "duration": 439.791667,
+  "sha256": "fdf0668401267a022f8e2ec8fba10f0fc6603ce619460ec9acd17c18d1711532",
+  "focusShots": 7,
+  "visualReview": "Seven close-up midpoint samples reviewed; tighter terminal framing preserves the complete reference, amount, currency and balance.",
+  "audioDecode": "passed",
+  "audioMeanDb": -21.5,
+  "audioPeakDb": -1.2,
+  "sampledFrames": 7,
+  "sampleTimes": [
+    169.3475,
+    207.091,
+    243.1415,
+    278.0675,
+    314.1465,
+    351.85,
+    388.928
+  ],
+  "fullPlaybackReview": "not performed"
+}

@@ -1,0 +1,135 @@
+{
+  "source": "motion\\renders\\10-motion.mp4",
+  "shots": [
+    {
+      "scene": "10-02",
+      "title": "Create the actual TNZ client",
+      "start": 47.632,
+      "end": 66.984,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "10-03",
+      "title": "Connect within the local boundary",
+      "start": 85.48,
+      "end": 104.685,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "10-04",
+      "title": "Use a monotonic deadline",
+      "start": 122.673,
+      "end": 141.18,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "10-06",
+      "title": "Validate and enter the reference",
+      "start": 192.511,
+      "end": 209.966,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "10-07",
+      "title": "Wait for the submitted reference",
+      "start": 226.525,
+      "end": 243.662,
+      "crop": [
+        65,
+        228,
+        1200,
+        654
+      ],
+      "width": 1250,
+      "height": 680,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "10-08",
+      "title": "Parse the labeled business values",
+      "start": 260.992,
+      "end": 279.426,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "10-09",
+      "title": "Preserve screen evidence",
+      "start": 296.689,
+      "end": 314.45,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "10-10",
+      "title": "Always release the connection",
+      "start": 332.445,
+      "end": 351.602,
+      "crop": [
+        65,
+        228,
+        1200,
+        654
+      ],
+      "width": 1250,
+      "height": 680,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

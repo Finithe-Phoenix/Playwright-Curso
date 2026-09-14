@@ -1,0 +1,167 @@
+{
+  "source": "motion\\renders\\02-motion.mp4",
+  "shots": [
+    {
+      "scene": "02-02",
+      "title": "Use the accessible contract",
+      "start": 36.382,
+      "end": 67.464,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "02-03",
+      "title": "Observe the right request",
+      "start": 79.997,
+      "end": 97.746,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-04",
+      "title": "Wait on the UI meaning",
+      "start": 114.725,
+      "end": 132.364,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-05",
+      "title": "Verify the authoritative account",
+      "start": 150.274,
+      "end": 169.357,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-06",
+      "title": "Verify the transfer record",
+      "start": 176.67,
+      "end": 210.944,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "02-07",
+      "title": "Build insufficient funds separately",
+      "start": 213.344,
+      "end": 243.826,
+      "crop": [
+        671,
+        228,
+        1184,
+        656
+      ],
+      "width": 1250,
+      "height": 692,
+      "label": "WATCH IT\nHAPPEN",
+      "note": "Recorded local browser / original speed"
+    },
+    {
+      "scene": "02-08",
+      "title": "Keep an idempotent intention",
+      "start": 257.036,
+      "end": 275.801,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-09",
+      "title": "Compare identity and effects",
+      "start": 293.553,
+      "end": 311.901,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-10",
+      "title": "Run with an honest outcome",
+      "start": 329.955,
+      "end": 348.94,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "02-11",
+      "title": "Review an AI patch",
+      "start": 366.969,
+      "end": 385.636,
+      "crop": [
+        65,
+        228,
+        1790,
+        654
+      ],
+      "width": 1250,
+      "height": 456,
+      "label": "ASK WITH\nEVIDENCE",
+      "note": "Reusable prompt / teaching input"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}

@@ -1,0 +1,19 @@
+{
+  "episode": "showcase",
+  "duration": 156.208333,
+  "sha256": "4d0a61669193f57bc922edb4339aa6a839b42b481c1800feaa856ee56f31e4c9",
+  "focusShots": 5,
+  "visualReview": "All editorial close-up midpoint samples reviewed; content and subtitle band remain readable.",
+  "audioDecode": "passed",
+  "audioMeanDb": -22.7,
+  "audioPeakDb": -1.1,
+  "sampledFrames": 5,
+  "sampleTimes": [
+    17.326999999999998,
+    30.416000000000004,
+    44.353,
+    90.987,
+    118.883
+  ],
+  "fullPlaybackReview": "not performed"
+}

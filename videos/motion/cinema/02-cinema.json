@@ -1,0 +1,24 @@
+{
+  "episode": "02",
+  "duration": 430.416667,
+  "sha256": "e22226427f854806d045a7b6090e7346158de17f571fa67023343087e1ff0c00",
+  "focusShots": 10,
+  "visualReview": "Ten close-up midpoint samples reviewed: browser states, code, prompts and fixed subtitles checked.",
+  "audioDecode": "passed",
+  "audioMeanDb": -22.3,
+  "audioPeakDb": -1.0,
+  "sampledFrames": 10,
+  "sampleTimes": [
+    51.923,
+    88.8715,
+    123.5445,
+    159.8155,
+    193.807,
+    228.58499999999998,
+    266.4185,
+    302.727,
+    339.4475,
+    376.3025
+  ],
+  "fullPlaybackReview": "not performed"
+}

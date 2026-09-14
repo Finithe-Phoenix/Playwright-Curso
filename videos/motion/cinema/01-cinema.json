@@ -1,0 +1,20 @@
+{
+  "episode": "01",
+  "duration": 423.0,
+  "sha256": "c3076838ebc1e581fe9beed37bac6f106e869f94ed975812affeaa12fe0c6039",
+  "focusShots": 6,
+  "visualReview": "All editorial close-up midpoint samples reviewed; content and subtitle band remain readable.",
+  "audioDecode": "passed",
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.4,
+  "sampledFrames": 6,
+  "sampleTimes": [
+    124.9175,
+    162.036,
+    199.53500000000003,
+    235.191,
+    270.99199999999996,
+    376.834
+  ],
+  "fullPlaybackReview": "not performed"
+}

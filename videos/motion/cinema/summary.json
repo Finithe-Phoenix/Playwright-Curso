@@ -1,0 +1,271 @@
+{
+  "videos": 13,
+  "focusShots": 81,
+  "reviewedFrames": 81,
+  "fullPlaybackReview": "not performed",
+  "episodes": [
+    {
+      "episode": "showcase",
+      "duration": 156.208333,
+      "sha256": "4d0a61669193f57bc922edb4339aa6a839b42b481c1800feaa856ee56f31e4c9",
+      "focusShots": 5,
+      "visualReview": "All editorial close-up midpoint samples reviewed; content and subtitle band remain readable.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.7,
+      "audioPeakDb": -1.1,
+      "sampledFrames": 5,
+      "sampleTimes": [
+        17.326999999999998,
+        30.416000000000004,
+        44.353,
+        90.987,
+        118.883
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "01",
+      "duration": 423.0,
+      "sha256": "c3076838ebc1e581fe9beed37bac6f106e869f94ed975812affeaa12fe0c6039",
+      "focusShots": 6,
+      "visualReview": "All editorial close-up midpoint samples reviewed; content and subtitle band remain readable.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.7,
+      "audioPeakDb": -1.4,
+      "sampledFrames": 6,
+      "sampleTimes": [
+        124.9175,
+        162.036,
+        199.53500000000003,
+        235.191,
+        270.99199999999996,
+        376.834
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "02",
+      "duration": 430.416667,
+      "sha256": "e22226427f854806d045a7b6090e7346158de17f571fa67023343087e1ff0c00",
+      "focusShots": 10,
+      "visualReview": "Ten close-up midpoint samples reviewed: browser states, code, prompts and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.3,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 10,
+      "sampleTimes": [
+        51.923,
+        88.8715,
+        123.5445,
+        159.8155,
+        193.807,
+        228.58499999999998,
+        266.4185,
+        302.727,
+        339.4475,
+        376.3025
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "03",
+      "duration": 443.291667,
+      "sha256": "502d13d93674096cd42e1b488b81bf217f62977a5f0d36669db41ea14004e76d",
+      "focusShots": 7,
+      "visualReview": "Seven close-up midpoint samples reviewed: Python fixtures, assertions, browser and fixed caption band checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.8,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 7,
+      "sampleTimes": [
+        58.613,
+        132.185,
+        168.3385,
+        203.599,
+        244.65800000000002,
+        281.79650000000004,
+        354.0935
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "04",
+      "duration": 438.583333,
+      "sha256": "38c1e98ad93dca2d5bb6de601ec9cc7cc1f727b23c0b9091f4dd7199f3143af9",
+      "focusShots": 7,
+      "visualReview": "All close-up midpoint samples reviewed: complete code/browser panels and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.7,
+      "audioPeakDb": -1.2,
+      "sampledFrames": 7,
+      "sampleTimes": [
+        60.5125,
+        133.538,
+        170.9615,
+        204.907,
+        243.001,
+        316.24850000000004,
+        386.992
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "05",
+      "duration": 439.625,
+      "sha256": "38eba731c8d211ab7ebc2f0c69562cbf02d4060c9d7fa48e3f5e1359a95cd308",
+      "focusShots": 3,
+      "visualReview": "All close-up midpoint samples reviewed: complete code/browser panels and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.1,
+      "audioPeakDb": -1.1,
+      "sampledFrames": 3,
+      "sampleTimes": [
+        58.0115,
+        127.767,
+        392.3085
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "06",
+      "duration": 434.5,
+      "sha256": "675a37dd9d1f5855aa25e93f31257fc5ad5611c0db651fb5e0534b2acfb68f24",
+      "focusShots": 4,
+      "visualReview": "Four close-up midpoint samples reviewed: browser result, projection query, polling and report excerpt checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.1,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 4,
+      "sampleTimes": [
+        126.867,
+        202.786,
+        241.1025,
+        385.17049999999995
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "07",
+      "duration": 424.416667,
+      "sha256": "b201421af73ac6931230cd6e2aa4c6c1f561df885ef904c6829e09649d5b05c6",
+      "focusShots": 3,
+      "visualReview": "All close-up midpoint samples reviewed: code, prompt or browser panel and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.8,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 3,
+      "sampleTimes": [
+        125.03,
+        157.805,
+        373.4565
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "08",
+      "duration": 434.916667,
+      "sha256": "0f3c8ba91e015107fc7f9ce23308ac72b42ef46f0ae4fe7ac150732d25447d8d",
+      "focusShots": 6,
+      "visualReview": "All close-up midpoint samples reviewed: code, prompt or browser panel and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.2,
+      "audioPeakDb": -1.1,
+      "sampledFrames": 6,
+      "sampleTimes": [
+        55.514,
+        90.0445,
+        196.4155,
+        234.762,
+        271.587,
+        382.756
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "09",
+      "duration": 439.791667,
+      "sha256": "fdf0668401267a022f8e2ec8fba10f0fc6603ce619460ec9acd17c18d1711532",
+      "focusShots": 7,
+      "visualReview": "Seven close-up midpoint samples reviewed; tighter terminal framing preserves the complete reference, amount, currency and balance.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.5,
+      "audioPeakDb": -1.2,
+      "sampledFrames": 7,
+      "sampleTimes": [
+        169.3475,
+        207.091,
+        243.1415,
+        278.0675,
+        314.1465,
+        351.85,
+        388.928
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "10",
+      "duration": 434.416667,
+      "sha256": "e0503094c499fe65db23e4011aabdc5b9c15a911a52e13caea9996d5cc3d9eda",
+      "focusShots": 8,
+      "visualReview": "Eight close-up midpoint samples reviewed: code, complete terminal fields and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.6,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 8,
+      "sampleTimes": [
+        57.30799999999999,
+        95.08250000000001,
+        131.9265,
+        201.2385,
+        235.0935,
+        270.209,
+        305.5695,
+        342.0235
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "11",
+      "duration": 444.625,
+      "sha256": "b1183a34a300431b7bc37f6dc0ea0f58ff5921e67600d4b17737790afe5ec323",
+      "focusShots": 8,
+      "visualReview": "Eight close-up midpoint samples reviewed: code, complete terminal fields and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -21.7,
+      "audioPeakDb": -1.0,
+      "sampledFrames": 8,
+      "sampleTimes": [
+        94.58500000000001,
+        134.9555,
+        172.0895,
+        209.147,
+        246.01850000000002,
+        283.75149999999996,
+        320.656,
+        357.965
+      ],
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "12",
+      "duration": 452.0,
+      "sha256": "f0ba07d4875c6391e7351d0ecd9869b9cf379251c4ccec60d936a9478d3fd15d",
+      "focusShots": 7,
+      "visualReview": "Seven close-up midpoint samples reviewed: prompt panels, browser action, code and fixed subtitles checked.",
+      "audioDecode": "passed",
+      "audioMeanDb": -22.3,
+      "audioPeakDb": -1.1,
+      "sampledFrames": 7,
+      "sampleTimes": [
+        56.878,
+        93.3845,
+        128.25900000000001,
+        210.886,
+        249.1035,
+        287.01800000000003,
+        360.647
+      ],
+      "fullPlaybackReview": "not performed"
+    }
+  ]
+}

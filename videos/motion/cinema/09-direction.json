@@ -1,0 +1,119 @@
+{
+  "source": "motion\\renders\\09-motion.mp4",
+  "shots": [
+    {
+      "scene": "09-05",
+      "title": "Install the prepared environment",
+      "start": 159.763,
+      "end": 178.932,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "09-06",
+      "title": "Start services in their own terminals",
+      "start": 197.439,
+      "end": 216.743,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    },
+    {
+      "scene": "09-07",
+      "title": "Check a real terminal screen",
+      "start": 234.261,
+      "end": 252.022,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "09-08",
+      "title": "Identify the input and result fields",
+      "start": 269.144,
+      "end": 286.991,
+      "crop": [
+        671,
+        228,
+        1184,
+        654
+      ],
+      "width": 1250,
+      "height": 690,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "09-09",
+      "title": "Try an unknown reference",
+      "start": 304.758,
+      "end": 323.535,
+      "crop": [
+        65,
+        228,
+        1200,
+        654
+      ],
+      "width": 1250,
+      "height": 680,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "09-10",
+      "title": "Keep plaintext local to the simulator",
+      "start": 342.082,
+      "end": 361.618,
+      "crop": [
+        65,
+        228,
+        1200,
+        654
+      ],
+      "width": 1250,
+      "height": 680,
+      "label": "FOLLOW\nTHE ID",
+      "note": "Captured successful TNZ lookup / local simulator"
+    },
+    {
+      "scene": "09-11",
+      "title": "Run protocol tests independently",
+      "start": 379.686,
+      "end": 398.17,
+      "crop": [
+        65,
+        228,
+        998,
+        654
+      ],
+      "width": 1174,
+      "height": 770,
+      "label": "READ THE\nCODE",
+      "note": "Executable contract / teaching walkthrough"
+    }
+  ],
+  "captionPolicy": "Original caption band remains fixed and uncropped.",
+  "sound": "Low-level synthesized editorial transition cues; original narration retained."
+}
