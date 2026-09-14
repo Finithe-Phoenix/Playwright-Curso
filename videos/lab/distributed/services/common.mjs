@@ -40,7 +40,7 @@ export function listen(name, port, handler) {
       await handler(req, res, url);
     } catch (error) {
       console.error(JSON.stringify({ service: name, message: error.message }));
-      if (!res.headersSent) fail(res, 503, 'SERVICE_UNAVAILABLE', 'Servicio temporalmente no disponible');
+      if (!res.headersSent) fail(res, 503, 'SERVICE_UNAVAILABLE', 'Service temporarily unavailable');
       else res.end();
     }
   });

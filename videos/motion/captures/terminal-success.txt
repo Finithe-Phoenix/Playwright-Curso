@@ -1,0 +1,52 @@
+STEP: ready
+
+  TRAINING LEDGER - SIMULATED 3270
+  LOCAL CLASSROOM ONLY | Python TN3270 server | No z/OS or CICS
+
+  Find a transfer committed by the local distributed application.
+  This screen reads the SAME local ledger; it is not an independent audit.
+
+  TRANSFER REFERENCE :
+
+
+  STATUS       : READY
+  REFERENCE    :
+
+
+
+
+
+
+
+
+  Enter = lookup reference     Clear = new search
+
+  SIMULATION: synthetic data; plaintext TN3270 bound to 127.0.0.1 only.
+
+
+
+STEP: lookup-result
+
+  TRAINING LEDGER - SIMULATED 3270
+  LOCAL CLASSROOM ONLY | Python TN3270 server | No z/OS or CICS
+
+  Find a transfer committed by the local distributed application.
+  This screen reads the SAME local ledger; it is not an independent audit.
+
+  TRANSFER REFERENCE : f09ab065-e1ae-4a63-82c3-5a3dfef5b678
+
+
+  STATUS       : COMPLETED
+  REFERENCE    : f09ab065-e1ae-4a63-82c3-5a3dfef5b678
+  AMOUNT MINOR : 10000
+  CURRENCY     : MXN
+  SOURCE       : 4ca11c3c-8082-4985-8054-66d2f7521288
+  BALANCE MINOR: 90000
+
+
+
+
+  Enter = lookup reference     Clear = new search
+
+  SIMULATION: synthetic data; plaintext TN3270 bound to 127.0.0.1 only.
+

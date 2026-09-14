@@ -1,0 +1,544 @@
+{
+  "hash": "8e31a06939e82ae2a1be3257bdc3fbd372a8c88574573761702128f9cf19a383",
+  "duration": 34.058,
+  "cues": [
+    {
+      "text": "The local error scenario uses status five hundred three with a service unavailable",
+      "start": 0.7,
+      "end": 4.9624999999999995
+    },
+    {
+      "text": "code and a documented English message. The page should display that message in an",
+      "start": 4.975,
+      "end": 9.975
+    },
+    {
+      "text": "alert and make the transfer button usable again. Because the browser interception",
+      "start": 9.987499999999999,
+      "end": 14.875
+    },
+    {
+      "text": "prevents this submission from reaching the backend, the account should remain",
+      "start": 14.8875,
+      "end": 18.325000000000003
+    },
+    {
+      "text": "unchanged. These expectations describe our specific experiment. They do not describe",
+      "start": 18.337500000000002,
+      "end": 24.725
+    },
+    {
+      "text": "every possible service failure; a real timeout after a committed debit requires a",
+      "start": 24.7375,
+      "end": 29.2375
+    },
+    {
+      "text": "different test and a careful idempotency recovery design.",
+      "start": 29.25,
+      "end": 32.525
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1500000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2625000,
+      "duration": 3625000,
+      "text": "local"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6375000,
+      "duration": 2375000,
+      "text": "error"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8875000,
+      "duration": 5375000,
+      "text": "scenario"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14375000,
+      "duration": 3375000,
+      "text": "uses"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 17875000,
+      "duration": 4375000,
+      "text": "status"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22375000,
+      "duration": 2250000,
+      "text": "five"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24750000,
+      "duration": 2875000,
+      "text": "hundred"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27750000,
+      "duration": 3125000,
+      "text": "three"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 31000000,
+      "duration": 1500000,
+      "text": "with"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32625000,
+      "duration": 625000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33375000,
+      "duration": 3750000,
+      "text": "service"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 37250000,
+      "duration": 6375000,
+      "text": "unavailable"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43750000,
+      "duration": 4125000,
+      "text": "code"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48000000,
+      "duration": 1875000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50000000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50625000,
+      "duration": 6125000,
+      "text": "documented"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 56875000,
+      "duration": 3375000,
+      "text": "English"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 60375000,
+      "duration": 6500000,
+      "text": "message"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 75500000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 77000000,
+      "duration": 3250000,
+      "text": "page"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 80375000,
+      "duration": 1625000,
+      "text": "should"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 82125000,
+      "duration": 3750000,
+      "text": "display"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 86000000,
+      "duration": 1625000,
+      "text": "that"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 87750000,
+      "duration": 4000000,
+      "text": "message"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 91875000,
+      "duration": 875000,
+      "text": "in"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 92875000,
+      "duration": 875000,
+      "text": "an"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 93875000,
+      "duration": 4125000,
+      "text": "alert"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 98125000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 99500000,
+      "duration": 1625000,
+      "text": "make"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 101250000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 102125000,
+      "duration": 5000000,
+      "text": "transfer"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 107250000,
+      "duration": 2500000,
+      "text": "button"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 109875000,
+      "duration": 3875000,
+      "text": "usable"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 113875000,
+      "duration": 4750000,
+      "text": "again"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 127250000,
+      "duration": 3375000,
+      "text": "Because"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 130750000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 131875000,
+      "duration": 3750000,
+      "text": "browser"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 135750000,
+      "duration": 7000000,
+      "text": "interception"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 142875000,
+      "duration": 4125000,
+      "text": "prevents"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 147125000,
+      "duration": 1500000,
+      "text": "this"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 148750000,
+      "duration": 5375000,
+      "text": "submission"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 154250000,
+      "duration": 1750000,
+      "text": "from"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 156125000,
+      "duration": 2875000,
+      "text": "reaching"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 159125000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 160125000,
+      "duration": 5625000,
+      "text": "backend"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 167500000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 168500000,
+      "duration": 3875000,
+      "text": "account"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 172500000,
+      "duration": 1625000,
+      "text": "should"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 174250000,
+      "duration": 3000000,
+      "text": "remain"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 177375000,
+      "duration": 7750000,
+      "text": "unchanged"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 193750000,
+      "duration": 2375000,
+      "text": "These"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 196250000,
+      "duration": 8375000,
+      "text": "expectations"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 204750000,
+      "duration": 4250000,
+      "text": "describe"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 209125000,
+      "duration": 1125000,
+      "text": "our"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 210375000,
+      "duration": 4875000,
+      "text": "specific"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 215375000,
+      "duration": 7500000,
+      "text": "experiment"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 231500000,
+      "duration": 1500000,
+      "text": "They"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 233125000,
+      "duration": 1250000,
+      "text": "do"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 234500000,
+      "duration": 2125000,
+      "text": "not"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 236750000,
+      "duration": 4500000,
+      "text": "describe"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 241375000,
+      "duration": 2375000,
+      "text": "every"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 243875000,
+      "duration": 5125000,
+      "text": "possible"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 249125000,
+      "duration": 3750000,
+      "text": "service"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 253000000,
+      "duration": 5000000,
+      "text": "failure"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 260250000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 260875000,
+      "duration": 2375000,
+      "text": "real"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 263375000,
+      "duration": 5250000,
+      "text": "timeout"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 268750000,
+      "duration": 2625000,
+      "text": "after"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 271500000,
+      "duration": 625000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 272250000,
+      "duration": 4250000,
+      "text": "committed"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 276625000,
+      "duration": 3875000,
+      "text": "debit"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 280625000,
+      "duration": 4875000,
+      "text": "requires"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 285625000,
+      "duration": 750000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 286500000,
+      "duration": 3500000,
+      "text": "different"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 290125000,
+      "duration": 5250000,
+      "text": "test"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 295500000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 296875000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 297500000,
+      "duration": 4000000,
+      "text": "careful"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 301625000,
+      "duration": 7250000,
+      "text": "idempotency"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 309000000,
+      "duration": 4500000,
+      "text": "recovery"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 313625000,
+      "duration": 5625000,
+      "text": "design"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.8008134365081787,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 2.719000000040978,
+  "original_words": 82,
+  "spoken_words": 82,
+  "spoken_text": "The local error scenario uses status five hundred three with a service unavailable code and a documented English message. The page should display that message in an alert and make the transfer button usable again. Because the browser interception prevents this submission from reaching the backend, the account should remain unchanged. These expectations describe our specific experiment. They do not describe every possible service failure; a real timeout after a committed debit requires a different test and a careful idempotency recovery design."
+}

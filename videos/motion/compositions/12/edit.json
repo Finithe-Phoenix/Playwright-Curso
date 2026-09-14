@@ -1,0 +1,17 @@
+{
+  "episode": "12",
+  "duration": 451.992,
+  "overlays": [
+    {
+      "scene": "12-04",
+      "start": 109.65,
+      "duration": 37.718,
+      "capture": "success",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    }
+  ],
+  "sourceNarration": "audio\\12\\timeline.json"
+}

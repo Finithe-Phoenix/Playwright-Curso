@@ -60,16 +60,16 @@ listen('accounts', Number(process.env.ACCOUNTS_PORT || 3001), async (req, res, u
     if (f.sourceAccountId !== transfer.sourceAccountId || f.beneficiaryId !== transfer.beneficiaryId) return fail(res, 403, 'FORBIDDEN');
     if (!idempotencyKey) return fail(res, 400, 'IDEMPOTENCY_KEY_REQUIRED');
     if (!Number.isSafeInteger(transfer.amountMinor) || transfer.amountMinor <= 0 || transfer.currency !== 'MXN') {
-      return fail(res, 422, 'INVALID_AMOUNT', 'Importe inválido');
+      return fail(res, 422, 'INVALID_AMOUNT', 'Invalid amount');
     }
     const fingerprint = JSON.stringify([transfer.sourceAccountId, transfer.beneficiaryId, transfer.currency, transfer.amountMinor]);
     const key = `${userId}:${idempotencyKey}`;
     const prior = operations.get(key);
     if (prior && !defect) {
       return prior.fingerprint === fingerprint ? json(res, 200, prior.transfer)
-        : fail(res, 409, 'IDEMPOTENCY_CONFLICT', 'Clave de idempotencia reutilizada');
+        : fail(res, 409, 'IDEMPOTENCY_CONFLICT', 'Idempotency key reused with different data');
     }
-    if (f.balanceMinor < transfer.amountMinor) return fail(res, 422, 'INSUFFICIENT_FUNDS', 'Saldo insuficiente');
+    if (f.balanceMinor < transfer.amountMinor) return fail(res, 422, 'INSUFFICIENT_FUNDS', 'Insufficient funds');
     // No await in this critical section: debit, canonical record and outbox event change together.
     // This is atomic only inside this one in-memory Node process, not a production database transaction.
     const completed = { id: randomUUID(), status: 'COMPLETED', sourceAccountId: f.sourceAccountId,

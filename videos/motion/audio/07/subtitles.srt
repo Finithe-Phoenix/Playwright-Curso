@@ -1,0 +1,331 @@
+1
+00:00:00,700 --> 00:00:05,400
+A mock is useful when its boundary matches the question you want to answer. This
+
+2
+00:00:05,412 --> 00:00:10,425
+episode tests how the transfer page reacts to a temporary service error, then compares
+
+3
+00:00:10,438 --> 00:00:15,525
+that evidence with the integrated cases already built. We will intercept one browser
+
+4
+00:00:15,538 --> 00:00:20,812
+request and return a controlled response. That gives repeatable UI behavior without
+
+5
+00:00:20,825 --> 00:00:26,075
+stopping services. It does not test whether the real backend generates that response
+
+6
+00:00:26,088 --> 00:00:30,912
+during an outage. Write the scope beside the test name before implementing the route
+
+7
+00:00:30,925 --> 00:00:31,500
+handler.
+
+8
+00:00:33,726 --> 00:00:37,988
+The local error scenario uses status five hundred three with a service unavailable
+
+9
+00:00:38,001 --> 00:00:43,001
+code and a documented English message. The page should display that message in an
+
+10
+00:00:43,014 --> 00:00:47,901
+alert and make the transfer button usable again. Because the browser interception
+
+11
+00:00:47,914 --> 00:00:51,351
+prevents this submission from reaching the backend, the account should remain
+
+12
+00:00:51,364 --> 00:00:57,751
+unchanged. These expectations describe our specific experiment. They do not describe
+
+13
+00:00:57,764 --> 00:01:02,264
+every possible service failure; a real timeout after a committed debit requires a
+
+14
+00:01:02,276 --> 00:01:05,551
+different test and a careful idempotency recovery design.
+
+15
+00:01:07,784 --> 00:01:12,409
+Create a fresh fixture, authenticate its context, and select the source account and
+
+16
+00:01:12,422 --> 00:01:17,896
+beneficiary. Confirm the opening balance before installing the response substitution.
+
+17
+00:01:18,759 --> 00:01:23,809
+This separates setup failures from the error behavior under test. If your handler
+
+18
+00:01:23,822 --> 00:01:28,484
+accidentally intercepts fixture creation or login, you are testing a different path.
+
+19
+00:01:29,346 --> 00:01:34,396
+Keep the route match narrow enough to affect only transfer submission. The test should
+
+20
+00:01:34,409 --> 00:01:38,496
+be able to explain exactly which request is controlled and which requests still
+
+21
+00:01:38,509 --> 00:01:40,846
+communicate with the running local services.
+
+22
+00:01:43,066 --> 00:01:48,104
+Register the handler before clicking. Match the transfer route and check the request
+
+23
+00:01:48,116 --> 00:01:53,516
+method inside the handler. Requests using other methods continue to the real server.
+
+24
+00:01:54,378 --> 00:02:00,166
+For the POST, fulfill a JSON response with the agreed status, content type, code, and
+
+25
+00:02:00,178 --> 00:02:06,478
+message. The excerpt uses an ordinary JavaScript object converted to JSON, so the
+
+26
+00:02:06,491 --> 00:02:12,191
+browser receives the intended structure. A broad wildcard that replaces every request
+
+27
+00:02:12,204 --> 00:02:16,928
+can make a page appear resilient while hiding broken account queries, authentication,
+
+28
+00:02:17,191 --> 00:02:18,928
+or unrelated loading behavior.
+
+29
+00:02:21,156 --> 00:02:26,644
+Enter one hundred pesos and click the transfer button once. Wait for the exact alert
+
+30
+00:02:26,656 --> 00:02:32,006
+through a locator assertion, then verify that the button is enabled again. The visible
+
+31
+00:02:32,019 --> 00:02:36,468
+error and recovery state are separate checks: a page might show the right message but
+
+32
+00:02:36,481 --> 00:02:42,556
+leave the customer unable to try again. Keep the action count explicit. Repeated
+
+33
+00:02:42,569 --> 00:02:46,456
+clicking could generate a different intention or obscure whether the UI recovered
+
+34
+00:02:46,468 --> 00:02:51,644
+correctly from the controlled first response. The goal is a clear observation of one
+
+35
+00:02:51,656 --> 00:02:52,631
+error transition.
+
+36
+00:02:54,854 --> 00:02:59,329
+Query the authoritative account and canonical transfers using the authenticated API
+
+37
+00:02:59,342 --> 00:03:05,367
+client. Verify the opening balance and an empty collection. This checks that your
+
+38
+00:03:05,379 --> 00:03:10,542
+mocked browser submission did not create an unexpected backend effect. It also
+
+39
+00:03:10,554 --> 00:03:14,704
+confirms you did not accidentally leave a real submission path active alongside the
+
+40
+00:03:14,717 --> 00:03:20,067
+route handler. Explain the causal limit carefully: unchanged state follows because
+
+41
+00:03:20,079 --> 00:03:25,067
+this request was intercepted before delivery. It does not prove a production service
+
+42
+00:03:25,079 --> 00:03:29,104
+guarantees rollback whenever a customer receives a five hundred three response.
+
+43
+00:03:31,336 --> 00:03:36,174
+Remove the route handler when the focused case ends, or let the isolated context close
+
+44
+00:03:36,186 --> 00:03:40,961
+under the fixture's ownership. If you reuse a page within a larger scenario,
+
+45
+00:03:41,148 --> 00:03:46,636
+unregister the exact handler before attempting a real transfer. Otherwise, the next
+
+46
+00:03:46,648 --> 00:03:50,898
+operation may keep receiving the synthetic error and your diagnosis will point at the
+
+47
+00:03:50,911 --> 00:03:57,236
+wrong service. Prefer a separate fixture for the mocked case. Each test then has a
+
+48
+00:03:57,249 --> 00:04:01,486
+clearly defined environment and does not depend on cleanup from a previous scenario.
+
+49
+00:04:03,714 --> 00:04:09,089
+Place the mocked UI case beside the integrated successful transfer. In the first, the
+
+50
+00:04:09,102 --> 00:04:14,426
+test supplies a controlled response and observes browser behavior. In the second, the
+
+51
+00:04:14,439 --> 00:04:19,889
+browser calls real local services and the test verifies their resulting state. Both
+
+52
+00:04:19,902 --> 00:04:25,276
+are useful, but they answer different questions. The mock provides a deterministic way
+
+53
+00:04:25,289 --> 00:04:30,427
+to exercise an error presentation that might be difficult to trigger reliably. The
+
+54
+00:04:30,439 --> 00:04:34,914
+integrated case checks compatibility across the implemented boundaries for its actual
+
+55
+00:04:34,927 --> 00:04:38,052
+environment, data, and execution conditions.
+
+56
+00:04:40,268 --> 00:04:44,930
+Suppose you want to test a genuine service interruption next. Define where the
+
+57
+00:04:44,943 --> 00:04:49,568
+interruption occurs, what the authoritative system may already have committed, and how
+
+58
+00:04:49,580 --> 00:04:54,418
+the client recovers the same intention. Use a separate controlled environment and
+
+59
+00:04:54,430 --> 00:04:59,968
+fault scenario. Do not relabel the existing browser mock as a distributed outage test.
+
+60
+00:05:00,830 --> 00:05:04,956
+A timeout after commitment can require looking up the original transfer rather than
+
+61
+00:05:04,968 --> 00:05:10,518
+issuing a new one. Idempotency gives a foundation, but a complete recovery scenario
+
+62
+00:05:10,530 --> 00:05:12,843
+needs its own contract and observations.
+
+63
+00:05:15,070 --> 00:05:20,195
+Ask AI to review the route handler with the actual error contract. Require it to
+
+64
+00:05:20,208 --> 00:05:25,520
+identify the intercepted method, URL, response shape, and assertions about the browser
+
+65
+00:05:25,532 --> 00:05:31,858
+and backend. Then ask which guarantees remain untested. Reject a patch that returns
+
+66
+00:05:31,870 --> 00:05:36,782
+success from the mock while claiming to validate real transfer settlement. Also
+
+67
+00:05:36,795 --> 00:05:42,045
+inspect whether the handler remains installed after the case. This review turns AI
+
+68
+00:05:42,058 --> 00:05:46,182
+into an assistant for checking test scope, rather than a generator of convenient
+
+69
+00:05:46,195 --> 00:05:49,108
+responses that make every scenario look successful.
+
+70
+00:05:51,336 --> 00:05:56,749
+Name the result as a UI error-handling test with a browser-supplied response. Include
+
+71
+00:05:56,761 --> 00:06:01,224
+the synthetic status and the actual observed alert, button state, and authoritative
+
+72
+00:06:01,236 --> 00:06:06,624
+state checks. Keep its coverage separate from the core successful, rejected, and
+
+73
+00:06:06,636 --> 00:06:12,249
+idempotent transfer cases. The displayed report labels describe categories, not a
+
+74
+00:06:12,261 --> 00:06:18,774
+fabricated result. Populate the observation fields only after execution. When another
+
+75
+00:06:18,786 --> 00:06:22,774
+team reads the regression summary, they should understand immediately that this case
+
+76
+00:06:22,786 --> 00:06:27,474
+tested presentation and recovery controls without exercising a real service outage.
+
+77
+00:06:29,690 --> 00:06:34,215
+Your checkpoint is an executed, isolated mock case and a short explanation of its
+
+78
+00:06:34,228 --> 00:06:39,615
+limits. Demonstrate the alert, the recovered button, and the unchanged local account
+
+79
+00:06:39,628 --> 00:06:45,278
+state, using actual evidence. Then name one separate integrated failure scenario you
+
+80
+00:06:45,290 --> 00:06:50,528
+would add if the product required it, such as a lost response after commitment. This
+
+81
+00:06:50,540 --> 00:06:54,202
+distinction prevents inflated coverage claims while preserving the value of
+
+82
+00:06:54,215 --> 00:07:00,315
+deterministic UI tests. Next, use traces and a controlled implementation defect to
+
+83
+00:07:00,328 --> 00:07:02,890
+diagnose failure without weakening assertions.

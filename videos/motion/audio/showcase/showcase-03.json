@@ -1,0 +1,183 @@
+{
+  "hash": "4ef8a7820e0ae66111a804e41b60ef0936cb738bc52d32b86b0b5dcf45f32145",
+  "duration": 12.914,
+  "cues": [
+    {
+      "text": "The code opens our local application. Every test owns a fresh source account and",
+      "start": 0.7,
+      "end": 5.625
+    },
+    {
+      "text": "beneficiary. The test expresses a business promise, with an exact balance assertion.",
+      "start": 5.637499999999999,
+      "end": 11.4
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 2500000,
+      "duration": 2500000,
+      "text": "code"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5125000,
+      "duration": 3125000,
+      "text": "opens"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8375000,
+      "duration": 1250000,
+      "text": "our"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 9750000,
+      "duration": 3125000,
+      "text": "local"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13000000,
+      "duration": 8250000,
+      "text": "application"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29875000,
+      "duration": 2750000,
+      "text": "Every"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 32750000,
+      "duration": 3625000,
+      "text": "test"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36500000,
+      "duration": 1750000,
+      "text": "owns"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38375000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39000000,
+      "duration": 2875000,
+      "text": "fresh"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 42000000,
+      "duration": 2625000,
+      "text": "source"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44750000,
+      "duration": 4375000,
+      "text": "account"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49250000,
+      "duration": 1000000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50375000,
+      "duration": 9125000,
+      "text": "beneficiary"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 68125000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 69625000,
+      "duration": 3375000,
+      "text": "test"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 73125000,
+      "duration": 5375000,
+      "text": "expresses"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 78625000,
+      "duration": 625000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 79375000,
+      "duration": 3875000,
+      "text": "business"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 83375000,
+      "duration": 5625000,
+      "text": "promise"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 90125000,
+      "duration": 1500000,
+      "text": "with"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 91750000,
+      "duration": 1000000,
+      "text": "an"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 92875000,
+      "duration": 4375000,
+      "text": "exact"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 97375000,
+      "duration": 3750000,
+      "text": "balance"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 101250000,
+      "duration": 6750000,
+      "text": "assertion"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.7355028390884399,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.1869999999762513,
+  "original_words": 26,
+  "spoken_words": 26,
+  "spoken_text": "The code opens our local application. Every test owns a fresh source account and beneficiary. The test expresses a business promise, with an exact balance assertion."
+}

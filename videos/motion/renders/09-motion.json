@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\09-motion.mp4",
+  "sha256": "f9e92b36d09c147a03d739a90cd2d2f5718827968d9f66152778db9b7fbe8c23",
+  "duration": 439.791667,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 0,
+  "visualReview": "Twelve sampled scene frames reviewed: Python runner output matches the lesson, terminal panels identify the successful lookup capture, and labels fit."
+}

@@ -1,0 +1,74 @@
+{
+  "episode": "showcase",
+  "sha256": "3bff67764ca1f6b909ef409fa956bea5eddd34d8d5812803d949d5f11befe2a2",
+  "duration": 156.208333,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.7,
+  "audioPeakDb": -1.1,
+  "audioDecode": "passed",
+  "sampleCount": 11,
+  "samples": [
+    {
+      "scene": "showcase-01",
+      "time": 4.693,
+      "frame": "motion\\local-results\\review\\showcase\\01.png"
+    },
+    {
+      "scene": "showcase-02",
+      "time": 16.058999999999997,
+      "frame": "motion\\local-results\\review\\showcase\\02.png"
+    },
+    {
+      "scene": "showcase-03",
+      "time": 29.189,
+      "frame": "motion\\local-results\\review\\showcase\\03.png"
+    },
+    {
+      "scene": "showcase-04",
+      "time": 44.203,
+      "frame": "motion\\local-results\\review\\showcase\\04.png"
+    },
+    {
+      "scene": "showcase-05",
+      "time": 59.61300000000001,
+      "frame": "motion\\local-results\\review\\showcase\\05.png"
+    },
+    {
+      "scene": "showcase-06",
+      "time": 73.83500000000001,
+      "frame": "motion\\local-results\\review\\showcase\\06.png"
+    },
+    {
+      "scene": "showcase-07",
+      "time": 89.42500000000001,
+      "frame": "motion\\local-results\\review\\showcase\\07.png"
+    },
+    {
+      "scene": "showcase-08",
+      "time": 104.21100000000001,
+      "frame": "motion\\local-results\\review\\showcase\\08.png"
+    },
+    {
+      "scene": "showcase-09",
+      "time": 118.733,
+      "frame": "motion\\local-results\\review\\showcase\\09.png"
+    },
+    {
+      "scene": "showcase-10",
+      "time": 134.467,
+      "frame": "motion\\local-results\\review\\showcase\\10.png"
+    },
+    {
+      "scene": "showcase-11",
+      "time": 149.217,
+      "frame": "motion\\local-results\\review\\showcase\\11.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\showcase-contact.jpg",
+  "visualReview": "sampled contact sheet reviewed; browser playback and chapter seeking verified",
+  "fullPlaybackReview": "not performed"
+}

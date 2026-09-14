@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\12-motion.mp4",
+  "sha256": "846134d69fa13b81f94a757a893458d92e76be16cf8fe3e78f4d05ce8ba8fd98",
+  "duration": 452.0,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: reusable prompts, browser capture, language comparison and evidence-reporting layouts checked."
+}

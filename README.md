@@ -2,6 +2,16 @@
 
 An advanced two-hour workshop with twelve companion video lessons, local distributed services, TypeScript, Python and Java test projects, and a local TN3270 training simulator.
 
+## Motion edition
+
+The new [motion library](videos/motion/index.html) combines English narration, progressive code, animated system boundaries, recorded browser actions and real local test evidence. Start with the 2:36 walkthrough, then follow the twelve full lessons. See the [edition guide](videos/motion/README.md) for the distinction between recorded application behavior and explanatory animation.
+
+```powershell
+node videos/tools/serve-course.mjs --port 8767
+```
+
+Open [Playwright in Motion](http://127.0.0.1:8767/videos/motion/index.html). The library supports chapter seeking and a full-width focus mode.
+
 ## Published baseline
 
 `v1.0.0-baseline` preserves the existing course before the English-language and laboratory improvements. Some original pages, application labels and documents are still Spanish. The recordings are in English. This release records the starting point; it does not claim that the language migration has already happened.
@@ -56,4 +66,4 @@ The preserved evidence records 22 passing local tests and visual review of 144 s
 - [Twelve copy-and-paste prompts](docs/PROMPTS.md): discovery, critical paths, coverage, generation, reports, Excel intake and review.
 - [Excel test-case template](templates/test-cases-template.xlsx): three synthetic examples and nine steps, all requiring review.
 
-The new plan, launcher, prompt pack and template are in English. Full course/UI language migration and related video updates are planned work; the baseline remains preserved.
+The new plan, launcher, prompt pack, template, motion library and laboratory UI are in English. The updated UI contract passed 22 tests across the three language tracks and the terminal protocol. Original course documents and baseline media remain preserved; their broader editorial migration is separate from the motion edition.

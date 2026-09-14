@@ -4,7 +4,7 @@
 
 The complete baseline was published first as `v1.0.0-baseline`, commit `de97c7ebc1d6dffca5347d52f4ce7661ea73e2ac`. It includes twelve videos, narration sources, editable compositions, the distributed application, the TN3270 simulator, three language routes and recorded verification evidence. The release ZIP is available on GitHub.
 
-This document proposes the next course revision. The English-only migration and expanded application are **planned**, not already implemented. The new quick-start launcher, this plan, the prompt pack and Excel template are delivered now. Do not overwrite the preserved baseline or describe old screenshots and test results as evidence of a new application version.
+This document records the improvement roadmap. The motion edition now implements English laboratory labels, matching test locators, animated lessons and recorded browser/terminal evidence. The broader original-document migration and expanded application dashboard remain **planned**. The quick-start launcher, prompt pack and Excel template are available. Do not overwrite the preserved baseline or describe old screenshots and test results as evidence of a new application version.
 
 ## Editorial and design requirements
 

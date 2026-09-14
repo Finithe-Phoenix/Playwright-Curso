@@ -1,0 +1,79 @@
+{
+  "episode": "01",
+  "sha256": "452d46bfc65901db2b41472b97332b47859ca242971438ca5d15bce9d42c46c0",
+  "duration": 423.0,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.4,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "01-01",
+      "time": 16.285,
+      "frame": "motion\\local-results\\review\\01\\01.png"
+    },
+    {
+      "scene": "01-02",
+      "time": 49.467,
+      "frame": "motion\\local-results\\review\\01\\02.png"
+    },
+    {
+      "scene": "01-03",
+      "time": 84.509,
+      "frame": "motion\\local-results\\review\\01\\03.png"
+    },
+    {
+      "scene": "01-04",
+      "time": 121.363,
+      "frame": "motion\\local-results\\review\\01\\04.png"
+    },
+    {
+      "scene": "01-05",
+      "time": 158.529,
+      "frame": "motion\\local-results\\review\\01\\05.png"
+    },
+    {
+      "scene": "01-06",
+      "time": 195.935,
+      "frame": "motion\\local-results\\review\\01\\06.png"
+    },
+    {
+      "scene": "01-07",
+      "time": 231.94899999999998,
+      "frame": "motion\\local-results\\review\\01\\07.png"
+    },
+    {
+      "scene": "01-08",
+      "time": 267.483,
+      "frame": "motion\\local-results\\review\\01\\08.png"
+    },
+    {
+      "scene": "01-09",
+      "time": 303.149,
+      "frame": "motion\\local-results\\review\\01\\09.png"
+    },
+    {
+      "scene": "01-10",
+      "time": 338.779,
+      "frame": "motion\\local-results\\review\\01\\10.png"
+    },
+    {
+      "scene": "01-11",
+      "time": 373.70099999999996,
+      "frame": "motion\\local-results\\review\\01\\11.png"
+    },
+    {
+      "scene": "01-12",
+      "time": 406.595,
+      "frame": "motion\\local-results\\review\\01\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\01-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed; TypeScript, Python and Java preparation now display their matching recorded runner output.",
+  "fullPlaybackReview": "not performed"
+}

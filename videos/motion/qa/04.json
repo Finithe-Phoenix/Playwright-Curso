@@ -1,0 +1,79 @@
+{
+  "episode": "04",
+  "sha256": "3bcc91b986e8c0306999c71a83f884898d47d54caa4c31fadd02cfeced20a57a",
+  "duration": 438.583333,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.2,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "04-01",
+      "time": 18.853,
+      "frame": "motion\\local-results\\review\\04\\01.png"
+    },
+    {
+      "scene": "04-02",
+      "time": 56.871,
+      "frame": "motion\\local-results\\review\\04\\02.png"
+    },
+    {
+      "scene": "04-03",
+      "time": 93.641,
+      "frame": "motion\\local-results\\review\\04\\03.png"
+    },
+    {
+      "scene": "04-04",
+      "time": 129.979,
+      "frame": "motion\\local-results\\review\\04\\04.png"
+    },
+    {
+      "scene": "04-05",
+      "time": 167.40900000000002,
+      "frame": "motion\\local-results\\review\\04\\05.png"
+    },
+    {
+      "scene": "04-06",
+      "time": 204.407,
+      "frame": "motion\\local-results\\review\\04\\06.png"
+    },
+    {
+      "scene": "04-07",
+      "time": 239.76100000000002,
+      "frame": "motion\\local-results\\review\\04\\07.png"
+    },
+    {
+      "scene": "04-08",
+      "time": 276.699,
+      "frame": "motion\\local-results\\review\\04\\08.png"
+    },
+    {
+      "scene": "04-09",
+      "time": 313.109,
+      "frame": "motion\\local-results\\review\\04\\09.png"
+    },
+    {
+      "scene": "04-10",
+      "time": 347.695,
+      "frame": "motion\\local-results\\review\\04\\10.png"
+    },
+    {
+      "scene": "04-11",
+      "time": 383.601,
+      "frame": "motion\\local-results\\review\\04\\11.png"
+    },
+    {
+      "scene": "04-12",
+      "time": 420.011,
+      "frame": "motion\\local-results\\review\\04\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\04-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: Java code, actual JUnit result and browser contract checked.",
+  "fullPlaybackReview": "not performed"
+}

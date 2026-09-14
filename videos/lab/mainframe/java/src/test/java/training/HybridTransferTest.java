@@ -28,7 +28,7 @@ class HybridTransferTest {
     assertNotNull(key, "Set TEST_HOOK_KEY to the running local gateway classroom key");
     String baseUrl = System.getenv().getOrDefault("BASE_URL", "http://127.0.0.1:3000");
     Path mainframe = Path.of("..").toAbsolutePath().normalize();
-    Path evidence = mainframe.resolve("evidence");
+    Path evidence = Path.of(System.getenv().getOrDefault("EVIDENCE_DIR", mainframe.resolve("evidence").toString()));
     Files.createDirectories(evidence);
     String defaultPython = mainframe.resolve(System.getProperty("os.name").startsWith("Windows")
         ? ".venv/Scripts/python.exe" : ".venv/bin/python").toString();
@@ -56,12 +56,12 @@ class HybridTransferTest {
           assertEquals(200, login.status());
           Page page = context.newPage();
           page.navigate("/transfers");
-          page.getByLabel("Cuenta origen", new Page.GetByLabelOptions().setExact(true)).selectOption(source);
-          page.getByLabel("Beneficiario", new Page.GetByLabelOptions().setExact(true))
+          page.getByLabel("Source account", new Page.GetByLabelOptions().setExact(true)).selectOption(source);
+          page.getByLabel("Beneficiary", new Page.GetByLabelOptions().setExact(true))
               .selectOption(fixture.get("beneficiaryId").getAsString());
-          page.getByLabel("Importe (MXN)", new Page.GetByLabelOptions().setExact(true)).fill("100.00");
-          page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Transferir").setExact(true)).click();
-          assertThat(page.getByRole(AriaRole.STATUS)).hasText("Transferencia realizada");
+          page.getByLabel("Amount (MXN)", new Page.GetByLabelOptions().setExact(true)).fill("100.00");
+          page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Transfer").setExact(true)).click();
+          assertThat(page.getByRole(AriaRole.STATUS)).hasText("Transfer completed");
           assertThat(page.getByTestId("account-balance")).hasText("MXN 900.00");
           APIResponse transfers = api.get("/api/transfers", RequestOptions.create().setQueryParam("sourceAccountId", source));
           assertEquals(200, transfers.status());

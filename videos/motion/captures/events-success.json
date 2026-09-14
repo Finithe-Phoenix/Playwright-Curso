@@ -1,0 +1,51 @@
+{
+  "scenario": "success",
+  "events": [
+    {
+      "time": 0.007,
+      "action": "Open the transfer workspace",
+      "code": "await page.goto('/transfers');"
+    },
+    {
+      "time": 2.341,
+      "action": "Select the owned source account",
+      "code": "await page.getByLabel('Source account').selectOption(lab.sourceAccountId);"
+    },
+    {
+      "time": 4.577,
+      "action": "Select the isolated beneficiary",
+      "code": "await page.getByLabel('Beneficiary').selectOption(lab.beneficiaryId);"
+    },
+    {
+      "time": 6.805,
+      "action": "Type the amount",
+      "code": "await page.getByLabel('Amount (MXN)').fill('100.00');"
+    },
+    {
+      "time": 10.529,
+      "action": "Submit the customer action",
+      "code": "await page.getByRole('button', { name: 'Transfer', exact: true }).click();"
+    },
+    {
+      "time": 10.597,
+      "action": "Assert the visible business result",
+      "code": "await expect(page.getByTestId('account-balance')).toHaveText('MXN 900.00');"
+    },
+    {
+      "time": 13.259,
+      "action": "Verify canonical API state",
+      "code": "expect(account.balanceMinor).toBe(90000);\nexpect(transfers.total).toBe(1);"
+    }
+  ],
+  "result": {
+    "id": "f09ab065-e1ae-4a63-82c3-5a3dfef5b678",
+    "status": "COMPLETED",
+    "sourceAccountId": "4ca11c3c-8082-4985-8054-66d2f7521288",
+    "beneficiaryId": "f4948321-b66d-4613-a311-d8acc77f1e77",
+    "currency": "MXN",
+    "amountMinor": 10000
+  },
+  "balanceMinor": 90000,
+  "transferCount": 1,
+  "timingBasis": "wall clock since test setup; video includes short browser startup lead-in"
+}

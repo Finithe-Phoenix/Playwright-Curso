@@ -1,0 +1,105 @@
+{
+  "episode": "showcase",
+  "duration": 156.19,
+  "overlays": [
+    {
+      "scene": "showcase-04",
+      "start": 36.446,
+      "duration": 16.314,
+      "capture": "success",
+      "x": 351,
+      "y": 216,
+      "width": 1218,
+      "height": 684
+    },
+    {
+      "scene": "showcase-09",
+      "start": 111.57600000000001,
+      "duration": 15.113999999999999,
+      "capture": "unavailable",
+      "x": 351,
+      "y": 216,
+      "width": 1218,
+      "height": 684
+    }
+  ],
+  "scenes": [
+    {
+      "id": "showcase-01",
+      "title": "One transfer. Three services.",
+      "narration": "One transfer. Three services. One question: can you prove that the money moved exactly once?",
+      "start": 0.0,
+      "duration": 9.386
+    },
+    {
+      "id": "showcase-02",
+      "title": "Write the contract",
+      "narration": "Start with a precise prompt. Ask for an isolated fixture, stable locators, and assertions against real business state. Review the proposed code before you execute it.",
+      "start": 9.386,
+      "duration": 13.346
+    },
+    {
+      "id": "showcase-03",
+      "title": "Build the executable case",
+      "narration": "The code opens our local application. Every test owns a fresh source account and beneficiary. The test expresses a business promise, with an exact balance assertion.",
+      "start": 22.732,
+      "duration": 12.914
+    },
+    {
+      "id": "showcase-04",
+      "title": "Watch the browser",
+      "narration": "Watch the browser select the account, enter one hundred pesos, and submit the transfer. This is a recorded run against the local application. The form responds with a reference, and the balance changes from one thousand to nine hundred pesos.",
+      "start": 35.646,
+      "duration": 17.114
+    },
+    {
+      "id": "showcase-05",
+      "title": "Follow the request",
+      "narration": "Now follow the identity. The gateway accepts the command. The accounts service commits the debit and publishes an event. The independent ledger projection catches up afterward.",
+      "start": 52.760000000000005,
+      "duration": 13.706
+    },
+    {
+      "id": "showcase-06",
+      "title": "Prove the business state",
+      "narration": "The balance is nine hundred pesos. One canonical record carries this exact reference. A visible success message alone is not enough. Verify both the identity and the effect.",
+      "start": 66.46600000000001,
+      "duration": 14.738
+    },
+    {
+      "id": "showcase-07",
+      "title": "Cross the terminal boundary",
+      "narration": "Use the same reference at the terminal boundary. TNZ enters it into the local simulator, waits for the result, and verifies the amount and balance. Playwright controls the browser. TNZ controls the terminal.",
+      "start": 81.20400000000001,
+      "duration": 16.442
+    },
+    {
+      "id": "showcase-08",
+      "title": "Keep each language native",
+      "narration": "Python and Java use the same business contract. Keep their fixture and lifecycle rules native to each runner. The same balance assertion must protect the same customer outcome.",
+      "start": 97.64600000000002,
+      "duration": 13.13
+    },
+    {
+      "id": "showcase-09",
+      "title": "Control the failure",
+      "narration": "Now control a failure. This browser interception returns service unavailable. The form recovers and the account remains unchanged. That is a user interface experiment, not proof of a real backend outage.",
+      "start": 110.77600000000001,
+      "duration": 15.914
+    },
+    {
+      "id": "showcase-10",
+      "title": "Read the actual evidence",
+      "narration": "Run the suites and inspect the evidence. Twenty-two checks passed in this local run, across TypeScript, Python, Java, and the terminal protocol. Keep reports connected to the cases they actually executed.",
+      "start": 126.69000000000001,
+      "duration": 15.554
+    },
+    {
+      "id": "showcase-11",
+      "title": "From intention to evidence",
+      "narration": "From prompt, to code, to browser, to terminal. Keep one identity, clear boundaries, and assertions that can catch a real defect. That is the workflow you will build in this course.",
+      "start": 142.244,
+      "duration": 13.946
+    }
+  ]
+}

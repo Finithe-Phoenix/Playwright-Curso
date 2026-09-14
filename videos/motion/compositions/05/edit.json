@@ -1,0 +1,17 @@
+{
+  "episode": "05",
+  "duration": 439.60800000000006,
+  "overlays": [
+    {
+      "scene": "05-04",
+      "start": 109.554,
+      "duration": 36.926,
+      "capture": "success",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    }
+  ],
+  "sourceNarration": "audio\\05\\timeline.json"
+}

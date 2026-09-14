@@ -1,0 +1,13 @@
+{
+  "stats": {
+    "startTime": "2026-09-14T19:19:51.100Z",
+    "duration": 49608.733,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "source": "recording/record.spec.ts",
+  "environment": "Local synthetic services; browser 503 is intercepted, not a real service outage.",
+  "captureHolds": "Editorial reading pauses; business assertions use Playwright waits."
+}

@@ -1,0 +1,37 @@
+{
+  "episode": "02",
+  "duration": 430.39200000000005,
+  "overlays": [
+    {
+      "scene": "02-02",
+      "start": 36.182,
+      "duration": 31.982,
+      "capture": "success",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    },
+    {
+      "scene": "02-06",
+      "start": 176.47000000000003,
+      "duration": 35.174,
+      "capture": "success",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    },
+    {
+      "scene": "02-07",
+      "start": 213.14400000000003,
+      "duration": 31.381999999999998,
+      "capture": "insufficient",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    }
+  ],
+  "sourceNarration": "audio\\02\\timeline.json"
+}

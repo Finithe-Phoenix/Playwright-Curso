@@ -1,0 +1,189 @@
+{
+  "videos": 13,
+  "sampledFrames": 155,
+  "fullPlaybackReview": "not performed",
+  "episodes": [
+    {
+      "episode": "showcase",
+      "sha256": "3bff67764ca1f6b909ef409fa956bea5eddd34d8d5812803d949d5f11befe2a2",
+      "duration": 156.208333,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 11,
+      "visualReview": "sampled contact sheet reviewed; browser playback and chapter seeking verified",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "01",
+      "sha256": "452d46bfc65901db2b41472b97332b47859ca242971438ca5d15bce9d42c46c0",
+      "duration": 423.0,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed; TypeScript, Python and Java preparation now display their matching recorded runner output.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "02",
+      "sha256": "505af56bf4ed349727efc24931eba4c805fc4ff51b60aa62bd726d2069db646d",
+      "duration": 430.416667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "03",
+      "sha256": "48f9e078a50a1ea084ce8546726223fbd7478ee26454513536c91a94c4698d14",
+      "duration": 443.291667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "04",
+      "sha256": "3bcc91b986e8c0306999c71a83f884898d47d54caa4c31fadd02cfeced20a57a",
+      "duration": 438.583333,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: Java code, actual JUnit result and browser contract checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "05",
+      "sha256": "73ee5d74c98a6f26e2898aaeb4100edd88a06a82da835bba97a798a64a1b9675",
+      "duration": 439.625,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: isolation walkthrough, conceptual paths, prompt and recorded browser panels checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "06",
+      "sha256": "90b10816e1d04ecb2d3717149b00e933b2ade465212ee4c01372dc49a15afcad",
+      "duration": 434.5,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: distributed path, polling code, recorded browser and captured state panels checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "07",
+      "sha256": "d9891b507d37e091a402514bf186bfb8bf4d024195f682554e2594afbcc4e885",
+      "duration": 424.416667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: English error contract, intercepted 503 browser behavior and unchanged-state observations checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "08",
+      "sha256": "57bdb8f10f58c402fd24f84727f2018aafd229703e72f4e800cde83e2ff82860",
+      "duration": 434.916667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: actual intentional failure is distinguished from the healthy run; prompts and reporting examples checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "09",
+      "sha256": "f9e92b36d09c147a03d739a90cd2d2f5718827968d9f66152778db9b7fbe8c23",
+      "duration": 439.791667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: Python runner output matches the lesson, terminal panels identify the successful lookup capture, and labels fit.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "10",
+      "sha256": "e553fd26be5b755d35afcb278781f495186752919966f6e1a7421c95008cabb3",
+      "duration": 434.416667,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: TNZ API walkthrough, terminal fields, successful-capture labels and subtitle placement checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "11",
+      "sha256": "70648c447d852bbdafb93e4b141a20104fffdaad01ae709c9c65c9df7620dcfa",
+      "duration": 444.625,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: browser recording, Python/TypeScript/Java adapter walkthroughs and matching successful terminal reference checked.",
+      "fullPlaybackReview": "not performed"
+    },
+    {
+      "episode": "12",
+      "sha256": "846134d69fa13b81f94a757a893458d92e76be16cf8fe3e78f4d05ce8ba8fd98",
+      "duration": 452.0,
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "fps": 24,
+      "audioDecode": "passed",
+      "sampleCount": 12,
+      "visualReview": "Twelve sampled scene frames reviewed: reusable prompts, browser capture, language comparison and evidence-reporting layouts checked.",
+      "fullPlaybackReview": "not performed"
+    }
+  ]
+}

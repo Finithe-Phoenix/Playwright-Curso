@@ -1,0 +1,17 @@
+{
+  "episode": "11",
+  "duration": 444.6,
+  "overlays": [
+    {
+      "scene": "11-03",
+      "start": 77.464,
+      "duration": 34.742,
+      "capture": "success",
+      "x": 671,
+      "y": 228,
+      "width": 1184,
+      "height": 656
+    }
+  ],
+  "sourceNarration": "audio\\11\\timeline.json"
+}

@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\01-motion.mp4",
+  "sha256": "452d46bfc65901db2b41472b97332b47859ca242971438ca5d15bce9d42c46c0",
+  "duration": 423.0,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 0,
+  "visualReview": "Twelve sampled scene frames reviewed; TypeScript, Python and Java preparation now display their matching recorded runner output."
+}

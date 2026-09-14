@@ -4,9 +4,9 @@ import { test, expect, type Lab } from './fixtures';
 
 async function fillTransfer(page: Page, lab: Lab, amount = '100.00') {
   await page.goto('/transfers');
-  await page.getByLabel('Cuenta origen', { exact: true }).selectOption(lab.sourceAccountId);
-  await page.getByLabel('Beneficiario', { exact: true }).selectOption(lab.beneficiaryId);
-  await page.getByLabel('Importe (MXN)', { exact: true }).fill(amount);
+  await page.getByLabel('Source account', { exact: true }).selectOption(lab.sourceAccountId);
+  await page.getByLabel('Beneficiary', { exact: true }).selectOption(lab.beneficiaryId);
+  await page.getByLabel('Amount (MXN)', { exact: true }).fill(amount);
 }
 async function state(page: Page, lab: Lab, balance: number, count: number) {
   const account = await page.request.get(`/api/accounts/${lab.sourceAccountId}`);
@@ -24,8 +24,8 @@ const transferBody = (lab: Lab, amountMinor = 10000) => ({ sourceAccountId: lab.
 
 test('TR-01 | UI transfer commits exactly one debit and record', async ({ page, lab }) => {
   await fillTransfer(page, lab);
-  await page.getByRole('button', { name: 'Transferir', exact: true }).click();
-  await expect(page.getByRole('status')).toHaveText('Transferencia realizada');
+  await page.getByRole('button', { name: 'Transfer', exact: true }).click();
+  await expect(page.getByRole('status')).toHaveText('Transfer completed');
   await expect(page.getByTestId('account-balance')).toHaveText('MXN 900.00');
   const items = await state(page, lab, 90000, 1);
   expect(items[0]).toMatchObject({ ...transferBody(lab), status: 'COMPLETED' });
@@ -36,11 +36,11 @@ test('TR-02 | Insufficient funds leaves balance and ledger unchanged', async ({ 
   await fillTransfer(page, lab, '1100.00');
   const pending = page.waitForResponse(response => new URL(response.url()).pathname === '/api/transfers'
     && response.request().method() === 'POST');
-  await page.getByRole('button', { name: 'Transferir', exact: true }).click();
+  await page.getByRole('button', { name: 'Transfer', exact: true }).click();
   const response = await pending;
   expect(response.status()).toBe(422);
   expect((await response.json()).code).toBe('INSUFFICIENT_FUNDS');
-  await expect(page.getByRole('alert')).toHaveText('Saldo insuficiente');
+  await expect(page.getByRole('alert')).toHaveText('Insufficient funds');
   await state(page, lab, 100000, 0);
 });
 
@@ -73,14 +73,14 @@ test('TR-05 | Mocked503 verifies UI recovery without backend effects', async ({ 
   await page.route('**/api/transfers', async route => {
     if (route.request().method() !== 'POST') return route.continue();
     await route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({
-      code: 'SERVICE_UNAVAILABLE', message: 'Servicio temporalmente no disponible',
+      code: 'SERVICE_UNAVAILABLE', message: 'Service temporarily unavailable',
     }) });
   });
   try {
     await fillTransfer(page, lab);
-    await page.getByRole('button', { name: 'Transferir', exact: true }).click();
-    await expect(page.getByRole('alert')).toHaveText('Servicio temporalmente no disponible');
-    await expect(page.getByRole('button', { name: 'Transferir', exact: true })).toBeEnabled();
+    await page.getByRole('button', { name: 'Transfer', exact: true }).click();
+    await expect(page.getByRole('alert')).toHaveText('Service temporarily unavailable');
+    await expect(page.getByRole('button', { name: 'Transfer', exact: true })).toBeEnabled();
     await state(page, lab, 100000, 0);
   } finally { await page.unroute('**/api/transfers'); }
 });

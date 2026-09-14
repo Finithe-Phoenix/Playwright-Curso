@@ -1,0 +1,79 @@
+{
+  "episode": "10",
+  "sha256": "e553fd26be5b755d35afcb278781f495186752919966f6e1a7421c95008cabb3",
+  "duration": 434.416667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.6,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "10-01",
+      "time": 17.365,
+      "frame": "motion\\local-results\\review\\10\\01.png"
+    },
+    {
+      "scene": "10-02",
+      "time": 53.702999999999996,
+      "frame": "motion\\local-results\\review\\10\\02.png"
+    },
+    {
+      "scene": "10-03",
+      "time": 91.505,
+      "frame": "motion\\local-results\\review\\10\\03.png"
+    },
+    {
+      "scene": "10-04",
+      "time": 128.47899999999998,
+      "frame": "motion\\local-results\\review\\10\\04.png"
+    },
+    {
+      "scene": "10-05",
+      "time": 163.749,
+      "frame": "motion\\local-results\\review\\10\\05.png"
+    },
+    {
+      "scene": "10-06",
+      "time": 197.987,
+      "frame": "motion\\local-results\\review\\10\\06.png"
+    },
+    {
+      "scene": "10-07",
+      "time": 231.90099999999998,
+      "frame": "motion\\local-results\\review\\10\\07.png"
+    },
+    {
+      "scene": "10-08",
+      "time": 266.775,
+      "frame": "motion\\local-results\\review\\10\\08.png"
+    },
+    {
+      "scene": "10-09",
+      "time": 302.261,
+      "frame": "motion\\local-results\\review\\10\\09.png"
+    },
+    {
+      "scene": "10-10",
+      "time": 338.45500000000004,
+      "frame": "motion\\local-results\\review\\10\\10.png"
+    },
+    {
+      "scene": "10-11",
+      "time": 376.36500000000007,
+      "frame": "motion\\local-results\\review\\10\\11.png"
+    },
+    {
+      "scene": "10-12",
+      "time": 414.947,
+      "frame": "motion\\local-results\\review\\10\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\10-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: TNZ API walkthrough, terminal fields, successful-capture labels and subtitle placement checked.",
+  "fullPlaybackReview": "not performed"
+}

@@ -14,7 +14,7 @@ Open **http://127.0.0.1:3300/transfers**. The terminal prints a synthetic demo u
 
 The three local processes use ports 3300, 3301 and 3302. Choose a different group with `node scripts/start-demo.mjs --port=3500`. An occupied port stops startup; the launcher does not take over or stop an existing service. Keep the terminal open; Ctrl+C stops the demo's own processes and discards its in-memory data.
 
-The baseline UI still has Spanish labels; its coordinated English migration is phase 1 of the [improvement plan](IMPROVEMENT-PLAN.md). New instructions and the launcher output are English. This launcher does not start the optional TN3270 simulator; follow the [mainframe lab instructions](../videos/lab/mainframe/README.md) for that extension.
+The current laboratory UI and its test locators are English. The original baseline tag preserves its earlier labels. This launcher does not start the optional TN3270 simulator; follow the [mainframe lab instructions](../videos/lab/mainframe/README.md) for that extension.
 
 ## Try the workflow manually
 

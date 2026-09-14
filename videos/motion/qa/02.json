@@ -1,0 +1,79 @@
+{
+  "episode": "02",
+  "sha256": "505af56bf4ed349727efc24931eba4c805fc4ff51b60aa62bd726d2069db646d",
+  "duration": 430.416667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.3,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "02-01",
+      "time": 17.341,
+      "frame": "motion\\local-results\\review\\02\\01.png"
+    },
+    {
+      "scene": "02-02",
+      "time": 51.423,
+      "frame": "motion\\local-results\\review\\02\\02.png"
+    },
+    {
+      "scene": "02-03",
+      "time": 85.565,
+      "frame": "motion\\local-results\\review\\02\\03.png"
+    },
+    {
+      "scene": "02-04",
+      "time": 120.25900000000001,
+      "frame": "motion\\local-results\\review\\02\\04.png"
+    },
+    {
+      "scene": "02-05",
+      "time": 156.26100000000002,
+      "frame": "motion\\local-results\\review\\02\\05.png"
+    },
+    {
+      "scene": "02-06",
+      "time": 193.30700000000002,
+      "frame": "motion\\local-results\\review\\02\\06.png"
+    },
+    {
+      "scene": "02-07",
+      "time": 228.08500000000004,
+      "frame": "motion\\local-results\\review\\02\\07.png"
+    },
+    {
+      "scene": "02-08",
+      "time": 262.92300000000006,
+      "frame": "motion\\local-results\\review\\02\\08.png"
+    },
+    {
+      "scene": "02-09",
+      "time": 299.309,
+      "frame": "motion\\local-results\\review\\02\\09.png"
+    },
+    {
+      "scene": "02-10",
+      "time": 335.91100000000006,
+      "frame": "motion\\local-results\\review\\02\\10.png"
+    },
+    {
+      "scene": "02-11",
+      "time": 372.82500000000005,
+      "frame": "motion\\local-results\\review\\02\\11.png"
+    },
+    {
+      "scene": "02-12",
+      "time": 410.759,
+      "frame": "motion\\local-results\\review\\02\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\02-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked.",
+  "fullPlaybackReview": "not performed"
+}

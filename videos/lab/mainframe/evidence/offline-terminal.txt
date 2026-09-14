@@ -1,0 +1,24 @@
+
+  TRAINING LEDGER - SIMULATED 3270
+  LOCAL CLASSROOM ONLY | Python TN3270 server | No z/OS or CICS
+
+  Find a transfer committed by the local distributed application.
+  This screen reads the SAME local ledger; it is not an independent audit.
+
+  TRANSFER REFERENCE : TRAINING-0001
+
+
+  STATUS       : COMPLETED
+  REFERENCE    : TRAINING-0001
+  AMOUNT MINOR : 12500
+  CURRENCY     : MXN
+  SOURCE       : training-source
+  BALANCE MINOR: 87500
+
+
+
+
+  Enter = lookup reference     Clear = new search
+
+  SIMULATION: synthetic data; plaintext TN3270 bound to 127.0.0.1 only.
+

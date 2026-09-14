@@ -1,0 +1,200 @@
+{
+  "hash": "33cd2bdbb0b82c32bfea2b4dfc9b864bad61522bc82c8f969e530016e1812ae0",
+  "duration": 13.13,
+  "cues": [
+    {
+      "text": "Python and Java use the same business contract. Keep their fixture and lifecycle rules",
+      "start": 0.7,
+      "end": 6.1499999999999995
+    },
+    {
+      "text": "native to each runner. The same balance assertion must protect the same customer",
+      "start": 6.1625,
+      "end": 11.025
+    },
+    {
+      "text": "outcome.",
+      "start": 11.0375,
+      "end": 11.612499999999999
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 4625000,
+      "text": "Python"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5750000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7125000,
+      "duration": 3125000,
+      "text": "Java"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10375000,
+      "duration": 2000000,
+      "text": "use"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 12500000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 13500000,
+      "duration": 2750000,
+      "text": "same"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 16375000,
+      "duration": 3750000,
+      "text": "business"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 20250000,
+      "duration": 7250000,
+      "text": "contract"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36125000,
+      "duration": 2375000,
+      "text": "Keep"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38625000,
+      "duration": 1375000,
+      "text": "their"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40125000,
+      "duration": 5375000,
+      "text": "fixture"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 45625000,
+      "duration": 1125000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46875000,
+      "duration": 5500000,
+      "text": "lifecycle"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 52500000,
+      "duration": 3000000,
+      "text": "rules"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 55625000,
+      "duration": 3125000,
+      "text": "native"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 58875000,
+      "duration": 1000000,
+      "text": "to"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 60000000,
+      "duration": 2250000,
+      "text": "each"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62375000,
+      "duration": 4250000,
+      "text": "runner"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 75250000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 76750000,
+      "duration": 2750000,
+      "text": "same"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 79625000,
+      "duration": 3625000,
+      "text": "balance"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 83375000,
+      "duration": 5125000,
+      "text": "assertion"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 88625000,
+      "duration": 2375000,
+      "text": "must"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 91125000,
+      "duration": 4125000,
+      "text": "protect"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 95375000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 96375000,
+      "duration": 2875000,
+      "text": "same"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 99375000,
+      "duration": 4875000,
+      "text": "customer"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 104375000,
+      "duration": 5750000,
+      "text": "outcome"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.7448230981826782,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.6400000000139698,
+  "original_words": 28,
+  "spoken_words": 28,
+  "spoken_text": "Python and Java use the same business contract. Keep their fixture and lifecycle rules native to each runner. The same balance assertion must protect the same customer outcome."
+}

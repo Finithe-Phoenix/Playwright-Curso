@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\06-motion.mp4",
+  "sha256": "90b10816e1d04ecb2d3717149b00e933b2ade465212ee4c01372dc49a15afcad",
+  "duration": 434.5,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: distributed path, polling code, recorded browser and captured state panels checked."
+}

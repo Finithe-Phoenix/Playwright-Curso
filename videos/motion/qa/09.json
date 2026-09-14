@@ -1,0 +1,79 @@
+{
+  "episode": "09",
+  "sha256": "f9e92b36d09c147a03d739a90cd2d2f5718827968d9f66152778db9b7fbe8c23",
+  "duration": 439.791667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.5,
+  "audioPeakDb": -1.2,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "09-01",
+      "time": 17.281,
+      "frame": "motion\\local-results\\review\\09\\01.png"
+    },
+    {
+      "scene": "09-02",
+      "time": 52.887,
+      "frame": "motion\\local-results\\review\\09\\02.png"
+    },
+    {
+      "scene": "09-03",
+      "time": 89.585,
+      "frame": "motion\\local-results\\review\\09\\03.png"
+    },
+    {
+      "scene": "09-04",
+      "time": 127.471,
+      "frame": "motion\\local-results\\review\\09\\04.png"
+    },
+    {
+      "scene": "09-05",
+      "time": 165.77700000000002,
+      "frame": "motion\\local-results\\review\\09\\05.png"
+    },
+    {
+      "scene": "09-06",
+      "time": 203.495,
+      "frame": "motion\\local-results\\review\\09\\06.png"
+    },
+    {
+      "scene": "09-07",
+      "time": 239.833,
+      "frame": "motion\\local-results\\review\\09\\07.png"
+    },
+    {
+      "scene": "09-08",
+      "time": 274.743,
+      "frame": "motion\\local-results\\review\\09\\08.png"
+    },
+    {
+      "scene": "09-09",
+      "time": 310.649,
+      "frame": "motion\\local-results\\review\\09\\09.png"
+    },
+    {
+      "scene": "09-10",
+      "time": 348.211,
+      "frame": "motion\\local-results\\review\\09\\10.png"
+    },
+    {
+      "scene": "09-11",
+      "time": 385.48499999999996,
+      "frame": "motion\\local-results\\review\\09\\11.png"
+    },
+    {
+      "scene": "09-12",
+      "time": 421.691,
+      "frame": "motion\\local-results\\review\\09\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\09-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: Python runner output matches the lesson, terminal panels identify the successful lookup capture, and labels fit.",
+  "fullPlaybackReview": "not performed"
+}

@@ -1,0 +1,79 @@
+{
+  "episode": "05",
+  "sha256": "73ee5d74c98a6f26e2898aaeb4100edd88a06a82da835bba97a798a64a1b9675",
+  "duration": 439.625,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.1,
+  "audioPeakDb": -1.1,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "05-01",
+      "time": 17.881,
+      "frame": "motion\\local-results\\review\\05\\01.png"
+    },
+    {
+      "scene": "05-02",
+      "time": 54.459,
+      "frame": "motion\\local-results\\review\\05\\02.png"
+    },
+    {
+      "scene": "05-03",
+      "time": 90.605,
+      "frame": "motion\\local-results\\review\\05\\03.png"
+    },
+    {
+      "scene": "05-04",
+      "time": 127.267,
+      "frame": "motion\\local-results\\review\\05\\04.png"
+    },
+    {
+      "scene": "05-05",
+      "time": 163.88100000000003,
+      "frame": "motion\\local-results\\review\\05\\05.png"
+    },
+    {
+      "scene": "05-06",
+      "time": 199.895,
+      "frame": "motion\\local-results\\review\\05\\06.png"
+    },
+    {
+      "scene": "05-07",
+      "time": 236.833,
+      "frame": "motion\\local-results\\review\\05\\07.png"
+    },
+    {
+      "scene": "05-08",
+      "time": 273.651,
+      "frame": "motion\\local-results\\review\\05\\08.png"
+    },
+    {
+      "scene": "05-09",
+      "time": 311.765,
+      "frame": "motion\\local-results\\review\\05\\09.png"
+    },
+    {
+      "scene": "05-10",
+      "time": 351.151,
+      "frame": "motion\\local-results\\review\\05\\10.png"
+    },
+    {
+      "scene": "05-11",
+      "time": 388.89300000000003,
+      "frame": "motion\\local-results\\review\\05\\11.png"
+    },
+    {
+      "scene": "05-12",
+      "time": 423.23900000000003,
+      "frame": "motion\\local-results\\review\\05\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\05-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: isolation walkthrough, conceptual paths, prompt and recorded browser panels checked.",
+  "fullPlaybackReview": "not performed"
+}

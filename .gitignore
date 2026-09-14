@@ -14,3 +14,7 @@ videos/delivery/
 *.tmp
 *.building
 **/local-results/
+**/tnz.log
+videos/motion/audio/**/.cache/
+videos/motion/compositions/preview/
+videos/motion/renders/preview-motion.*

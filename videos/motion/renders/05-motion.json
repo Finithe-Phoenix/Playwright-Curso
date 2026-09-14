@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\05-motion.mp4",
+  "sha256": "73ee5d74c98a6f26e2898aaeb4100edd88a06a82da835bba97a798a64a1b9675",
+  "duration": 439.625,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: isolation walkthrough, conceptual paths, prompt and recorded browser panels checked."
+}

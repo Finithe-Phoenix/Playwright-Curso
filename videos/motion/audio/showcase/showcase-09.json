@@ -1,0 +1,218 @@
+{
+  "hash": "67beb0a75e4cfccbd918865dbc2ac4e52e542a553560735dcb33f1bdc29473ac",
+  "duration": 15.914,
+  "cues": [
+    {
+      "text": "Now control a failure. This browser interception returns service unavailable. The form",
+      "start": 0.7,
+      "end": 7.0625
+    },
+    {
+      "text": "recovers and the account remains unchanged. That is a user interface experiment, not",
+      "start": 7.074999999999999,
+      "end": 12.737499999999999
+    },
+    {
+      "text": "proof of a real backend outage.",
+      "start": 12.75,
+      "end": 14.4
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2250000,
+      "text": "Now"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3375000,
+      "duration": 4375000,
+      "text": "control"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7875000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8500000,
+      "duration": 6250000,
+      "text": "failure"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23375000,
+      "duration": 2500000,
+      "text": "This"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 26000000,
+      "duration": 3625000,
+      "text": "browser"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29750000,
+      "duration": 6750000,
+      "text": "interception"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36625000,
+      "duration": 4125000,
+      "text": "returns"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 40875000,
+      "duration": 3500000,
+      "text": "service"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44500000,
+      "duration": 7375000,
+      "text": "unavailable"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 60500000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62000000,
+      "duration": 2625000,
+      "text": "form"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 64750000,
+      "duration": 5500000,
+      "text": "recovers"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 70375000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 71750000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 72750000,
+      "duration": 4250000,
+      "text": "account"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 77125000,
+      "duration": 3500000,
+      "text": "remains"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 80750000,
+      "duration": 7875000,
+      "text": "unchanged"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 97250000,
+      "duration": 2375000,
+      "text": "That"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 99750000,
+      "duration": 1000000,
+      "text": "is"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 100875000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 101500000,
+      "duration": 3375000,
+      "text": "user"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 105000000,
+      "duration": 5000000,
+      "text": "interface"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 110125000,
+      "duration": 6875000,
+      "text": "experiment"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 119000000,
+      "duration": 2375000,
+      "text": "not"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 121500000,
+      "duration": 2375000,
+      "text": "proof"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 124000000,
+      "duration": 750000,
+      "text": "of"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 124875000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 125500000,
+      "duration": 2625000,
+      "text": "real"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 128250000,
+      "duration": 4250000,
+      "text": "backend"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 132625000,
+      "duration": 5375000,
+      "text": "outage"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.7915651202201843,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.0160000000032596,
+  "original_words": 31,
+  "spoken_words": 31,
+  "spoken_text": "Now control a failure. This browser interception returns service unavailable. The form recovers and the account remains unchanged. That is a user interface experiment, not proof of a real backend outage."
+}

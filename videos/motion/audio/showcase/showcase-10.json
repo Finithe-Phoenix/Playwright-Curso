@@ -1,0 +1,218 @@
+{
+  "hash": "8a3804cd5cd5574a5189076d867737eb686d8bc4663f9a3b87a9b5a1b4ce0cec",
+  "duration": 15.554,
+  "cues": [
+    {
+      "text": "Run the suites and inspect the evidence. Twenty-two checks passed in this local run,",
+      "start": 0.7,
+      "end": 5.9125
+    },
+    {
+      "text": "across TypeScript, Python, Java, and the terminal protocol. Keep reports connected to",
+      "start": 6.0874999999999995,
+      "end": 12.0625
+    },
+    {
+      "text": "the cases they actually executed.",
+      "start": 12.075,
+      "end": 14.0375
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2375000,
+      "text": "Run"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3500000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4625000,
+      "duration": 3750000,
+      "text": "suites"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 8500000,
+      "duration": 1625000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10250000,
+      "duration": 4500000,
+      "text": "inspect"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14875000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15750000,
+      "duration": 6500000,
+      "text": "evidence"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30875000,
+      "duration": 5250000,
+      "text": "Twenty-two"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36250000,
+      "duration": 3500000,
+      "text": "checks"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39875000,
+      "duration": 3625000,
+      "text": "passed"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43625000,
+      "duration": 750000,
+      "text": "in"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44500000,
+      "duration": 1875000,
+      "text": "this"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 46500000,
+      "duration": 3250000,
+      "text": "local"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49875000,
+      "duration": 3250000,
+      "text": "run"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54875000,
+      "duration": 3375000,
+      "text": "across"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 58375000,
+      "duration": 6750000,
+      "text": "TypeScript"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 66375000,
+      "duration": 5500000,
+      "text": "Python"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 73625000,
+      "duration": 4500000,
+      "text": "Java"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 80125000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 81500000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 82375000,
+      "duration": 3875000,
+      "text": "terminal"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 86375000,
+      "duration": 7250000,
+      "text": "protocol"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 102250000,
+      "duration": 2500000,
+      "text": "Keep"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 104875000,
+      "duration": 4250000,
+      "text": "reports"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 109250000,
+      "duration": 4500000,
+      "text": "connected"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 113875000,
+      "duration": 750000,
+      "text": "to"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 114750000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 115875000,
+      "duration": 4750000,
+      "text": "cases"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 120750000,
+      "duration": 1250000,
+      "text": "they"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 122125000,
+      "duration": 4625000,
+      "text": "actually"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 126875000,
+      "duration": 7500000,
+      "text": "executed"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.7577654123306274,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.062999999965541,
+  "original_words": 31,
+  "spoken_words": 31,
+  "spoken_text": "Run the suites and inspect the evidence. Twenty-two checks passed in this local run, across TypeScript, Python, Java, and the terminal protocol. Keep reports connected to the cases they actually executed."
+}

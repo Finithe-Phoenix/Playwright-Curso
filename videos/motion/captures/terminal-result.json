@@ -1,0 +1,9 @@
+{
+  "reference": "f09ab065-e1ae-4a63-82c3-5a3dfef5b678",
+  "status": "COMPLETED",
+  "simulated": true,
+  "amountMinor": 10000,
+  "currency": "MXN",
+  "sourceAccountId": "4ca11c3c-8082-4985-8054-66d2f7521288",
+  "balanceMinor": 90000
+}

@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\10-motion.mp4",
+  "sha256": "e553fd26be5b755d35afcb278781f495186752919966f6e1a7421c95008cabb3",
+  "duration": 434.416667,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 0,
+  "visualReview": "Twelve sampled scene frames reviewed: TNZ API walkthrough, terminal fields, successful-capture labels and subtitle placement checked."
+}

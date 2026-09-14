@@ -7,7 +7,7 @@ import { promisify } from 'node:util';
 
 const runFile = promisify(execFile);
 const mainframe = path.resolve(__dirname, '..');
-const evidence = path.join(mainframe, 'evidence');
+const evidence = process.env.EVIDENCE_DIR || path.join(mainframe, 'evidence');
 
 test('browser transfer matches the simulated 3270 terminal', async ({ page, context }) => {
   const hookKey = process.env.TEST_HOOK_KEY;
@@ -24,11 +24,11 @@ test('browser transfer matches the simulated 3270 terminal', async ({ page, cont
     }});
     expect(login.status()).toBe(200);
     await page.goto('/transfers');
-    await page.getByLabel('Cuenta origen', { exact: true }).selectOption(fixture.sourceAccountId);
-    await page.getByLabel('Beneficiario', { exact: true }).selectOption(fixture.beneficiaryId);
-    await page.getByLabel('Importe (MXN)', { exact: true }).fill('100.00');
-    await page.getByRole('button', { name: 'Transferir', exact: true }).click();
-    await expect(page.getByRole('status')).toHaveText('Transferencia realizada');
+    await page.getByLabel('Source account', { exact: true }).selectOption(fixture.sourceAccountId);
+    await page.getByLabel('Beneficiary', { exact: true }).selectOption(fixture.beneficiaryId);
+    await page.getByLabel('Amount (MXN)', { exact: true }).fill('100.00');
+    await page.getByRole('button', { name: 'Transfer', exact: true }).click();
+    await expect(page.getByRole('status')).toHaveText('Transfer completed');
     await expect(page.getByTestId('account-balance')).toHaveText('MXN 900.00');
     const response = await context.request.get('/api/transfers', { params: { sourceAccountId: fixture.sourceAccountId } });
     expect(response.status()).toBe(200);

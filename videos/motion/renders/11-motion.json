@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\11-motion.mp4",
+  "sha256": "70648c447d852bbdafb93e4b141a20104fffdaad01ae709c9c65c9df7620dcfa",
+  "duration": 444.625,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: browser recording, Python/TypeScript/Java adapter walkthroughs and matching successful terminal reference checked."
+}

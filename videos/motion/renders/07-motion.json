@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\07-motion.mp4",
+  "sha256": "d9891b507d37e091a402514bf186bfb8bf4d024195f682554e2594afbcc4e885",
+  "duration": 424.416667,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: English error contract, intercepted 503 browser behavior and unchanged-state observations checked."
+}

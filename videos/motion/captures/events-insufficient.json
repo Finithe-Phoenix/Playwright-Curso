@@ -1,0 +1,47 @@
+{
+  "scenario": "insufficient",
+  "events": [
+    {
+      "time": 0.007,
+      "action": "Open the transfer workspace",
+      "code": "await page.goto('/transfers');"
+    },
+    {
+      "time": 2.321,
+      "action": "Select the owned source account",
+      "code": "await page.getByLabel('Source account').selectOption(lab.sourceAccountId);"
+    },
+    {
+      "time": 4.559,
+      "action": "Select the isolated beneficiary",
+      "code": "await page.getByLabel('Beneficiary').selectOption(lab.beneficiaryId);"
+    },
+    {
+      "time": 6.795,
+      "action": "Type the amount",
+      "code": "await page.getByLabel('Amount (MXN)').fill('1100.00');"
+    },
+    {
+      "time": 10.771,
+      "action": "Submit the customer action",
+      "code": "await page.getByRole('button', { name: 'Transfer', exact: true }).click();"
+    },
+    {
+      "time": 10.826,
+      "action": "Assert the visible business result",
+      "code": "await expect(page.getByTestId('account-balance')).toHaveText('MXN 1000.00');"
+    },
+    {
+      "time": 13.055,
+      "action": "Verify canonical API state",
+      "code": "expect(account.balanceMinor).toBe(100000);\nexpect(transfers.total).toBe(0);"
+    }
+  ],
+  "result": {
+    "code": "INSUFFICIENT_FUNDS",
+    "message": "Insufficient funds"
+  },
+  "balanceMinor": 100000,
+  "transferCount": 0,
+  "timingBasis": "wall clock since test setup; video includes short browser startup lead-in"
+}

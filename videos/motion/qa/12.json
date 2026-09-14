@@ -1,0 +1,79 @@
+{
+  "episode": "12",
+  "sha256": "846134d69fa13b81f94a757a893458d92e76be16cf8fe3e78f4d05ce8ba8fd98",
+  "duration": 452.0,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.3,
+  "audioPeakDb": -1.1,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "12-01",
+      "time": 17.557,
+      "frame": "motion\\local-results\\review\\12\\01.png"
+    },
+    {
+      "scene": "12-02",
+      "time": 53.403,
+      "frame": "motion\\local-results\\review\\12\\02.png"
+    },
+    {
+      "scene": "12-03",
+      "time": 89.921,
+      "frame": "motion\\local-results\\review\\12\\03.png"
+    },
+    {
+      "scene": "12-04",
+      "time": 127.75900000000001,
+      "frame": "motion\\local-results\\review\\12\\04.png"
+    },
+    {
+      "scene": "12-05",
+      "time": 167.481,
+      "frame": "motion\\local-results\\review\\12\\05.png"
+    },
+    {
+      "scene": "12-06",
+      "time": 207.167,
+      "frame": "motion\\local-results\\review\\12\\06.png"
+    },
+    {
+      "scene": "12-07",
+      "time": 245.53300000000002,
+      "frame": "motion\\local-results\\review\\12\\07.png"
+    },
+    {
+      "scene": "12-08",
+      "time": 283.39500000000004,
+      "frame": "motion\\local-results\\review\\12\\08.png"
+    },
+    {
+      "scene": "12-09",
+      "time": 321.209,
+      "frame": "motion\\local-results\\review\\12\\09.png"
+    },
+    {
+      "scene": "12-10",
+      "time": 357.343,
+      "frame": "motion\\local-results\\review\\12\\10.png"
+    },
+    {
+      "scene": "12-11",
+      "time": 393.98100000000005,
+      "frame": "motion\\local-results\\review\\12\\11.png"
+    },
+    {
+      "scene": "12-12",
+      "time": 432.611,
+      "frame": "motion\\local-results\\review\\12\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\12-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: reusable prompts, browser capture, language comparison and evidence-reporting layouts checked.",
+  "fullPlaybackReview": "not performed"
+}

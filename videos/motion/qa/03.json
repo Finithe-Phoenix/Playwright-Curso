@@ -1,0 +1,79 @@
+{
+  "episode": "03",
+  "sha256": "48f9e078a50a1ea084ce8546726223fbd7478ee26454513536c91a94c4698d14",
+  "duration": 443.291667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.8,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "03-01",
+      "time": 19.117,
+      "frame": "motion\\local-results\\review\\03\\01.png"
+    },
+    {
+      "scene": "03-02",
+      "time": 55.359,
+      "frame": "motion\\local-results\\review\\03\\02.png"
+    },
+    {
+      "scene": "03-03",
+      "time": 91.48100000000001,
+      "frame": "motion\\local-results\\review\\03\\03.png"
+    },
+    {
+      "scene": "03-04",
+      "time": 128.719,
+      "frame": "motion\\local-results\\review\\03\\04.png"
+    },
+    {
+      "scene": "03-05",
+      "time": 164.925,
+      "frame": "motion\\local-results\\review\\03\\05.png"
+    },
+    {
+      "scene": "03-06",
+      "time": 203.09900000000002,
+      "frame": "motion\\local-results\\review\\03\\06.png"
+    },
+    {
+      "scene": "03-07",
+      "time": 241.24900000000002,
+      "frame": "motion\\local-results\\review\\03\\07.png"
+    },
+    {
+      "scene": "03-08",
+      "time": 278.187,
+      "frame": "motion\\local-results\\review\\03\\08.png"
+    },
+    {
+      "scene": "03-09",
+      "time": 315.22099999999995,
+      "frame": "motion\\local-results\\review\\03\\09.png"
+    },
+    {
+      "scene": "03-10",
+      "time": 350.767,
+      "frame": "motion\\local-results\\review\\03\\10.png"
+    },
+    {
+      "scene": "03-11",
+      "time": 387.453,
+      "frame": "motion\\local-results\\review\\03\\11.png"
+    },
+    {
+      "scene": "03-12",
+      "time": 424.9549999999999,
+      "frame": "motion\\local-results\\review\\03\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\03-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked.",
+  "fullPlaybackReview": "not performed"
+}

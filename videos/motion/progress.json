@@ -1,0 +1,100 @@
+{
+  "episodes": {
+    "01": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:37:36",
+      "sourceHash": "b792cf95317bdd2ed3cc263fabaa1e482c497123a8809e2ff2bee84da17c1437",
+      "output": "renders\\01-motion.mp4",
+      "duration": 423.0,
+      "visualReview": "Twelve sampled scene frames reviewed; TypeScript, Python and Java preparation now display their matching recorded runner output."
+    },
+    "02": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T13:56:56",
+      "sourceHash": "366ebc6783bac99449e45f5b432089233b0d30a47f61286228de052d12d9086d",
+      "output": "renders\\02-motion.mp4",
+      "duration": 430.39200000000005,
+      "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked."
+    },
+    "03": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:02:02",
+      "sourceHash": "49c3f238320462b7637db996da729808fe11f3697b0f412b3b580eb1df7444b5",
+      "output": "renders\\03-motion.mp4",
+      "duration": 443.2799999999999,
+      "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked."
+    },
+    "04": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:06:38",
+      "sourceHash": "b991986ea722a0bdd40795c92744214cc20de93e87716e74e1cdc4dedaed2dbf",
+      "output": "renders\\04-motion.mp4",
+      "duration": 438.576,
+      "visualReview": "Twelve sampled scene frames reviewed: Java code, actual JUnit result and browser contract checked."
+    },
+    "05": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:11:22",
+      "sourceHash": "981c1a7da0abb5d844a06acee1a6dc1e44afcd8136be73da261cb1f427e553fa",
+      "output": "renders\\05-motion.mp4",
+      "duration": 439.60800000000006,
+      "visualReview": "Twelve sampled scene frames reviewed: isolation walkthrough, conceptual paths, prompt and recorded browser panels checked."
+    },
+    "06": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:16:12",
+      "sourceHash": "1930ea4bf1451a505b8e8279f95304e1e38ee33777a3689b9f83d47ee0df221f",
+      "output": "renders\\06-motion.mp4",
+      "duration": 434.49600000000004,
+      "visualReview": "Twelve sampled scene frames reviewed: distributed path, polling code, recorded browser and captured state panels checked."
+    },
+    "07": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:20:31",
+      "sourceHash": "3b6957531d7cdb38d3c90513d2f0b40d621587d4b974dcb8d91e1a2a47e33e52",
+      "output": "renders\\07-motion.mp4",
+      "duration": 424.416,
+      "visualReview": "Twelve sampled scene frames reviewed: English error contract, intercepted 503 browser behavior and unchanged-state observations checked."
+    },
+    "08": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:25:20",
+      "sourceHash": "18c2f10e677ecb67846d18fa182ce4c25413e4f97a857dee2bc2c7efa338eee4",
+      "output": "renders\\08-motion.mp4",
+      "duration": 434.88000000000005,
+      "visualReview": "Twelve sampled scene frames reviewed: actual intentional failure is distinguished from the healthy run; prompts and reporting examples checked."
+    },
+    "09": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:42:36",
+      "sourceHash": "2a154e853f9acb698e4aaa63989355bca4e2000e5a41106a1de36cdd4cb55b3d",
+      "output": "renders\\09-motion.mp4",
+      "duration": 439.776,
+      "visualReview": "Twelve sampled scene frames reviewed: Python runner output matches the lesson, terminal panels identify the successful lookup capture, and labels fit."
+    },
+    "10": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:47:38",
+      "sourceHash": "da20ce3e13d02c38e702952623b70955374ba50403d0a0d5d1d8a7d8d8a2d788",
+      "output": "renders\\10-motion.mp4",
+      "duration": 434.40000000000003,
+      "visualReview": "Twelve sampled scene frames reviewed: TNZ API walkthrough, terminal fields, successful-capture labels and subtitle placement checked."
+    },
+    "11": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:52:55",
+      "sourceHash": "10ab1e1aaaa3ba0a00e91ce16d7c62b9d6760711196e287a8958f3f9917a687d",
+      "output": "renders\\11-motion.mp4",
+      "duration": 444.6,
+      "visualReview": "Twelve sampled scene frames reviewed: browser recording, Python/TypeScript/Java adapter walkthroughs and matching successful terminal reference checked."
+    },
+    "12": {
+      "stage": "exported",
+      "updatedAt": "2026-09-14T14:57:43",
+      "sourceHash": "5e8de3c87aaecf76da83ee767705aa7f636c213bd8c54bf2a8a1513649f52ac2",
+      "output": "renders\\12-motion.mp4",
+      "duration": 451.992,
+      "visualReview": "Twelve sampled scene frames reviewed: reusable prompts, browser capture, language comparison and evidence-reporting layouts checked."
+    }
+  }
+}

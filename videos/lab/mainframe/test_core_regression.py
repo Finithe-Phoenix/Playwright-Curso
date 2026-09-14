@@ -8,7 +8,7 @@ import pytest
 from playwright.sync_api import Page, expect
 
 BASE_URL = os.environ.get("BASE_URL", "http://127.0.0.1:3000")
-EVIDENCE = Path(__file__).resolve().parent / "evidence"
+EVIDENCE = Path(os.environ.get("EVIDENCE_DIR", str(Path(__file__).resolve().parent / "evidence")))
 
 
 @pytest.fixture
@@ -46,14 +46,14 @@ def state(page, fixture, expected_balance, expected_count):
 
 def test_tr02_insufficient_funds_creates_no_transfer(page: Page, account_fixture):
     page.goto(BASE_URL + "/transfers")
-    page.get_by_label("Cuenta origen", exact=True).select_option(account_fixture["sourceAccountId"])
-    page.get_by_label("Beneficiario", exact=True).select_option(account_fixture["beneficiaryId"])
-    page.get_by_label("Importe (MXN)", exact=True).fill("1100.00")
+    page.get_by_label("Source account", exact=True).select_option(account_fixture["sourceAccountId"])
+    page.get_by_label("Beneficiary", exact=True).select_option(account_fixture["beneficiaryId"])
+    page.get_by_label("Amount (MXN)", exact=True).fill("1100.00")
     with page.expect_response(lambda response: response.url.endswith("/api/transfers") and response.request.method == "POST") as captured:
-        page.get_by_role("button", name="Transferir", exact=True).click()
+        page.get_by_role("button", name="Transfer", exact=True).click()
     assert captured.value.status == 422
     assert captured.value.json()["code"] == "INSUFFICIENT_FUNDS"
-    expect(page.get_by_role("alert")).to_have_text("Saldo insuficiente")
+    expect(page.get_by_role("alert")).to_have_text("Insufficient funds")
     expect(page.get_by_test_id("account-balance")).to_have_text("MXN 1000.00")
     result = state(page, account_fixture, 100000, 0)
     EVIDENCE.mkdir(exist_ok=True)

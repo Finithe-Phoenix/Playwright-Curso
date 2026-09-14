@@ -1,0 +1,188 @@
+{
+  "hash": "ecf1ab97c4302d0d5de7431e4d11040ecf020c8d59c476ee452b1b167627d0d3",
+  "duration": 13.706,
+  "cues": [
+    {
+      "text": "Now follow the identity. The gateway accepts the command. The accounts service commits",
+      "start": 0.7,
+      "end": 6.7375
+    },
+    {
+      "text": "the debit and publishes an event. The independent ledger projection catches up",
+      "start": 6.75,
+      "end": 11.575
+    },
+    {
+      "text": "afterward.",
+      "start": 11.5875,
+      "end": 12.1875
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2250000,
+      "text": "Now"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3375000,
+      "duration": 3250000,
+      "text": "follow"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6750000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 7875000,
+      "duration": 7000000,
+      "text": "identity"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 23500000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 25000000,
+      "duration": 3750000,
+      "text": "gateway"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 28875000,
+      "duration": 4125000,
+      "text": "accepts"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 33125000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 34250000,
+      "duration": 5875000,
+      "text": "command"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 48750000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 50250000,
+      "duration": 4000000,
+      "text": "accounts"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54375000,
+      "duration": 3500000,
+      "text": "service"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 58000000,
+      "duration": 3375000,
+      "text": "commits"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 61500000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62625000,
+      "duration": 3875000,
+      "text": "debit"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 66625000,
+      "duration": 1125000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 67875000,
+      "duration": 5000000,
+      "text": "publishes"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 73000000,
+      "duration": 875000,
+      "text": "an"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 74000000,
+      "duration": 5125000,
+      "text": "event"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 87750000,
+      "duration": 1250000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 89125000,
+      "duration": 6125000,
+      "text": "independent"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 95375000,
+      "duration": 2750000,
+      "text": "ledger"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 98250000,
+      "duration": 6000000,
+      "text": "projection"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 104375000,
+      "duration": 4125000,
+      "text": "catches"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 108625000,
+      "duration": 1125000,
+      "text": "up"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 109875000,
+      "duration": 6000000,
+      "text": "afterward"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.6773653626441956,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 0.9679999999934807,
+  "original_words": 26,
+  "spoken_words": 26,
+  "spoken_text": "Now follow the identity. The gateway accepts the command. The accounts service commits the debit and publishes an event. The independent ledger projection catches up afterward."
+}

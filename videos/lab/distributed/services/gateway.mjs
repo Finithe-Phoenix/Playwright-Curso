@@ -47,7 +47,7 @@ listen('gateway', Number(process.env.PORT || 3000), async (req, res, url) => {
   }
   if (path.startsWith('/api/')) {
     const userId = session(req);
-    if (!userId) return fail(res, 401, 'UNAUTHENTICATED', 'Inicia sesión con los datos sintéticos de tu fixture.');
+    if (!userId) return fail(res, 401, 'UNAUTHENTICATED', 'Sign in using your synthetic fixture credentials.');
     if (path === '/api/me' && req.method === 'GET') return reply(res, await call(`${accountsURL}/me?userId=${userId}`));
     if (path.startsWith('/api/accounts/') && req.method === 'GET') return reply(res,
       await call(`${accountsURL}/account?userId=${userId}&id=${encodeURIComponent(path.split('/')[3])}`));

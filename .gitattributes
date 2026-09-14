@@ -12,3 +12,8 @@
 **/gsap.min.js -whitespace
 **/hybrid-python-terminal.txt -whitespace
 *.xlsx binary
+*.webm binary
+# Terminal screen captures retain trailing blank rows.
+videos/motion/captures/terminal-success.txt -whitespace
+videos/lab/mainframe/evidence/backend-unavailable-terminal.txt -whitespace
+videos/lab/mainframe/evidence/offline-terminal.txt -whitespace

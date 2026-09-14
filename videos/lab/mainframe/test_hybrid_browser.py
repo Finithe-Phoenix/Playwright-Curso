@@ -23,7 +23,7 @@ def test_browser_transfer_matches_simulated_terminal(page: Page, pytestconfig):
     })
     assert created.status == 201, created.text()
     fixture = created.json()
-    evidence = ROOT / "evidence"
+    evidence = Path(os.environ.get("EVIDENCE_DIR", str(ROOT / "evidence")))
     manual_trace_started = False
     try:
         evidence.mkdir(exist_ok=True)
@@ -36,11 +36,11 @@ def test_browser_transfer_matches_simulated_terminal(page: Page, pytestconfig):
         })
         assert login.status == 200
         page.goto(BASE_URL + "/transfers")
-        page.get_by_label("Cuenta origen", exact=True).select_option(fixture["sourceAccountId"])
-        page.get_by_label("Beneficiario", exact=True).select_option(fixture["beneficiaryId"])
-        page.get_by_label("Importe (MXN)", exact=True).fill("100.00")
-        page.get_by_role("button", name="Transferir", exact=True).click()
-        expect(page.get_by_role("status")).to_have_text("Transferencia realizada")
+        page.get_by_label("Source account", exact=True).select_option(fixture["sourceAccountId"])
+        page.get_by_label("Beneficiary", exact=True).select_option(fixture["beneficiaryId"])
+        page.get_by_label("Amount (MXN)", exact=True).fill("100.00")
+        page.get_by_role("button", name="Transfer", exact=True).click()
+        expect(page.get_by_role("status")).to_have_text("Transfer completed")
         expect(page.get_by_test_id("account-balance")).to_have_text("MXN 900.00")
         transfers = page.request.get(BASE_URL + "/api/transfers", params={"sourceAccountId": fixture["sourceAccountId"]})
         assert transfers.status == 200

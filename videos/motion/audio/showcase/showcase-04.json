@@ -1,0 +1,272 @@
+{
+  "hash": "84727dda21cb986c4638bbe04752b6d2c6b392271d788ffff5e2016099ce73a2",
+  "duration": 17.114,
+  "cues": [
+    {
+      "text": "Watch the browser select the account, enter one hundred pesos, and submit the",
+      "start": 0.7,
+      "end": 5.012499999999999
+    },
+    {
+      "text": "transfer. This is a recorded run against the local application. The form responds with",
+      "start": 5.0249999999999995,
+      "end": 11.325
+    },
+    {
+      "text": "a reference, and the balance changes from one thousand to nine hundred pesos.",
+      "start": 11.3375,
+      "end": 15.5875
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3250000,
+      "text": "Watch"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4375000,
+      "duration": 1000000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5500000,
+      "duration": 4500000,
+      "text": "browser"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10125000,
+      "duration": 4250000,
+      "text": "select"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 14500000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 15500000,
+      "duration": 5125000,
+      "text": "account"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22375000,
+      "duration": 2375000,
+      "text": "enter"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24875000,
+      "duration": 2000000,
+      "text": "one"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27000000,
+      "duration": 2875000,
+      "text": "hundred"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30000000,
+      "duration": 6375000,
+      "text": "pesos"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38250000,
+      "duration": 1500000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 39875000,
+      "duration": 3375000,
+      "text": "submit"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43375000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 44250000,
+      "duration": 7000000,
+      "text": "transfer"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 59875000,
+      "duration": 2500000,
+      "text": "This"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62500000,
+      "duration": 1000000,
+      "text": "is"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 63625000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 64250000,
+      "duration": 4625000,
+      "text": "recorded"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 69000000,
+      "duration": 2250000,
+      "text": "run"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 71375000,
+      "duration": 3750000,
+      "text": "against"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 75250000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 76250000,
+      "duration": 3250000,
+      "text": "local"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 79625000,
+      "duration": 8250000,
+      "text": "application"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 96500000,
+      "duration": 1375000,
+      "text": "The"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 98000000,
+      "duration": 2625000,
+      "text": "form"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 100750000,
+      "duration": 5125000,
+      "text": "responds"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 106000000,
+      "duration": 1250000,
+      "text": "with"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 107375000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 108000000,
+      "duration": 6375000,
+      "text": "reference"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 116375000,
+      "duration": 1250000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 117750000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 118625000,
+      "duration": 4000000,
+      "text": "balance"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 122750000,
+      "duration": 4250000,
+      "text": "changes"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 127125000,
+      "duration": 1875000,
+      "text": "from"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 129125000,
+      "duration": 2250000,
+      "text": "one"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 131500000,
+      "duration": 4250000,
+      "text": "thousand"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 135875000,
+      "duration": 875000,
+      "text": "to"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 136875000,
+      "duration": 2750000,
+      "text": "nine"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 139750000,
+      "duration": 2875000,
+      "text": "hundred"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 142750000,
+      "duration": 7125000,
+      "text": "pesos"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.8075900077819824,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.5310000000172295,
+  "original_words": 40,
+  "spoken_words": 40,
+  "spoken_text": "Watch the browser select the account, enter one hundred pesos, and submit the transfer. This is a recorded run against the local application. The form responds with a reference, and the balance changes from one thousand to nine hundred pesos."
+}

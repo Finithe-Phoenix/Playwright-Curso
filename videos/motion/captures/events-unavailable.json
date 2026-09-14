@@ -1,0 +1,48 @@
+{
+  "scenario": "unavailable",
+  "events": [
+    {
+      "time": 0.006,
+      "action": "Open the transfer workspace",
+      "code": "await page.goto('/transfers');"
+    },
+    {
+      "time": 2.309,
+      "action": "Select the owned source account",
+      "code": "await page.getByLabel('Source account').selectOption(lab.sourceAccountId);"
+    },
+    {
+      "time": 4.55,
+      "action": "Select the isolated beneficiary",
+      "code": "await page.getByLabel('Beneficiary').selectOption(lab.beneficiaryId);"
+    },
+    {
+      "time": 6.773,
+      "action": "Type the amount",
+      "code": "await page.getByLabel('Amount (MXN)').fill('100.00');"
+    },
+    {
+      "time": 10.488,
+      "action": "Submit the customer action",
+      "code": "await page.getByRole('button', { name: 'Transfer', exact: true }).click();"
+    },
+    {
+      "time": 10.536,
+      "action": "Assert the visible business result",
+      "code": "await expect(page.getByTestId('account-balance')).toHaveText('MXN 1000.00');"
+    },
+    {
+      "time": 12.754,
+      "action": "Verify canonical API state",
+      "code": "expect(account.balanceMinor).toBe(100000);\nexpect(transfers.total).toBe(0);"
+    }
+  ],
+  "result": {
+    "code": "SERVICE_UNAVAILABLE",
+    "message": "Service temporarily unavailable"
+  },
+  "balanceMinor": 100000,
+  "transferCount": 0,
+  "timingBasis": "wall clock since test setup; video includes short browser startup lead-in",
+  "editorialCorrection": "Amount code label corrected to match the 100.00 value visibly typed in the recording; original run report remains in local-results."
+}

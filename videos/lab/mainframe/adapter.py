@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -91,7 +92,7 @@ def main() -> int:
     parser.add_argument("action", choices=("health", "lookup"))
     parser.add_argument("reference", nargs="?")
     parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=2323)
+    parser.add_argument("--port", type=int, default=int(os.environ.get("TNZ_PORT", "2323")))
     parser.add_argument("--timeout", type=float, default=8)
     parser.add_argument("--snapshot", type=Path)
     args = parser.parse_args()

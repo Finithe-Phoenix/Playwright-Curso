@@ -1,0 +1,713 @@
+[
+  {
+    "id": "showcase",
+    "title": "From Prompt to Proof: A Live Lab Walkthrough",
+    "duration": 156.19,
+    "chapters": [
+      {
+        "title": "One transfer. Three services.",
+        "start": 0.0
+      },
+      {
+        "title": "Write the contract",
+        "start": 9.386
+      },
+      {
+        "title": "Build the executable case",
+        "start": 22.732
+      },
+      {
+        "title": "Watch the browser",
+        "start": 35.646
+      },
+      {
+        "title": "Follow the request",
+        "start": 52.760000000000005
+      },
+      {
+        "title": "Prove the business state",
+        "start": 66.46600000000001
+      },
+      {
+        "title": "Cross the terminal boundary",
+        "start": 81.20400000000001
+      },
+      {
+        "title": "Keep each language native",
+        "start": 97.64600000000002
+      },
+      {
+        "title": "Control the failure",
+        "start": 110.77600000000001
+      },
+      {
+        "title": "Read the actual evidence",
+        "start": 126.69000000000001
+      },
+      {
+        "title": "From intention to evidence",
+        "start": 142.244
+      }
+    ]
+  },
+  {
+    "id": "01",
+    "title": "Build the Local Test Architecture",
+    "duration": 423.0,
+    "chapters": [
+      {
+        "title": "Start with an outcome",
+        "start": 0.0
+      },
+      {
+        "title": "Read the system map",
+        "start": 32.57
+      },
+      {
+        "title": "Choose the right observation",
+        "start": 66.364
+      },
+      {
+        "title": "Prepare TypeScript",
+        "start": 102.654
+      },
+      {
+        "title": "Prepare Python",
+        "start": 140.072
+      },
+      {
+        "title": "Prepare Java",
+        "start": 176.986
+      },
+      {
+        "title": "Check local readiness",
+        "start": 214.884
+      },
+      {
+        "title": "Express money precisely",
+        "start": 249.01399999999998
+      },
+      {
+        "title": "Define the three cases",
+        "start": 285.952
+      },
+      {
+        "title": "Separate tools from decisions",
+        "start": 320.346
+      },
+      {
+        "title": "Make a first observable run",
+        "start": 357.212
+      },
+      {
+        "title": "Check your preparation",
+        "start": 390.19
+      }
+    ]
+  },
+  {
+    "id": "02",
+    "title": "TypeScript: Reliable UI and API Regression",
+    "duration": 430.39200000000005,
+    "chapters": [
+      {
+        "title": "Design the test around risk",
+        "start": 0.0
+      },
+      {
+        "title": "Use the accessible contract",
+        "start": 34.682
+      },
+      {
+        "title": "Observe the right request",
+        "start": 68.164
+      },
+      {
+        "title": "Wait on the UI meaning",
+        "start": 102.96600000000001
+      },
+      {
+        "title": "Verify the authoritative account",
+        "start": 137.55200000000002
+      },
+      {
+        "title": "Verify the transfer record",
+        "start": 174.97000000000003
+      },
+      {
+        "title": "Build insufficient funds separately",
+        "start": 211.64400000000003
+      },
+      {
+        "title": "Keep an idempotent intention",
+        "start": 244.52600000000004
+      },
+      {
+        "title": "Compare identity and effects",
+        "start": 281.32000000000005
+      },
+      {
+        "title": "Run with an honest outcome",
+        "start": 317.29800000000006
+      },
+      {
+        "title": "Review an AI patch",
+        "start": 354.52400000000006
+      },
+      {
+        "title": "Name what you proved",
+        "start": 391.12600000000003
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "title": "Python: Fixtures That Own Their Data",
+    "duration": 443.2799999999999,
+    "chapters": [
+      {
+        "title": "Translate the lifecycle",
+        "start": 0.0
+      },
+      {
+        "title": "Confirm one Python environment",
+        "start": 38.234
+      },
+      {
+        "title": "Separate two HTTP responsibilities",
+        "start": 72.48400000000001
+      },
+      {
+        "title": "Use a yielding fixture",
+        "start": 110.47800000000001
+      },
+      {
+        "title": "Authenticate the provided context",
+        "start": 146.96
+      },
+      {
+        "title": "Write the visible behavior",
+        "start": 182.89000000000001
+      },
+      {
+        "title": "Check response semantics",
+        "start": 223.30800000000002
+      },
+      {
+        "title": "Capture the rejection response",
+        "start": 259.19
+      },
+      {
+        "title": "Keep idempotency outside variation",
+        "start": 297.18399999999997
+      },
+      {
+        "title": "Retain a useful trace",
+        "start": 333.258
+      },
+      {
+        "title": "Preserve the original failure",
+        "start": 368.27599999999995
+      },
+      {
+        "title": "Explain your fixture graph",
+        "start": 406.62999999999994
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "title": "Java: JUnit Lifecycle and Evidence",
+    "duration": 438.576,
+    "chapters": [
+      {
+        "title": "Own the Java lifecycle",
+        "start": 0.0
+      },
+      {
+        "title": "Inspect the project first",
+        "start": 37.706
+      },
+      {
+        "title": "Choose ownership boundaries",
+        "start": 76.036
+      },
+      {
+        "title": "Create a fresh context",
+        "start": 111.24600000000001
+      },
+      {
+        "title": "Authenticate with the same identity",
+        "start": 148.71200000000002
+      },
+      {
+        "title": "Use Java locator assertions",
+        "start": 186.10600000000002
+      },
+      {
+        "title": "Inspect the integer account balance",
+        "start": 222.70800000000003
+      },
+      {
+        "title": "Implement rejection and replay",
+        "start": 256.814
+      },
+      {
+        "title": "Record a Java trace",
+        "start": 296.584
+      },
+      {
+        "title": "Avoid unsafe parallel sharing",
+        "start": 329.634
+      },
+      {
+        "title": "Read the actual runner result",
+        "start": 365.75600000000003
+      },
+      {
+        "title": "Compare meaning across languages",
+        "start": 401.446
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "title": "Isolation, Authentication and Test Data",
+    "duration": 439.60800000000006,
+    "chapters": [
+      {
+        "title": "Treat each test as an experiment",
+        "start": 0.0
+      },
+      {
+        "title": "Create only the data you own",
+        "start": 35.762
+      },
+      {
+        "title": "Keep the hook client separate",
+        "start": 73.156
+      },
+      {
+        "title": "Authenticate where the page lives",
+        "start": 108.054
+      },
+      {
+        "title": "Understand storage state reuse",
+        "start": 146.48000000000002
+      },
+      {
+        "title": "Give retries new data",
+        "start": 181.282
+      },
+      {
+        "title": "Verify ownership boundaries",
+        "start": 218.508
+      },
+      {
+        "title": "Place cleanup after evidence",
+        "start": 255.15800000000002
+      },
+      {
+        "title": "Handle partial setup failures",
+        "start": 292.144
+      },
+      {
+        "title": "Add concurrency only after isolation",
+        "start": 331.386
+      },
+      {
+        "title": "Ask AI to audit lifecycle edges",
+        "start": 370.91600000000005
+      },
+      {
+        "title": "Produce an isolation checklist",
+        "start": 406.87000000000006
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "title": "Distributed Workflows: Correlation and Polling",
+    "duration": 434.49600000000004,
+    "chapters": [
+      {
+        "title": "Observe a distributed business event",
+        "start": 0.0
+      },
+      {
+        "title": "Inspect the three processes",
+        "start": 34.658
+      },
+      {
+        "title": "Understand the local transaction",
+        "start": 72.55600000000001
+      },
+      {
+        "title": "Capture identity from the response",
+        "start": 108.29400000000001
+      },
+      {
+        "title": "Assert commitment immediately",
+        "start": 144.44
+      },
+      {
+        "title": "Query the delayed projection",
+        "start": 180.922
+      },
+      {
+        "title": "Poll only the observation",
+        "start": 217.668
+      },
+      {
+        "title": "Do not replace progress with sleep",
+        "start": 257.05400000000003
+      },
+      {
+        "title": "Check duplicates after visibility",
+        "start": 292.336
+      },
+      {
+        "title": "Build a failure timeline",
+        "start": 328.62600000000003
+      },
+      {
+        "title": "Carry correlation into reporting",
+        "start": 363.16400000000004
+      },
+      {
+        "title": "State the distributed evidence",
+        "start": 400.15000000000003
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "title": "Mocks and Real End-to-End Evidence",
+    "duration": 424.416,
+    "chapters": [
+      {
+        "title": "Choose the boundary deliberately",
+        "start": 0.0
+      },
+      {
+        "title": "Read the error contract",
+        "start": 33.026
+      },
+      {
+        "title": "Prepare the state before mocking",
+        "start": 67.084
+      },
+      {
+        "title": "Install a narrow route handler",
+        "start": 102.366
+      },
+      {
+        "title": "Exercise the user action once",
+        "start": 140.45600000000002
+      },
+      {
+        "title": "Inspect real state after the mock",
+        "start": 174.15400000000002
+      },
+      {
+        "title": "Remove the controlled boundary",
+        "start": 210.63600000000002
+      },
+      {
+        "title": "Compare two kinds of evidence",
+        "start": 243.014
+      },
+      {
+        "title": "Keep backend resilience separate",
+        "start": 279.568
+      },
+      {
+        "title": "Review generated mocks carefully",
+        "start": 314.37
+      },
+      {
+        "title": "Label the report precisely",
+        "start": 350.636
+      },
+      {
+        "title": "Choose the next useful test",
+        "start": 388.99
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "title": "Traces, CI and Evidence-Based Debugging",
+    "duration": 434.88000000000005,
+    "chapters": [
+      {
+        "title": "Use a failure as evidence",
+        "start": 0.0
+      },
+      {
+        "title": "Start the defect on separate ports",
+        "start": 34.85
+      },
+      {
+        "title": "Run the intended failing case",
+        "start": 69.58
+      },
+      {
+        "title": "Open the right trace",
+        "start": 103.97399999999999
+      },
+      {
+        "title": "Confirm the request evidence",
+        "start": 136.39999999999998
+      },
+      {
+        "title": "Protect the monetary oracle",
+        "start": 174.46599999999998
+      },
+      {
+        "title": "Ask AI a bounded diagnostic question",
+        "start": 211.356
+      },
+      {
+        "title": "Validate the corrected path",
+        "start": 250.694
+      },
+      {
+        "title": "Design the CI job around readiness",
+        "start": 285.808
+      },
+      {
+        "title": "Retain evidence on failure",
+        "start": 320.826
+      },
+      {
+        "title": "Report a precise execution status",
+        "start": 359.564
+      },
+      {
+        "title": "Close the diagnostic loop",
+        "start": 398.54200000000003
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "title": "Local 3270 Architecture and TNZ Setup",
+    "duration": 439.776,
+    "chapters": [
+      {
+        "title": "Add a terminal protocol boundary",
+        "start": 0.0
+      },
+      {
+        "title": "Separate browser and terminal control",
+        "start": 34.562
+      },
+      {
+        "title": "Understand what the simulator displays",
+        "start": 71.21199999999999
+      },
+      {
+        "title": "Read the folder structure",
+        "start": 107.958
+      },
+      {
+        "title": "Install the prepared environment",
+        "start": 146.984
+      },
+      {
+        "title": "Start services in their own terminals",
+        "start": 184.57
+      },
+      {
+        "title": "Check a real terminal screen",
+        "start": 222.42
+      },
+      {
+        "title": "Identify the input and result fields",
+        "start": 257.246
+      },
+      {
+        "title": "Try an unknown reference",
+        "start": 292.24
+      },
+      {
+        "title": "Keep plaintext local to the simulator",
+        "start": 329.058
+      },
+      {
+        "title": "Run protocol tests independently",
+        "start": 367.364
+      },
+      {
+        "title": "Confirm the architecture checkpoint",
+        "start": 403.606
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "TNZ Sessions: Fields, Waits and Cleanup",
+    "duration": 434.40000000000003,
+    "chapters": [
+      {
+        "title": "Build a predictable terminal session",
+        "start": 0.0
+      },
+      {
+        "title": "Create the actual TNZ client",
+        "start": 34.73
+      },
+      {
+        "title": "Connect within the local boundary",
+        "start": 72.67599999999999
+      },
+      {
+        "title": "Use a monotonic deadline",
+        "start": 110.33399999999999
+      },
+      {
+        "title": "Require a ready keyboard too",
+        "start": 146.624
+      },
+      {
+        "title": "Validate and enter the reference",
+        "start": 180.874
+      },
+      {
+        "title": "Wait for the submitted reference",
+        "start": 215.1
+      },
+      {
+        "title": "Parse the labeled business values",
+        "start": 248.702
+      },
+      {
+        "title": "Preserve screen evidence",
+        "start": 284.848
+      },
+      {
+        "title": "Always release the connection",
+        "start": 319.67400000000004
+      },
+      {
+        "title": "Test negative terminal outcomes",
+        "start": 357.23600000000005
+      },
+      {
+        "title": "Explain the adapter contract",
+        "start": 395.494
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Hybrid Regression: One Correlation Across Interfaces",
+    "duration": 444.6,
+    "chapters": [
+      {
+        "title": "Follow one transfer across interfaces",
+        "start": 0.0
+      },
+      {
+        "title": "Prepare an isolated hybrid fixture",
+        "start": 40.634
+      },
+      {
+        "title": "Perform the actual browser transfer",
+        "start": 75.964
+      },
+      {
+        "title": "Extract the canonical correlation",
+        "start": 112.20599999999999
+      },
+      {
+        "title": "Call the adapter from Python",
+        "start": 150.44
+      },
+      {
+        "title": "Call the same boundary from TypeScript",
+        "start": 186.826
+      },
+      {
+        "title": "Call the same boundary from Java",
+        "start": 224.34
+      },
+      {
+        "title": "Assert every business value",
+        "start": 260.774
+      },
+      {
+        "title": "Keep ledger projection as another check",
+        "start": 299.392
+      },
+      {
+        "title": "Capture evidence before cleanup",
+        "start": 335.13
+      },
+      {
+        "title": "Add a meaningful negative case",
+        "start": 373.508
+      },
+      {
+        "title": "Review the hybrid checkpoint",
+        "start": 408.358
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "AI-Assisted Regression Capstone",
+    "duration": 451.992,
+    "chapters": [
+      {
+        "title": "Turn the workflow into a capstone",
+        "start": 0.0
+      },
+      {
+        "title": "Give AI an evidence package",
+        "start": 35.114
+      },
+      {
+        "title": "Request a risk and evidence matrix",
+        "start": 71.69200000000001
+      },
+      {
+        "title": "Generate one complete case first",
+        "start": 108.15
+      },
+      {
+        "title": "Adapt architecture across languages",
+        "start": 147.368
+      },
+      {
+        "title": "Generate the hybrid extension",
+        "start": 187.594
+      },
+      {
+        "title": "Audit the generated assertions",
+        "start": 226.74
+      },
+      {
+        "title": "Use a failure-specific prompt",
+        "start": 264.326
+      },
+      {
+        "title": "Execute the capstone deliberately",
+        "start": 302.464
+      },
+      {
+        "title": "Write a defensible regression report",
+        "start": 339.954
+      },
+      {
+        "title": "Apply the capstone rubric",
+        "start": 374.732
+      },
+      {
+        "title": "Choose the next justified increment",
+        "start": 413.23
+      }
+    ]
+  }
+]

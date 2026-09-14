@@ -1,0 +1,79 @@
+{
+  "episode": "07",
+  "sha256": "d9891b507d37e091a402514bf186bfb8bf4d024195f682554e2594afbcc4e885",
+  "duration": 424.416667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.8,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "07-01",
+      "time": 16.513,
+      "frame": "motion\\local-results\\review\\07\\01.png"
+    },
+    {
+      "scene": "07-02",
+      "time": 50.05500000000001,
+      "frame": "motion\\local-results\\review\\07\\02.png"
+    },
+    {
+      "scene": "07-03",
+      "time": 84.725,
+      "frame": "motion\\local-results\\review\\07\\03.png"
+    },
+    {
+      "scene": "07-04",
+      "time": 121.411,
+      "frame": "motion\\local-results\\review\\07\\04.png"
+    },
+    {
+      "scene": "07-05",
+      "time": 157.305,
+      "frame": "motion\\local-results\\review\\07\\05.png"
+    },
+    {
+      "scene": "07-06",
+      "time": 192.39500000000004,
+      "frame": "motion\\local-results\\review\\07\\06.png"
+    },
+    {
+      "scene": "07-07",
+      "time": 226.82500000000002,
+      "frame": "motion\\local-results\\review\\07\\07.png"
+    },
+    {
+      "scene": "07-08",
+      "time": 261.291,
+      "frame": "motion\\local-results\\review\\07\\08.png"
+    },
+    {
+      "scene": "07-09",
+      "time": 296.969,
+      "frame": "motion\\local-results\\review\\07\\09.png"
+    },
+    {
+      "scene": "07-10",
+      "time": 332.503,
+      "frame": "motion\\local-results\\review\\07\\10.png"
+    },
+    {
+      "scene": "07-11",
+      "time": 369.81300000000005,
+      "frame": "motion\\local-results\\review\\07\\11.png"
+    },
+    {
+      "scene": "07-12",
+      "time": 406.70300000000003,
+      "frame": "motion\\local-results\\review\\07\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\07-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: English error contract, intercepted 503 browser behavior and unchanged-state observations checked.",
+  "fullPlaybackReview": "not performed"
+}

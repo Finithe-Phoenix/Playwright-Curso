@@ -35,7 +35,7 @@ class CoreRegressionTest {
   void runCase(String id, Scenario scenario) throws Exception {
     String key = System.getenv("TEST_HOOK_KEY");
     assertNotNull(key, "Set TEST_HOOK_KEY to the running local gateway key");
-    Path evidence = Path.of("..", "evidence").toAbsolutePath().normalize();
+    Path evidence = Path.of(System.getenv().getOrDefault("EVIDENCE_DIR", Path.of("..", "evidence").toAbsolutePath().normalize().toString()));
     Files.createDirectories(evidence);
     try (Playwright playwright = Playwright.create()) {
       BrowserType.LaunchOptions options = new BrowserType.LaunchOptions().setHeadless(true);
@@ -76,14 +76,14 @@ class CoreRegressionTest {
   @Test void tr02InsufficientFundsCreatesNoTransfer() throws Exception {
     runCase("TR02", (page, api, fixture) -> {
       page.navigate("/transfers");
-      page.getByLabel("Cuenta origen", new Page.GetByLabelOptions().setExact(true)).selectOption(fixture.get("sourceAccountId").getAsString());
-      page.getByLabel("Beneficiario", new Page.GetByLabelOptions().setExact(true)).selectOption(fixture.get("beneficiaryId").getAsString());
-      page.getByLabel("Importe (MXN)", new Page.GetByLabelOptions().setExact(true)).fill("1100.00");
+      page.getByLabel("Source account", new Page.GetByLabelOptions().setExact(true)).selectOption(fixture.get("sourceAccountId").getAsString());
+      page.getByLabel("Beneficiary", new Page.GetByLabelOptions().setExact(true)).selectOption(fixture.get("beneficiaryId").getAsString());
+      page.getByLabel("Amount (MXN)", new Page.GetByLabelOptions().setExact(true)).fill("1100.00");
       Response response = page.waitForResponse(r -> r.url().endsWith("/api/transfers") && r.request().method().equals("POST"),
-          () -> page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Transferir").setExact(true)).click());
+          () -> page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Transfer").setExact(true)).click());
       assertEquals(422, response.status());
       assertEquals("INSUFFICIENT_FUNDS", JsonParser.parseString(response.text()).getAsJsonObject().get("code").getAsString());
-      assertThat(page.getByRole(AriaRole.ALERT)).hasText("Saldo insuficiente");
+      assertThat(page.getByRole(AriaRole.ALERT)).hasText("Insufficient funds");
       assertThat(page.getByTestId("account-balance")).hasText("MXN 1000.00");
       JsonObject result = state(api, fixture, 100000, 0);
       result.addProperty("balanceMinor", 100000);

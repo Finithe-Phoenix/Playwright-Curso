@@ -1,0 +1,68 @@
+{
+  "typescript": [
+    "$ npx playwright test",
+    "",
+    "PASS  TR-01 | UI transfer commits exactly one debit and record",
+    "PASS  TR-02 | Insufficient funds leaves balance and ledger unchanged",
+    "PASS  TR-03 | Sequential retry uses same key, body and transfer id",
+    "PASS  TR-04 | API rejects invalid minor amount 0",
+    "PASS  TR-04 | API rejects invalid minor amount -1",
+    "PASS  TR-04 | API rejects invalid minor amount 0.5",
+    "PASS  TR-05 | Mocked503 verifies UI recovery without backend effects",
+    "PASS  TR-06 | Exact reference reaches the independent ledger within5seconds",
+    "PASS  TR-07 | Reusing an idempotency key with different amount conflicts",
+    "PASS  TR-08 | Missing session and cross-fixture account access are rejected",
+    "",
+    "10 passed / retries 0"
+  ],
+  "python": [
+    "$ python -m pytest ...",
+    "",
+    "PASS  test_real_tnz_screen_lookup_and_result",
+    "PASS  test_unknown_reference_is_business_result",
+    "PASS  test_invalid_reference_rejected_before_send",
+    "PASS  test_missing_screen_condition_has_bounded_timeout",
+    "PASS  test_backend_unavailable_returns_explicit_terminal_status",
+    "PASS  test_browser_transfer_matches_simulated_terminal[chromium]",
+    "PASS  test_tr02_insufficient_funds_creates_no_transfer[chromium]",
+    "PASS  test_tr03_sequential_retry_debits_once[chromium]",
+    "",
+    "8 passed / protocol + browser"
+  ],
+  "java": [
+    "$ mvn test",
+    "",
+    "PASS  tr02InsufficientFundsCreatesNoTransfer",
+    "PASS  tr03SequentialRetryDebitsOnce",
+    "PASS  browserTransferMatchesSimulated3270Screen",
+    "",
+    "Tests run: 3 / Failures: 0 / Errors: 0",
+    "BUILD SUCCESS"
+  ],
+  "defect": [
+    "$ npx playwright test --grep TR-03",
+    "LOCAL DEFECT MODE / port 3700",
+    "",
+    "FAIL  Sequential replay must keep the same ID",
+    "The idempotency assertion rejected the replay.",
+    "",
+    "Observed balanceMinor: 80000",
+    "Observed canonical records: 2",
+    "",
+    "1 failed / intentional defect demonstration",
+    "Do not weaken the assertion."
+  ],
+  "provenance": {
+    "date": "2026-09-14",
+    "healthyTests": 22,
+    "recordingTests": 3,
+    "intentionalDefectFailures": 1,
+    "sources": [
+      "lab/distributed/local-results/motion-contract/results.json",
+      "motion/local-results/python-tests.xml",
+      "lab/mainframe/java/target/surefire-reports",
+      "motion/local-results/mainframe-ts/hybrid-typescript-tests.xml",
+      "lab/distributed/local-results/motion-defect-replay/results.json"
+    ]
+  }
+}

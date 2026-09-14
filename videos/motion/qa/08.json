@@ -1,0 +1,79 @@
+{
+  "episode": "08",
+  "sha256": "57bdb8f10f58c402fd24f84727f2018aafd229703e72f4e800cde83e2ff82860",
+  "duration": 434.916667,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.2,
+  "audioPeakDb": -1.1,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "08-01",
+      "time": 17.425,
+      "frame": "motion\\local-results\\review\\08\\01.png"
+    },
+    {
+      "scene": "08-02",
+      "time": 52.215,
+      "frame": "motion\\local-results\\review\\08\\02.png"
+    },
+    {
+      "scene": "08-03",
+      "time": 86.777,
+      "frame": "motion\\local-results\\review\\08\\03.png"
+    },
+    {
+      "scene": "08-04",
+      "time": 120.18699999999998,
+      "frame": "motion\\local-results\\review\\08\\04.png"
+    },
+    {
+      "scene": "08-05",
+      "time": 155.433,
+      "frame": "motion\\local-results\\review\\08\\05.png"
+    },
+    {
+      "scene": "08-06",
+      "time": 192.91099999999997,
+      "frame": "motion\\local-results\\review\\08\\06.png"
+    },
+    {
+      "scene": "08-07",
+      "time": 231.025,
+      "frame": "motion\\local-results\\review\\08\\07.png"
+    },
+    {
+      "scene": "08-08",
+      "time": 268.251,
+      "frame": "motion\\local-results\\review\\08\\08.png"
+    },
+    {
+      "scene": "08-09",
+      "time": 303.317,
+      "frame": "motion\\local-results\\review\\08\\09.png"
+    },
+    {
+      "scene": "08-10",
+      "time": 340.19500000000005,
+      "frame": "motion\\local-results\\review\\08\\10.png"
+    },
+    {
+      "scene": "08-11",
+      "time": 379.053,
+      "frame": "motion\\local-results\\review\\08\\11.png"
+    },
+    {
+      "scene": "08-12",
+      "time": 416.711,
+      "frame": "motion\\local-results\\review\\08\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\08-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: actual intentional failure is distinguished from the healthy run; prompts and reporting examples checked.",
+  "fullPlaybackReview": "not performed"
+}

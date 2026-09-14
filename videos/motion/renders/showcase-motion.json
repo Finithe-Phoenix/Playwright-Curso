@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\showcase-motion.mp4",
+  "sha256": "3bff67764ca1f6b909ef409fa956bea5eddd34d8d5812803d949d5f11befe2a2",
+  "duration": 156.208333,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 2,
+  "visualReview": "pending"
+}

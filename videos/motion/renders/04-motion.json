@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\04-motion.mp4",
+  "sha256": "3bcc91b986e8c0306999c71a83f884898d47d54caa4c31fadd02cfeced20a57a",
+  "duration": 438.583333,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 1,
+  "visualReview": "Twelve sampled scene frames reviewed: Java code, actual JUnit result and browser contract checked."
+}

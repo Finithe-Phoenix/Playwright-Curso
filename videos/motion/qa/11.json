@@ -1,0 +1,79 @@
+{
+  "episode": "11",
+  "sha256": "70648c447d852bbdafb93e4b141a20104fffdaad01ae709c9c65c9df7620dcfa",
+  "duration": 444.625,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -21.7,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "11-01",
+      "time": 20.317,
+      "frame": "motion\\local-results\\review\\11\\01.png"
+    },
+    {
+      "scene": "11-02",
+      "time": 58.299,
+      "frame": "motion\\local-results\\review\\11\\02.png"
+    },
+    {
+      "scene": "11-03",
+      "time": 94.085,
+      "frame": "motion\\local-results\\review\\11\\03.png"
+    },
+    {
+      "scene": "11-04",
+      "time": 131.32299999999998,
+      "frame": "motion\\local-results\\review\\11\\04.png"
+    },
+    {
+      "scene": "11-05",
+      "time": 168.633,
+      "frame": "motion\\local-results\\review\\11\\05.png"
+    },
+    {
+      "scene": "11-06",
+      "time": 205.583,
+      "frame": "motion\\local-results\\review\\11\\06.png"
+    },
+    {
+      "scene": "11-07",
+      "time": 242.55700000000002,
+      "frame": "motion\\local-results\\review\\11\\07.png"
+    },
+    {
+      "scene": "11-08",
+      "time": 280.083,
+      "frame": "motion\\local-results\\review\\11\\08.png"
+    },
+    {
+      "scene": "11-09",
+      "time": 317.26099999999997,
+      "frame": "motion\\local-results\\review\\11\\09.png"
+    },
+    {
+      "scene": "11-10",
+      "time": 354.319,
+      "frame": "motion\\local-results\\review\\11\\10.png"
+    },
+    {
+      "scene": "11-11",
+      "time": 390.933,
+      "frame": "motion\\local-results\\review\\11\\11.png"
+    },
+    {
+      "scene": "11-12",
+      "time": 426.479,
+      "frame": "motion\\local-results\\review\\11\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\11-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: browser recording, Python/TypeScript/Java adapter walkthroughs and matching successful terminal reference checked.",
+  "fullPlaybackReview": "not performed"
+}

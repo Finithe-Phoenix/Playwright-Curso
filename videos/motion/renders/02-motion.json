@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\02-motion.mp4",
+  "sha256": "505af56bf4ed349727efc24931eba4c805fc4ff51b60aa62bd726d2069db646d",
+  "duration": 430.416667,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 3,
+  "visualReview": "Twelve sampled scene frames reviewed: readable layout, English text, browser/code and runner panels checked."
+}

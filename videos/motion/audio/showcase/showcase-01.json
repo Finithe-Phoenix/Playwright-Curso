@@ -1,0 +1,117 @@
+{
+  "hash": "357a6513824afc148de170d86c8c1abdfe55dd02981ceb87337b32881b0afdec",
+  "duration": 9.386,
+  "cues": [
+    {
+      "text": "One transfer. Three services. One question: can you prove that the money moved exactly",
+      "start": 0.7,
+      "end": 7.3125
+    },
+    {
+      "text": "once?",
+      "start": 7.324999999999999,
+      "end": 7.875
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 2500000,
+      "text": "One"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 3625000,
+      "duration": 7125000,
+      "text": "transfer"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 19375000,
+      "duration": 2500000,
+      "text": "Three"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 22000000,
+      "duration": 8250000,
+      "text": "services"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 38875000,
+      "duration": 2625000,
+      "text": "One"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 41625000,
+      "duration": 5875000,
+      "text": "question"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 49250000,
+      "duration": 1625000,
+      "text": "can"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 51000000,
+      "duration": 1000000,
+      "text": "you"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 52125000,
+      "duration": 2375000,
+      "text": "prove"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 54625000,
+      "duration": 1375000,
+      "text": "that"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 56125000,
+      "duration": 750000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 57000000,
+      "duration": 2625000,
+      "text": "money"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 59750000,
+      "duration": 2500000,
+      "text": "moved"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62375000,
+      "duration": 4750000,
+      "text": "exactly"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 67250000,
+      "duration": 5500000,
+      "text": "once"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.6633892059326172,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.047000000020489,
+  "original_words": 15,
+  "spoken_words": 15,
+  "spoken_text": "One transfer. Three services. One question: can you prove that the money moved exactly once?"
+}

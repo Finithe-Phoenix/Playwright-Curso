@@ -1,0 +1,188 @@
+{
+  "hash": "e9dee847d16dc9696060de8d891b81632c68ef7d8629946f067c39a799e8ca62",
+  "duration": 13.346,
+  "cues": [
+    {
+      "text": "Start with a precise prompt. Ask for an isolated fixture, stable locators, and",
+      "start": 0.7,
+      "end": 6.324999999999999
+    },
+    {
+      "text": "assertions against real business state. Review the proposed code before you execute",
+      "start": 6.3374999999999995,
+      "end": 11.5375
+    },
+    {
+      "text": "it.",
+      "start": 11.549999999999999,
+      "end": 11.825
+    }
+  ],
+  "word_boundaries": [
+    {
+      "type": "WordBoundary",
+      "offset": 1000000,
+      "duration": 3375000,
+      "text": "Start"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 4500000,
+      "duration": 1125000,
+      "text": "with"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 5750000,
+      "duration": 500000,
+      "text": "a"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 6375000,
+      "duration": 4250000,
+      "text": "precise"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 10750000,
+      "duration": 5250000,
+      "text": "prompt"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 24625000,
+      "duration": 3000000,
+      "text": "Ask"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 27750000,
+      "duration": 1250000,
+      "text": "for"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 29125000,
+      "duration": 1250000,
+      "text": "an"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 30500000,
+      "duration": 5375000,
+      "text": "isolated"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 36000000,
+      "duration": 5875000,
+      "text": "fixture"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 43750000,
+      "duration": 3625000,
+      "text": "stable"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 47500000,
+      "duration": 6625000,
+      "text": "locators"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 55875000,
+      "duration": 1375000,
+      "text": "and"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 57375000,
+      "duration": 5250000,
+      "text": "assertions"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 62750000,
+      "duration": 3875000,
+      "text": "against"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 66750000,
+      "duration": 2250000,
+      "text": "real"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 69125000,
+      "duration": 3875000,
+      "text": "business"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 73125000,
+      "duration": 4875000,
+      "text": "state"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 86625000,
+      "duration": 3625000,
+      "text": "Review"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 90375000,
+      "duration": 875000,
+      "text": "the"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 91375000,
+      "duration": 4875000,
+      "text": "proposed"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 96375000,
+      "duration": 2875000,
+      "text": "code"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 99375000,
+      "duration": 3500000,
+      "text": "before"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 103000000,
+      "duration": 1000000,
+      "text": "you"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 104125000,
+      "duration": 5250000,
+      "text": "execute"
+    },
+    {
+      "type": "WordBoundary",
+      "offset": 109500000,
+      "duration": 2750000,
+      "text": "it"
+    }
+  ],
+  "caption_alignment": "original words aligned to provider boundaries",
+  "peak": 0.9260279536247253,
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "engine": "edge-tts 7.2.8",
+  "generation_seconds": 1.202999999979511,
+  "original_words": 26,
+  "spoken_words": 26,
+  "spoken_text": "Start with a precise prompt. Ask for an isolated fixture, stable locators, and assertions against real business state. Review the proposed code before you execute it."
+}

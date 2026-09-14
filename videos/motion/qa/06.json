@@ -1,0 +1,79 @@
+{
+  "episode": "06",
+  "sha256": "90b10816e1d04ecb2d3717149b00e933b2ade465212ee4c01372dc49a15afcad",
+  "duration": 434.5,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "audioMeanDb": -22.1,
+  "audioPeakDb": -1.0,
+  "audioDecode": "passed",
+  "sampleCount": 12,
+  "samples": [
+    {
+      "scene": "06-01",
+      "time": 17.329,
+      "frame": "motion\\local-results\\review\\06\\01.png"
+    },
+    {
+      "scene": "06-02",
+      "time": 53.607,
+      "frame": "motion\\local-results\\review\\06\\02.png"
+    },
+    {
+      "scene": "06-03",
+      "time": 90.42500000000001,
+      "frame": "motion\\local-results\\review\\06\\03.png"
+    },
+    {
+      "scene": "06-04",
+      "time": 126.36700000000002,
+      "frame": "motion\\local-results\\review\\06\\04.png"
+    },
+    {
+      "scene": "06-05",
+      "time": 162.68099999999998,
+      "frame": "motion\\local-results\\review\\06\\05.png"
+    },
+    {
+      "scene": "06-06",
+      "time": 199.295,
+      "frame": "motion\\local-results\\review\\06\\06.png"
+    },
+    {
+      "scene": "06-07",
+      "time": 237.36100000000002,
+      "frame": "motion\\local-results\\review\\06\\07.png"
+    },
+    {
+      "scene": "06-08",
+      "time": 274.69500000000005,
+      "frame": "motion\\local-results\\review\\06\\08.png"
+    },
+    {
+      "scene": "06-09",
+      "time": 310.481,
+      "frame": "motion\\local-results\\review\\06\\09.png"
+    },
+    {
+      "scene": "06-10",
+      "time": 345.89500000000004,
+      "frame": "motion\\local-results\\review\\06\\10.png"
+    },
+    {
+      "scene": "06-11",
+      "time": 381.65700000000004,
+      "frame": "motion\\local-results\\review\\06\\11.png"
+    },
+    {
+      "scene": "06-12",
+      "time": 417.32300000000004,
+      "frame": "motion\\local-results\\review\\06\\12.png"
+    }
+  ],
+  "contactSheet": "motion\\qa\\06-contact.jpg",
+  "visualReview": "Twelve sampled scene frames reviewed: distributed path, polling code, recorded browser and captured state panels checked.",
+  "fullPlaybackReview": "not performed"
+}

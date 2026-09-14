@@ -1,0 +1,10 @@
+{
+  "output": "motion\\renders\\08-motion.mp4",
+  "sha256": "57bdb8f10f58c402fd24f84727f2018aafd229703e72f4e800cde83e2ff82860",
+  "duration": 434.916667,
+  "width": 1920,
+  "height": 1080,
+  "audioCodec": "aac",
+  "actualBrowserCaptures": 0,
+  "visualReview": "Twelve sampled scene frames reviewed: actual intentional failure is distinguished from the healthy run; prompts and reporting examples checked."
+}
